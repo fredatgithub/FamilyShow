@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyShowLib", "FamilyShowLib\FamilyShowLib.csproj", "{2D6E56AB-7C1D-4129-858C-E319BF04E7C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyShow", "FamilyShow\FamilyShow.csproj", "{6028571C-B855-42AE-8903-77F1D2B5A000}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D6E56AB-7C1D-4129-858C-E319BF04E7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D6E56AB-7C1D-4129-858C-E319BF04E7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D6E56AB-7C1D-4129-858C-E319BF04E7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D6E56AB-7C1D-4129-858C-E319BF04E7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6028571C-B855-42AE-8903-77F1D2B5A000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6028571C-B855-42AE-8903-77F1D2B5A000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6028571C-B855-42AE-8903-77F1D2B5A000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6028571C-B855-42AE-8903-77F1D2B5A000}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

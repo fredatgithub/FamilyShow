@@ -1,0 +1,98 @@
+Version 3.0.0.0 (2009-02-23)
+--
+Moved application to VS2008, .NET 3.5 
+
+Now uses the new .familyx file format (Open Package Convention)
+
+Implemented the most requested feature from Codeplex: Connecting existing family members!
+
+WPF 3.5 Data Validation
+
+Made the histogram and data grid controls re-usable and created a new hands-on lab that shows how to re-use the controls
+
+Enhanced Tooltip that shows family relationships
+
+UX Enhancements
+
+Always show full names
+
+Styled disabled fields so they look different from enabled fields
+
+New Hover state for family members
+
+
+Version 2.0.0.0 (2007-07-17)
+--
+Family Data View with filtering, sorting, and in-place editing
+
+Family Analytics including Last Name Tag Cloud, Age Distribution Historgram, 
+  and Birthday List. Clicking on the items in each control filters the
+  Family Data View.
+
+Enhanced Story Editing with support for font name, size, alignment, bullets,
+  and numerical lists
+  
+Filtering and sorting in the Family List view, in the main window
+
+Skinnable user interface with two skins: black and silver
+
+Improved tooltips in diagram view
+
+Improved Windsor family sample data file with stories and images. Please note
+  that the new Windsor family sample data file, stories, and images are only
+  written out the first time Family.Show runs AND a Family.Show folder in
+  the Documents folder does NOT already exist.
+
+
+Version 1.5.4.0 (2007-06-20)
+--
+Change tick change on zoom slider.
+
+Prevent application from crashing when size the window to a small
+size when the Welcome dialog is displayed.
+
+Display version in the welcome window.
+
+Sort the listview in the diagram view.
+
+Filter the listview in the diagram view.
+
+Select Default and Gray skins.
+
+Family Data view that contains:
+  Editable list of people.
+  The list can be sorted and filtered.
+  Last name, age distribution, and birthday statistics controls.
+
+
+Version 1.0.1.0 (2007-05-11)
+--
+Fix problem when exporting to GEDCOM and a middle name was specified and 
+a married name was not specified.
+
+Fix problem importing GEDCOM files that contain invalid characters.
+
+Fix problem importing GEDCOM files that contain family sections with
+invalid individuals.
+
+Fix problem importing GEDCOM files that contain invalid tag names.
+
+Fixed a bug with adding duplicate relationship objects when adding a spouse.
+
+Fixed a bug with RemoveSiblingRelationships method.
+
+Fixed Export Gedcom menu command showing .family instead of .gedcom extension.
+
+Decided to increment the build number instead of the revision number on future versions.
+
+
+Version 1.0.0.1 (2007-04-28)
+--
+Prompt the user to save modified family trees when create a new file, open 
+an existing file, import a GEDCOM file, and when the application terminates.
+
+
+Version 1.0.0.0 (2007-04-27)
+--
+Initial release.
+

@@ -1,0 +1,71 @@
+<UserControl x:Class="Microsoft.FamilyShow.SharedBirthdays"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Microsoft.FamilyShow">
+
+  <UserControl.Resources>
+    <Style x:Key="GroupedListBox" TargetType="{x:Type ListBox}">
+      <Setter Property="SnapsToDevicePixels" Value="true"/>
+      <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource SolidBorderBrush}"/>
+      <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+      <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+      <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+    </Style>
+
+    <Style x:Key="GroupedListBoxItem" TargetType="{x:Type ListBoxItem}">
+      <Setter Property="SnapsToDevicePixels" Value="true"/>
+      <Setter Property="OverridesDefaultStyle" Value="true"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ListBoxItem}">
+            <Grid SnapsToDevicePixels="true">
+              <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+
+              <!-- Change IsSelected SelectedBackgroundBrush to set the selection color for the items -->
+              <Trigger Property="IsSelected" Value="true">
+                <Setter Property="Background" Value="{DynamicResource FamilyEditListViewSelectedBrush}" TargetName="Border"/>
+              </Trigger>
+              
+              <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="GroupedListControlTemplate" TargetType="{x:Type ListBox}">
+      <WrapPanel IsItemsHost="True" />
+    </ControlTemplate>
+
+    <DataTemplate x:Key="HeaderTemplate">
+      <TextBlock Foreground="{DynamicResource SharedBirthdaysGroupHeaderColor}" Margin="0,10,0,0"  Text="{Binding Path=Name}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="ItemDataTemplate">
+      <TextBlock Foreground="{DynamicResource FontColor}" FontWeight="Medium" Margin="20,0,0,0" Text="{Binding Path=Name}" />
+    </DataTemplate>
+  </UserControl.Resources>
+
+  <DockPanel>
+    <ListBox x:Name="GroupedItemsControl"
+             DockPanel.Dock="Top"
+             Background="{x:Null}"
+             BorderThickness="0,0,0,0"
+             ItemContainerStyle="{StaticResource GroupedListBoxItem}"
+             ItemTemplate="{StaticResource ItemDataTemplate}"
+             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+             ScrollViewer.VerticalScrollBarVisibility="Auto"
+             VerticalAlignment="Top"
+             SelectionChanged="GroupedListBox_SelectionChanged">
+      <ListBox.GroupStyle>
+        <GroupStyle  HeaderTemplate="{StaticResource HeaderTemplate}" />
+      </ListBox.GroupStyle>
+    </ListBox>
+  </DockPanel>
+</UserControl>

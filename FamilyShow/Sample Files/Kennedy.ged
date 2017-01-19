@@ -1,0 +1,874 @@
+0 HEAD 
+1 SOUR EasyTree
+2 VERS V1.0
+2 CORP DefCompany
+1 DEST EasyTree
+1 DATE 6 MAY 2001
+1 FILE Kennedy
+1 GEDC 
+2 VERS 5.01
+1 CHAR IBM WINDOWS
+0 @I1@ INDI
+1 NAME Joseph Patrick /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 6 SEP 1888
+2 PLAC Boston, MA
+1 DEAT 
+2 DATE 18 NOV 1969
+2 PLAC Hyannis Port, MA
+1 BURI 
+2 PLAC Holyhood Cemetery, Brookline, MA 
+1 OCCU Bank President, Ambassador
+1 EDUC Harvard Graduate
+1 HEAL Joe Kennedy was a very hard worker, which often deteriorated
+1 NOTE From the time he was a school boy he was interested in making money.
+1 NOTE 
+1 NOTE He had an interesting hobby of tinkering with clocks.
+1 NOTE 
+1 NOTE Joe was a poor student, but good at athletics and had an attractive personality. He was able to overcome many ethnic barriers during his school years at Boston Latin, a protestant and primarily Yankee school.
+1 NOTE 
+1 NOTE Was one of the youngest Bank Presidents in US history. 
+1 NOTE 
+1 NOTE He was fiercely proud of his family. He was quoted as having said his family was the finest thing in his life. 
+1 HIST Bronxville, MA
+1 HIST Hyannis, MA
+1 HIST Palm Beach, FL
+1 HIST Brookline, MA
+1 RELI Roman Catholic
+1 FAMS @F1@
+1 FAMC @F9@
+1 CHAN 
+2 DATE 26 JAN 1995
+0 @I2@ INDI
+1 NAME Rose /FITZGERALD/
+1 SEX F
+1 BIRT 
+2 DATE 22 JUL 1890
+2 PLAC North End, Boston, MA
+1 DEAT 
+2 DATE 22 JAN 1995
+2 PLAC Hyannis Port, MA 
+1 BURI 
+2 DATE 25 JAN 1995
+2 PLAC Holyhood Cemetery, Brookline, MA 
+1 EDUC Dorchester High School, Sacred Heart Convent
+1 HEAL Died of complications due to pneumonia. 
+1 NOTE She was considered the flower of Boston Irish society.
+1 NOTE 
+1 NOTE She graduated from high school, one of the three highest in a class of 285. She was then sent to finish school in Europe for two years.
+1 NOTE 
+1 NOTE She was courted by some of the finest young men, not only Boston's Irish, but members of the English nobility as well.
+1 NOTE 
+1 NOTE She was very dedicated to her family, which was evident by the strong support she gave her sons in their political campaigns.
+1 RELI Roman Catholic
+1 FAMS @F1@
+1 FAMC @F12@
+1 CHAN 
+2 DATE 26 JAN 1995
+0 @I3@ INDI
+1 NAME Joseph Patrick /KENNEDY/
+1 TITL Jr.
+1 SEX M
+1 BIRT 
+2 DATE JUL 1915
+2 PLAC Boston, MA
+1 DEAT 
+2 DATE 2 AUG 1944
+2 PLAC Suffolk, England
+1 EDUC Harvard University, Harvard Law School
+1 HEAL He suffered 2 cases of Jaundice during his beginning years a
+1 NOTE Joseph Patrick was well liked, quick to smile, and had a tremendous dose of Irish charm.
+1 NOTE 
+1 NOTE He enlisted in the Navy during World War II, and died during a naval flight.
+1 NOTE 
+1 NOTE He was known as Jack.
+1 RELI Roman Catholic
+1 FAMC @F1@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I4@ INDI
+1 NAME Rosemary /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE SEP 1918
+2 PLAC Boston, MA
+1 HEAL In 1941 she had a frontal lobotomy.
+1 NOTE She was born severely mentally retarded. For years her parents were ashamed of her and never told anyone about her problems.
+1 NOTE 
+1 NOTE In 1946 her father gave $600,000 for the construction of the Joseph P. Kennedy Jr. Convalescent Home for disadvantaged children, because of Rosemary's condition.
+1 FAMC @F1@
+1 CHAN 
+2 DATE 23 JAN 1996
+0 @I5@ INDI
+1 NAME William John Robert /CAVENDISH/
+1 SEX M
+1 BIRT 
+2 DATE 10 DEC 1917
+1 DEAT 
+2 DATE 10 SEP 1944
+2 PLAC Belgium
+1 FAMS @F2@
+0 @I6@ INDI
+1 NAME Kathleen /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 1920
+2 PLAC Boston, MA
+1 DEAT 
+2 DATE 13 MAY 1948
+2 PLAC France
+1 NOTE Died in an airplane crash with her lover in France three years after her older brother Joseph's death.
+1 NOTE 
+1 NOTE Served with the Red Cross in England during the war.
+1 FAMS @F2@
+1 FAMC @F1@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I7@ INDI
+1 NAME Robert Sargent /SHRIVER/
+1 TITL Jr.
+1 SEX M
+1 BIRT 
+2 DATE 9 NOV 1915
+2 PLAC Westminster, MD
+1 NOTE 1972 was the vice presidential candidate.
+1 FAMS @F3@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I8@ INDI
+1 NAME Eunice Mary /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE JUL 1921
+2 PLAC Boston, MA
+1 NOTE She helped in the many political campaigns of her brother, John Fitzgerald.
+1 NOTE 
+1 NOTE She ran a summer home for retarded children.
+1 NOTE 
+1 NOTE After her mother, Eunice was considered the family's model woman.
+1 HIST Timberlawn, MD
+1 FAMS @F3@
+1 FAMC @F1@
+0 @I9@ INDI
+1 NAME Robert Sargent /SHRIVER/
+1 TITL III
+1 SEX M
+1 BIRT 
+2 DATE 1954
+1 FAMC @F3@
+0 @I10@ INDI
+1 NAME Arnold /SCHWARZENEGGER/
+1 SEX M
+1 OCCU Actor
+1 FAMS @F4@
+1 CHAN 
+2 DATE 16 OCT 1994
+0 @I11@ INDI
+1 NAME Maria /SHRIVER/
+1 SEX F
+1 EDUC Georgetown University
+1 FAMS @F4@
+1 FAMC @F3@
+1 CHAN 
+2 DATE 30 JUN 1994
+0 @I12@ INDI
+1 NAME Timothy /SHRIVER/
+1 SEX M
+1 FAMC @F3@
+0 @I13@ INDI
+1 NAME Mark Kennedy /SHRIVER/
+1 SEX M
+1 BIRT 
+2 DATE FEB 1964
+2 PLAC Washington, DC
+1 FAMC @F3@
+0 @I14@ INDI
+1 NAME Anthony Paul /SHRIVER/
+1 SEX M
+1 BIRT 
+2 DATE 20 JUL 1965
+2 PLAC Boston, MA
+1 FAMC @F3@
+0 @I15@ INDI
+1 NAME Peter /LAWFORD/
+1 SEX M
+1 BIRT 
+2 DATE 7 SEP 1923
+1 FAMS @F5@
+0 @I16@ INDI
+1 NAME Patricia /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 6 MAY 1924
+2 PLAC Boston, MA
+1 NOTE Was a help to her brother John F. during his political campaigns.
+1 FAMS @F5@
+1 FAMC @F1@
+0 @I17@ INDI
+1 NAME Christopher /LAWFORD/
+1 SEX M
+1 FAMC @F5@
+0 @I18@ INDI
+1 NAME Victoria /LAWFORD/
+1 SEX F
+1 FAMC @F5@
+0 @I19@ INDI
+1 NAME Sydney /LAWFORD/
+1 SEX F
+1 FAMC @F5@
+0 @I20@ INDI
+1 NAME Robin /LAWFORD/
+1 SEX F
+1 FAMC @F5@
+0 @I21@ INDI
+1 NAME Robert Francis /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 20 NOV 1925
+2 PLAC Boston, MA
+1 DEAT 
+2 DATE 6 JUN 1968
+2 PLAC Los Angeles, CA
+1 BURI 
+2 DATE 8 JUN 1968
+2 PLAC Arlington National, VA
+1 NOTE Robert Francis was assassinated in California during his 1968 presidential campaign.
+1 NOTE 
+1 NOTE He was very dedicated to his children and every evening had prayers with them, each of them saying the Rosary.
+1 HIST Hickory Hill
+1 RELI Roman Catholic
+1 FAMS @F6@
+1 FAMC @F1@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I22@ INDI
+1 NAME Ethel /SKAKEL/
+1 SEX F
+1 BIRT 
+2 DATE 1928
+1 FAMS @F6@
+0 @I23@ INDI
+1 NAME Kathleen Hartington /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 4 JUL 1951
+1 FAMC @F6@
+0 @I24@ INDI
+1 NAME Joseph Patrick /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 1952
+1 FAMC @F6@
+0 @I25@ INDI
+1 NAME Robert Francis /KENNEDY/
+1 TITL Jr.
+1 SEX M
+1 BIRT 
+2 DATE 1953
+1 FAMC @F6@
+0 @I26@ INDI
+1 NAME David Anthony /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 1954
+1 FAMC @F6@
+0 @I27@ INDI
+1 NAME Mary Courtney /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 1955
+1 FAMC @F6@
+0 @I28@ INDI
+1 NAME Michael L. /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 1957
+1 FAMC @F6@
+0 @I29@ INDI
+1 NAME Mary Kerry /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 1958
+1 FAMC @F6@
+0 @I30@ INDI
+1 NAME Christopher George /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 4 JUN 1963
+2 PLAC Boston, MA
+1 FAMC @F6@
+0 @I31@ INDI
+1 NAME Matthew Maxwell Taylor /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 9 JAN 1965
+2 PLAC New York
+1 FAMC @F6@
+0 @I32@ INDI
+1 NAME Douglas Harriman /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 24 MAR 1967
+2 PLAC Washington, DC
+1 FAMC @F6@
+0 @I33@ INDI
+1 NAME Rory Elizabeth /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 12 DEC 1968
+2 PLAC Washington, DC
+1 FAMC @F6@
+0 @I34@ INDI
+1 NAME Stephen Edward /SMITH/
+1 SEX M
+1 FAMS @F7@
+0 @I35@ INDI
+1 NAME Jean Ann /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE FEB 1928
+2 PLAC Boston, MA
+1 RELI Roman Catholic
+1 FAMS @F7@
+1 FAMC @F1@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I36@ INDI
+1 NAME Stephen /SMITH/
+1 SEX M
+1 FAMC @F7@
+0 @I37@ INDI
+1 NAME William Kennedy /SMITH/
+1 SEX M
+1 BIRT 
+2 DATE SEP 1960
+2 PLAC Boston, MA
+1 FAMC @F7@
+0 @I38@ INDI
+1 NAME Amanda /SMITH/
+1 SEX F
+1 FAMC @F7@
+0 @I39@ INDI
+1 NAME Edward Moore /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 22 FEB 1932
+2 PLAC Brookline, MA
+1 NOTE Enlisted in the Navy during World War II.
+1 NOTE 
+1 NOTE Was known as "Teddy".
+1 RELI Roman Catholic
+1 FAMS @F8@
+1 FAMC @F1@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I40@ INDI
+1 NAME Virginia Joan /BENNETT/
+1 SEX F
+1 RELI Roman Catholic
+1 FAMS @F8@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I41@ INDI
+1 NAME Kara Ann /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE MAR 1960
+1 FAMC @F8@
+0 @I42@ INDI
+1 NAME Edward More /KENNEDY/
+1 TITL Jr.
+1 SEX M
+1 BIRT 
+2 DATE 26 SEP 1961
+1 FAMC @F8@
+0 @I43@ INDI
+1 NAME Patrick Joseph /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE AUG 1963
+1 FAMC @F8@
+0 @I44@ INDI
+1 NAME Patrick Joseph /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 14 JAN 1858
+2 PLAC Boston, MA
+1 DEAT 
+2 DATE MAY 1929
+1 OCCU Dockhand, Saloonkeeper, Senator, Bank President
+1 NOTE As a young man, Patrick dropped out of school to work on the docks of Boston.
+1 NOTE 
+1 NOTE Patrick was able to work his way from being a SaloonKeeper to becoming a Ward Boss, helping out other Irish immigrants. His popularity  rose and at the age of thirty he had become a power in Boston politics. In 1892 and 1893 he was elected to
+2 CONT the Massachusetts Senate.
+1 NOTE 
+1 NOTE Patrick later became a very successful businessman getting into wholesale liquor sales, owning a coal company and becoming the president of a bank.
+1 NOTE 
+1 NOTE His personality was mild-mannered, quiet and reserved, and he was viewed as a man of moderate habits.
+1 HIST Meridian St., East Boston, MA
+1 HIST Webster St., Boston, MA
+1 RELI Roman Catholic
+1 FAMS @F9@
+1 FAMC @F10@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I45@ INDI
+1 NAME Mary Augusta /HICKEY/
+1 SEX F
+1 DEAT 
+2 DATE 1923
+1 RELI Roman Catholic
+1 FAMS @F9@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I46@ INDI
+1 NAME Patrick /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 1823
+2 PLAC Dunganstown, Ireland
+1 DEAT 
+2 DATE 22 NOV 1858
+2 PLAC Boston, MA
+1 OCCU Cooper, Ward Boss
+1 HEAL He died of an outbreak of Cholera.
+1 NOTE The potato famine of 1845-48, plagued the country of Ireland and pushed many Irishmen to flee to the land of promise, the USA. Patrick Kennedy was among those to leave his home in Wexford County, Ireland, in 1848, in hopes of finding a better
+2 CONT life in the US. Once he arrived in the US, he settled in East Boston, where he remained for the rest of his life.
+1 NOTE 
+1 NOTE Upon Patrick's arrival in Boston, he immediately became involved in politics. He was known as a Ward Boss in Boston, looking out for the other Irish immigrants and trying to improve the conditions in the community.
+1 HIST Duganstown, Ireland
+1 HIST Liverpool St., East Boston, MA
+1 RELI Roman Catholic
+1 FAMS @F10@
+1 CHAN 
+2 DATE 16 OCT 1994
+0 @I47@ INDI
+1 NAME Bridget /MURPHY/
+1 SEX F
+1 BIRT 
+2 DATE 1821
+1 DEAT 
+2 DATE 20 DEC 1888
+2 PLAC Boston, MA
+1 BURI 
+2 PLAC Cathedral Of The Holy Cross, MA
+1 HEAL Her death was caused by a cerebral hemorrhage.
+1 NOTE After her husband died, she opened up a "Notions Shop" to provide for her family.
+1 RELI Roman Catholic
+1 FAMS @F10@
+1 CHAN 
+2 DATE 16 OCT 1994
+0 @I48@ INDI
+1 NAME John Vernou /BOUVIER/
+1 TITL III
+1 SEX M
+1 DEAT 
+2 DATE AUG 1957
+2 PLAC Lennox Hill Hosp., NY
+1 BURI 
+2 PLAC St. Philomena's Cemetery, NY
+1 HEAL Died of cancer.
+1 NOTE He was known as "Black Jack."
+1 NOTE 
+1 NOTE He was known to drink alcohol excessively.
+1 HIST East Hampton, NY
+1 FAMS @F11@
+1 CHAN 
+2 DATE 30 JUN 1994
+0 @I49@ INDI
+1 NAME Janet /LEE/
+1 SEX F
+1 HIST Newport, RI
+1 FAMS @F11@
+1 FAMS @F19@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I50@ INDI
+1 NAME John F. /FITZGERALD/
+1 SEX M
+1 OCCU Mayor
+1 NOTE He was known as "Honey Fitz".
+1 FAMS @F12@
+1 CHAN 
+2 DATE 3 NOV 1994
+0 @I51@ INDI
+1 NAME Josephine Mary /HANNON/
+1 SEX F
+1 FAMS @F12@
+1 CHAN 
+2 DATE 3 NOV 1994
+0 @I52@ INDI
+1 NAME John Fitzgerald /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 29 MAY 1917
+2 PLAC Brookline, MA
+1 DEAT 
+2 DATE 22 NOV 1963
+2 PLAC Dallas, TX
+1 BURI 
+2 DATE 25 NOV 1963
+2 PLAC Arlington National, VA
+1 OCCU Senator
+1 EDUC Choate, London Sch. Of Econ., Princeton, Harvard
+1 HEAL Later on in life he faced serious back surgery two times, on
+1 NOTE <img src="http://www.jacqueslowe.com/html/photographs/jfk/images/jfkp52bw.jpg" border=1>
+1 NOTE In 1960 he became President of the United States.
+1 NOTE 
+1 NOTE He wrote 2 books, including "Profiles in Courage", which won him a Pulitzer Prize.
+1 NOTE 
+1 NOTE He had personal finances that were estimated to be around $10 million while in the Presidency.
+1 NOTE 
+1 NOTE He was assassinated in Dallas, TX.
+1 RELI Roman Catholic
+1 FAMS @F13@
+1 FAMC @F1@
+1 CHAN 
+2 DATE 29 APR 1995
+0 @I53@ INDI
+1 NAME Jacqueline /BOUVIER/
+1 SEX F
+1 BIRT 
+2 DATE 28 JUL 1929
+2 PLAC Southampton, Long Island, NY
+1 DEAT 
+2 DATE 19 MAY 1994
+2 PLAC NYC, NY
+1 BURI 
+2 DATE 23 MAY 1994
+2 PLAC Arlington National, VA
+1 HEAL In 1955 Jackie suffered a miscarriage
+1 NOTE <img src="http://www.jacqueslowe.com/html/photographs/jackie/images/Jacky01bw.jpg" border=1>
+1 NOTE Before marrying JFK, Jackie worked as a photo journalist in Washington DC.
+1 NOTE 
+1 NOTE While dating JFK, Jackie did not want him to know that she was not rich and think that she was only marrying him for his money. So, she went to great lengths to appear rich.
+1 NOTE 
+1 NOTE She was said to be the only First Lady to resemble royalty. She shunned the media and never publicly discussed the assassination of JFK, how she felt about it, or the alleged affairs of her first husband.
+1 HIST 5th Avenue, NYC, NY
+1 HIST Martha's Vineyard 
+1 RELI Roman Catholic
+1 FAMS @F15@
+1 FAMS @F13@
+1 FAMC @F11@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I54@ INDI
+1 NAME Caroline Bouvier /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 27 NOV 1957
+2 PLAC New York
+1 CHR 
+2 DATE 13 DEC 1957 
+2 PLAC St. Patricks Cathedral
+1 EDUC Brearly School
+1 RELI Roman Catholic
+1 FAMC @F13@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I55@ INDI
+1 NAME John Fitzgerald /KENNEDY/
+1 TITL Jr.
+1 SEX M
+1 BIRT 
+2 DATE 25 NOV 1960
+2 PLAC Washington, DC
+1 EDUC Brown Univ
+1 FAMC @F13@
+1 CHAN 
+2 DATE 29 APR 1995
+0 @I56@ INDI
+1 NAME Patrick Bouvier /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 7 AUG 1963
+2 PLAC Otis Air Force B, Mass
+1 DEAT 
+2 DATE 9 AUG 1963
+2 PLAC Boston, Mass
+1 FAMC @F13@
+0 @I57@ INDI
+1 NAME Margaret /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 1898
+1 FAMS @F14@
+1 FAMC @F9@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I58@ INDI
+1 NAME Charles /BURKE/
+1 SEX M
+1 FAMS @F14@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I59@ INDI
+1 NAME Aristotle /ONASSIS/
+1 SEX M
+1 FAMS @F15@
+1 CHAN 
+2 DATE 29 MAY 1994
+0 @I60@ INDI
+1 NAME Mary /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 9 AUG 1851
+2 PLAC Boston, MA
+1 FAMS @F16@
+1 FAMC @F10@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I61@ INDI
+1 NAME Johanna /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 4 DEC 1852
+1 FAMS @F17@
+1 FAMC @F10@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I62@ INDI
+1 NAME John /KENNEDY/
+1 SEX M
+1 BIRT 
+2 DATE 4 JAN 1854
+2 PLAC Boston, MA
+1 DEAT 
+2 DATE 24 SEP 1855
+1 FAMC @F10@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I63@ INDI
+1 NAME Margaret /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 18 JUL 1855
+2 PLAC Boston, MA
+1 FAMS @F18@
+1 FAMC @F10@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I64@ INDI
+1 NAME Humphrey /MAHONEY/
+1 SEX M
+1 OCCU Janitor
+1 FAMS @F17@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I65@ INDI
+1 NAME John T. /CAULFIELD/
+1 SEX M
+1 OCCU Clerk
+1 FAMS @F18@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I66@ INDI
+1 NAME Laurence /KANE/
+1 SEX M
+1 OCCU Teamster
+1 FAMS @F16@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I67@ INDI
+1 NAME Loretta /KENNEDY/
+1 SEX F
+1 BIRT 
+2 DATE 1892
+2 PLAC Boston, MA
+1 FAMC @F9@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I68@ INDI
+1 NAME Lee /BOUVIER/
+1 SEX F
+1 FAMC @F11@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @I69@ INDI
+1 NAME Hugh /ACHINCLOSS/
+1 SEX M
+1 FAMS @F19@
+1 CHAN 
+2 DATE 27 MAY 1994
+0 @S1@ SOUR
+1 NAME Joseph P. Kennedy, A Life and Times, by David E. Koskoff.
+0 @S2@ SOUR
+1 NAME Rose, by Gail Cameron.
+0 @S3@ SOUR
+1 NAME New York Times, March 4, 1946, pp. 1,3.
+0 @S4@ SOUR
+1 NAME New York Times, March 6, 1946.
+0 @S5@ SOUR
+1 NAME New York World Telegram and Sun, Oct 11, 1957, pg. 1.
+0 @S6@ SOUR
+1 NAME The Kennedys Dynasty and Disaster 1848-1983, by John H. Davis.
+0 @S7@ SOUR
+1 NAME Growing Up Kennedy, Harrison Raine and John Quinn.
+0 @S8@ SOUR
+1 NAME New York Times, Nov. 22, 1963.
+0 @S9@ SOUR
+1 NAME Harrisburg Patriot News, 23 May 1994.
+0 @S10@ SOUR
+1 NAME CBS This Morning show.
+0 @S11@ SOUR
+1 NAME Harrisburg Patriot News, January 25, 1995.
+0 @C1@ CSTA
+1 NAME Twin
+0 @C2@ CSTA
+1 NAME Adopted
+0 @C3@ CSTA
+1 NAME Illegitimate
+0 @C4@ CSTA
+1 NAME Duplicate
+0 @C5@ CSTA
+1 NAME Stillborn
+0 @C6@ CSTA
+1 NAME Foster
+0 @C7@ CSTA
+1 NAME Adopted Twin
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 CHIL @I3@
+1 CHIL @I52@
+1 CHIL @I4@
+1 CHIL @I6@
+1 CHIL @I8@
+1 CHIL @I16@
+1 CHIL @I21@
+1 CHIL @I35@
+1 CHIL @I39@
+1 MARR 
+2 DATE 7 OCT 1914
+2 PLAC Boston, MA
+0 @F2@ FAM
+1 HUSB @I5@
+1 WIFE @I6@
+1 MARR 
+2 DATE 6 MAY 1944
+2 PLAC London
+0 @F3@ FAM
+1 HUSB @I7@
+1 WIFE @I8@
+1 CHIL @I9@
+1 CHIL @I11@
+1 CHIL @I12@
+1 CHIL @I13@
+1 CHIL @I14@
+1 MARR 
+2 DATE 23 MAY 1953
+0 @F4@ FAM
+1 HUSB @I10@
+1 WIFE @I11@
+0 @F5@ FAM
+1 HUSB @I15@
+1 WIFE @I16@
+1 CHIL @I17@
+1 CHIL @I18@
+1 CHIL @I19@
+1 CHIL @I20@
+1 DIV 
+2 DATE 1965
+0 @F6@ FAM
+1 HUSB @I21@
+1 WIFE @I22@
+1 CHIL @I23@
+1 CHIL @I24@
+1 CHIL @I25@
+1 CHIL @I26@
+1 CHIL @I27@
+1 CHIL @I28@
+1 CHIL @I29@
+1 CHIL @I30@
+1 CHIL @I31@
+1 CHIL @I32@
+1 CHIL @I33@
+1 MARR 
+2 DATE 17 JUN 1950
+2 PLAC Greenwich, Connecticut
+0 @F7@ FAM
+1 HUSB @I34@
+1 WIFE @I35@
+1 CHIL @I36@
+1 CHIL @I37@
+1 CHIL @I38@
+1 MARR 
+2 DATE 1956
+0 @F8@ FAM
+1 HUSB @I39@
+1 WIFE @I40@
+1 CHIL @I41@
+1 CHIL @I42@
+1 CHIL @I43@
+1 MARR 
+2 DATE 29 NOV 1958
+0 @F9@ FAM
+1 HUSB @I44@
+1 WIFE @I45@
+1 CHIL @I1@
+1 CHIL @I67@
+1 CHIL @I57@
+1 MARR 
+2 DATE 1887
+0 @F10@ FAM
+1 HUSB @I46@
+1 WIFE @I47@
+1 CHIL @I60@
+1 CHIL @I61@
+1 CHIL @I62@
+1 CHIL @I63@
+1 CHIL @I44@
+1 MARR 
+2 DATE 28 SEP 1849
+2 PLAC Holy Cross Cathedral, Boston, MA
+0 @F11@ FAM
+1 HUSB @I48@
+1 WIFE @I49@
+1 CHIL @I53@
+1 CHIL @I68@
+1 DIV 
+2 DATE JUL 1940
+0 @F12@ FAM
+1 HUSB @I50@
+1 WIFE @I51@
+1 CHIL @I2@
+0 @F13@ FAM
+1 HUSB @I52@
+1 WIFE @I53@
+1 CHIL @I54@
+1 CHIL @I55@
+1 CHIL @I56@
+1 MARR 
+2 DATE 12 SEP 1953
+2 PLAC Newport, RI
+0 @F14@ FAM
+1 HUSB @I58@
+1 WIFE @I57@
+0 @F15@ FAM
+1 HUSB @I59@
+1 WIFE @I53@
+0 @F16@ FAM
+1 HUSB @I66@
+1 WIFE @I60@
+1 MARR 
+2 DATE 1883
+2 PLAC Boston, MA
+0 @F17@ FAM
+1 HUSB @I64@
+1 WIFE @I61@
+1 MARR 
+2 DATE 22 SEP 1872
+2 PLAC Boston, MA
+0 @F18@ FAM
+1 HUSB @I65@
+1 WIFE @I63@
+1 MARR 
+2 DATE 1882
+2 PLAC Boston, MA
+0 @F19@ FAM
+1 HUSB @I69@
+1 WIFE @I49@
+1 MARR 
+2 DATE JUN 1942
+0 TRLR 

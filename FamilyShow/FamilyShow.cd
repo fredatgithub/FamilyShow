@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="C O N V E R T E R S">
+    <Position X="10" Y="5.5" Height="0.292" Width="9.419" />
+  </Comment>
+  <Comment CommentText="D I A G R A M">
+    <Position X="1" Y="0.75" Height="0.292" Width="7.483" />
+  </Comment>
+  <Comment CommentText="M A I N  W I N D O W   &amp;   U S E R   C O N T R O L S">
+    <Position X="10.028" Y="0.737" Height="0.292" Width="7.019" />
+  </Comment>
+  <Comment CommentText="MISC">
+    <Position X="9.983" Y="7.182" Height="0.291" Width="9.522" />
+  </Comment>
+  <Comment CommentText="ListView">
+    <Position X="0.977" Y="5.117" Height="0.292" Width="7.483" />
+  </Comment>
+  <Class Name="Microsoft.FamilyShow.App" Collapsed="true">
+    <Position X="10" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KABAAAAAAAAACAAABgEAAAAEQAEQAhBAAAAAAAAIBAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.BoolToVisibilityConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueConverters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Microsoft.FamilyShow.CommonDialog" Collapsed="true">
+    <Position X="18" Y="7.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAEAAAQCAEAAAABIAAABAAQAAAABAAAA=</HashCode>
+      <FileName>CommonDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.DateFormattingConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueConverters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Microsoft.FamilyShow.Diagram" Collapsed="true">
+    <Position X="1" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>DoQkAAACEBQkEAAEAAJAhIgSAAIMAACAWQEAIEBiAQA=</HashCode>
+      <FileName>Controls\Diagram\Diagram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.DiagramConnector" Collapsed="true">
+    <Position X="5.75" Y="1.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABQABAISAQQACgAgABAABIAQAAAAAAAAAAAgIAAAAAA=</HashCode>
+      <FileName>Controls\Diagram\DiagramConnector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.DiagramConnectorNode" Collapsed="true">
+    <Position X="2.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAAIAAAEAAAABAAAAAAAQACAAAAAAAAAAAIAAEIAEA=</HashCode>
+      <FileName>Controls\Diagram\DiagramConnector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.DiagramGroup" Collapsed="true">
+    <Position X="1" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAIkQACAAAAAAAAAAAIAAIASAAAAAAAAAAACAABAIAA=</HashCode>
+      <FileName>Controls\Diagram\DiagramGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.DiagramLogic" Collapsed="true">
+    <Position X="1" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAEAAAAAgBCAQAAAAFAAAAAQUAFQQoQIYAAECBARAA=</HashCode>
+      <FileName>Controls\Diagram\DiagramLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.DiagramNode" Collapsed="true">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BJQAAYAwEEBIABBAgAMgAQADAAABAAAABQAIACiIAEA=</HashCode>
+      <FileName>Controls\Diagram\DiagramNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.DiagramRow" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAIEAEAAAAAAAAAAAAIAAIESAAAFIAAAAAAAAABAAAA=</HashCode>
+      <FileName>Controls\Diagram\DiagramRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.DiagramViewer" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAABAAAAAQcAAAUYACgAQIAFAAIAABCIEAAAAUFAA=</HashCode>
+      <FileName>Controls\Diagram\DiagramViewer.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.FilterEntry" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAEAAQAAAAEAAAAAAAA=</HashCode>
+      <FileName>CommonDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.FirstNamePossessiveFormConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueConverters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Microsoft.FamilyShow.MainWindow" Collapsed="true">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oAIGAQoEIAAKABwEBFEQgAAAGjSGiQABCABAAsAGBAk=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.NewUserControl" Collapsed="true">
+    <Position X="15.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAFAAAUAAAAIAAEAAAAAACAAAACAgCCAAAAAAAAA=</HashCode>
+      <FileName>Controls\NewUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.NotConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueConverters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Microsoft.FamilyShow.PersonInfo" Collapsed="true">
+    <Position X="10.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEABABAAAEgIAAICIEAhAACAAAAAAIAhACAIAAADiAA=</HashCode>
+      <FileName>Controls\PersonInfo.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.PrimaryAvatarConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueConverters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Microsoft.FamilyShow.ChildDiagramConnector" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Diagram\DiagramConnector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.MarriedDiagramConnector" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIABAAgAAQAAgAAAAAABAAAACACAAAAAAAAIAAAAiA=</HashCode>
+      <FileName>Controls\Diagram\DiagramConnector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.FamilyData" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAABAEAIIEAAAAAgAAQAgAAAgAiABAAAAAAA=</HashCode>
+      <FileName>Controls\FamilyData\FamilyData.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.FamilyDisplayListView" Collapsed="true">
+    <Position X="5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\FamilyData\FamilyDisplayListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.FamilyEditListView" Collapsed="true">
+    <Position X="7.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\FamilyData\FamilyEditListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.Filter" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABBogAAAAAAAAgEAAAAAAASAgAAAAAAAAAAAABAAIAA=</HashCode>
+      <FileName>Controls\FamilyData\FilterSortListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.FilterSortListView" Collapsed="true">
+    <Position X="6.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAYAAEAAAABAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Controls\FamilyData\FilterSortListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.Histogram" Collapsed="true">
+    <Position X="10.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAgAAAABIAAAAAAAAgAQAAEEAkAAAAEAAAAAgAoA=</HashCode>
+      <FileName>Controls\FamilyData\Histogram.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.HistogramValueToPercentageConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\FamilyData\Histogram.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Microsoft.FamilyShow.SortListViewColumn" Collapsed="true">
+    <Position X="1" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAABAAAAAAAAAAAAAAIAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Controls\FamilyData\SortListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.SortListView" Collapsed="true">
+    <Position X="6.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAACAMAAAABAACAAAAAEAAAA=</HashCode>
+      <FileName>Controls\FamilyData\SortListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.TagCloud" Collapsed="true">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAgAAAIBIAQAAAAIAAAAEAEAAEAAAAMACAAAAAgA=</HashCode>
+      <FileName>Controls\FamilyData\TagCloud.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.ComposingConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ValueConverters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Microsoft.FamilyShow.CountToFontSizeConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueConverters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Microsoft.FamilyShow.Welcome" Collapsed="true">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAABACAAQACCAQQUACCCAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Welcome.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.Properties.Resources" Collapsed="true">
+    <Position X="14" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBAIfIiAEABGIIAAoAEbHQQAIQBCJwABAxBFAAAkAME=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.Properties.Settings" Collapsed="true">
+    <Position X="12" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAIAAAAAABAAAAAAAAAAQACAA=</HashCode>
+      <FileName>Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.FamilyShow.Details" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAGAZJAYCABACAACiAAQKRkSgAAACAECiEBkAAIhAA=</HashCode>
+      <FileName>Controls\Details.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Microsoft.FamilyShow.NodeType" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAIAAAAACAAAAAAAAAAAAAAAEAAAAAAAAACEAAA=</HashCode>
+      <FileName>Controls\Diagram\DiagramNode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Microsoft.FamilyShow.FamilyMemberComboBoxValue" Collapsed="true">
+    <Position X="16" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAIAAAAACAAAAAAAAAAAAAAQAQAAAAABAgAAAAA=</HashCode>
+      <FileName>Controls\Details.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
