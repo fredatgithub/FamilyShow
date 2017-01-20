@@ -5,13 +5,13 @@
 */
 
 using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Microsoft.FamilyShowLib;
-using System.Globalization;
 
-namespace Microsoft.FamilyShow
+namespace Microsoft.FamilyShow.Controls.Diagram
 {
     /// <summary>
     /// One of the nodes in a connection.

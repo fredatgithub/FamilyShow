@@ -21,6 +21,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Microsoft.FamilyShow.Controls.Diagram;
 using Microsoft.FamilyShowLib;
 
 namespace Microsoft.FamilyShow
