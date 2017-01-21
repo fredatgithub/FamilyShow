@@ -3,14 +3,12 @@
 */
 
 using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.ComponentModel;
-using System.Windows.Threading;
 using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Threading;
 
-namespace Microsoft.FamilyShow
+namespace Microsoft.FamilyShow.Controls.FamilyData
 {
     /// <summary>
     /// Class that parses the filter text.

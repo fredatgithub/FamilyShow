@@ -4,13 +4,13 @@
 */
 
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.ComponentModel;
 using Microsoft.FamilyShowLib;
 
-namespace Microsoft.FamilyShow
+namespace Microsoft.FamilyShow.Controls.FamilyData
 {
   public partial class FamilyData : System.Windows.Controls.UserControl
   {

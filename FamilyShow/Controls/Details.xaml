@@ -6,6 +6,7 @@
    xmlns:Microsoft.FamilyShowLib="clr-namespace:Microsoft.FamilyShowLib;assembly=FamilyShowLib"
    xmlns:local="clr-namespace:Microsoft.FamilyShow"
    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+   xmlns:familyData="clr-namespace:Microsoft.FamilyShow.Controls.FamilyData"
    x:Class="Microsoft.FamilyShow.Details" DataContextChanged="UserControl_DataContextChanged">
   <UserControl.Resources>
     <ResourceDictionary>
@@ -1052,17 +1053,17 @@
               <Label Margin="0,0,5,0" Content="Filter" VerticalAlignment="Center"/>
               <local:FilterText x:Name="FilterTextBox" TextBoxBase.TextChanged="FilterTextBox_TextChanged" VerticalAlignment="Center" />
             </DockPanel>
-            <local:FamilyDisplayListView x:Name="FamilyListView" Background="{x:Null}" Margin="0,10,0,0" BorderBrush="{x:Null}"
+            <familyData:FamilyDisplayListView x:Name="FamilyListView" Background="{x:Null}" Margin="0,10,0,0" BorderBrush="{x:Null}"
               SelectionMode="Single" SelectionChanged="FamilyListView_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
               Style="{DynamicResource FamilyListViewStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto"
               VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True" >
-              <local:FamilyDisplayListView.ItemContainerStyle>
+              <familyData:FamilyDisplayListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" >
                   <Setter Property="Template" Value="{DynamicResource FamilyListViewItemTemplate}"/>
                   <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
-              </local:FamilyDisplayListView.ItemContainerStyle>
-              <local:FamilyDisplayListView.View>
+              </familyData:FamilyDisplayListView.ItemContainerStyle>
+              <familyData:FamilyDisplayListView.View>
                 <GridView AllowsColumnReorder="False">
                   <local:SortListViewColumn SortProperty="Name"  Header="Name" DisplayMemberBinding="{Binding Path=FullName}" Width="115" HeaderContainerStyle="{DynamicResource NameGridViewColumnHeader}"/>
                   <local:SortListViewColumn SortProperty="YearOfBirth" Header="Born" Width="50">
@@ -1087,11 +1088,18 @@
                     </local:SortListViewColumn.CellTemplate>
                   </local:SortListViewColumn>
                 </GridView>
-              </local:FamilyDisplayListView.View>
-            </local:FamilyDisplayListView>
+              </familyData:FamilyDisplayListView.View>
+            </familyData:FamilyDisplayListView>
           </DockPanel>
         </Border>
       </DockPanel>
     </Border>
   </DockPanel>
 </UserControl>
+
+
+
+
+
+
+

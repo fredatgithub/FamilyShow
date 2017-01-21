@@ -1,8 +1,9 @@
 ﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Microsoft.FamilyShow" 
-    x:Class="Microsoft.FamilyShow.FamilyData">
+    xmlns:local="clr-namespace:Microsoft.FamilyShow"
+    xmlns:familyData="clr-namespace:Microsoft.FamilyShow.Controls.FamilyData"
+    x:Class="Microsoft.FamilyShow.Controls.FamilyData.FamilyData">
   
   <UserControl.Resources>
     
@@ -288,7 +289,7 @@
         
         <!-- list area -->
         <Border Grid.Row="2" Grid.Column="0" Margin="5,0,0,5">
-          <local:FamilyEditListView x:Name="FamilyEditor" Background="{x:Null}" Margin="0,5,0,0" BorderBrush="{x:Null}"
+          <familyData:FamilyEditListView x:Name="FamilyEditor" Background="{x:Null}" Margin="0,5,0,0" BorderBrush="{x:Null}"
             ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
             VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
             SelectionMode="Single" Style="{DynamicResource FamilyEditListViewStyle}"
@@ -342,7 +343,7 @@
 
               </GridView>
             </ListView.View>
-          </local:FamilyEditListView>
+          </familyData:FamilyEditListView>
         </Border>
 
         <!-- chart area -->
@@ -398,3 +399,4 @@
  </Border>
   
 </UserControl>
+

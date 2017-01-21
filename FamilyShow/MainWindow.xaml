@@ -5,6 +5,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:Microsoft.FamilyShowLib="clr-namespace:Microsoft.FamilyShowLib;assembly=FamilyShowLib"
   xmlns:local="clr-namespace:Microsoft.FamilyShow"
+  xmlns:familyData="clr-namespace:Microsoft.FamilyShow.Controls.FamilyData"
   x:Class="Microsoft.FamilyShow.MainWindow"
   Title="Family.Show" Height="728" Width="960"
   Background="{DynamicResource MainBackgroundBrush}"
@@ -139,7 +140,7 @@
       <local:PersonInfo x:Name="PersonInfoControl" Opacity="0" Visibility="Hidden" CloseButtonClick="PersonInfoControl_CloseButtonClick" />
 
       <!-- Family Data Control -->
-      <local:FamilyData x:Name="FamilyDataControl" Opacity="0" Visibility="Hidden" CloseButtonClick="FamilyDataControl_CloseButtonClick" />
+      <familyData:FamilyData x:Name="FamilyDataControl" Opacity="0" Visibility="Hidden" CloseButtonClick="FamilyDataControl_CloseButtonClick" />
       <local:OldVersionMessage Visibility="Hidden" HorizontalAlignment="Center" x:Name="OldVersionMessageControl" VerticalAlignment="Center" ContinueButtonClick="OldVersionMessageControl_ContinueButtonClick"/>
 
     </Grid>

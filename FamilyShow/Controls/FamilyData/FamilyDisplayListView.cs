@@ -5,7 +5,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.FamilyShowLib;
 
-namespace Microsoft.FamilyShow
+namespace Microsoft.FamilyShow.Controls.FamilyData
 {
   [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
   class FamilyDisplayListView : FilterSortListView
