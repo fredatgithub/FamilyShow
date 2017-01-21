@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -207,7 +208,7 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Load the list of people from Family.Show version 2.0 file format
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     public void LoadVersion2()
     {
       // Loading, clear existing nodes
@@ -217,7 +218,9 @@ namespace Microsoft.FamilyShowLib
       {
         // Use the default path and filename if none were provided
         if (string.IsNullOrEmpty(this.FullyQualifiedFilename))
+        {
           this.FullyQualifiedFilename = People.DefaultFullyQualifiedFilename;
+        }
 
         XmlSerializer xml = new XmlSerializer(typeof(People));
         using (Stream stream = new FileStream(this.FullyQualifiedFilename, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -226,7 +229,9 @@ namespace Microsoft.FamilyShowLib
           stream.Close();
 
           foreach (Person person in pc.PeopleCollection)
+          {
             this.PeopleCollection.Add(person);
+          }
 
           // Setup temp folders for this family to be packaged into OPC later
           string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
@@ -320,7 +325,10 @@ namespace Microsoft.FamilyShowLib
       try
       {
         if (Directory.Exists(folderToDelete))
+        {
           Directory.Delete(folderToDelete, true);
+        }
+
         Directory.CreateDirectory(folderToDelete);
       }
       catch
@@ -332,7 +340,7 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Load the list of people from disk using the Open Package Convention format
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     public void LoadOPC()
     {
       // Loading, clear existing nodes
@@ -342,7 +350,9 @@ namespace Microsoft.FamilyShowLib
       {
         // Use the default path and filename if none were provided
         if (string.IsNullOrEmpty(this.FullyQualifiedFilename))
+        {
           this.FullyQualifiedFilename = People.DefaultFullyQualifiedFilename;
+        }
 
         string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             App.ApplicationFolderName);
@@ -357,7 +367,9 @@ namespace Microsoft.FamilyShowLib
           stream.Close();
 
           foreach (Person person in pc.PeopleCollection)
+          {
             this.PeopleCollection.Add(person);
+          }
 
           // To avoid circular references when serializing family data to xml, only the person Id
           // is seralized to express relationships. When family data is loaded, the correct
@@ -493,7 +505,9 @@ namespace Microsoft.FamilyShowLib
 
       //add the child to the main people list
       if (!this.Contains(child))
+      {
         this.Add(child);
+      }
     }
 
     /// <summary>
@@ -507,7 +521,9 @@ namespace Microsoft.FamilyShowLib
 
       //add the spouse to the main people list
       if (!this.Contains(spouse))
+      {
         this.Add(spouse);
+      }
     }
 
     /// <summary>
@@ -521,7 +537,9 @@ namespace Microsoft.FamilyShowLib
 
       //add the sibling to the main people list
       if (!this.Contains(sibling))
+      {
         this.Add(sibling);
+      }
     }
 
     #endregion
@@ -544,7 +562,9 @@ namespace Microsoft.FamilyShowLib
     protected virtual void OnPropertyChanged(string propertyName)
     {
       if (PropertyChanged != null)
+      {
         PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      }
     }
 
     #endregion
