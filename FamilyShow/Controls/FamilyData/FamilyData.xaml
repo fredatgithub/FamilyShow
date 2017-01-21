@@ -302,37 +302,37 @@
                   HeaderContainerStyle="{DynamicResource FirstColumnGridViewColumnHeader}"
                   CellTemplate="{StaticResource EmptyColumnTemplate}" />
 
-                <local:SortListViewColumn Header="First Name" Width="100"
+                <familyData:SortListViewColumn Header="First Name" Width="100"
                   SortProperty="FirstName" SortStyle="FamilyDataGridViewColumnHeader"
                   HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                   CellTemplate="{StaticResource FirstNameColumnTemplate}" />
 
-                <local:SortListViewColumn Header="Last Name" Width="100"
+                <familyData:SortListViewColumn Header="Last Name" Width="100"
                   SortProperty="LastName" SortStyle="FamilyDataGridViewColumnHeader" 
                   HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                   CellTemplate="{StaticResource LastNameColumnTemplate}" />
 
-                <local:SortListViewColumn Header="Age" Width="50"
+                <familyData:SortListViewColumn Header="Age" Width="50"
                   SortProperty="Age"  SortStyle="FamilyDataGridViewColumnHeader" 
                   HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                   CellTemplate="{StaticResource AgeColumnTemplate}" />
 
-                <local:SortListViewColumn Header="Birth Date" Width="80"
+                <familyData:SortListViewColumn Header="Birth Date" Width="80"
                   SortProperty="BirthDate" SortStyle="FamilyDataGridViewColumnHeader" 
                   HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                   CellTemplate="{StaticResource BirthDateColumnTemplate}" />
 
-                <local:SortListViewColumn Header="Birth Place" Width="100"
+                <familyData:SortListViewColumn Header="Birth Place" Width="100"
                   SortProperty="BirthPlace" SortStyle="FamilyDataGridViewColumnHeader" 
                   HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                   CellTemplate="{StaticResource BirthPlaceColumnTemplate}" />
 
-                <local:SortListViewColumn Header="Death Date" Width="80"
+                <familyData:SortListViewColumn Header="Death Date" Width="80"
                   SortProperty="DeathDate" SortStyle="FamilyDataGridViewColumnHeader" 
                   HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                   CellTemplate="{StaticResource DeathDateColumnTemplate}" />
 
-                <local:SortListViewColumn Header="Death Place" Width="100"
+                <familyData:SortListViewColumn Header="Death Place" Width="100"
                   SortProperty="DeathPlace" SortStyle="FamilyDataGridViewColumnHeader" 
                   HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                   CellTemplate="{StaticResource DeathPlaceColumnTemplate}" />

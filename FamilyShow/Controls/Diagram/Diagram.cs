@@ -15,16 +15,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Input;
 using System.Windows.Threading;
-using Microsoft.FamilyShow.Controls.Diagram;
 using Microsoft.FamilyShowLib;
 
-namespace Microsoft.FamilyShow
+namespace Microsoft.FamilyShow.Controls.Diagram
 {
     /// <summary>
     /// Diagram that lays out and displays the nodes.
