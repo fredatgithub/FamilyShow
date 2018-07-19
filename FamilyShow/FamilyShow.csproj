@@ -108,6 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindableExtender.cs" />
+    <Compile Include="BoolToVisibilityConverter.cs" />
+    <Compile Include="ComposingConverter.cs" />
     <Compile Include="Controls\OldVersionMessage.xaml.cs">
       <DependentUpon>OldVersionMessage.xaml</DependentUpon>
     </Compile>
@@ -150,6 +152,10 @@
       <SubType>Code</SubType>
       <DependentUpon>TagCloud.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FirstNamePossessiveFormConverter.cs" />
+    <Compile Include="ImageConverter.cs" />
+    <Compile Include="NotConverter.cs" />
+    <Compile Include="PrimaryAvatarConverter.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ValueConverters.cs" />
     <Compile Include="Controls\Welcome.xaml.cs">
