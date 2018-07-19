@@ -19,16 +19,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 
 namespace Microsoft.FamilyShowLib
 {
-  /// <summary>
-  /// Exports data from a People collection to a GEDCOM file.
-  /// </summary>
-  public class GedcomExport
+    /// <summary>
+    /// Exports data from a People collection to a GEDCOM file.
+    /// </summary>
+    public class GedcomExport
   {
     #region fields
 
@@ -321,185 +320,6 @@ namespace Microsoft.FamilyShowLib
              "{0} {1}", level + 1, "CONT"));
         }
       }
-    }
-  }
-
-  /// <summary>
-  /// Maps FamilyShow Person.Id to a GEDCOM ID. GEDCOM IDs cannot 
-  /// exceed 22 characters so GUIDs (Person.Id type) cannot be used
-  /// when exporting. 
-  /// </summary>
-  class GedcomIdMap
-  {
-    #region fields
-
-    // Quick lookup that maps a GUID to a GEDCOM ID.
-    private Dictionary<string, string> map = new Dictionary<string, string>();
-
-    // The next ID to assign.
-    private int nextId;
-
-    #endregion
-
-    /// <summary>
-    /// Return the mapped ID for the specified GUID.
-    /// </summary>
-    public string Get(string guid)
-    {
-      // Return right away if already mapped.
-      if (map.ContainsKey(guid))
-        return map[guid];
-
-      // Assign a new GEDCOM ID and add to map.
-      string id = string.Format(CultureInfo.InvariantCulture, "I{0}", nextId++);
-      map[guid] = id;
-      return id;
-    }
-  }
-
-  /// <summary>
-  /// One family group. 
-  /// </summary>
-  class Family
-  {
-    #region fields
-
-    private Person parentLeft;
-    private Person parentRight;
-    private SpouseRelationship relationship;
-    private List<Person> children = new List<Person>();
-
-    #endregion
-
-    /// <summary>
-    /// Get the left-side parent.
-    /// </summary>
-    public Person ParentLeft
-    {
-      get { return parentLeft; }
-    }
-
-    /// <summary>
-    /// Get the right-side parent.
-    /// </summary>
-    public Person ParentRight
-    {
-      get { return parentRight; }
-    }
-
-    /// <summary>
-    /// Get or set the relationship for the two parents.
-    /// </summary>
-    public SpouseRelationship Relationship
-    {
-      get { return relationship; }
-      set { relationship = value; }
-    }
-
-    /// <summary>
-    /// Get the list of children.
-    /// </summary>
-    public List<Person> Children
-    {
-      get { return children; }
-    }
-
-    public Family(Person parentLeft, Person parentRight)
-    {
-      this.parentLeft = parentLeft;
-      this.parentRight = parentRight;
-    }
-  }
-
-  /// <summary>
-  /// Orgainzes the People collection into a list of families. 
-  /// </summary>
-  class FamilyMap : Dictionary<string, Family>
-  {
-    /// <summary>
-    /// Organize the People collection into a list of families. A family consists of
-    /// an wife, husband, children, and married / divorced information.
-    /// </summary>
-    public void Create(PeopleCollection people)
-    {
-      this.Clear();
-
-      // First, iterate though the list and create parent groups.
-      // A parent group is one or two parents that have one or
-      // more children.
-      foreach (Person person in people)
-      {
-        Collection<Person> parents = person.Parents;
-        if (parents.Count > 0)
-        {
-          // Only using the first two parents.
-          Person parentLeft = parents[0];
-          Person parentRight = (parents.Count > 1) ? parents[1] : null;
-
-          // See if this parent group has been added to the list yet.
-          string key = GetKey(parentLeft, parentRight);
-          if (!this.ContainsKey(key))
-          {
-            // This parent group does not exist, add it to the list.
-            Family details = new Family(parentLeft, parentRight);
-            details.Relationship = parentLeft.GetSpouseRelationship(parentRight);
-            this[key] = details;
-          }
-
-          // Add the child to the parent group.
-          this[key].Children.Add(person);
-        }
-      }
-
-      // Next, iterate though the list and create marriage groups.
-      // A marriage group is current or former marriages that
-      // don't have any children.
-      foreach (Person person in people)
-      {
-        Collection<Person> spouses = person.Spouses;
-        foreach (Person spouse in spouses)
-        {
-          // See if this marriage group is in the list.
-          string key = GetKey(person, spouse);
-          if (!this.ContainsKey(key))
-          {
-            // This marriage group is not in the list, add it to the list.
-            Family details = new Family(person, spouse);
-            details.Relationship = person.GetSpouseRelationship(spouse);
-            this[key] = details;
-          }
-        }
-      }
-    }
-
-    /// <summary>
-    /// Return a string for the parent group.
-    /// </summary>
-    private static string GetKey(Person partnerLeft, Person partnerRight)
-    {
-      // This is used as the key to the list. This is tricky since parent
-      // groups should not be duplicated. For example, the list should
-      // not contain the parent groups:
-      //
-      //  Bob Bee
-      //  Bee Bob
-      //  
-      // The list should only contain the group:
-      //
-      //  Bob Bee
-      //
-      // This is accomplished by concatenating the parent
-      // ID's together when creating the key.
-
-      string key = partnerLeft.Id;
-      if (partnerRight != null)
-      {
-        if (partnerLeft.Id.CompareTo(partnerRight.Id) < 0)
-          key = partnerLeft.Id + partnerRight.Id;
-        else
-          key = partnerRight.Id + partnerLeft.Id;
-      }
-      return key;
     }
   }
 }

@@ -1,3 +1,4 @@
+using Microsoft.FamilyShowLib;
 using System;
 using System.Collections.Specialized;
 using System.IO;
@@ -8,14 +9,13 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Xps;
 using System.Windows.Xps.Packaging;
-using Microsoft.FamilyShowLib;
 
 namespace Microsoft.FamilyShow
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : System.Windows.Window
+    public partial class MainWindow : Window
     {
         #region fields
 
