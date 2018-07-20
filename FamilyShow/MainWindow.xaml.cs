@@ -41,7 +41,7 @@ namespace Microsoft.FamilyShow
         {
             InitializeComponent();
 
-            family.CurrentChanged +=new EventHandler(People_CurrentChanged);
+            family.CurrentChanged += new EventHandler(People_CurrentChanged);
 
             // Build the Open Menu, recent opened files are part of the open menu
             BuildOpenMenu();
@@ -233,7 +233,7 @@ namespace Microsoft.FamilyShow
         private void NewFamily(object sender, RoutedEventArgs e)
         {
             PromptToSave();
-        
+
             family.Clear();
             familyCollection.FullyQualifiedFilename = null;
             family.OnContentChanged();
@@ -248,7 +248,7 @@ namespace Microsoft.FamilyShow
         private void OpenFamily(object sender, RoutedEventArgs e)
         {
             PromptToSave();
-        
+
             CommonDialog dialog = new CommonDialog();
             dialog.InitialDirectory = People.ApplicationFolderPath;
             dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyFiles, Properties.Resources.FamilyExtensions));
@@ -422,7 +422,7 @@ namespace Microsoft.FamilyShow
 
                 // Show the zoom control again
                 DiagramControl.ZoomSliderPanel.Visibility = Visibility.Visible;
-            }            
+            }
         }
 
         /// <summary>
@@ -456,8 +456,8 @@ namespace Microsoft.FamilyShow
                     // Could not import the GEDCOM for some reason. Handle
                     // all exceptions the same, display message and continue
                     /// without importing the GEDCOM file.
-                    MessageBox.Show(this, Properties.Resources.GedcomFailedMessage, 
-                        Properties.Resources.GedcomFailed, MessageBoxButton.OK, 
+                    MessageBox.Show(this, Properties.Resources.GedcomFailedMessage,
+                        Properties.Resources.GedcomFailed, MessageBoxButton.OK,
                         MessageBoxImage.Information);
                 }
             }
@@ -491,7 +491,7 @@ namespace Microsoft.FamilyShow
             // Open the Wikipedia entry about GEDCOM in the user's default browser
             System.Diagnostics.Process.Start("http://en.wikipedia.org/wiki/GEDCOM");
         }
-        
+
         /// <summary>
         /// Command handler for ExportXPSCommand
         /// </summary>
@@ -520,7 +520,7 @@ namespace Microsoft.FamilyShow
                 // so that the diagram background is output as well as the digram control itself.
                 xpsWriter.Write(DiagramBorder);
                 xpsDoc.Close();
-                package.Close(); 
+                package.Close();
 
                 // Show the zoom control again
                 DiagramControl.ZoomSliderPanel.Visibility = Visibility.Visible;
