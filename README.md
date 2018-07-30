@@ -1,5 +1,5 @@
 # FamilyShow
-fork Family show from CodePlex
+I have forked the Family show project from CodePlex
 
 Here is an example:
 
