@@ -1,5 +1,5 @@
 # FamilyShow
-I have forked the Family show project from CodePlex
+I have forked the Family show project from CodePlex, WPF in C#
 
 Here is an example:
 
