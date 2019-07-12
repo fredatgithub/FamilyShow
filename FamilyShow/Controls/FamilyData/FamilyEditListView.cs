@@ -17,7 +17,9 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     {
       Person person = item as Person;
       if (person == null)
+      {
         return false;
+      }
 
       // Check for match.
       if (this.Filter.Matches(person.FirstName) ||
@@ -27,13 +29,17 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
           this.Filter.Matches(person.BirthDate) ||
           this.Filter.Matches(person.DeathDate) ||
           this.Filter.Matches(person.Age))
+      {
         return true;
+      }
 
       // Check for the special case of birthdays, if
       // matches the month and day, but don't check year.
       if (this.Filter.MatchesMonth(person.BirthDate) &&
           this.Filter.MatchesDay(person.BirthDate))
+      {
         return true;
+      }
 
       return false;
     }
