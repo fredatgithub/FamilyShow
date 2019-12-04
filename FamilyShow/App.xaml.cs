@@ -1,11 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Data;
-using System.Xml;
-using System.Configuration;
 using Microsoft.FamilyShowLib;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Xml.Serialization;
 using System.IO;
@@ -14,11 +10,11 @@ using System.Drawing;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for App.xaml.
-    /// </summary>
-    public partial class App : System.Windows.Application
-    {
+  /// <summary>
+  /// Interaction logic for App.xaml.
+  /// </summary>
+  public partial class App : Application
+  {
         #region fields
 
         // The name of the application folder.  This folder is used to save the files 

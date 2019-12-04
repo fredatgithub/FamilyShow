@@ -22,10 +22,10 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
         return false;
       }
 
-      if (this.Filter.Matches(person.Name) ||
-          this.Filter.MatchesYear(person.BirthDate) ||
-          this.Filter.MatchesYear(person.DeathDate) ||
-          this.Filter.Matches(person.Age))
+      if (Filter.Matches(person.Name) ||
+          Filter.MatchesYear(person.BirthDate) ||
+          Filter.MatchesYear(person.DeathDate) ||
+          Filter.Matches(person.Age))
       {
         return true;
       }

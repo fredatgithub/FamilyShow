@@ -94,7 +94,7 @@ namespace Microsoft.FamilyShowLib
         {
             if (!string.IsNullOrEmpty(photoPath))
                 // Copy the photo to the images folder
-                this.relativePath = Copy(photoPath);
+                relativePath = Copy(photoPath);
         }
 
         #endregion
@@ -157,7 +157,7 @@ namespace Microsoft.FamilyShowLib
         {
             try
             {
-                File.Delete(this.FullyQualifiedPath);
+                File.Delete(FullyQualifiedPath);
             }
             catch
             {

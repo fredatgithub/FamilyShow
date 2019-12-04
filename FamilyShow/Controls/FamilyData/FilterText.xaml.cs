@@ -4,14 +4,13 @@
  * The reset button is only visible when there is filter text.
 */
 
-using System;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Microsoft.FamilyShow
 {
-    public partial class FilterText : System.Windows.Controls.UserControl
-    {
+  public partial class FilterText : UserControl
+  {
         public static readonly RoutedEvent ResetFilterEvent = EventManager.RegisterRoutedEvent(
             "ResetFilter", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(FilterText));
 
@@ -50,7 +49,7 @@ namespace Microsoft.FamilyShow
         /// </summary>
         private void FilterButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Text = string.Empty;
+            Text = string.Empty;
             RaiseEvent(new RoutedEventArgs(ResetFilterEvent));
         }
 

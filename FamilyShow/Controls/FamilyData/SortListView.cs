@@ -57,7 +57,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     protected override void OnInitialized(EventArgs e)
     {
       // Handle the event when a header is clicked.
-      this.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(OnHeaderClicked));
+      AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(OnHeaderClicked));
       base.OnInitialized(e);
     }
 
@@ -104,7 +104,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     private void SortList(string propertyName)
     {
       // Get the data to sort.
-      ICollectionView dataView = CollectionViewSource.GetDefaultView(this.ItemsSource);
+      ICollectionView dataView = CollectionViewSource.GetDefaultView(ItemsSource);
 
       // Specify the new sorting information.
       dataView.SortDescriptions.Clear();
@@ -124,7 +124,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
       // Restore the previous header.
       if (previousSortColumn != null && previousSortColumn.SortStyle != null)
       {
-        headerStyle = this.TryFindResource(previousSortColumn.SortStyle) as Style;
+        headerStyle = TryFindResource(previousSortColumn.SortStyle) as Style;
         if (headerStyle != null)
           previousSortColumn.HeaderContainerStyle = headerStyle;
       }
@@ -135,7 +135,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
         // The name of the resource to use for the header.
         string resourceName = sortColumn.SortStyle + sortDirection.ToString();
 
-        headerStyle = this.TryFindResource(resourceName) as Style;
+        headerStyle = TryFindResource(resourceName) as Style;
         if (headerStyle != null)
           sortColumn.HeaderContainerStyle = headerStyle;
       }

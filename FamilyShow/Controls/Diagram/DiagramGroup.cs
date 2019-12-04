@@ -60,7 +60,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
         node.Measure(size);
 
       // Return the total size of the group.
-      return this.ArrangeNodes(false);
+      return ArrangeNodes(false);
     }
 
     protected override Size ArrangeOverride(Size finalSize)
@@ -88,8 +88,8 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     /// </summary>
     public void Add(DiagramNode node)
     {
-      this.nodes.Add(node);
-      this.AddVisualChild(node);
+      nodes.Add(node);
+      AddVisualChild(node);
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     public void Clear()
     {
       foreach (DiagramNode node in nodes)
-        this.RemoveVisualChild(node);
+        RemoveVisualChild(node);
 
       nodes.Clear();
     }

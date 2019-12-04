@@ -33,7 +33,7 @@ namespace Microsoft.FamilyShowLib
     /// </summary>
     public void Create(PeopleCollection people)
     {
-      this.Clear();
+      Clear();
 
       // First, iterate though the list and create parent groups.
       // A parent group is one or two parents that have one or
@@ -49,7 +49,7 @@ namespace Microsoft.FamilyShowLib
 
           // See if this parent group has been added to the list yet.
           string key = GetKey(parentLeft, parentRight);
-          if (!this.ContainsKey(key))
+          if (!ContainsKey(key))
           {
             // This parent group does not exist, add it to the list.
             Family details = new Family(parentLeft, parentRight);
@@ -72,7 +72,7 @@ namespace Microsoft.FamilyShowLib
         {
           // See if this marriage group is in the list.
           string key = GetKey(person, spouse);
-          if (!this.ContainsKey(key))
+          if (!ContainsKey(key))
           {
             // This marriage group is not in the list, add it to the list.
             Family details = new Family(person, spouse);

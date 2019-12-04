@@ -1,26 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Collections;
 using System.Globalization;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for TagCloud.xaml
-    /// </summary>
-    public partial class TagCloud : System.Windows.Controls.UserControl
-    {
+  /// <summary>
+  /// Interaction logic for TagCloud.xaml
+  /// </summary>
+  public partial class TagCloud : UserControl
+  {
         private ListCollectionView view;
 
         #region dependency properties
@@ -161,7 +152,7 @@ namespace Microsoft.FamilyShow
     {
         #region IMultiValueConverter Members
 
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             int count = (int)values[0];
             TagCloud tagCloud = values[1] as TagCloud;

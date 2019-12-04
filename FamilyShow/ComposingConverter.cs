@@ -13,12 +13,12 @@ namespace Microsoft.FamilyShow
 
         public Collection<IValueConverter> Converters
         {
-            get { return new Collection<IValueConverter>(this.converters); }
+            get { return new Collection<IValueConverter>(converters); }
         }
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            for (int i = 0; i < this.converters.Count; i++)
+            for (int i = 0; i < converters.Count; i++)
             {
                 value = converters[i].Convert(value, targetType, parameter, culture);
             }
@@ -27,7 +27,7 @@ namespace Microsoft.FamilyShow
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            for (int i = this.converters.Count - 1; i >= 0; i--)
+            for (int i = converters.Count - 1; i >= 0; i--)
             {
                 value = converters[i].ConvertBack(value, targetType, parameter, culture);
             }

@@ -121,13 +121,13 @@ namespace Microsoft.FamilyShow.Controls.Diagram
         /// </summary>
         public double Scale
         {
-            get { return this.scale; }
+            get { return scale; }
             set
             {
-                if (this.scale != value)
+                if (scale != value)
                 {
                     scale = value;
-                    this.LayoutTransform = new ScaleTransform(scale, scale);
+                    LayoutTransform = new ScaleTransform(scale, scale);
                 }
             }
         }
@@ -141,7 +141,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
             {
                 // Filter nodes and connections based on the year.
                 logic.DisplayYear = value;
-                this.InvalidateVisual();
+                InvalidateVisual();
             }
         }
 
@@ -201,9 +201,9 @@ namespace Microsoft.FamilyShow.Controls.Diagram
         {
             #if DEBUG
                 // Context menu so can display row and group borders.
-                this.ContextMenu = new ContextMenu();
+                ContextMenu = new ContextMenu();
                 MenuItem item = new MenuItem();
-                this.ContextMenu.Items.Add(item);
+                ContextMenu.Items.Add(item);
                 item.Header = "Show Diagram Outline";
                 item.Click += new RoutedEventHandler(OnToggleBorderClick);
                 item.Foreground = SystemColors.MenuTextBrush;
@@ -341,10 +341,10 @@ namespace Microsoft.FamilyShow.Controls.Diagram
             displayBorder = !displayBorder;
             
             // Update check on menu.
-            MenuItem menuItem = this.ContextMenu.Items[0] as MenuItem;
+            MenuItem menuItem = ContextMenu.Items[0] as MenuItem;
             menuItem.IsChecked = displayBorder;
             
-            this.InvalidateVisual();
+            InvalidateVisual();
         }
 #endif
 
@@ -358,7 +358,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
             foreach (DiagramRow row in rows)
             {
                 row.Clear();
-                this.RemoveVisualChild(row);
+                RemoveVisualChild(row);
             }
 
             rows.Clear();
@@ -385,9 +385,9 @@ namespace Microsoft.FamilyShow.Controls.Diagram
             }
 
             // Required to update (hide) the connector lines.            
-            this.InvalidateVisual();
-            this.InvalidateArrange();
-            this.InvalidateMeasure();
+            InvalidateVisual();
+            InvalidateArrange();
+            InvalidateMeasure();
 
             // Pause before displaying the new nodes.
             animationTimer.Interval = App.GetAnimationDuration(Const.AnimationPauseDuration);
@@ -419,7 +419,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
             }
 
             // Redraw connector lines.
-            this.InvalidateVisual();
+            InvalidateVisual();
 
             populating = false;
         }
@@ -451,7 +451,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
             // Create as many rows as possible until exceed the max node limit.
             // Switch between child and parent rows to prevent only creating
             // child or parents rows (want to create as many of each as possible).
-            int nodeCount = this.NodeCount;
+            int nodeCount = NodeCount;
 
             // The scale values of future generations, this makes the nodes
             // in each row slightly smaller.
@@ -474,7 +474,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
                 }
 
                 // See if reached node limit yet.                                       
-                nodeCount = this.NodeCount;
+                nodeCount = NodeCount;
             }
 
             // Raise event so others know the diagram was updated.
@@ -529,7 +529,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
         {
             if (row != null && row.NodeCount > 0)
             {
-                this.AddVisualChild(row);
+                AddVisualChild(row);
                 rows.Add(row);
             }
         }
@@ -541,7 +541,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
         {
             if (row != null && row.NodeCount > 0)
             {
-                this.AddVisualChild(row);
+                AddVisualChild(row);
                 rows.Insert(0, row);
             }
         }
@@ -579,9 +579,9 @@ namespace Microsoft.FamilyShow.Controls.Diagram
 
             // Redraw the diagram.
             UpdateDiagram();
-            this.InvalidateMeasure();
-            this.InvalidateArrange();
-            this.InvalidateVisual();
+            InvalidateMeasure();
+            InvalidateArrange();
+            InvalidateVisual();
         }
 
         /// <summary>

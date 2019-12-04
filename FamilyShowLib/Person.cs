@@ -222,12 +222,12 @@ namespace Microsoft.FamilyShowLib
         {
             get
             {
-                if (this.BirthDate == null)
+                if (BirthDate == null)
                     return null;
 
                 // Determine the age of the person based on just the year.
-                DateTime startDate = this.BirthDate.Value;
-                DateTime endDate = (this.IsLiving || this.DeathDate == null) ? DateTime.Now : this.DeathDate.Value;
+                DateTime startDate = BirthDate.Value;
+                DateTime endDate = (IsLiving || DeathDate == null) ? DateTime.Now : DeathDate.Value;
                 int age = endDate.Year - startDate.Year;
 
                 // Compensate for the month and day of month (if they have not had a birthday this year).
@@ -249,15 +249,15 @@ namespace Microsoft.FamilyShowLib
             {
                 AgeGroup ageGroup = AgeGroup.Unknown;
 
-                if (this.Age.HasValue)
+                if (Age.HasValue)
                 {
                     // The AgeGroup enumeration is defined later in this file. It is up to the Person
                     // class to define the ages that fall into the particular age groups
-                    if (this.Age >= 0 && this.Age < 20)
+                    if (Age >= 0 && Age < 20)
                         ageGroup = AgeGroup.Youth;
-                    else if (this.Age >= 20 && this.Age < 40)
+                    else if (Age >= 20 && Age < 40)
                         ageGroup = AgeGroup.Adult;
-                    else if (this.Age >= 40 && this.Age < 65)
+                    else if (Age >= 40 && Age < 65)
                         ageGroup = AgeGroup.MiddleAge;
                     else
                         ageGroup = AgeGroup.Senior;
@@ -656,7 +656,7 @@ namespace Microsoft.FamilyShowLib
                 Collection<Person> halfSiblings = new Collection<Person>();
 
                 // Get list of full siblings (a full sibling cannot be a half sibling).
-                Collection<Person> siblings = this.Siblings;
+                Collection<Person> siblings = Siblings;
 
                 // Iterate through each parent, and determine if the parent's children
                 // are half siblings.
@@ -975,11 +975,11 @@ namespace Microsoft.FamilyShowLib
         /// </summary>
         public Person()
         {
-            this.id = Guid.NewGuid().ToString();
-            this.relationships = new RelationshipCollection();
-            this.photos = new PhotoCollection();
-            this.firstName = Const.DefaultFirstName;
-            this.isLiving = true;
+            id = Guid.NewGuid().ToString();
+            relationships = new RelationshipCollection();
+            photos = new PhotoCollection();
+            firstName = Const.DefaultFirstName;
+            isLiving = true;
         }
 
         /// <summary>
@@ -1029,7 +1029,7 @@ namespace Microsoft.FamilyShowLib
         /// </summary>
         public bool Equals(Person other)
         {
-            return (this.Id == other.Id);
+            return (Id == other.Id);
         }
 
         #endregion
@@ -1041,7 +1041,7 @@ namespace Microsoft.FamilyShowLib
         /// </summary>
         public SpouseRelationship GetSpouseRelationship(Person spouse)
         {
-            foreach (Relationship relationship in this.relationships)
+            foreach (Relationship relationship in relationships)
             {
                 SpouseRelationship spouseRelationship = relationship as SpouseRelationship;
                 if (spouseRelationship != null)
@@ -1080,7 +1080,7 @@ namespace Microsoft.FamilyShowLib
         public void DeletePhotos()
         {
             // Delete the person's photos
-            foreach (Photo photo in this.photos)
+            foreach (Photo photo in photos)
             {
                 photo.Delete();
             }
@@ -1091,10 +1091,10 @@ namespace Microsoft.FamilyShowLib
         /// </summary>
         public void DeleteStory()
         {
-            if (this.story != null)
+            if (story != null)
             {
-                this.story.Delete();
-                this.story = null;
+                story.Delete();
+                story = null;
             }
         }
 

@@ -26,7 +26,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// </summary>
     public bool IsEmpty
     {
-      get { return string.IsNullOrEmpty(this.filterText); }
+      get { return string.IsNullOrEmpty(filterText); }
     }
 
     /// <summary>
@@ -34,8 +34,8 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// </summary>
     public bool Matches(string text)
     {
-      return (this.filterText != null && text != null &&
-          text.ToLower(CultureInfo.CurrentCulture).Contains(this.filterText));
+      return (filterText != null && text != null &&
+          text.ToLower(CultureInfo.CurrentCulture).Contains(filterText));
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// </summary>
     public bool Matches(DateTime? date)
     {
-      return (date != null && date.Value.ToShortDateString().Contains(this.filterText));
+      return (date != null && date.Value.ToShortDateString().Contains(filterText));
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// </summary>
     public bool MatchesYear(DateTime? date)
     {
-      return (date != null && date.Value.Year.ToString(CultureInfo.CurrentCulture).Contains(this.filterText));
+      return (date != null && date.Value.Year.ToString(CultureInfo.CurrentCulture).Contains(filterText));
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// </summary>
     public bool MatchesMonth(DateTime? date)
     {
-      return (date != null && this.filterDate != null &&
-          date.Value.Month == this.filterDate.Value.Month);
+      return (date != null && filterDate != null &&
+          date.Value.Month == filterDate.Value.Month);
     }
 
     /// <summary>
@@ -68,8 +68,8 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// </summary>
     public bool MatchesDay(DateTime? date)
     {
-      return (date != null && this.filterDate != null &&
-          date.Value.Day == this.filterDate.Value.Day);
+      return (date != null && filterDate != null &&
+          date.Value.Day == filterDate.Value.Day);
     }
 
     /// <summary>
@@ -84,20 +84,20 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
       }
 
       // Check single age.
-      if (this.minimumAge != null && age.Value == this.minimumAge.Value)
+      if (minimumAge != null && age.Value == minimumAge.Value)
       {
         return true;
       }
 
       // Check for a range.
-      if (this.minimumAge != null && this.maximumAge != null &&
-          age.Value >= this.minimumAge && age <= this.maximumAge)
+      if (minimumAge != null && maximumAge != null &&
+          age.Value >= minimumAge && age <= maximumAge)
       {
         return true;
       }
 
       // Check for an ending age.
-      if (this.minimumAge == null && this.maximumAge != null && age.Value >= this.maximumAge)
+      if (minimumAge == null && maximumAge != null && age.Value >= maximumAge)
       {
         return true;
       }
@@ -111,13 +111,13 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     public void Parse(string text)
     {
       // Initialize fields.
-      this.filterText = string.Empty;
-      this.filterDate = null;
-      this.minimumAge = null;
-      this.maximumAge = null;
+      filterText = string.Empty;
+      filterDate = null;
+      minimumAge = null;
+      maximumAge = null;
 
       // Store the filter text.
-      this.filterText = string.IsNullOrEmpty(text) ? "" : text.ToLower(CultureInfo.CurrentCulture).Trim();
+      filterText = string.IsNullOrEmpty(text) ? "" : text.ToLower(CultureInfo.CurrentCulture).Trim();
 
       // Parse date and age.
       ParseDate();
@@ -130,9 +130,9 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     private void ParseDate()
     {
       DateTime date;
-      if (DateTime.TryParse(this.filterText, out date))
+      if (DateTime.TryParse(filterText, out date))
       {
-        this.filterDate = date;
+        filterDate = date;
       }
     }
 
@@ -145,33 +145,33 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
       int age;
 
       // Single age.
-      if (Int32.TryParse(this.filterText, out age))
+      if (Int32.TryParse(filterText, out age))
       {
-        this.minimumAge = age;
+        minimumAge = age;
       }
 
       // Age range.
-      if (this.filterText.Contains("-"))
+      if (filterText.Contains("-"))
       {
-        string[] list = this.filterText.Split('-');
+        string[] list = filterText.Split('-');
 
         if (Int32.TryParse(list[0], out age))
         {
-          this.minimumAge = age;
+          minimumAge = age;
         }
 
         if (Int32.TryParse(list[1], out age))
         {
-          this.maximumAge = age;
+          maximumAge = age;
         }
       }
 
       // Ending age.
-      if (this.filterText.EndsWith("+"))
+      if (filterText.EndsWith("+"))
       {
-        if (Int32.TryParse(this.filterText.Substring(0, this.filterText.Length - 1), out age))
+        if (Int32.TryParse(filterText.Substring(0, filterText.Length - 1), out age))
         {
-          this.maximumAge = age;
+          maximumAge = age;
         }
       }
     }
@@ -191,7 +191,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// </summary>
     protected Filter Filter
     {
-      get { return this.filter; }
+      get { return filter; }
     }
 
     /// <summary>
@@ -203,7 +203,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
       filter.Parse(text);
 
       // Start an async operation that filters the list.
-      this.Dispatcher.BeginInvoke(
+      Dispatcher.BeginInvoke(
           DispatcherPriority.ApplicationIdle,
           new FilterDelegate(FilterWorker));
     }
@@ -214,7 +214,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     private void FilterWorker()
     {
       // Get the data the ListView is bound to.
-      ICollectionView view = CollectionViewSource.GetDefaultView(this.ItemsSource);
+      ICollectionView view = CollectionViewSource.GetDefaultView(ItemsSource);
 
       // Clear the list if the filter is empty, otherwise filter the list.
       view.Filter = filter.IsEmpty ? null : new Predicate<object>(FilterCallback);

@@ -25,23 +25,14 @@ namespace Microsoft.FamilyShow
   /// </summary>
   public class FilterEntry
   {
-    private string display;
-    private string extention;
+    public string Display { get; }
 
-    public string Display
-    {
-      get { return display; }
-    }
-
-    public string Extention
-    {
-      get { return extention; }
-    }
+    public string Extention { get; }
 
     public FilterEntry(string display, string extension)
     {
-      this.display = display;
-      this.extention = extension;
+      Display = display;
+      Extention = extension;
     }
   }
 
@@ -199,7 +190,7 @@ namespace Microsoft.FamilyShow
     private void SetFilter()
     {
       StringBuilder sb = new StringBuilder();
-      foreach (FilterEntry entry in this.filter)
+      foreach (FilterEntry entry in filter)
         sb.AppendFormat("{0}\0{1}\0", entry.Display, entry.Extention);
       sb.Append("\0\0");
       ofn.filter = sb.ToString();

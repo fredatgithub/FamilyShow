@@ -12,10 +12,8 @@ namespace Microsoft.FamilyShowLib
   /// </summary>
   public class OPCUtility
   {
-    private const string PackageRelationshipType =
-        @"http://schemas.microsoft.com/opc/2006/sample/document";
-    private const string ResourceRelationshipType =
-        @"http://schemas.microsoft.com/opc/2006/sample/required-resource";
+    private const string PackageRelationshipType = @"http://schemas.microsoft.com/opc/2006/sample/document";
+    private const string ResourceRelationshipType = @"http://schemas.microsoft.com/opc/2006/sample/required-resource";
 
     #region Write Package
 

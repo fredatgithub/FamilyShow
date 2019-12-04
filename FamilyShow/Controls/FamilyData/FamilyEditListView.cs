@@ -22,21 +22,21 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
       }
 
       // Check for match.
-      if (this.Filter.Matches(person.FirstName) ||
-          this.Filter.Matches(person.LastName) ||
-          this.Filter.Matches(person.BirthPlace) ||
-          this.Filter.Matches(person.DeathPlace) ||
-          this.Filter.Matches(person.BirthDate) ||
-          this.Filter.Matches(person.DeathDate) ||
-          this.Filter.Matches(person.Age))
+      if (Filter.Matches(person.FirstName) ||
+          Filter.Matches(person.LastName) ||
+          Filter.Matches(person.BirthPlace) ||
+          Filter.Matches(person.DeathPlace) ||
+          Filter.Matches(person.BirthDate) ||
+          Filter.Matches(person.DeathDate) ||
+          Filter.Matches(person.Age))
       {
         return true;
       }
 
       // Check for the special case of birthdays, if
       // matches the month and day, but don't check year.
-      if (this.Filter.MatchesMonth(person.BirthDate) &&
-          this.Filter.MatchesDay(person.BirthDate))
+      if (Filter.MatchesMonth(person.BirthDate) &&
+          Filter.MatchesDay(person.BirthDate))
       {
         return true;
       }

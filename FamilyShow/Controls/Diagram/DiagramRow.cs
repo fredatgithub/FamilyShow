@@ -113,7 +113,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     public void Add(DiagramGroup group)
     {
       groups.Add(group);
-      this.AddVisualChild(group);
+      AddVisualChild(group);
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
       foreach (DiagramGroup group in groups)
       {
         group.Clear();
-        this.RemoveVisualChild(group);
+        RemoveVisualChild(group);
       }
 
       groups.Clear();
@@ -165,7 +165,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
         totalSize.Width = pos + group.DesiredSize.Width;
         totalSize.Height = Math.Max(totalSize.Height, group.DesiredSize.Height);
 
-        pos += (bounds.Width + this.groupSpace);
+        pos += (bounds.Width + groupSpace);
       }
 
       return totalSize;

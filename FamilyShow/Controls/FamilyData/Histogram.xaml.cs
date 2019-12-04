@@ -1,27 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Collections;
 using System.Globalization;
-using System.Collections.Specialized;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for Histogram.xaml
-    /// </summary>
-    public partial class Histogram : System.Windows.Controls.UserControl
-    {
+  /// <summary>
+  /// Interaction logic for Histogram.xaml
+  /// </summary>
+  public partial class Histogram : UserControl
+  {
         private ListCollectionView view;
         private Dictionary<object, string> categoryLabels;
 
@@ -30,7 +21,7 @@ namespace Microsoft.FamilyShow
         /// </summary>
         public int Count
         {
-            get { return this.View.Count; }
+            get { return View.Count; }
         }
 
         public Dictionary<object, string> CategoryLabels
@@ -130,8 +121,8 @@ namespace Microsoft.FamilyShow
 
         public string GetCategoryLabel(object columnValue)
         {
-            if (this.CategoryLabels.ContainsKey(columnValue))
-                return this.CategoryLabels[columnValue];
+            if (CategoryLabels.ContainsKey(columnValue))
+                return CategoryLabels[columnValue];
             return columnValue.ToString();
         }
 
@@ -162,12 +153,12 @@ namespace Microsoft.FamilyShow
             // are no items, hide the histogram.
             if (view.Count == 0)
             {
-                this.LayoutRoot.Visibility = Visibility.Hidden;
+                LayoutRoot.Visibility = Visibility.Hidden;
             }
             else
             {
-                this.LayoutRoot.Visibility = Visibility.Visible;
-                this.TotalCountLabel.Content = view.Count;
+                LayoutRoot.Visibility = Visibility.Visible;
+                TotalCountLabel.Content = view.Count;
             }
         }
 
@@ -185,7 +176,7 @@ namespace Microsoft.FamilyShow
     {
         #region IMultiValueConverter Members
 
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
@@ -223,7 +214,7 @@ namespace Microsoft.FamilyShow
     {
         #region IMultiValueConverter Members
 
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {

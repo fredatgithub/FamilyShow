@@ -9,14 +9,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using Microsoft.FamilyShowLib;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Adds zooming and scrolling to the diagram control.
-    /// </summary>
-    public partial class DiagramViewer : UserControl
+  /// <summary>
+  /// Adds zooming and scrolling to the diagram control.
+  /// </summary>
+  public partial class DiagramViewer : UserControl
     {
 
         #region fields
@@ -73,7 +72,7 @@ namespace Microsoft.FamilyShow
             InitializeComponent();
 
             // Default zoom level.
-            this.Zoom = 1;
+            Zoom = 1;
 
             // Initialize the time filter.
             UpdateTimeSlider();
@@ -99,7 +98,7 @@ namespace Microsoft.FamilyShow
             TimeSlider.ValueChanged += new RoutedPropertyChangedEventHandler<double>(TimeSlider_ValueChanged);
             TimeSlider.MouseDoubleClick += new MouseButtonEventHandler(TimeSlider_MouseDoubleClick);
 
-            this.SizeChanged += new SizeChangedEventHandler(Diagram_SizeChanged);
+            SizeChanged += new SizeChangedEventHandler(Diagram_SizeChanged);
             ScrollViewer.ScrollChanged += new ScrollChangedEventHandler(ScrollViewer_ScrollChanged);
 
             base.OnInitialized(e);
@@ -140,7 +139,7 @@ namespace Microsoft.FamilyShow
                 Grid.ActualHeight - ScrollViewer.VerticalOffset - offset.Y);
 
             // Force the layout.
-            this.UpdateLayout();
+            UpdateLayout();
 
             // Now auto-scroll so the primary node appears at the previous
             // selected node location.
@@ -153,7 +152,7 @@ namespace Microsoft.FamilyShow
         private void ZoomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             // Update the diagram zoom level.
-            this.Zoom = e.NewValue;
+            Zoom = e.NewValue;
         }
 
         private void ZoomSlider_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -216,12 +215,12 @@ namespace Microsoft.FamilyShow
 
             // Get the size of the diagram.
             Size diagramSize = new Size(
-                Diagram.ActualWidth * this.Zoom,
-                Diagram.ActualHeight * this.Zoom);
+                Diagram.ActualWidth * Zoom,
+                Diagram.ActualHeight * Zoom);
 
             // Calcualte the offset that positions the diagram in the top-left corner.
-            offset.X = this.ActualWidth + diagramSize.Width - (Const.PanMargin / 2);
-            offset.Y = this.ActualHeight + diagramSize.Height - (Const.PanMargin / 2);
+            offset.X = ActualWidth + diagramSize.Width - (Const.PanMargin / 2);
+            offset.Y = ActualHeight + diagramSize.Height - (Const.PanMargin / 2);
 
             return offset;
         }
@@ -232,17 +231,17 @@ namespace Microsoft.FamilyShow
         private void UpdateScrollSize()
         {
             // Nothing to do if the diagram is empty.
-            if (this.ActualWidth == 0 || this.ActualHeight == 0)
+            if (ActualWidth == 0 || ActualHeight == 0)
                 return;
 
             Size diagramSize = new Size(
-                Diagram.ActualWidth * this.Zoom,
-                Diagram.ActualHeight * this.Zoom);
+                Diagram.ActualWidth * Zoom,
+                Diagram.ActualHeight * Zoom);
 
             // The grid contains the diagram, set the size of the grid so it's
             // large enough to allow the diagram to scroll from edge to edge.
-            Grid.Width = Math.Max(0, (this.ActualWidth * 2) + diagramSize.Width - Const.PanMargin);
-            Grid.Height = Math.Max(0, (this.ActualHeight * 2) + diagramSize.Height - Const.PanMargin);
+            Grid.Width = Math.Max(0, (ActualWidth * 2) + diagramSize.Width - Const.PanMargin);
+            Grid.Height = Math.Max(0, (ActualHeight * 2) + diagramSize.Height - Const.PanMargin);
         }
 
         /// <summary>
@@ -265,8 +264,8 @@ namespace Microsoft.FamilyShow
             if (selectedBounds.IsEmpty)
             {
                 // First time, center the diagram in the display area.
-                offset.X += ((this.ActualWidth - (Diagram.ActualWidth * this.Zoom)) / 2);
-                offset.Y += ((this.ActualHeight - (Diagram.ActualHeight * this.Zoom)) / 2);
+                offset.X += ((ActualWidth - (Diagram.ActualWidth * Zoom)) / 2);
+                offset.Y += ((ActualHeight - (Diagram.ActualHeight * Zoom)) / 2);
             }
             else
             {
@@ -287,8 +286,8 @@ namespace Microsoft.FamilyShow
                     (selectedBounds.Top + (selectedBounds.Height / 2));
 
                 // Offset the distance between the two nodes.
-                offset.X -= (nodeDelta.X * this.Zoom);
-                offset.Y -= (nodeDelta.Y * this.Zoom);
+                offset.X -= (nodeDelta.X * Zoom);
+                offset.Y -= (nodeDelta.Y * Zoom);
             }
 
             // Scroll the diagram.
@@ -320,8 +319,8 @@ namespace Microsoft.FamilyShow
             Point offset = GetTopLeftScrollOffset();
 
             // Now adjust the offset so the diagram is centered.
-            offset.X += ((this.ActualWidth - (Diagram.ActualWidth * this.Zoom)) / 2);
-            offset.Y += ((this.ActualHeight - (Diagram.ActualHeight * this.Zoom)) / 2);
+            offset.X += ((ActualWidth - (Diagram.ActualWidth * Zoom)) / 2);
+            offset.Y += ((ActualHeight - (Diagram.ActualHeight * Zoom)) / 2);
 
             // Before auto scroll, determine the start and end 
             // points so the scrolling can be animated.
@@ -396,7 +395,7 @@ namespace Microsoft.FamilyShow
             if ((Keyboard.Modifiers & ModifierKeys.Control) > 0)
             {
                 e.Handled = true;
-                this.Zoom += (e.Delta > 0) ? ZoomSlider.LargeChange : -ZoomSlider.LargeChange;
+                Zoom += (e.Delta > 0) ? ZoomSlider.LargeChange : -ZoomSlider.LargeChange;
             }
 
             // Time slider.
@@ -421,11 +420,11 @@ namespace Microsoft.FamilyShow
                 scrollStartOffset.Y = ScrollViewer.VerticalOffset;
 
                 // Update the cursor if can scroll or not.
-                this.Cursor = (ScrollViewer.ExtentWidth > ScrollViewer.ViewportWidth) ||
+                Cursor = (ScrollViewer.ExtentWidth > ScrollViewer.ViewportWidth) ||
                     (ScrollViewer.ExtentHeight > ScrollViewer.ViewportHeight) ?
                     Cursors.ScrollAll : Cursors.Arrow;
 
-                this.CaptureMouse();
+                CaptureMouse();
             }
 
             base.OnPreviewMouseDown(e);
@@ -433,21 +432,21 @@ namespace Microsoft.FamilyShow
 
         protected override void OnPreviewMouseMove(MouseEventArgs e)
         {
-            if (this.IsMouseCaptured)
+            if (IsMouseCaptured)
             {
                 // Get the new scroll position.
                 Point point = e.GetPosition(this);
 
                 // Determine the new amount to scroll.
                 Point delta = new Point(
-                    (point.X > this.scrollStartPoint.X) ?
-                        -(point.X - this.scrollStartPoint.X) : (this.scrollStartPoint.X - point.X),
-                    (point.Y > this.scrollStartPoint.Y) ?
-                        -(point.Y - this.scrollStartPoint.Y) : (this.scrollStartPoint.Y - point.Y));
+                    (point.X > scrollStartPoint.X) ?
+                        -(point.X - scrollStartPoint.X) : (scrollStartPoint.X - point.X),
+                    (point.Y > scrollStartPoint.Y) ?
+                        -(point.Y - scrollStartPoint.Y) : (scrollStartPoint.Y - point.Y));
 
                 // Scroll to the new position.
-                ScrollViewer.ScrollToHorizontalOffset(this.scrollStartOffset.X + delta.X);
-                ScrollViewer.ScrollToVerticalOffset(this.scrollStartOffset.Y + delta.Y);
+                ScrollViewer.ScrollToHorizontalOffset(scrollStartOffset.X + delta.X);
+                ScrollViewer.ScrollToVerticalOffset(scrollStartOffset.Y + delta.Y);
             }
 
             base.OnPreviewMouseMove(e);
@@ -455,10 +454,10 @@ namespace Microsoft.FamilyShow
 
         protected override void OnPreviewMouseUp(MouseButtonEventArgs e)
         {
-            if (this.IsMouseCaptured)
+            if (IsMouseCaptured)
             {
-                this.Cursor = Cursors.Arrow;
-                this.ReleaseMouseCapture();
+                Cursor = Cursors.Arrow;
+                ReleaseMouseCapture();
             }
 
             base.OnPreviewMouseUp(e);

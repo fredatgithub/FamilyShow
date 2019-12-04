@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
-using System.ComponentModel;
 using Microsoft.FamilyShowLib;
 using System.Globalization;
 using System.Collections;
@@ -11,12 +8,12 @@ using System.Windows.Controls;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for SharedBirthdays.xaml
-    /// </summary>
+  /// <summary>
+  /// Interaction logic for SharedBirthdays.xaml
+  /// </summary>
 
-    public partial class SharedBirthdays : System.Windows.Controls.UserControl
-    {
+  public partial class SharedBirthdays : UserControl
+  {
         private static ListCollectionView lcv;
 
         #region dependency properties

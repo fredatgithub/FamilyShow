@@ -1,26 +1,21 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.FamilyShowLib;
 using System.IO;
 using System.Globalization;
-using System.Windows.Controls.Primitives;
-using System.Windows.Markup;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for PersonInfo.xaml
-    /// </summary>
-    public partial class PersonInfo : System.Windows.Controls.UserControl
-    {
+  /// <summary>
+  /// Interaction logic for PersonInfo.xaml
+  /// </summary>
+  public partial class PersonInfo : UserControl
+  {
         public PersonInfo()
         {
             InitializeComponent();
@@ -43,7 +38,7 @@ namespace Microsoft.FamilyShow
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.Visibility == Visibility.Visible)
+            if (Visibility == Visibility.Visible)
             {
                 // Show the story, hide the editor
                 StoryViewBorder.Visibility = Visibility.Visible;
@@ -105,7 +100,7 @@ namespace Microsoft.FamilyShow
 
         private void SaveStoryButton_Click(object sender, RoutedEventArgs e)
         {
-            Person person = (Person)this.DataContext;
+            Person person = (Person)DataContext;
 
             if (person != null)
             {
@@ -136,13 +131,13 @@ namespace Microsoft.FamilyShow
         private void LoadStoryText(FlowDocument flowDocument)
         {
             // Ignore null cases
-            if (flowDocument == null || flowDocument.Blocks == null || this.DataContext == null)
+            if (flowDocument == null || flowDocument.Blocks == null || DataContext == null)
                 return;
 
             // Clear out any existing text in the viewer 
             flowDocument.Blocks.Clear();
 
-            Person person = (Person)this.DataContext;
+            Person person = (Person)DataContext;
 
             // Load the story into the story viewer
             if (person != null && person.Story != null)
@@ -261,7 +256,7 @@ namespace Microsoft.FamilyShow
 
         private void PhotosListBox_Drop(object sender, DragEventArgs e)
         {
-            Person person = (Person)this.DataContext;
+            Person person = (Person)DataContext;
 
             // Retrieve the dropped files
             string[] fileNames = e.Data.GetData(DataFormats.FileDrop, true) as string[];
@@ -354,7 +349,7 @@ namespace Microsoft.FamilyShow
 
         private void SetPrimaryButton_Click(object sender, RoutedEventArgs e)
         {
-            Person person = (Person)this.DataContext;
+            Person person = (Person)DataContext;
 
             if (person.Photos != null && PhotosListBox.SelectedItem != null)
             {
@@ -372,7 +367,7 @@ namespace Microsoft.FamilyShow
 
         private void RemovePhotoButton_Click(object sender, RoutedEventArgs e)
         {
-            Person person = (Person)this.DataContext;
+            Person person = (Person)DataContext;
 
             Photo photo = (Photo)PhotosListBox.SelectedItem;
             if (photo != null)

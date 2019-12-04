@@ -1,14 +1,11 @@
-using System;
-using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for Welcome.xaml
-    /// </summary>
-    public partial class OldVersionMessage : System.Windows.Controls.UserControl
+  /// <summary>
+  /// Interaction logic for Welcome.xaml
+  /// </summary>
+  public partial class OldVersionMessage : System.Windows.Controls.UserControl
     {
         public OldVersionMessage()
         {

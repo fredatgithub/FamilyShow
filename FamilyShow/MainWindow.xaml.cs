@@ -78,7 +78,7 @@ namespace Microsoft.FamilyShow
         private void DetailsControl_PersonInfoClick(object sender, RoutedEventArgs e)
         {
             // Uses an animation to show the Person Info Control
-            ((Storyboard)this.Resources["ShowPersonInfo"]).Begin(this);
+            ((Storyboard)Resources["ShowPersonInfo"]).Begin(this);
 
             PersonInfoControl.DataContext = family.Current;
         }
@@ -87,7 +87,7 @@ namespace Microsoft.FamilyShow
         {
             FamilyDataControl.Refresh();
 
-            ((Storyboard)this.Resources["ShowFamilyData"]).Begin(this);
+            ((Storyboard)Resources["ShowFamilyData"]).Begin(this);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Microsoft.FamilyShow
         private void PersonInfoControl_CloseButtonClick(object sender, RoutedEventArgs e)
         {
             // Uses an animation to hide the Person Info Control
-            ((Storyboard)this.Resources["HidePersonInfo"]).Begin(this);
+            ((Storyboard)Resources["HidePersonInfo"]).Begin(this);
         }
 
         private void FamilyDataControl_CloseButtonClick(object sender, RoutedEventArgs e)
@@ -609,7 +609,7 @@ namespace Microsoft.FamilyShow
         {
             // Uses an animation to hide the Family Data Control
             if (FamilyDataControl.IsVisible)
-                ((Storyboard)this.Resources["HideFamilyData"]).Begin(this);
+                ((Storyboard)Resources["HideFamilyData"]).Begin(this);
         }
 
         /// <summary>
@@ -635,7 +635,7 @@ namespace Microsoft.FamilyShow
             WelcomeUserControl.Visibility = Visibility.Collapsed;
 
             if (PersonInfoControl.Visibility == Visibility.Visible)
-                ((Storyboard)this.Resources["HidePersonInfo"]).Begin(this);
+                ((Storyboard)Resources["HidePersonInfo"]).Begin(this);
 
             NewUserControl.Visibility = Visibility.Visible;
             NewUserControl.ClearInputFields();

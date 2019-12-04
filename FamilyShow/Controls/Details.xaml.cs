@@ -5,16 +5,15 @@ using System.ComponentModel;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Animation;
 using Microsoft.FamilyShowLib;
-using System.Windows.Data;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for Details.xaml
-    /// </summary>
+  /// <summary>
+  /// Interaction logic for Details.xaml
+  /// </summary>
 
-    public partial class Details : System.Windows.Controls.UserControl
-    {
+  public partial class Details : UserControl
+  {
         #region fields
 
         PeopleCollection family = App.Family;
@@ -148,10 +147,10 @@ namespace Microsoft.FamilyShow
 
                 if (isExisting)
                     // Use animation to expand the Add Existing section
-                    ((Storyboard)this.Resources["ExpandAddExisting"]).Begin(this);
+                    ((Storyboard)Resources["ExpandAddExisting"]).Begin(this);
                 else
                     // Use animation to expand the Details Add section
-                    ((Storyboard)this.Resources["ExpandDetailsAdd"]).Begin(this);
+                    ((Storyboard)Resources["ExpandDetailsAdd"]).Begin(this);
 
                 LastNameInputTextBox.Text = lastname;
 
@@ -249,7 +248,7 @@ namespace Microsoft.FamilyShow
             else
             {
                 // Use animation to hide the Details Add section
-                ((Storyboard)this.Resources["CollapseDetailsAdd"]).Begin(this);
+                ((Storyboard)Resources["CollapseDetailsAdd"]).Begin(this);
 
                 FamilyMemberComboBox.SelectedIndex = -1;
                 FamilyMemberAddButton.Focus();
@@ -298,7 +297,7 @@ namespace Microsoft.FamilyShow
             FamilyMemberAddButton.Focus();
 
             // Use animation to hide the Details Add Intermediate section
-            ((Storyboard)this.Resources["CollapseDetailsAddIntermediate"]).Begin(this);
+            ((Storyboard)Resources["CollapseDetailsAddIntermediate"]).Begin(this);
 
             family.OnContentChanged(newPerson);
         }
@@ -380,7 +379,7 @@ namespace Microsoft.FamilyShow
             else
             {
                 // Use animation to hide the Details Add section
-                ((Storyboard)this.Resources["CollapseAddExisting"]).Begin(this);
+                ((Storyboard)Resources["CollapseAddExisting"]).Begin(this);
 
                 FamilyMemberComboBox.SelectedIndex = -1;
                 FamilyMemberAddButton.Focus();
@@ -581,7 +580,7 @@ namespace Microsoft.FamilyShow
                 if (selected != null)
                 { 
                     family.Current = selected;
-                    this.DataContext = family.Current;
+                    DataContext = family.Current;
                 }
                 
                 ignoreSelection = false;
@@ -643,7 +642,7 @@ namespace Microsoft.FamilyShow
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.DataContext != null)
+            if (DataContext != null)
             {
                 if (family != null && family.Current != null && family.Current.HasParents)
                 {
@@ -777,7 +776,7 @@ namespace Microsoft.FamilyShow
         private void ShowDetailsAddIntermediate(ParentSetCollection possibleParents)
         {
             // Display the Details Add Intermediate section
-            ((Storyboard)this.Resources["ExpandDetailsAddIntermediate"]).Begin(this);
+            ((Storyboard)Resources["ExpandDetailsAddIntermediate"]).Begin(this);
 
             // Bind the possible parents
             ParentsListBox.ItemsSource = possibleParents;
