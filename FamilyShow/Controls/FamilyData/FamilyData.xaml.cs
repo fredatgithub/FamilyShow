@@ -15,8 +15,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
   public partial class FamilyData : UserControl
   {
     // Event that is raised when the Back button is clicked.
-    public static readonly RoutedEvent CloseButtonClickEvent = EventManager.RegisterRoutedEvent(
-        "CloseButtonClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(FamilyData));
+    public static readonly RoutedEvent CloseButtonClickEvent = EventManager.RegisterRoutedEvent("CloseButtonClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(FamilyData));
 
     public event RoutedEventHandler CloseButtonClick
     {
@@ -58,12 +57,17 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
 
       // Apply sorting
       if (!string.IsNullOrEmpty(sort))
+      {
         view.SortDescriptions.Add(new SortDescription(sort, ListSortDirection.Ascending));
+      }
 
       // Group the collection into tags. The tag cloud will be based on the group Name and ItemCount
       PropertyGroupDescription groupDescription = new PropertyGroupDescription();
       if (!string.IsNullOrEmpty(group))
+      {
         groupDescription.PropertyName = group;
+      }
+
       view.GroupDescriptions.Add(groupDescription);
 
       return view;
@@ -83,12 +87,12 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// <summary>
     /// Used as a filter predicate to see if the person should be included 
     /// </summary>
-    /// <param name="o">Person object</param>
+    /// <param name="personObject">Person object</param>
     /// <returns>True if the person should be included in the filter, otherwise false</returns>
-    public static bool HistogramFilter(object o)
+    public static bool HistogramFilter(object personObject)
     {
-      Person p = o as Person;
-      return (p.AgeGroup != AgeGroup.Unknown);
+      Person person = personObject as Person;
+      return (person.AgeGroup != AgeGroup.Unknown);
     }
 
     /// <summary>
@@ -120,7 +124,9 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     void FamilyEditor_LostFocus(object sender, RoutedEventArgs e)
     {
       if (e.OriginalSource is TextBox)
+      {
         Refresh();
+      }
     }
 
     /// <summary>
@@ -157,7 +163,9 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     {
       string filter = e.OriginalSource as string;
       if (filter != null)
+      {
         UpdateFilter(filter);
+      }
     }
 
     /// <summary>
@@ -167,7 +175,9 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     {
       string filter = e.OriginalSource as string;
       if (filter != null)
+      {
         UpdateFilter(filter);
+      }
     }
 
     /// <summary>
