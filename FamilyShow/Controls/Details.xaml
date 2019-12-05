@@ -807,7 +807,7 @@
                 <RowDefinition Height="Auto"/>
               </Grid.RowDefinitions>
               <Label Content="Date of _Birth" Target="{Binding ElementName=BirthDateEditTextBox, Mode=OneWay}" Foreground="{DynamicResource InputFontColor}" />
-              <TextBox TextWrapping="Wrap" x:Name="BirthDateEditTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay,  ValidatesOnDataErrors=True}"/>
+              <TextBox TextWrapping="Wrap" x:Name="BirthDateEditTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
               <!--<TextBox TextWrapping="Wrap" x:Name="BirthDateEditTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>-->
               <CheckBox Margin="10,0,0,0" x:Name="IsLivingEditCheckBox" VerticalAlignment="Center" Content="Li_ving" Foreground="{DynamicResource InputFontColor}" Grid.Column="1" Grid.Row="1" IsChecked="{Binding Path=IsLiving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=True}"/>
             </Grid>
@@ -935,7 +935,8 @@
                     <RowDefinition Height="Auto"/>
                   </Grid.RowDefinitions>
                   <Label Content="Date of _Birth" Target="{Binding ElementName=BirthDateInputTextBox, Mode=OneWay}" Foreground="{DynamicResource InputFontColor}" />
-                  <TextBox TextWrapping="Wrap" x:Name="BirthDateInputTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Source={StaticResource person}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>                  
+                  <TextBox TextWrapping="Wrap" x:Name="BirthDateInputTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Source={StaticResource person}, ValidatesOnDataErrors=True}"/>
+                  <!--<TextBox TextWrapping="Wrap" x:Name="BirthDateInputTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Source={StaticResource person}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>-->
                   <CheckBox Margin="10,0,0,0" VerticalAlignment="Center" Content="Li_ving" Foreground="{DynamicResource InputFontColor}" Grid.Column="1" Grid.Row="1" x:Name="IsLivingInputCheckbox" IsChecked="True"/>
                 </Grid>
                 <Label Content="_Place of Birth" Target="{Binding ElementName=BirthPlaceInputTextBox, Mode=OneWay}" Foreground="{DynamicResource InputFontColor}" />
