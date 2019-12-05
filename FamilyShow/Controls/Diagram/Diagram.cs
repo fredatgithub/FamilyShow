@@ -614,15 +614,16 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     {
       // The new person is optional, can be null.
       if (newPerson == null)
+      {
         return;
+      }
 
       // Get the UI element to animate.                
       DiagramNode node = logic.GetDiagramNode(newPerson);
       if (node != null)
       {
         // Create the new person animation.
-        DoubleAnimation anim = new DoubleAnimation(0, 1,
-            App.GetAnimationDuration(Const.NewPersonAnimationDuration));
+        DoubleAnimation anim = new DoubleAnimation(0, 1, App.GetAnimationDuration(Const.NewPersonAnimationDuration));
 
         // Animate the node.
         ScaleTransform transform = new ScaleTransform();
