@@ -796,6 +796,11 @@ namespace Microsoft.FamilyShow
       OldVersionMessageControl.Visibility = Visibility.Hidden;
     }
 
+    public static DateTime StringToDate(string v)
+    {
+      throw new NotImplementedException();
+    }
+
     #endregion
   }
 }

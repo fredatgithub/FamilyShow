@@ -290,8 +290,7 @@ namespace Microsoft.FamilyShow
         dateString = "1/1/" + dateString;
       }
 
-      DateTime date;
-      DateTime.TryParse(dateString, out date);
+      DateTime.TryParse(dateString, out DateTime date);
 
       return date;
     }
