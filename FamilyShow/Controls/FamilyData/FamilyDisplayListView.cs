@@ -22,15 +22,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
         return false;
       }
 
-      if (Filter.Matches(person.Name) ||
-          Filter.MatchesYear(person.BirthDate) ||
-          Filter.MatchesYear(person.DeathDate) ||
-          Filter.Matches(person.Age))
-      {
-        return true;
-      }
-
-      return false;
+      return Filter.Matches(person.Name) || Filter.MatchesYear(person.BirthDate) || Filter.MatchesYear(person.DeathDate) || Filter.Matches(person.Age);
     }
   }
 }
