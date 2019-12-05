@@ -103,8 +103,7 @@ namespace Microsoft.FamilyShow
     {
       if (!(FamilyMemberAddButton.CommandParameter == null))
       {
-        FamilyMemberComboBox.SelectedItem =
-            (FamilyMemberComboBoxValue)(FamilyMemberAddButton.CommandParameter);
+        FamilyMemberComboBox.SelectedItem = (FamilyMemberComboBoxValue)(FamilyMemberAddButton.CommandParameter);
       }
     }
 
@@ -132,9 +131,14 @@ namespace Microsoft.FamilyShow
           case FamilyMemberComboBoxValue.Son:
             // Assume that the new person has the same last name as the husband
             if ((family.Current.Gender == Gender.Female) && (family.Current.Spouses.Count > 0) && (family.Current.Spouses[0].Gender == Gender.Male))
+            {
               lastname = family.Current.Spouses[0].LastName;
+            }
             else
+            {
               lastname = family.Current.LastName;
+            }
+
             break;
           case FamilyMemberComboBoxValue.Existing:
             isExisting = true;
@@ -146,11 +150,15 @@ namespace Microsoft.FamilyShow
         }
 
         if (isExisting)
+        {
           // Use animation to expand the Add Existing section
           ((Storyboard)Resources["ExpandAddExisting"]).Begin(this);
+        }
         else
+        {
           // Use animation to expand the Details Add section
           ((Storyboard)Resources["ExpandDetailsAdd"]).Begin(this);
+        }
 
         LastNameInputTextBox.Text = lastname;
 
@@ -167,12 +175,16 @@ namespace Microsoft.FamilyShow
       SetNextFamilyMemberAction((FamilyMemberComboBoxValue)FamilyMemberComboBox.SelectedValue);
 
       // The new person to be added
-      Person newPerson = new Person(FirstNameInputTextBox.Text, LastNameInputTextBox.Text);
-      newPerson.IsLiving = (IsLivingInputCheckbox.IsChecked == null) ? true : (bool)IsLivingInputCheckbox.IsChecked;
+      Person newPerson = new Person(FirstNameInputTextBox.Text, LastNameInputTextBox.Text)
+      {
+        IsLiving = (IsLivingInputCheckbox.IsChecked == null) ? true : (bool)IsLivingInputCheckbox.IsChecked
+      };
 
       DateTime birthdate = App.StringToDate(BirthDateInputTextBox.Text);
       if (birthdate != DateTime.MinValue)
+      {
         newPerson.BirthDate = birthdate;
+      }
 
       newPerson.BirthPlace = BirthPlaceInputTextBox.Text;
 
@@ -199,9 +211,14 @@ namespace Microsoft.FamilyShow
 
           // Check to see if there are multiple parents
           if (possibleParents.Count > 1)
+          {
             SelectParent = true;
+          }
           else
+          {
             RelationshipHelper.AddSibling(family, family.Current, newPerson);
+          }
+
           break;
 
         case FamilyMemberComboBoxValue.Sister:
@@ -209,9 +226,14 @@ namespace Microsoft.FamilyShow
 
           // Check to see if there are multiple parents
           if (possibleParents.Count > 1)
+          {
             SelectParent = true;
+          }
           else
+          {
             RelationshipHelper.AddSibling(family, family.Current, newPerson);
+          }
+
           break;
 
         case FamilyMemberComboBoxValue.Spouse:
@@ -228,7 +250,10 @@ namespace Microsoft.FamilyShow
             SelectParent = true;
           }
           else
+          {
             RelationshipHelper.AddChild(family, family.Current, newPerson);
+          }
+
           break;
 
         case FamilyMemberComboBoxValue.Daughter:
@@ -239,12 +264,17 @@ namespace Microsoft.FamilyShow
             SelectParent = true;
           }
           else
+          {
             RelationshipHelper.AddChild(family, family.Current, newPerson);
+          }
+
           break;
       }
 
       if (SelectParent)
+      {
         ShowDetailsAddIntermediate(possibleParents);
+      }
       else
       {
         // Use animation to hide the Details Add section
@@ -267,7 +297,9 @@ namespace Microsoft.FamilyShow
 
       DateTime birthdate = App.StringToDate(BirthDateInputTextBox.Text);
       if (birthdate != DateTime.MinValue)
+      {
         newPerson.BirthDate = birthdate;
+      }
 
       newPerson.BirthPlace = BirthPlaceInputTextBox.Text;
 
@@ -375,7 +407,9 @@ namespace Microsoft.FamilyShow
       }
 
       if (SelectParent)
+      {
         ShowDetailsAddIntermediate(possibleParents);
+      }
       else
       {
         // Use animation to hide the Details Add section
@@ -478,7 +512,7 @@ namespace Microsoft.FamilyShow
         // The ToEditTextBox is only edittable for current spouses.
         ToEditTextBox.IsEnabled = ((SpouseModifier)SpouseStatusListbox.SelectedItem == SpouseModifier.Former);
       }
-      
+
       family.OnContentChanged();
     }
 
