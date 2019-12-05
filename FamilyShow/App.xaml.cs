@@ -33,7 +33,7 @@ namespace Microsoft.FamilyShow
     private const int NumberOfRecentFiles = 10;
 
     // The path to the recent files file.
-    private readonly static string RecentFilesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Path.Combine(App.ApplicationFolderName, "RecentFiles.xml"));
+    private readonly static string RecentFilesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Path.Combine(ApplicationFolderName, "RecentFiles.xml"));
 
     // The global list of recent files.
     private static StringCollection recentFiles = new StringCollection();
@@ -53,15 +53,15 @@ namespace Microsoft.FamilyShow
       // Load the collection of recent files.
       LoadRecentFiles();
 
-      Properties.Settings appSettings = Microsoft.FamilyShow.Properties.Settings.Default;
+      Properties.Settings appSettings = FamilyShow.Properties.Settings.Default;
 
       if (!string.IsNullOrEmpty(appSettings.Skin))
       {
         try
         {
           ResourceDictionary rd = new ResourceDictionary();
-          rd.MergedDictionaries.Add(Application.LoadComponent(new Uri(appSettings.Skin, UriKind.Relative)) as ResourceDictionary);
-          Application.Current.Resources = rd;
+          rd.MergedDictionaries.Add(LoadComponent(new Uri(appSettings.Skin, UriKind.Relative)) as ResourceDictionary);
+          Current.Resources = rd;
         }
         catch
         {

@@ -149,7 +149,7 @@ namespace Microsoft.FamilyShow
           // The filtered state changed, create a new animation.
           isFiltered = value;
           double newOpacity = isFiltered ? Const.OpacityFiltered : Const.OpacityNormal;
-          BeginAnimation(DiagramNode.OpacityProperty,
+          BeginAnimation(OpacityProperty,
               new DoubleAnimation(Opacity, newOpacity,
               App.GetAnimationDuration(Const.AnimationDuration)));
         }
@@ -352,8 +352,8 @@ namespace Microsoft.FamilyShow
     /// </summary>
     public string BottomLabel
     {
-      get { return (String)GetValue(DiagramNode.BottomLabelProperty); }
-      set { SetValue(DiagramNode.BottomLabelProperty, value); }
+      get { return (String)GetValue(BottomLabelProperty); }
+      set { SetValue(BottomLabelProperty, value); }
     }
 
     #endregion

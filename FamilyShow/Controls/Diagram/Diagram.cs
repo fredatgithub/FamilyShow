@@ -412,7 +412,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
                 if (connector.Node.Visibility != Visibility.Visible)
                 {
                     connector.Node.Visibility = Visibility.Visible;
-                    connector.Node.BeginAnimation(Diagram.OpacityProperty,
+                    connector.Node.BeginAnimation(OpacityProperty,
                         new DoubleAnimation(0, 1,
                         App.GetAnimationDuration(Const.NodeFadeInDuration)));
                 }

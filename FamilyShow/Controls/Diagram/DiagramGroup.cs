@@ -146,7 +146,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
         totalSize.Width = pos + node.DesiredSize.Width;
         totalSize.Height = Math.Max(totalSize.Height, node.DesiredSize.Height);
 
-        pos += (bounds.Width + DiagramGroup.NodeSpace);
+        pos += (bounds.Width + NodeSpace);
       }
 
       return totalSize;

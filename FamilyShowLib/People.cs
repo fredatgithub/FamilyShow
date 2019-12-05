@@ -173,7 +173,7 @@ namespace Microsoft.FamilyShowLib
       // Use the default path and filename if none was provided
       if (string.IsNullOrEmpty(FullyQualifiedFilename))
       {
-        FullyQualifiedFilename = People.DefaultFullyQualifiedFilename;
+        FullyQualifiedFilename = DefaultFullyQualifiedFilename;
       }
 
       // Setup temp folders for this family to be packaged into OPC later
@@ -220,7 +220,7 @@ namespace Microsoft.FamilyShowLib
         // Use the default path and filename if none were provided
         if (string.IsNullOrEmpty(FullyQualifiedFilename))
         {
-          FullyQualifiedFilename = People.DefaultFullyQualifiedFilename;
+          FullyQualifiedFilename = DefaultFullyQualifiedFilename;
         }
 
         XmlSerializer xml = new XmlSerializer(typeof(People));
@@ -347,7 +347,7 @@ namespace Microsoft.FamilyShowLib
         // Use the default path and filename if none were provided
         if (string.IsNullOrEmpty(FullyQualifiedFilename))
         {
-          FullyQualifiedFilename = People.DefaultFullyQualifiedFilename;
+          FullyQualifiedFilename = DefaultFullyQualifiedFilename;
         }
 
         string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), App.ApplicationFolderName);

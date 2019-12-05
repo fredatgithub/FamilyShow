@@ -492,7 +492,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
                     string text = rel.MarriageDate.Value.Year.ToString(CultureInfo.CurrentCulture);
 
                     FormattedText format = new FormattedText(text,
-                        System.Globalization.CultureInfo.CurrentUICulture, 
+                        CultureInfo.CurrentUICulture, 
                         FlowDirection.LeftToRight, new Typeface(connectionTextFont, 
                         FontStyles.Normal, FontWeights.Normal, FontStretches.Normal, 
                         connectionTextFont), connectionTextSize, GetBrush(connectionTextColor));
@@ -508,7 +508,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
                     string text = rel.DivorceDate.Value.Year.ToString(CultureInfo.CurrentCulture);
 
                     FormattedText format = new FormattedText(text,
-                        System.Globalization.CultureInfo.CurrentUICulture,
+                        CultureInfo.CurrentUICulture,
                         FlowDirection.LeftToRight, new Typeface(connectionTextFont, 
                         FontStyles.Normal, FontWeights.Normal, FontStretches.Normal, 
                         connectionTextFont), connectionTextSize, GetBrush(connectionTextColor));

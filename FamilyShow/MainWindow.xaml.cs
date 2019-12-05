@@ -712,7 +712,7 @@ namespace Microsoft.FamilyShow
         foreach (string file in App.RecentFiles)
         {
           MenuItem item = new MenuItem();
-          item.Header = System.IO.Path.GetFileName(file);
+          item.Header = Path.GetFileName(file);
           item.CommandParameter = file;
           item.Click += new RoutedEventHandler(OpenRecentFile_Click);
 
