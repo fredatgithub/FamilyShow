@@ -59,9 +59,9 @@ namespace Microsoft.FamilyShow
       {
         try
         {
-          ResourceDictionary rd = new ResourceDictionary();
-          rd.MergedDictionaries.Add(LoadComponent(new Uri(appSettings.Skin, UriKind.Relative)) as ResourceDictionary);
-          Current.Resources = rd;
+          ResourceDictionary resourceDictionary = new ResourceDictionary();
+          resourceDictionary.MergedDictionaries.Add(LoadComponent(new Uri(appSettings.Skin, UriKind.Relative)) as ResourceDictionary);
+          Current.Resources = resourceDictionary;
         }
         catch
         {

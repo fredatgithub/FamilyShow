@@ -55,8 +55,7 @@ namespace Microsoft.FamilyShow
 
     #region routed events
 
-    public static readonly RoutedEvent PersonInfoClickEvent = EventManager.RegisterRoutedEvent(
-        "PersonInfoClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Details));
+    public static readonly RoutedEvent PersonInfoClickEvent = EventManager.RegisterRoutedEvent("PersonInfoClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Details));
 
     /// <summary>
     /// Expose the PersonInfoClick event
@@ -67,8 +66,7 @@ namespace Microsoft.FamilyShow
       remove { RemoveHandler(PersonInfoClickEvent, value); }
     }
 
-    public static readonly RoutedEvent EveryoneDeletedEvent = EventManager.RegisterRoutedEvent(
-        "EveryoneDeleted", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Details));
+    public static readonly RoutedEvent EveryoneDeletedEvent = EventManager.RegisterRoutedEvent("EveryoneDeleted", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Details));
 
     /// <summary>
     /// Expose the EveryoneDeleted event
@@ -79,8 +77,7 @@ namespace Microsoft.FamilyShow
       remove { RemoveHandler(EveryoneDeletedEvent, value); }
     }
 
-    public static readonly RoutedEvent FamilyDataClickEvent = EventManager.RegisterRoutedEvent(
-        "FamilyDataClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Details));
+    public static readonly RoutedEvent FamilyDataClickEvent = EventManager.RegisterRoutedEvent("FamilyDataClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Details));
 
     /// <summary>
     /// Expose the FamilyDataClick event
@@ -391,7 +388,10 @@ namespace Microsoft.FamilyShow
             SelectParent = true;
           }
           else
+          {
             RelationshipHelper.AddChild(family, family.Current, existingPerson);
+          }
+
           break;
 
         case FamilyMemberComboBoxValue.Daughter:
@@ -402,7 +402,10 @@ namespace Microsoft.FamilyShow
             SelectParent = true;
           }
           else
+          {
             RelationshipHelper.AddChild(family, family.Current, existingPerson);
+          }
+
           break;
       }
 
