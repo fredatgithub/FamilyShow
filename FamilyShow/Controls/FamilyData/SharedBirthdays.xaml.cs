@@ -54,12 +54,12 @@ namespace Microsoft.FamilyShow
         /// <summary>
         /// Used as a filter predicate to see if the person should be included 
         /// </summary>
-        /// <param name="o">Person object</param>
+        /// <param name="personObject">Person object</param>
         /// <returns>True if the person should be included in the filter, otherwise false</returns>
-        public static bool FilterPerson(object o)
+        public static bool FilterPerson(object personObject)
         {
-            Person p = o as Person;
-            return (p.BirthDate != null);
+            Person person = personObject as Person;
+            return (person.BirthDate != null);
         }
 
         private static void PeopleCollectionProperty_Changed(DependencyObject sender, DependencyPropertyChangedEventArgs args)

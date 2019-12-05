@@ -174,8 +174,7 @@ namespace Microsoft.FamilyShow
     private static void InstallSampleFiles()
     {
       // Full path to the document file location.
-      string location = Path.Combine(Environment.GetFolderPath(
-          Environment.SpecialFolder.MyDocuments), ApplicationFolderName);
+      string location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ApplicationFolderName);
 
       // Return right away if the data file already exist.
       if (Directory.Exists(location))
@@ -219,8 +218,8 @@ namespace Microsoft.FamilyShow
       }
       catch
       {
-        // Could not install the sample files, handle all exceptions the
-        // same, ignore and continue without installing the sample files.
+        // Could not install the sample files, handle all exceptions the same
+        // ignore and continue without installing the sample files.
       }
     }
 

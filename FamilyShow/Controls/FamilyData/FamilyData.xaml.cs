@@ -72,12 +72,12 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// <summary>
     /// Used as a filter predicate to see if the person should be included 
     /// </summary>
-    /// <param name="o">Person object</param>
+    /// <param name="personObject">Person object</param>
     /// <returns>True if the person should be included in the filter, otherwise false</returns>
-    public static bool TagCloudFilter(object o)
+    public static bool TagCloudFilter(object personObject)
     {
-      Person p = o as Person;
-      return (!string.IsNullOrEmpty(p.LastName));
+      Person person = personObject as Person;
+      return (!string.IsNullOrEmpty(person.LastName));
     }
 
     /// <summary>

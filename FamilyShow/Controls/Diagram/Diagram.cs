@@ -577,7 +577,9 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     {
       // Ignore if currently repopulating the diagram.
       if (populating)
+      {
         return;
+      }
 
       // Save the person that is being added to the diagram.
       // This is optional and can be null.
