@@ -179,8 +179,7 @@ namespace Microsoft.FamilyShow
             // the diagram centered. The ScrollChanged event occurs when
             // zooming since the diagram's extent changes.
 
-            if (e.ExtentWidthChange != 0 &&
-                e.ExtentWidthChange != e.ExtentWidth)
+            if (e.ExtentWidthChange != 0 && e.ExtentWidthChange != e.ExtentWidth)
             {
                 // Keep centered horizontaly.
                 double percent = e.ExtentWidthChange / (e.ExtentWidth - e.ExtentWidthChange);
@@ -188,8 +187,7 @@ namespace Microsoft.FamilyShow
                 ScrollViewer.ScrollToHorizontalOffset(e.HorizontalOffset + (middle * percent));
             }
 
-            if (e.ExtentHeightChange != 0 &&
-                e.ExtentHeightChange != e.ExtentHeight)
+            if (e.ExtentHeightChange != 0 && e.ExtentHeightChange != e.ExtentHeight)
             {
                 // Keep centered verically.
                 double percent = e.ExtentHeightChange / (e.ExtentHeight - e.ExtentHeightChange);
