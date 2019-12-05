@@ -34,8 +34,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// </summary>
     public bool Matches(string text)
     {
-      return (filterText != null && text != null &&
-          text.ToLower(CultureInfo.CurrentCulture).Contains(filterText));
+      return (filterText != null && text != null && text.ToLower(CultureInfo.CurrentCulture).Contains(filterText));
     }
 
     /// <summary>
@@ -68,8 +67,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
     /// </summary>
     public bool MatchesDay(DateTime? date)
     {
-      return (date != null && filterDate != null &&
-          date.Value.Day == filterDate.Value.Day);
+      return (date != null && filterDate != null && date.Value.Day == filterDate.Value.Day);
     }
 
     /// <summary>
@@ -90,8 +88,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
       }
 
       // Check for a range.
-      if (minimumAge != null && maximumAge != null &&
-          age.Value >= minimumAge && age <= maximumAge)
+      if (minimumAge != null && maximumAge != null && age.Value >= minimumAge && age <= maximumAge)
       {
         return true;
       }
@@ -169,7 +166,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
       // Ending age.
       if (filterText.EndsWith("+"))
       {
-        if (Int32.TryParse(filterText.Substring(0, filterText.Length - 1), out age))
+        if (int.TryParse(filterText.Substring(0, filterText.Length - 1), out age))
         {
           maximumAge = age;
         }
@@ -203,9 +200,7 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
       filter.Parse(text);
 
       // Start an async operation that filters the list.
-      Dispatcher.BeginInvoke(
-          DispatcherPriority.ApplicationIdle,
-          new FilterDelegate(FilterWorker));
+      Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new FilterDelegate(FilterWorker));
     }
 
     /// <summary>
