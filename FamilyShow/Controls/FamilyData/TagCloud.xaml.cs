@@ -16,9 +16,7 @@ namespace Microsoft.FamilyShow
 
         #region dependency properties
 
-        public static readonly DependencyProperty ViewProperty =
-            DependencyProperty.Register("View", typeof(ListCollectionView), typeof(TagCloud),
-            new FrameworkPropertyMetadata(new PropertyChangedCallback(ViewProperty_Changed)));
+        public static readonly DependencyProperty ViewProperty = DependencyProperty.Register("View", typeof(ListCollectionView), typeof(TagCloud), new FrameworkPropertyMetadata(new PropertyChangedCallback(ViewProperty_Changed)));
 
         public ListCollectionView View
         {
@@ -26,10 +24,7 @@ namespace Microsoft.FamilyShow
             set { SetValue(ViewProperty, value); }
         }
 
-        public static readonly DependencyProperty SelectedBrushProperty =
-            DependencyProperty.Register("SelectedBrush", typeof(Brush), typeof(TagCloud),
-            new FrameworkPropertyMetadata(SystemColors.HighlightBrush,
-            FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty SelectedBrushProperty = DependencyProperty.Register("SelectedBrush", typeof(Brush), typeof(TagCloud), new FrameworkPropertyMetadata(SystemColors.HighlightBrush, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public Brush SelectedBrush
         {
@@ -37,10 +32,7 @@ namespace Microsoft.FamilyShow
             set { SetValue(SelectedBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DisabledForegroundBrushProperty =
-            DependencyProperty.Register("DisabledForegroundBrush", typeof(Brush), typeof(TagCloud),
-            new FrameworkPropertyMetadata(SystemColors.GrayTextBrush,
-            FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty DisabledForegroundBrushProperty = DependencyProperty.Register("DisabledForegroundBrush", typeof(Brush), typeof(TagCloud), new FrameworkPropertyMetadata(SystemColors.GrayTextBrush, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public Brush DisabledForegroundBrush
         {
@@ -48,9 +40,7 @@ namespace Microsoft.FamilyShow
             set { SetValue(DisabledForegroundBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty ListBackgroundBrushProperty =
-            DependencyProperty.Register("ListBackgroundBrush", typeof(Brush), typeof(TagCloud),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty ListBackgroundBrushProperty = DependencyProperty.Register("ListBackgroundBrush", typeof(Brush), typeof(TagCloud), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public Brush ListBackgroundBrush
         {
@@ -58,9 +48,7 @@ namespace Microsoft.FamilyShow
             set { SetValue(ListBackgroundBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty ListBorderBrushProperty =
-            DependencyProperty.Register("ListBorderBrush", typeof(Brush), typeof(TagCloud),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty ListBorderBrushProperty = DependencyProperty.Register("ListBorderBrush", typeof(Brush), typeof(TagCloud), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public Brush ListBorderBrush
         {
@@ -68,9 +56,7 @@ namespace Microsoft.FamilyShow
             set { SetValue(ListBorderBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty TagMinimumSizeProperty =
-            DependencyProperty.Register("TagMinimumSize", typeof(double), typeof(TagCloud),
-            new FrameworkPropertyMetadata(6.0, FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty TagMinimumSizeProperty = DependencyProperty.Register("TagMinimumSize", typeof(double), typeof(TagCloud), new FrameworkPropertyMetadata(6.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public double TagMinimumSize
         {
@@ -78,9 +64,7 @@ namespace Microsoft.FamilyShow
             set { SetValue(TagMinimumSizeProperty, value); }
         }
 
-        public static readonly DependencyProperty TagMaximumSizeProperty =
-            DependencyProperty.Register("TagMaximumSize", typeof(double), typeof(TagCloud),
-            new FrameworkPropertyMetadata(38.0, FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty TagMaximumSizeProperty = DependencyProperty.Register("TagMaximumSize", typeof(double), typeof(TagCloud), new FrameworkPropertyMetadata(38.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public double TagMaximumSize
         {
@@ -88,9 +72,7 @@ namespace Microsoft.FamilyShow
             set { SetValue(TagMaximumSizeProperty, value); }
         }
 
-        public static readonly DependencyProperty TagIncrementSizeProperty =
-            DependencyProperty.Register("TagIncrementSize", typeof(double), typeof(TagCloud),
-            new FrameworkPropertyMetadata(3.0, FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty TagIncrementSizeProperty = DependencyProperty.Register("TagIncrementSize", typeof(double), typeof(TagCloud), new FrameworkPropertyMetadata(3.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public double TagIncrementSize
         {
@@ -102,8 +84,7 @@ namespace Microsoft.FamilyShow
 
         #region routed events
 
-        public static readonly RoutedEvent TagSelectionChangedEvent = EventManager.RegisterRoutedEvent(
-            "TagSelectionChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TagCloud));
+        public static readonly RoutedEvent TagSelectionChangedEvent = EventManager.RegisterRoutedEvent("TagSelectionChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TagCloud));
 
         public event RoutedEventHandler TagSelectionChanged
         {
@@ -157,8 +138,7 @@ namespace Microsoft.FamilyShow
             int count = (int)values[0];
             TagCloud tagCloud = values[1] as TagCloud;
 
-            return ((tagCloud.TagMinimumSize + count + tagCloud.TagIncrementSize) < tagCloud.TagMaximumSize) ?
-                (tagCloud.TagMinimumSize + count + tagCloud.TagIncrementSize) : tagCloud.TagMaximumSize;
+            return ((tagCloud.TagMinimumSize + count + tagCloud.TagIncrementSize) < tagCloud.TagMaximumSize) ? (tagCloud.TagMinimumSize + count + tagCloud.TagIncrementSize) : tagCloud.TagMaximumSize;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
@@ -168,5 +148,4 @@ namespace Microsoft.FamilyShow
 
         #endregion
     }
-
 }
