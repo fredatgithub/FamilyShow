@@ -152,7 +152,9 @@ namespace Microsoft.FamilyShow
 
         // Only keep the 5 most recent files, trim the rest.
         while (recentFiles.Count > NumberOfRecentFiles)
+        {
           recentFiles.RemoveAt(NumberOfRecentFiles);
+        }
       }
     }
 

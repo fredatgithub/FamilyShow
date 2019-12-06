@@ -47,7 +47,7 @@ namespace Microsoft.FamilyShow
       BuildOpenMenu();
 
       BuildSkinsMenu();
-
+      
       // The welcome screen is the initial view
       ShowWelcomeScreen();
     }
