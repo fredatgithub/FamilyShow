@@ -1,0 +1,69 @@
+# Notes:
+#   - Minimal appveyor.yml file is an empty file. All sections are optional.
+#   - Indent each level of configuration with 2 spaces. Do not use tabs!
+#   - All section names are case-sensitive.
+#   - Section names should be unique on each level.
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+ 
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+#platform: Any CPU
+image:
+  Visual studio 2017
+# to add several platforms to build matrix:
+platform:
+#  - x86
+  - Any CPU
+#  - x64
+ 
+# build Configuration, i.e. Debug, Release, etc.
+#configuration: Release
+ 
+# to add several configurations to build matrix:
+# build debug in case you have #IfDebug clause
+configuration:
+  - Debug
+  - Release
+
+install:
+  # by default, all script lines are interpreted as batch
+  #- echo This is batch
+  # to run script as a PowerShell command prepend it with ps:
+  #- ps: Write-Host 'This is PowerShell'
+  ps: Set-Culture fr-FR
+# scripts to run before build
+
+before_build:
+  - nuget restore
+
+ #install Machine.Specifications
+ #install Machine.Specifications.Should
+ 
+build:
+  # MSBuild verbosity level
+  #verbosity: quiet|minimal|normal|detailed
+  verbosity: minimal
+  parallel: true  
+
+# scripts to run after build
+#after_build:
+ 
+# to run your custom scripts instead of automatic MSBuild
+#build_script:
+ 
+# to disable automatic builds
+#build: off
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+ 
+#test:
+#  assemblies:
+#    - asm1.dll
+#    - asm2.dll
+
+# to disable automatic tests 
+test: on
