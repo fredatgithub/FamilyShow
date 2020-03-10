@@ -123,9 +123,15 @@ namespace Microsoft.FamilyShowLib
       {
         string name = "";
         if (!string.IsNullOrEmpty(firstName))
+        {
           name += firstName;
+        }
+
         if (!string.IsNullOrEmpty(lastName))
+        {
           name += " " + lastName;
+        }
+
         return name;
       }
     }

@@ -21,10 +21,10 @@ using System.Collections.Generic;
 
 namespace Microsoft.FamilyShowLib
 {
-    /// <summary>
-    /// One family group. 
-    /// </summary>
-    class Family
+  /// <summary>
+  /// One family group. 
+  /// </summary>
+  class Family
   {
     #region fields
 

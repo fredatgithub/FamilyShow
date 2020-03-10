@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Windows.Data;
 
 namespace Microsoft.FamilyShow
@@ -20,7 +21,7 @@ namespace Microsoft.FamilyShow
             return string.Empty;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             // Ignore empty strings. this will cause the binding to bypass validation.
             if (string.IsNullOrEmpty((string)value))

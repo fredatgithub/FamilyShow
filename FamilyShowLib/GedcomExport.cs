@@ -79,15 +79,21 @@ namespace Microsoft.FamilyShowLib
 
         // Nickname.
         if (!string.IsNullOrEmpty(person.NickName))
+        {
           WriteLine(2, "NICK", person.NickName);
+        }
 
         // Prefix.
         if (!string.IsNullOrEmpty(person.Suffix))
+        {
           WriteLine(2, "NPFX", person.Suffix);
+        }
 
         // Married name.
         if (!string.IsNullOrEmpty(person.MarriedName))
+        {
           WriteLine(2, "_MARNM", person.MarriedName);
+        }
 
         // Gender.
         ExportGender(person);
@@ -115,7 +121,9 @@ namespace Microsoft.FamilyShowLib
 
       // Created the family groups, now export each family.
       foreach (Family family in map.Values)
+      {
         ExportFamily(family);
+      }
     }
 
     /// <summary>

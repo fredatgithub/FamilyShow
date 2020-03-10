@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Family.Show")]
-[assembly: AssemblyCopyright("Copyright @ MIT 2019")]
+[assembly: AssemblyCopyright("Copyright @ MIT 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

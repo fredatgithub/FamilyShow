@@ -198,7 +198,9 @@ namespace Microsoft.FamilyShowLib
         // Get list of photos for this person.
         string[] photos = GetPhotos(node);
         if (photos == null || photos.Length == 0)
+        {
           return;
+        }
 
         // Import each photo. Make the first photo specified
         // the default photo (avatar).

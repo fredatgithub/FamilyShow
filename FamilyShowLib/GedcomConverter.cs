@@ -58,7 +58,9 @@ namespace Microsoft.FamilyShowLib
                 // Determine how many elements to close.
                 int count = prevLevel - line.Level + 1;
                 for (int i = 0; i < count; i++)
+                {
                   writer.WriteEndElement();
+                }
               }
 
               // Create new xml element.

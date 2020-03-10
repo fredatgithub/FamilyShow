@@ -110,6 +110,7 @@ namespace Microsoft.FamilyShowLib
         else
           key = partnerRight.Id + partnerLeft.Id;
       }
+
       return key;
     }
   }

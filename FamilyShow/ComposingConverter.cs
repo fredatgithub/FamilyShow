@@ -22,6 +22,7 @@ namespace Microsoft.FamilyShow
             {
                 value = converters[i].Convert(value, targetType, parameter, culture);
             }
+
             return value;
         }
 
@@ -31,6 +32,7 @@ namespace Microsoft.FamilyShow
             {
                 value = converters[i].ConvertBack(value, targetType, parameter, culture);
             }
+
             return value;
         }
 

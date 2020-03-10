@@ -131,7 +131,9 @@ namespace Microsoft.FamilyShowLib
 
         // Create the directory if it doesn't exist
         if (!Directory.Exists(appLocation))
+        {
           Directory.CreateDirectory(appLocation);
+        }
 
         return Path.Combine(appLocation, Const.DataFileName);
       }
@@ -164,7 +166,9 @@ namespace Microsoft.FamilyShowLib
     {
       // Return right away if nothing to save.
       if (PeopleCollection == null || PeopleCollection.Count == 0)
+      {
         return;
+      }
 
       // Set the current person id and name before serializing
       CurrentPersonName = PeopleCollection.Current.FullName;
@@ -370,11 +374,11 @@ namespace Microsoft.FamilyShowLib
           // To avoid circular references when serializing family data to xml, only the person Id
           // is seralized to express relationships. When family data is loaded, the correct
           // person object is found using the person Id and assigned to the appropriate relationship.
-          foreach (Person p in PeopleCollection)
+          foreach (Person person in PeopleCollection)
           {
-            foreach (Relationship r in p.Relationships)
+            foreach (Relationship relationqhip in person.Relationships)
             {
-              r.RelationTo = PeopleCollection.Find(r.PersonId);
+              relationqhip.RelationTo = PeopleCollection.Find(relationqhip.PersonId);
             }
           }
 

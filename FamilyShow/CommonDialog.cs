@@ -44,7 +44,7 @@ namespace Microsoft.FamilyShow
     #region fields
 
     // Structure used when displaying Open and SaveAs dialogs.
-    private OpenFileName ofn = new OpenFileName();
+    private OpenFileName openFileName = new OpenFileName();
 
     // List of filters to display in the dialog.
     private List<FilterEntry> filter = new List<FilterEntry>();
@@ -60,22 +60,22 @@ namespace Microsoft.FamilyShow
 
     public string Title
     {
-      set { ofn.title = value; }
+      set { openFileName.title = value; }
     }
 
     public string InitialDirectory
     {
-      set { ofn.initialDir = value; }
+      set { openFileName.initialDir = value; }
     }
 
     public string DefaultExtension
     {
-      set { ofn.defExt = value; }
+      set { openFileName.defExt = value; }
     }
 
     public string FileName
     {
-      get { return ofn.file; }
+      get { return openFileName.file; }
     }
 
     #endregion
@@ -153,11 +153,11 @@ namespace Microsoft.FamilyShow
     public CommonDialog()
     {
       // Initialize structure that is passed to the API functions.
-      ofn.structSize = Marshal.SizeOf(ofn);
-      ofn.file = new String(new char[260]);
-      ofn.maxFile = ofn.file.Length;
-      ofn.fileTitle = new String(new char[100]);
-      ofn.maxFileTitle = ofn.fileTitle.Length;
+      openFileName.structSize = Marshal.SizeOf(openFileName);
+      openFileName.file = new String(new char[260]);
+      openFileName.maxFile = openFileName.file.Length;
+      openFileName.fileTitle = new String(new char[100]);
+      openFileName.maxFileTitle = openFileName.fileTitle.Length;
     }
 
     /// <summary>
@@ -166,10 +166,13 @@ namespace Microsoft.FamilyShow
     public bool ShowOpen()
     {
       SetFilter();
-      ofn.flags = (int)OpenFileNameFlags.OFN_FILEMUSTEXIST;
+      openFileName.flags = (int)OpenFileNameFlags.OFN_FILEMUSTEXIST;
       if (Application.Current.MainWindow != null)
-        ofn.owner = new WindowInteropHelper(Application.Current.MainWindow).Handle;
-      return NativeMethods.GetOpenFileName(ofn);
+      {
+        openFileName.owner = new WindowInteropHelper(Application.Current.MainWindow).Handle;
+      }
+
+      return NativeMethods.GetOpenFileName(openFileName);
     }
 
     /// <summary>
@@ -178,10 +181,13 @@ namespace Microsoft.FamilyShow
     public bool ShowSave()
     {
       SetFilter();
-      ofn.flags = (int)(OpenFileNameFlags.OFN_PATHMUSTEXIST | OpenFileNameFlags.OFN_OVERWRITEPROMPT);
+      openFileName.flags = (int)(OpenFileNameFlags.OFN_PATHMUSTEXIST | OpenFileNameFlags.OFN_OVERWRITEPROMPT);
       if (Application.Current.MainWindow != null)
-        ofn.owner = new WindowInteropHelper(Application.Current.MainWindow).Handle;
-      return NativeMethods.GetSaveFileName(ofn);
+      {
+        openFileName.owner = new WindowInteropHelper(Application.Current.MainWindow).Handle;
+      }
+
+      return NativeMethods.GetSaveFileName(openFileName);
     }
 
     /// <summary>
@@ -189,11 +195,14 @@ namespace Microsoft.FamilyShow
     /// </summary>
     private void SetFilter()
     {
-      StringBuilder sb = new StringBuilder();
+      StringBuilder stringBuilder = new StringBuilder();
       foreach (FilterEntry entry in filter)
-        sb.AppendFormat("{0}\0{1}\0", entry.Display, entry.Extention);
-      sb.Append("\0\0");
-      ofn.filter = sb.ToString();
+      {
+        stringBuilder.AppendFormat("{0}\0{1}\0", entry.Display, entry.Extention);
+      }
+
+      stringBuilder.Append("\0\0");
+      openFileName.filter = stringBuilder.ToString();
     }
   }
 }
