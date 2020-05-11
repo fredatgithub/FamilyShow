@@ -18,8 +18,8 @@ namespace UnitTestFamilyShow
     [TestMethod]
     public void TestMethod_StringToDate_with_slash()
     {
-      string source = "26/06/1965";
-      DateTime expected = new DateTime(1965, 6, 26);
+      string source = "08/05/1950";
+      DateTime expected = new DateTime(1950, 5, 8);
       DateTime result = StringToDate(source);
       Assert.AreEqual(result, expected);
     }
@@ -36,8 +36,8 @@ namespace UnitTestFamilyShow
     [TestMethod]
     public void TestMethod_StringToDate_with_dash()
     {
-      string source = "26-06-1965";
-      DateTime expected = new DateTime(1965, 6, 26);
+      string source = "08-05-1950";
+      DateTime expected = new DateTime(1950, 5, 8);
       DateTime result = StringToDate(source);
       Assert.AreEqual(result, expected);
     }
