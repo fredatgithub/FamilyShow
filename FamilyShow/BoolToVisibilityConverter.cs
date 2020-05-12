@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Windows.Data;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Microsoft.FamilyShow
 {
@@ -20,9 +21,10 @@ namespace Microsoft.FamilyShow
       }
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-      throw new NotImplementedException(Properties.Resources.NotImplemented);
+      // not implemented yet
+      return new object();
     }
 
     #endregion

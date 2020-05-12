@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-using System.Globalization;
 
 namespace Microsoft.FamilyShow
 {
@@ -28,7 +28,6 @@ namespace Microsoft.FamilyShow
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-      //throw new NotImplementedException(Properties.Resources.NotImplemented);
       return new object();
     }
 

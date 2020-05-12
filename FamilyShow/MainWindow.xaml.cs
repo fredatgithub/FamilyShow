@@ -47,7 +47,7 @@ namespace Microsoft.FamilyShow
       BuildOpenMenu();
 
       BuildSkinsMenu();
-      
+
       // The welcome screen is the initial view
       ShowWelcomeScreen();
     }
@@ -796,9 +796,15 @@ namespace Microsoft.FamilyShow
       OldVersionMessageControl.Visibility = Visibility.Hidden;
     }
 
-    public static DateTime StringToDate(string v)
+    public static DateTime StringToDate(string theDateInStringFormat)
     {
-      throw new NotImplementedException();
+      DateTime result;
+      if (DateTime.TryParse(theDateInStringFormat, out result))
+      {
+        return result;
+      }
+
+      return new DateTime();
     }
 
     #endregion
