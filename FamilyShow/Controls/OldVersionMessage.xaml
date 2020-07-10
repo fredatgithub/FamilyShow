@@ -1,36 +1,77 @@
 ﻿<UserControl
-  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2006" 
-  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-  mc:Ignorable="d" 
-  x:Class="Microsoft.FamilyShow.OldVersionMessage"
-  x:Name="OldVersionMessageControl"
-  >
-  <StackPanel>
+    x:Class="Microsoft.FamilyShow.OldVersionMessage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="OldVersionMessageControl"
+    mc:Ignorable="d">
+    <StackPanel>
 
-    <!-- Header -->
-    <Border Padding="5,0,5,0" x:Name="Header" Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Height="35" >
-      <TextBlock Padding="4,0,0,0" Text="Message" TextWrapping="Wrap" Foreground="{DynamicResource HeaderFontColor}" FontSize="18" FontWeight="Bold" x:Name="HeaderTextBlock" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
-    </Border>
+        <!--  Header  -->
+        <Border
+            x:Name="Header"
+            Height="35"
+            Padding="5,0,5,0"
+            Background="{DynamicResource BackgroundBrush}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1,1,1,0"
+            CornerRadius="5,5,0,0">
+            <TextBlock
+                x:Name="HeaderTextBlock"
+                Padding="4,0,0,0"
+                VerticalAlignment="Center"
+                FontSize="18"
+                FontWeight="Bold"
+                Foreground="{DynamicResource HeaderFontColor}"
+                Text="Message"
+                TextWrapping="Wrap"
+                d:LayoutOverrides="Height" />
+        </Border>
 
-    <!-- Content -->
-    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1,1,1,1" Background="{DynamicResource InputBackgroundBrush}">
-      <Grid Margin="0,10,0,10" x:Name="ContentGrid" Width="300">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-      	<TextBlock Text="This file was created with an earlier version of Family.Show. It will be saved in a new format for use with this version. The new file’s name will end with .familyx and will bundle all your family photos, stories and tree into this single file!" TextWrapping="Wrap" Margin="10,0,10,0" Foreground="{DynamicResource InputFontColor}"/>
-      	<CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Content="_Don't show me this message again" Grid.Row="1" Margin="10,10,10,0" x:Name="DontShowCheckBox" Foreground="{DynamicResource InputFontColor}"
-                  IsChecked="{Binding Path=DontShowOldVersionMessage, ElementName=OldVersionMessageControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-      </Grid>
-    </Border>
+        <!--  Content  -->
+        <Border
+            Background="{DynamicResource InputBackgroundBrush}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1,1,1,1">
+            <Grid
+                x:Name="ContentGrid"
+                Width="300"
+                Margin="0,10,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Margin="10,0,10,0"
+                    Foreground="{DynamicResource InputFontColor}"
+                    Text="This file was created with an earlier version of Family.Show. It will be saved in a new format for use with this version. The new file's name will end with .familyx and will bundle all your family photos, stories and tree into this single file!"
+                    TextWrapping="Wrap" />
+                <CheckBox
+                    x:Name="DontShowCheckBox"
+                    Grid.Row="1"
+                    Margin="10,10,10,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="_Don't show me this message again"
+                    Foreground="{DynamicResource InputFontColor}"
+                    IsChecked="{Binding Path=DontShowOldVersionMessage, ElementName=OldVersionMessageControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </Border>
 
-    <!-- Footer -->
-    <Border Background="{DynamicResource BackgroundBrush}" Height="35" x:Name="Footer" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1,0,1,1" CornerRadius="0,0,5,5">
-    	<Button Content="Continue" x:Name="ContinueButton" Click="ContinueButton_Click"/>
-    </Border>
+        <!--  Footer  -->
+        <Border
+            x:Name="Footer"
+            Height="35"
+            Background="{DynamicResource BackgroundBrush}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1,0,1,1"
+            CornerRadius="0,0,5,5">
+            <Button
+                x:Name="ContinueButton"
+                Click="ContinueButton_Click"
+                Content="Continue" />
+        </Border>
 
-  </StackPanel>
+    </StackPanel>
 </UserControl>

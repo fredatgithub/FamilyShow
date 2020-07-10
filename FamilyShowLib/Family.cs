@@ -21,57 +21,57 @@ using System.Collections.Generic;
 
 namespace Microsoft.FamilyShowLib
 {
-  /// <summary>
-  /// One family group. 
-  /// </summary>
-  class Family
-  {
-    #region fields
-
-    private Person parentLeft;
-    private Person parentRight;
-    private SpouseRelationship relationship;
-    private List<Person> children = new List<Person>();
-
-    #endregion
-
     /// <summary>
-    /// Get the left-side parent.
+    /// One family group. 
     /// </summary>
-    public Person ParentLeft
+    class Family
     {
-      get { return parentLeft; }
-    }
+        #region fields
 
-    /// <summary>
-    /// Get the right-side parent.
-    /// </summary>
-    public Person ParentRight
-    {
-      get { return parentRight; }
-    }
+        private Person parentLeft;
+        private Person parentRight;
+        private SpouseRelationship relationship;
+        private List<Person> children = new List<Person>();
 
-    /// <summary>
-    /// Get or set the relationship for the two parents.
-    /// </summary>
-    public SpouseRelationship Relationship
-    {
-      get { return relationship; }
-      set { relationship = value; }
-    }
+        #endregion
 
-    /// <summary>
-    /// Get the list of children.
-    /// </summary>
-    public List<Person> Children
-    {
-      get { return children; }
-    }
+        /// <summary>
+        /// Get the left-side parent.
+        /// </summary>
+        public Person ParentLeft
+        {
+            get { return parentLeft; }
+        }
 
-    public Family(Person parentLeft, Person parentRight)
-    {
-      this.parentLeft = parentLeft;
-      this.parentRight = parentRight;
+        /// <summary>
+        /// Get the right-side parent.
+        /// </summary>
+        public Person ParentRight
+        {
+            get { return parentRight; }
+        }
+
+        /// <summary>
+        /// Get or set the relationship for the two parents.
+        /// </summary>
+        public SpouseRelationship Relationship
+        {
+            get { return relationship; }
+            set { relationship = value; }
+        }
+
+        /// <summary>
+        /// Get the list of children.
+        /// </summary>
+        public List<Person> Children
+        {
+            get { return children; }
+        }
+
+        public Family(Person parentLeft, Person parentRight)
+        {
+            this.parentLeft = parentLeft;
+            this.parentRight = parentRight;
+        }
     }
-  }
 }

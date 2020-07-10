@@ -3,10 +3,10 @@ using System.Windows.Data;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// This converter is used to show possessive first name. Note: doesn't handle names that end in 's' correctly yet.
-  /// </summary>
-  public class FirstNamePossessiveFormConverter : IValueConverter
+    /// <summary>
+    /// This converter is used to show possessive first name. Note: doesn't handle names that end in 's' correctly yet.
+    /// </summary>
+    public class FirstNamePossessiveFormConverter : IValueConverter
   {
     #region IValueConverter Members
 

@@ -10,10 +10,10 @@ using System.Windows.Threading;
 
 namespace Microsoft.FamilyShow.Controls.FamilyData
 {
-  /// <summary>
-  /// Class that parses the filter text.
-  /// </summary>
-  public class Filter
+    /// <summary>
+    /// Class that parses the filter text.
+    /// </summary>
+    public class Filter
   {
     // Parsed data from the filter string.
     private string filterText;

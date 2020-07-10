@@ -11,10 +11,10 @@ using System.Windows.Media.Imaging;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// Interaction logic for PersonInfo.xaml
-  /// </summary>
-  public partial class PersonInfo : UserControl
+    /// <summary>
+    /// Interaction logic for PersonInfo.xaml
+    /// </summary>
+    public partial class PersonInfo : UserControl
   {
     public PersonInfo()
     {

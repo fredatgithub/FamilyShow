@@ -7,10 +7,10 @@ using System.Windows.Media;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// Interaction logic for TagCloud.xaml
-  /// </summary>
-  public partial class TagCloud : UserControl
+    /// <summary>
+    /// Interaction logic for TagCloud.xaml
+    /// </summary>
+    public partial class TagCloud : UserControl
   {
     private ListCollectionView view;
 

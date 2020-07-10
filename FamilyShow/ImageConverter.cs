@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace Microsoft.FamilyShow
 {
-  public class ImageConverter : IValueConverter
+    public class ImageConverter : IValueConverter
   {
     #region IValueConverter Members
 

@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace Microsoft.FamilyShow
 {
-  public partial class FilterText : UserControl
+    public partial class FilterText : UserControl
   {
         public static readonly RoutedEvent ResetFilterEvent = EventManager.RegisterRoutedEvent(
             "ResetFilter", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(FilterText));

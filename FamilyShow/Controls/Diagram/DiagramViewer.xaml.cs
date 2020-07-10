@@ -12,10 +12,10 @@ using System.Windows.Threading;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// Adds zooming and scrolling to the diagram control.
-  /// </summary>
-  public partial class DiagramViewer : UserControl
+    /// <summary>
+    /// Adds zooming and scrolling to the diagram control.
+    /// </summary>
+    public partial class DiagramViewer : UserControl
     {
 
         #region fields
@@ -61,7 +61,7 @@ namespace Microsoft.FamilyShow
                     Diagram.Scale = value;
                     ZoomSlider.Value = value;
                     UpdateScrollSize();
-                }                    
+                }
             }
         }
 

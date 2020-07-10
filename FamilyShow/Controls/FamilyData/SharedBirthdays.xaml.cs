@@ -1,18 +1,18 @@
-using System;
-using System.Windows;
-using System.Windows.Data;
 using Microsoft.FamilyShowLib;
-using System.Globalization;
+using System;
 using System.Collections;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// Interaction logic for SharedBirthdays.xaml
-  /// </summary>
+    /// <summary>
+    /// Interaction logic for SharedBirthdays.xaml
+    /// </summary>
 
-  public partial class SharedBirthdays : UserControl
+    public partial class SharedBirthdays : UserControl
   {
         private static ListCollectionView lcv;
 

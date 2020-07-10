@@ -1,19 +1,19 @@
+using Microsoft.FamilyShowLib;
 using System;
+using System.Collections.Specialized;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using Microsoft.FamilyShowLib;
-using System.Collections.Specialized;
 using System.Xml.Serialization;
-using System.IO;
-using System.Globalization;
-using System.Drawing;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// Interaction logic for App.xaml.
-  /// </summary>
-  public partial class App : Application
+    /// <summary>
+    /// Interaction logic for App.xaml.
+    /// </summary>
+    public partial class App : Application
   {
     #region fields
 
