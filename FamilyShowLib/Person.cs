@@ -56,7 +56,7 @@ namespace Microsoft.FamilyShowLib
                 if (id != value)
                 {
                     id = value;
-                    OnPropertyChanged("Id");
+                    OnPropertyChanged(nameof(Id));
                 }
             }
         }
@@ -72,9 +72,9 @@ namespace Microsoft.FamilyShowLib
                 if (firstName != value)
                 {
                     firstName = value;
-                    OnPropertyChanged("FirstName");
-                    OnPropertyChanged("Name");
-                    OnPropertyChanged("FullName");
+                    OnPropertyChanged(nameof(FirstName));
+                    OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -90,9 +90,9 @@ namespace Microsoft.FamilyShowLib
                 if (lastName != value)
                 {
                     lastName = value;
-                    OnPropertyChanged("LastName");
-                    OnPropertyChanged("Name");
-                    OnPropertyChanged("FullName");
+                    OnPropertyChanged(nameof(LastName));
+                    OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -108,8 +108,8 @@ namespace Microsoft.FamilyShowLib
                 if (middleName != value)
                 {
                     middleName = value;
-                    OnPropertyChanged("MiddleName");
-                    OnPropertyChanged("FullName");
+                    OnPropertyChanged(nameof(MiddleName));
+                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -179,8 +179,8 @@ namespace Microsoft.FamilyShowLib
                 if (suffix != value)
                 {
                     suffix = value;
-                    OnPropertyChanged("Suffix");
-                    OnPropertyChanged("FullName");
+                    OnPropertyChanged(nameof(Suffix));
+                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -196,7 +196,7 @@ namespace Microsoft.FamilyShowLib
                 if (nickName != value)
                 {
                     nickName = value;
-                    OnPropertyChanged("NickName");
+                    OnPropertyChanged(nameof(NickName));
                 }
             }
         }
@@ -212,7 +212,7 @@ namespace Microsoft.FamilyShowLib
                 if (marriedName != value)
                 {
                     marriedName = value;
-                    OnPropertyChanged("MarriedName");
+                    OnPropertyChanged(nameof(MarriedName));
                 }
             }
         }
@@ -228,7 +228,7 @@ namespace Microsoft.FamilyShowLib
                 if (gender != value)
                 {
                     gender = value;
-                    OnPropertyChanged("Gender");
+                    OnPropertyChanged(nameof(Gender));
                 }
             }
         }
@@ -343,12 +343,12 @@ namespace Microsoft.FamilyShowLib
                 if (birthDate == null || birthDate != value)
                 {
                     birthDate = value;
-                    OnPropertyChanged("BirthDate");
-                    OnPropertyChanged("Age");
-                    OnPropertyChanged("AgeGroup");
-                    OnPropertyChanged("YearOfBirth");
-                    OnPropertyChanged("BirthMonthAndDay");
-                    OnPropertyChanged("BirthDateAndPlace");
+                    OnPropertyChanged(nameof(BirthDate));
+                    OnPropertyChanged(nameof(Age));
+                    OnPropertyChanged(nameof(AgeGroup));
+                    OnPropertyChanged(nameof(YearOfBirth));
+                    OnPropertyChanged(nameof(BirthMonthAndDay));
+                    OnPropertyChanged(nameof(BirthDateAndPlace));
                 }
             }
         }
@@ -364,8 +364,8 @@ namespace Microsoft.FamilyShowLib
                 if (birthPlace != value)
                 {
                     birthPlace = value;
-                    OnPropertyChanged("BirthPlace");
-                    OnPropertyChanged("BirthDateAndPlace");
+                    OnPropertyChanged(nameof(BirthPlace));
+                    OnPropertyChanged(nameof(BirthDateAndPlace));
                 }
             }
         }
@@ -429,9 +429,9 @@ namespace Microsoft.FamilyShowLib
                 if (deathDate == null || deathDate != value)
                 {
                     deathDate = value;
-                    OnPropertyChanged("DeathDate");
-                    OnPropertyChanged("Age");
-                    OnPropertyChanged("YearOfDeath");
+                    OnPropertyChanged(nameof(DeathDate));
+                    OnPropertyChanged(nameof(Age));
+                    OnPropertyChanged(nameof(YearOfDeath));
                 }
             }
         }
@@ -447,7 +447,7 @@ namespace Microsoft.FamilyShowLib
                 if (deathPlace != value)
                 {
                     deathPlace = value;
-                    OnPropertyChanged("DeathPlace");
+                    OnPropertyChanged(nameof(DeathPlace));
                 }
             }
         }
@@ -463,7 +463,7 @@ namespace Microsoft.FamilyShowLib
                 if (isLiving != value)
                 {
                     isLiving = value;
-                    OnPropertyChanged("IsLiving");
+                    OnPropertyChanged(nameof(IsLiving));
                 }
             }
         }
@@ -487,7 +487,7 @@ namespace Microsoft.FamilyShowLib
                 if (story != value)
                 {
                     story = value;
-                    OnPropertyChanged("Story");
+                    OnPropertyChanged(nameof(Story));
                 }
             }
         }
@@ -518,8 +518,8 @@ namespace Microsoft.FamilyShowLib
             set
             {
                 // This setter is used for change notification.
-                OnPropertyChanged("Avatar");
-                OnPropertyChanged("HasAvatar");
+                OnPropertyChanged(nameof(Avatar));
+                OnPropertyChanged(nameof(HasAvatar));
             }
         }
 
@@ -806,8 +806,8 @@ namespace Microsoft.FamilyShowLib
             set
             {
                 // This setter is used for change notification.
-                OnPropertyChanged("HasParents");
-                OnPropertyChanged("PossibleParentSets");
+                OnPropertyChanged(nameof(HasParents));
+                OnPropertyChanged(nameof(PossibleParentSets));
             }
         }
 
@@ -824,8 +824,8 @@ namespace Microsoft.FamilyShowLib
             set
             {
                 // This setter is used for change notification.
-                OnPropertyChanged("HasSpouse");
-                OnPropertyChanged("Spouses");
+                OnPropertyChanged(nameof(HasSpouse));
+                OnPropertyChanged(nameof(Spouses));
             }
         }
 

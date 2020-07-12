@@ -37,7 +37,7 @@ namespace Microsoft.FamilyShowLib
                 if (relativePath != value)
                 {
                     relativePath = value;
-                    OnPropertyChanged("relativePath");
+                    OnPropertyChanged(nameof(relativePath));
                 }
             }
         }

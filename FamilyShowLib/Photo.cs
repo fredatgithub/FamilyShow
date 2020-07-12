@@ -37,7 +37,7 @@ namespace Microsoft.FamilyShowLib
                 if (relativePath != value)
                 {
                     relativePath = value;
-                    OnPropertyChanged("relativePath");
+                    OnPropertyChanged(nameof(relativePath));
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace Microsoft.FamilyShowLib
                 if (isAvatar != value)
                 {
                     isAvatar = value;
-                    OnPropertyChanged("IsAvatar");
+                    OnPropertyChanged(nameof(IsAvatar));
                 }
             }
         }

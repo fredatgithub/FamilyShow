@@ -425,7 +425,7 @@ namespace Microsoft.FamilyShowLib
                 if (current != value)
                 {
                     current = value;
-                    OnPropertyChanged("Current");
+                    OnPropertyChanged(nameof(Current));
                     OnCurrentChanged();
                 }
             }
