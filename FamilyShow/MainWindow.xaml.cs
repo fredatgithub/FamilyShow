@@ -3,12 +3,14 @@ using System;
 using System.Collections.Specialized;
 using System.IO;
 using System.IO.Packaging;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Xps;
 using System.Windows.Xps.Packaging;
+using System.Xml;
 
 namespace Microsoft.FamilyShow
 {
@@ -22,6 +24,7 @@ namespace Microsoft.FamilyShow
         // The list of people, this is a global list shared by the application.
         People familyCollection = App.FamilyCollection;
         PeopleCollection family = App.Family;
+        static String exportPath = @"D:\productions\Généalogie\FICHIER_ENQUETES\";
 
         private Properties.Settings appSettings = Properties.Settings.Default;
 
@@ -34,6 +37,7 @@ namespace Microsoft.FamilyShow
         public static readonly RoutedCommand WhatIsGedcomCommand = new RoutedCommand("WhatIsGedcom", typeof(MainWindow));
         public static readonly RoutedCommand ExportXpsCommand = new RoutedCommand("ExportXps", typeof(MainWindow));
         public static readonly RoutedCommand ChangeSkinCommand = new RoutedCommand("ChangeSkin", typeof(MainWindow));
+        public static readonly RoutedCommand ExportBirthCommand = new RoutedCommand("ExportBirth", typeof(MainWindow));
 
         #endregion
 
@@ -556,6 +560,166 @@ namespace Microsoft.FamilyShow
 
             family.OnContentChanged();
             PersonInfoControl.OnSkinChanged();
+        }
+
+        /// <summary>
+        /// Export en xml toutes les naissances depuis 2019
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExportBirth(object sender, ExecutedRoutedEventArgs e)
+        {
+            var rootTag = new ExportTagPerson("naissances", ExportTagPersonType.Root);
+            var naissanceTag = new ExportTagPerson("naissance", ExportTagPersonType.Root);
+            rootTag.Childs.Add(naissanceTag);
+            naissanceTag.Childs.Add(new ExportTagPerson("prenom", ExportTagPersonType.FirstName));
+            naissanceTag.Childs.Add(new ExportTagPerson("nom", ExportTagPersonType.LastName));
+
+            XmlWriter xmlDoc = XmlWriter.Create(exportPath + "Naissance_2019b.xml");
+            // on écrit la racine du fichier
+            xmlDoc.WriteStartElement(rootTag.Name);
+            WriteXmlNaissances(xmlDoc, naissanceTag, family.Current, "", 0, 2019);
+            xmlDoc.WriteEndElement();
+
+            xmlDoc.Close();
+        }
+
+        private static void WriteXmlNaissances(XmlWriter xmlDoc, IExportTag rootTag, Person rootPers, string parentArbreLevelStr, int levelChild, int dateDepart)
+        {
+           
+            string currentArbreLevelStr = parentArbreLevelStr;
+            int currentArbreLevel = levelChild;
+            if (levelChild > 0)
+            {
+                currentArbreLevelStr += currentArbreLevel + ".";
+            }
+
+            int yearOfBirth;
+            if (int.TryParse(rootPers.YearOfBirth, out yearOfBirth))
+            {
+                if (yearOfBirth >= dateDepart)
+                {
+                    WriteTag(xmlDoc, rootTag, rootPers, parentArbreLevelStr, levelChild);
+                }
+            }
+
+            // on ajoute les enfants
+            int numberOfChild = 1;
+            foreach (Person child in rootPers.Children.OrderBy(X => X.BirthDate))
+            {
+                WriteXmlNaissances(xmlDoc, rootTag, child, currentArbreLevelStr, numberOfChild++, dateDepart);
+            }
+        }
+
+        public static void WriteTag(XmlWriter xmlDoc, IExportTag tag, Person p, string parentArbreLevelStr, int levelChild)
+        {
+            Console.WriteLine($"RACINE: {tag.Name}");
+            //on écrit la racine
+            xmlDoc.WriteStartElement(tag.Name);
+
+            //s'il y a des enfants, il faut les écrire
+            if (tag.Childs.Count > 0)
+            {
+                foreach (var subtag in tag.Childs)
+                {
+                    WriteTag(xmlDoc, subtag, p, parentArbreLevelStr, levelChild);
+                }
+            }
+            // sinon, il faut écrire la valeur du tag courant !
+            else
+            {
+                xmlDoc.WriteString(tag.GetValue(p));
+            }
+
+            // dans tous les cas, on ferme!
+            xmlDoc.WriteEndElement();
+            Console.WriteLine($"RACINE END: {tag.Name}");
+        }
+
+        public static void writeXmlNaissance(XmlWriter xmlDoc, Person root, string parentArbreLevelStr, int levelChild, int dateDepart)
+        {
+            string currentArbreLevelStr = parentArbreLevelStr;
+            int currentArbreLevel = levelChild;
+            if (levelChild > 0)
+            {
+                currentArbreLevelStr += currentArbreLevel + ".";
+            }
+
+            int yearOfBirth;
+            if (int.TryParse(root.YearOfBirth, out yearOfBirth))
+            {
+                if (yearOfBirth >= dateDepart)
+                {
+                    Console.WriteLine(currentArbreLevelStr + " " + root.Name + "numéro: " + levelChild);
+                    xmlDoc.WriteStartElement("naissance");
+
+                    xmlDoc.WriteStartElement("prenom");
+                    xmlDoc.WriteString(root.FirstName);
+                    xmlDoc.WriteEndElement();
+
+                    xmlDoc.WriteStartElement("nom");
+                    xmlDoc.WriteString(root.LastName);
+                    xmlDoc.WriteEndElement();
+
+                    xmlDoc.WriteStartElement("dateNaissance");
+                    DateTime dateNaissance = (DateTime)root.BirthDate;
+                    xmlDoc.WriteString(root.BirthDate == null ? "" : dateNaissance.ToString("dd MMMM yyyy"));
+                    xmlDoc.WriteEndElement();
+
+                    if (!string.IsNullOrEmpty(root.BirthPlace))
+                    {
+                        xmlDoc.WriteStartElement("lieuNaissance");
+                        xmlDoc.WriteString(root.BirthPlace);
+                        xmlDoc.WriteEndElement();
+                    }
+
+                    xmlDoc.WriteStartElement("numeroGenealogique");
+                    xmlDoc.WriteString(currentArbreLevelStr);
+                    xmlDoc.WriteEndElement();
+
+                    xmlDoc.WriteStartElement("rangDansFamille");
+                    xmlDoc.WriteString(levelChild.ToString());
+                    xmlDoc.WriteEndElement();
+
+                    Person pere = null;
+                    Person mère = null;
+
+                    foreach (Person item in root.Parents)
+                    {
+                        if (item.Gender == Gender.Male)
+                            pere = item;
+                        else
+                            mère = item;
+                    }
+                    if (pere != null)
+                    {
+                        xmlDoc.WriteStartElement("prenomPere");
+                        xmlDoc.WriteString(pere.FirstName);
+                        xmlDoc.WriteEndElement();
+                    }
+
+                    if (mère != null)
+                    {
+                        xmlDoc.WriteStartElement("prenomMere");
+                        xmlDoc.WriteString(mère.FirstName);
+                        xmlDoc.WriteEndElement();
+
+
+                        xmlDoc.WriteStartElement("nomMere");
+                        xmlDoc.WriteString(mère.LastName);
+                        xmlDoc.WriteEndElement();
+                    }
+
+                    xmlDoc.WriteEndElement();
+                }
+            }
+
+            // on ajoute les enfants
+            int numberOfChild = 1;
+            foreach (Person child in root.Children.OrderBy(X => X.BirthDate))
+            {
+                writeXmlNaissance(xmlDoc, child, currentArbreLevelStr, numberOfChild++, dateDepart);
+            }
         }
 
         #endregion

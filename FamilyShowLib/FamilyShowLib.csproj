@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="AgeGroup.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="ExportTag.cs" />
     <Compile Include="Family.cs" />
     <Compile Include="FamilyMap.cs" />
     <Compile Include="GedcomConverter.cs" />
