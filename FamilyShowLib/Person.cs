@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
@@ -39,6 +40,8 @@ namespace Microsoft.FamilyShowLib
         private PhotoCollection photos;
         private Story story;
         private RelationshipCollection relationships;
+        private Contact contact;
+        private EventBaptism baptism;
 
         #endregion
 
@@ -476,6 +479,38 @@ namespace Microsoft.FamilyShowLib
             get { return photos; }
         }
 
+
+        /// <summary>
+        /// Get or set the contact for the person (addresse, phone, mail)
+        /// </summary>
+        public Contact Contact
+        {
+            get { return contact; }
+            set
+            {
+                if (contact != value)
+                {
+                    contact = value;
+                    OnPropertyChanged(nameof(Contact));
+                }
+            }
+        }
+
+
+        public EventBaptism Baptism
+        {
+            get { return baptism; }
+            set
+            {
+                if (baptism != value)
+                {
+                    baptism = value;
+                    OnPropertyChanged(nameof(Baptism));
+                }
+            }
+        }
+
+
         /// <summary>
         /// Gets or sets the person's story file.
         /// </summary>
@@ -648,6 +683,27 @@ namespace Microsoft.FamilyShowLib
             }
         }
 
+        [XmlIgnore]
+        public List<SpouseRelationship> ListSpousesRelationShip
+        {
+            get
+            {
+                var lst = new List<SpouseRelationship>();
+
+                // Search into all relationship
+                foreach (Relationship rel in this.Relationships)
+                {
+                    if (rel.RelationshipType == RelationshipType.Spouse)
+                    {
+                        SpouseRelationship spouseRel = ((SpouseRelationship)rel);
+                        lst.Add(spouseRel);
+                    }
+                }
+
+                return lst;
+            }
+        }
+
         /// <summary>
         /// Accessor for the person's children
         /// </summary>
@@ -790,6 +846,38 @@ namespace Microsoft.FamilyShowLib
                 }
 
                 return parentSets;
+            }
+        }
+
+        /// <summary>
+        /// Get the Father of the person
+        /// </summary>
+        public Person Father
+        {
+            get
+            {
+                foreach (Person item in Parents)
+                {
+                    if (item.Gender == Gender.Male)
+                        return item;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get the mother of the person
+        /// </summary>
+        public Person Mother
+        {
+            get
+            {
+                foreach (Person item in Parents)
+                {
+                    if (item.Gender == Gender.Female)
+                        return item;
+                }
+                return null;
             }
         }
 
@@ -1178,6 +1266,7 @@ namespace Microsoft.FamilyShowLib
 
             return null;
         }
+
 
         /// <summary>
         /// Gets the combination of parent sets for this person and his/her spouses

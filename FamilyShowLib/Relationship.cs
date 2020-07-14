@@ -125,6 +125,7 @@ namespace Microsoft.FamilyShowLib
         private SpouseModifier spouseModifier;
         private DateTime? marriageDate;
         private DateTime? divorceDate;
+        private String marriagePlace;
 
         public SpouseModifier SpouseModifier
         {
@@ -143,6 +144,12 @@ namespace Microsoft.FamilyShowLib
             get { return divorceDate; }
             set { divorceDate = value; }
         }
+        public String MarriagePlace
+        {
+            get { return marriagePlace; }
+            set { marriagePlace = value; }
+        }
+
 
         // Paramaterless constructor required for XML serialization
         public SpouseRelationship() { }

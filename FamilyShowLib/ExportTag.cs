@@ -19,7 +19,12 @@ namespace Microsoft.FamilyShowLib
         MotherFirstName,
         MotherLastName,
         OrderIntoSiblings,
-        GenealogicalNumber
+        GenealogicalNumber,
+        MariageDate,
+        MariagePlace,
+        MariagePartnerGenre,
+        MariagePartnerFirstName,
+        MariagePartnerLastName
     }
 
     public enum ExportTagGenerationType
@@ -35,7 +40,7 @@ namespace Microsoft.FamilyShowLib
         string Name { get; set; }
         List<IExportTag> Childs { get; set; }
 
-        string GetValue(Person rootPers);
+        string GetValue(Person rootPers, string genealogicalNumber, int childNumber);
     }
 
     public class ExportTagPerson : IExportTag
@@ -55,35 +60,69 @@ namespace Microsoft.FamilyShowLib
             Type = persontype;
         }
 
-        public string GetValue(Person rootPers)
+        public string GetValue(Person rootPers, string genealogicalNumber, int childNumber)
         {
             switch (Type)
             {
                 case ExportTagPersonType.Root:
                     return string.Empty;
+
                 case ExportTagPersonType.BirthDate:
-                    return rootPers.BirthDate?.ToString("dd/MM/yyyy");
+                    return rootPers.BirthDate?.ToString("dd MMMM yyyy");
+
                 case ExportTagPersonType.BirthPlace:
                     return rootPers.BirthPlace;
+
                 case ExportTagPersonType.DeathDate:
-                    break;
+                    return rootPers.DeathDate?.ToString("dd MMMM yyyy");
+
                 case ExportTagPersonType.DeathPlace:
-                    break;
+                    return rootPers.DeathPlace;
+
                 case ExportTagPersonType.LastName:
                     return rootPers.LastName;
+
                 case ExportTagPersonType.FirstName:
                     return rootPers.FirstName;
+
                 case ExportTagPersonType.FatherFirstName:
-                    break;
+                    return rootPers.Father?.FirstName;
+
                 case ExportTagPersonType.FatherLastName:
-                    break;
+                    return rootPers.Father?.LastName;
+
                 case ExportTagPersonType.MotherFirstName:
-                    break;
+                    return rootPers.Mother?.FirstName;
+
                 case ExportTagPersonType.MotherLastName:
-                    break;
+                    return rootPers.Mother?.LastName;
+
                 case ExportTagPersonType.OrderIntoSiblings:
-                    break;
+                    return $"{childNumber}";
+
                 case ExportTagPersonType.GenealogicalNumber:
+                    return genealogicalNumber;
+
+                default:
+                    break;
+            }
+
+            return "NO YET IMPLEMENTED";
+        }
+
+        public string GetValue(Person rootPers, SpouseRelationship spouseRelationShip, string genealogicalNumber, int childNumber)
+        {
+            switch (Type)
+            {
+                case ExportTagPersonType.MariageDate:
+                    return spouseRelationShip.MarriageDate?.ToString("dd MMMM yyyy");
+                case ExportTagPersonType.MariagePlace:
+                    return spouseRelationShip.MarriagePlace;
+                case ExportTagPersonType.MariagePartnerGenre:
+                    break;
+                case ExportTagPersonType.MariagePartnerFirstName:
+                    break;
+                case ExportTagPersonType.MariagePartnerLastName:
                     break;
                 default:
                     break;
@@ -91,5 +130,51 @@ namespace Microsoft.FamilyShowLib
 
             return "NO YET IMPLEMENTED";
         }
+
+        internal static List<SpouseRelationship> ListSpouseRelationShip(Person person, int startYear)
+        {
+            List<SpouseRelationship> lst = new List<SpouseRelationship>();
+
+            // on cherche toutes les relations
+            foreach (Relationship rel in person.Relationships)
+            {
+                if (rel.RelationshipType == RelationshipType.Spouse)
+                {
+                    SpouseRelationship spouseRel = ((SpouseRelationship)rel);
+                    if (spouseRel.MarriageDate != null && spouseRel.MarriageDate?.Year >= startYear)
+                    {
+                        lst.Add(spouseRel);
+                    }
+                }
+            }
+
+            return lst;
+        }
+
+        //internal Person GetMariage(Person root)
+        //{
+        //    foreach (SpouseRelationship spouseRel in root.ListSpousesRelationShip)
+        //    {
+        //        if (spouseRel.MarriageDate != null && spouseRel.MarriageDate?.Year >= annéeDepart)
+        //        {
+        //            Person spouse = spouseRel.RelationTo;
+        //            Mariage mar = new Mariage();
+        //            mar.Nom = person.LastName;
+        //            mar.Prenom = person.FirstName;
+        //            mar.NomRapportée = spouse.LastName;
+        //            mar.PrenomRapportée = spouse.FirstName;
+        //            mar.NumeroGenealogique = currentArbreLevelStr;
+        //            mar.DateMariage = (DateTime)spouseRel.MarriageDate;
+        //            mar.LieuMariage = spouseRel.MarriagePlace;
+
+        //            if (spouse.Gender == Gender.Female)
+        //                mar.GenreRapportée = "Mlle";
+        //            else
+        //                mar.GenreRapportée = "Mr.";
+        //            lstMariage.Add(mar);
+        //            //mar.LieuMariage = spouseRel.
+        //        }
+        //    }
+        //}
     }
 }

@@ -73,8 +73,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="AgeGroup.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="EventBaptism.cs" />
     <Compile Include="ExportTag.cs" />
     <Compile Include="Family.cs" />
     <Compile Include="FamilyMap.cs" />

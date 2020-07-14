@@ -96,7 +96,8 @@ namespace Microsoft.FamilyShowLib
 
                 ImportBirth(person, node);
                 ImportDeath(person, node);
-
+                ImportResidence(person, node);
+                ImportEventBaptism(person, node);
                 ImportPhotos(person, node);
                 ImportNote(person, node);
 
@@ -166,6 +167,7 @@ namespace Microsoft.FamilyShowLib
                 DateTime? marriageDate = GetValueDate(node, "MARR/DATE");
                 DateTime? divorceDate = GetValueDate(node, "DIV/DATE");
                 SpouseModifier modifier = GetDivorced(node) ? SpouseModifier.Former : SpouseModifier.Current;
+                string Marriageplace = GetValue(node, "MARR/PLAC");
 
                 // Add info to husband.
                 if (husband.GetSpouseRelationship(wife) == null)
@@ -173,6 +175,7 @@ namespace Microsoft.FamilyShowLib
                     SpouseRelationship husbandMarriage = new SpouseRelationship(wife, modifier);
                     husbandMarriage.MarriageDate = marriageDate;
                     husbandMarriage.DivorceDate = divorceDate;
+                    husbandMarriage.MarriagePlace = Marriageplace;
                     husband.Relationships.Add(husbandMarriage);
                 }
 
@@ -182,6 +185,7 @@ namespace Microsoft.FamilyShowLib
                     SpouseRelationship wifeMarriage = new SpouseRelationship(husband, modifier);
                     wifeMarriage.MarriageDate = marriageDate;
                     wifeMarriage.DivorceDate = divorceDate;
+                    wifeMarriage.MarriagePlace = Marriageplace;
                     wife.Relationships.Add(wifeMarriage);
                 }
             }
@@ -190,7 +194,97 @@ namespace Microsoft.FamilyShowLib
         /// <summary>
         /// Import photo information from the GEDCOM XML file.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private static void ImportResidence(Person person, XmlNode node)
+        {
+            try
+            {
+                // Get list of resi for this person.
+
+                XmlNodeList list = node.SelectNodes("RESI");
+                if (list == null || list.Count == 0)
+                    return;
+
+                Contact contact = new Contact();
+
+                for (int i = 0; i < list.Count; i++)
+                    FillContact(contact, list[i]);
+
+                person.Contact = contact;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// Return a residence of photos specified in the GEDCOM XML file.
+        /// </summary>
+        private static void FillContact(Contact contact, XmlNode node)
+        {
+            string valeur;
+
+            //Get mail info
+            valeur = GetValue(node, "EMAIL");
+            if (!string.IsNullOrEmpty(valeur))
+            {
+                contact.Mail = valeur.Replace("@@", "@");
+                return;
+            }
+
+            // Get Address info
+            XmlNode addrNode = node.SelectSingleNode("ADDR");
+            if (addrNode != null)
+            {
+                if (contact.Address == null)
+                    contact.Address = new Address();
+
+                contact.Address.Address1 = GetValue(addrNode, "ADR1");
+                contact.Address.Address2 = GetValue(addrNode, "ADR2");
+                contact.Address.City = GetValue(addrNode, "CITY");
+                contact.Address.ZipCode = GetValue(addrNode, "POST");
+                contact.Address.Country = GetValue(addrNode, "CTRY");
+            }
+
+            // Get phone number
+            valeur = GetValue(node, "PHON");
+            if (!String.IsNullOrEmpty(valeur))
+            {
+                contact.Phone = valeur;
+            }
+        }
+
+        private void ImportEventBaptism(Person person, XmlNode node)
+        {
+            try
+            {
+                XmlNodeList list = node.SelectNodes("BAPM");
+                if (list == null || list.Count == 0)
+                    return;
+
+                EventBaptism bapt = new EventBaptism();
+                XmlNode baptNode = list[0];
+
+                bapt.BaptismDate = GetValueDate(baptNode, "DATE");
+                bapt.BaptismPlace = GetValue(baptNode, "PLAC");
+
+                person.Baptism = bapt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// Import photo information from the GEDCOM XML file.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private static void ImportPhotos(Person person, XmlNode node)
         {
             try
