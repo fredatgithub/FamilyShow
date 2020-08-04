@@ -1,16 +1,16 @@
+using Microsoft.FamilyShowLib;
 using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using Microsoft.FamilyShowLib;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// Interaction logic for NewUserControl.xaml
-  /// </summary>
+    /// <summary>
+    /// Interaction logic for NewUserControl.xaml
+    /// </summary>
 
-  public partial class NewUserControl : System.Windows.Controls.UserControl
+    public partial class NewUserControl : System.Windows.Controls.UserControl
   {
     #region fields
 

@@ -2,12 +2,12 @@
  * Derived class that filters data in the diagram view.
 */
 
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.FamilyShowLib;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.FamilyShow.Controls.FamilyData
 {
-  [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
+    [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
   class FamilyDisplayListView : FilterSortListView
   {
     /// <summary>

@@ -1,14 +1,14 @@
 using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Globalization;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// Interaction logic for Welcome.xaml
-  /// </summary>
-  public partial class Welcome : UserControl
+    /// <summary>
+    /// Interaction logic for Welcome.xaml
+    /// </summary>
+    public partial class Welcome : UserControl
   {
         public Welcome()
         {

@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace Microsoft.FamilyShow
 {
-  public class NotConverter : IValueConverter
+    public class NotConverter : IValueConverter
   {
     #region IValueConverter Members
 

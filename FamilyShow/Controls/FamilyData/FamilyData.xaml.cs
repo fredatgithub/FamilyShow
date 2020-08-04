@@ -3,16 +3,16 @@
  * and chart controls.
 */
 
+using Microsoft.FamilyShowLib;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Microsoft.FamilyShowLib;
 
 namespace Microsoft.FamilyShow.Controls.FamilyData
 {
-  public partial class FamilyData : UserControl
+    public partial class FamilyData : UserControl
   {
     // Event that is raised when the Back button is clicked.
     public static readonly RoutedEvent CloseButtonClickEvent = EventManager.RegisterRoutedEvent("CloseButtonClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(FamilyData));

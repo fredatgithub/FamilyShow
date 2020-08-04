@@ -1,18 +1,18 @@
+using Microsoft.FamilyShowLib;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
-using System.Windows.Media.Imaging;
 using System.Windows.Media.Animation;
-using Microsoft.FamilyShowLib;
+using System.Windows.Media.Imaging;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// Interaction logic for Details.xaml
-  /// </summary>
+    /// <summary>
+    /// Interaction logic for Details.xaml
+    /// </summary>
 
-  public partial class Details : UserControl
+    public partial class Details : UserControl
   {
     #region fields
 

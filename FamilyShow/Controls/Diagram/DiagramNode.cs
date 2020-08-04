@@ -16,20 +16,20 @@
  * 
 */
 
+using Microsoft.FamilyShowLib;
 using System;
-using System.Windows.Controls;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Globalization;
-using Microsoft.FamilyShowLib;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// The type of node.
-  /// </summary>
-  public enum NodeType
+    /// <summary>
+    /// The type of node.
+    /// </summary>
+    public enum NodeType
   {
     Primary,
     Related,

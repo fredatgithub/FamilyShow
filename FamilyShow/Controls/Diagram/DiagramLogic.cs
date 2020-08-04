@@ -3,15 +3,15 @@
  * groups and nodes based on the node relationships. 
 */
 
+using Microsoft.FamilyShowLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-using Microsoft.FamilyShowLib;
 
 namespace Microsoft.FamilyShow.Controls.Diagram
 {
-  class DiagramLogic
+    class DiagramLogic
   {
     #region fields
 

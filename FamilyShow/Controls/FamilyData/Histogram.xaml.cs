@@ -8,10 +8,10 @@ using System.Windows.Media;
 
 namespace Microsoft.FamilyShow
 {
-  /// <summary>
-  /// Interaction logic for Histogram.xaml
-  /// </summary>
-  public partial class Histogram : UserControl
+    /// <summary>
+    /// Interaction logic for Histogram.xaml
+    /// </summary>
+    public partial class Histogram : UserControl
   {
     private ListCollectionView view;
     private Dictionary<object, string> categoryLabels;

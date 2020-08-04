@@ -15,10 +15,10 @@ using System.Windows.Media;
 
 namespace Microsoft.FamilyShow.Controls.Diagram
 {
-  /// <summary>
-  /// Row in the diagram that contains group objects.
-  /// </summary>
-  public class DiagramRow : FrameworkElement
+    /// <summary>
+    /// Row in the diagram that contains group objects.
+    /// </summary>
+    public class DiagramRow : FrameworkElement
   {
     #region fields
 
