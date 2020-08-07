@@ -13,10 +13,10 @@ using System.Windows.Media.Animation;
 
 namespace Microsoft.FamilyShow.Controls.Diagram
 {
-    /// <summary>
-    /// One of the nodes in a connection.
-    /// </summary>
-    public class DiagramConnectorNode
+  /// <summary>
+  /// One of the nodes in a connection.
+  /// </summary>
+  public class DiagramConnectorNode
   {
     #region fields
 

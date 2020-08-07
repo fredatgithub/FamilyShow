@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Data;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// This converter is used to show possessive first name. Note: doesn't handle names that end in 's' correctly yet.
-    /// </summary>
-    public class FirstNamePossessiveFormConverter : IValueConverter
+  /// <summary>
+  /// This converter is used to show possessive first name. Note: doesn't handle names that end in 's' correctly yet.
+  /// </summary>
+  public class FirstNamePossessiveFormConverter : IValueConverter
   {
     #region IValueConverter Members
 
-    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       if (value != null)
       {
@@ -21,7 +22,7 @@ namespace Microsoft.FamilyShow
       return string.Empty;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
       // not implemented yet
       return new object();

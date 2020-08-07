@@ -17,17 +17,16 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace Microsoft.FamilyShow.Controls.Diagram
 {
-    /// <summary>
-    /// Diagram that lays out and displays the nodes.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
+  /// <summary>
+  /// Diagram that lays out and displays the nodes.
+  /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
   class Diagram : FrameworkElement
   {
     #region fields
@@ -102,14 +101,18 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     private void OnDiagramUpdated()
     {
       if (DiagramUpdated != null)
+      {
         DiagramUpdated(this, EventArgs.Empty);
+      }
     }
 
     public event EventHandler DiagramPopulated;
     private void OnDiagramPopulated()
     {
       if (DiagramPopulated != null)
+      {
         DiagramPopulated(this, EventArgs.Empty);
+      }
     }
 
     #endregion

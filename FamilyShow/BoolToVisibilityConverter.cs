@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace Microsoft.FamilyShow
 {
-    public class BoolToVisibilityConverter : IValueConverter
+  public class BoolToVisibilityConverter : IValueConverter
   {
     #region IValueConverter Members
 
