@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Microsoft.FamilyShow.Controls.Diagram
 {
-    class DiagramLogic
+  class DiagramLogic
   {
     #region fields
 
