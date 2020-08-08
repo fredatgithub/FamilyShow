@@ -11,10 +11,10 @@ using System.Windows.Media;
 
 namespace Microsoft.FamilyShow.Controls.Diagram
 {
-    /// <summary>
-    /// Group in a row that contains node objects.
-    /// </summary>
-    public class DiagramGroup : FrameworkElement
+  /// <summary>
+  /// Group in a row that contains node objects.
+  /// </summary>
+  public class DiagramGroup : FrameworkElement
   {
     #region fields
 
