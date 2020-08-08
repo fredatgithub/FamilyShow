@@ -6,7 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--  Use the Black skin by default  -->
+                <!--  You can choose what default skin you want, here Black skin by default  -->
                 <ResourceDictionary Source="Skins\Black\BlackResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
