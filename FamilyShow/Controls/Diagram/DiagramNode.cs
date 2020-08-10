@@ -26,10 +26,10 @@ using System.Windows.Media.Animation;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// The type of node.
-    /// </summary>
-    public enum NodeType
+  /// <summary>
+  /// The type of node.
+  /// </summary>
+  public enum NodeType
   {
     Primary,
     Related,
@@ -127,8 +127,7 @@ namespace Microsoft.FamilyShow
         displayYear = value;
 
         // Update the filtered state based on the birth date.
-        IsFiltered = (person != null && person.BirthDate != null &&
-            person.BirthDate.Value.Year > displayYear);
+        IsFiltered = (person != null && person.BirthDate != null && person.BirthDate.Value.Year > displayYear);
 
         // Recompuate the bottom label which contains the age,
         // the new age is relative to the new display year
@@ -167,21 +166,26 @@ namespace Microsoft.FamilyShow
         if (person.IsLiving)
         {
           if (person.BirthDate == null)
+          {
             return string.Empty;
+          }
 
           if (!person.Age.HasValue)
+          {
             return string.Empty;
+          }
 
           int age = person.Age.Value - (DateTime.Now.Year - (int)displayYear);
-          return string.Format(CultureInfo.CurrentUICulture,
-              "{0} | {1}", person.BirthDate.Value.Year, Math.Max(0, age));
+          return string.Format(CultureInfo.CurrentUICulture, "{0} | {1}", person.BirthDate.Value.Year, Math.Max(0, age));
         }
 
         // Deceased, example: 1900 - 1950 | 50                    
         if (person.BirthDate != null && person.DeathDate != null)
         {
           if (!person.Age.HasValue)
+          {
             return string.Empty;
+          }
 
           int age = (displayYear >= person.DeathDate.Value.Year) ?
               person.Age.Value : person.Age.Value - (person.DeathDate.Value.Year - (int)displayYear);
@@ -256,9 +260,7 @@ namespace Microsoft.FamilyShow
     {
       get
       {
-        return new Point(
-            location.X + (DesiredSize.Width / 2),
-            location.Y + (DesiredSize.Height / 2));
+        return new Point(location.X + (DesiredSize.Width / 2), location.Y + (DesiredSize.Height / 2));
       }
     }
 
@@ -306,8 +308,7 @@ namespace Microsoft.FamilyShow
     {
       get
       {
-        return new Point(location.X + (DesiredSize.Width / 2),
-          location.Y + DesiredSize.Height);
+        return new Point(location.X + (DesiredSize.Width / 2), location.Y + DesiredSize.Height);
       }
     }
 
@@ -344,15 +345,14 @@ namespace Microsoft.FamilyShow
 
     #region dependency properties
 
-    public static readonly DependencyProperty BottomLabelProperty =
-        DependencyProperty.Register("BottomLabel", typeof(string), typeof(DiagramNode));
+    public static readonly DependencyProperty BottomLabelProperty = DependencyProperty.Register("BottomLabel", typeof(string), typeof(DiagramNode));
 
     /// <summary>
     /// The text displayed below the node.
     /// </summary>
     public string BottomLabel
     {
-      get { return (String)GetValue(BottomLabelProperty); }
+      get { return (string)GetValue(BottomLabelProperty); }
       set { SetValue(BottomLabelProperty, value); }
     }
 
@@ -402,8 +402,7 @@ namespace Microsoft.FamilyShow
     private Brush GetGroupBrushResource(string part)
     {
       // Format string, the resource is in the XAML file.
-      string resourceName = string.Format(CultureInfo.InvariantCulture,
-          "{0}{1}", type.ToString(), part);
+      string resourceName = string.Format(CultureInfo.InvariantCulture, "{0}{1}", type.ToString(), part);
 
       return (Brush)TryFindResource(resourceName);
     }
@@ -430,14 +429,18 @@ namespace Microsoft.FamilyShow
     {
       // Primary templates don't have the group xaml section.
       if (type == NodeType.Primary)
+      {
         return;
+      }
 
       // Determine if the group indicator should be displayed.
       bool isGrouping = ShouldDisplayGroupIndicator();
 
       FrameworkElement element = Template.FindName("Group", this) as FrameworkElement;
       if (element != null)
+      {
         element.Visibility = isGrouping ? Visibility.Visible : Visibility.Collapsed;
+      }
     }
 
     /// <summary>
@@ -447,33 +450,40 @@ namespace Microsoft.FamilyShow
     {
       // Primary and related nodes never display the group indicator.
       if (type == NodeType.Primary || type == NodeType.Related)
+      {
         return false;
+      }
 
       bool show = false;
       switch (type)
       {
         // Spouse - if have parents, siblings, or ex spouses.
         case NodeType.Spouse:
-          if (person.Parents.Count > 0 ||
-              person.Siblings.Count > 0 ||
-              person.PreviousSpouses.Count > 0)
+          if (person.Parents.Count > 0 || person.Siblings.Count > 0 || person.PreviousSpouses.Count > 0)
+          {
             show = true;
+          }
+
           break;
 
         // Sibling - if have spouse, or children.
         case NodeType.Sibling:
-          if (person.Spouses.Count > 0 ||
-              person.Children.Count > 0)
+          if (person.Spouses.Count > 0 || person.Children.Count > 0)
+          {
             show = true;
+          }
+
           break;
 
         // Half sibling - like sibling, but also inherits the 
         // group status from all parents.
         case NodeType.SiblingLeft:
         case NodeType.SiblingRight:
-          if (person.Spouses.Count > 0 ||
-              person.Children.Count > 0)
+          if (person.Spouses.Count > 0 || person.Children.Count > 0)
+          {
             show = true;
+          }
+
           break;
       }
 
@@ -485,8 +495,7 @@ namespace Microsoft.FamilyShow
     /// </summary>
     private void UpdateBottomLabel()
     {
-      string label = string.Format(CultureInfo.CurrentCulture, "{0}\r{1}",
-          person.FullName, DateInformation);
+      string label = string.Format(CultureInfo.CurrentCulture, "{0}\r{1}", person.FullName, DateInformation);
       BottomLabel = label;
     }
   }
