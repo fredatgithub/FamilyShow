@@ -15,10 +15,10 @@ using System.Windows.Media;
 
 namespace Microsoft.FamilyShow.Controls.Diagram
 {
-    /// <summary>
-    /// Row in the diagram that contains group objects.
-    /// </summary>
-    public class DiagramRow : FrameworkElement
+  /// <summary>
+  /// Row in the diagram that contains group objects.
+  /// </summary>
+  public class DiagramRow : FrameworkElement
   {
     #region fields
 
@@ -81,7 +81,9 @@ namespace Microsoft.FamilyShow.Controls.Diagram
       // Let each group determine how large they want to be.
       Size size = new Size(double.PositiveInfinity, double.PositiveInfinity);
       foreach (DiagramGroup group in groups)
+      {
         group.Measure(size);
+      }
 
       // Return the total size of the row.
       return ArrangeGroups(false);
