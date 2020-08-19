@@ -6,7 +6,7 @@ using Microsoft.FamilyShowLib;
 
 namespace Microsoft.FamilyShow.Controls.FamilyData
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
   class FamilyEditListView : FilterSortListView
   {
     /// <summary>
