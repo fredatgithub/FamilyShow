@@ -10,13 +10,13 @@ using System.Windows.Data;
 
 namespace Microsoft.FamilyShow.Controls.FamilyData
 {
-    /// <summary>
-    /// A column in the SortListView object that allows the SortProperty and 
-    /// SortStyle to be specified in XAML. The SortProperty specifies the 
-    /// underlying bound property that is used when sorting and SortStyle
-    /// specifies the resource that is used for the column header.
-    /// </summary>
-    public class SortListViewColumn : GridViewColumn
+  /// <summary>
+  /// A column in the SortListView object that allows the SortProperty and 
+  /// SortStyle to be specified in XAML. The SortProperty specifies the 
+  /// underlying bound property that is used when sorting and SortStyle
+  /// specifies the resource that is used for the column header.
+  /// </summary>
+  public class SortListViewColumn : GridViewColumn
   {
     public string SortProperty
     {
