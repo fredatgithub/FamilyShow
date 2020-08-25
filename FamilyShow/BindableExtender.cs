@@ -3,13 +3,13 @@ using System.Windows.Documents;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Allow Run Element to be Bindable.
-    /// </summary>
-    /// <remarks>
-    /// Code by Paul Stovell. See http://www.paulstovell.net/blog/index.php/attached-bindablerun/ for more details
-    /// </remarks>
-    public static class BindableExtender
+  /// <summary>
+  /// Allow Run Element to be Bindable.
+  /// </summary>
+  /// <remarks>
+  /// Code by Paul Stovell. See http://www.paulstovell.net/blog/index.php/attached-bindablerun/ for more details
+  /// </remarks>
+  public static class BindableExtender
   {
     public static string GetBindableText(DependencyObject obj)
     {
