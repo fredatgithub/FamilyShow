@@ -20,10 +20,10 @@ using System.Windows.Interop;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// One item in the common dialog filter.
-    /// </summary>
-    public class FilterEntry
+  /// <summary>
+  /// One item in the common dialog filter.
+  /// </summary>
+  public class FilterEntry
   {
     public string Display { get; }
 
