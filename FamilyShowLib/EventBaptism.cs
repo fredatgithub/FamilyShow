@@ -2,23 +2,23 @@
 
 namespace Microsoft.FamilyShowLib
 {
-    [Serializable]
-    public class EventBaptism
+  [Serializable]
+  public class EventBaptism
+  {
+    private DateTime? _baptismDate;
+    private string _baptismPlace;
+
+    public DateTime? BaptismDate
     {
-        private DateTime? _baptismDate;
-        private string _baptismPlace;
-
-        public DateTime? BaptismDate
-        {
-            get { return _baptismDate; }
-            set { _baptismDate = value; }
-        }
-
-
-        public string BaptismPlace
-        {
-            get { return _baptismPlace; }
-            set { _baptismPlace = value; }
-        }
+      get { return _baptismDate; }
+      set { _baptismDate = value; }
     }
+
+
+    public string BaptismPlace
+    {
+      get { return _baptismPlace; }
+      set { _baptismPlace = value; }
+    }
+  }
 }
