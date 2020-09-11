@@ -15,7 +15,6 @@ namespace Microsoft.FamilyShowLib
       set { mail = value; }
     }
 
-
     public Address Address
     {
       get { return address; }
