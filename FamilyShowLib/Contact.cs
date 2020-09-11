@@ -22,8 +22,6 @@ namespace Microsoft.FamilyShowLib
       set { address = value; }
     }
 
-
-
     public string Phone
     {
       get { return phone; }
