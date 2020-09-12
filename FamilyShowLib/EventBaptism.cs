@@ -14,7 +14,6 @@ namespace Microsoft.FamilyShowLib
       set { _baptismDate = value; }
     }
 
-
     public string BaptismPlace
     {
       get { return _baptismPlace; }
