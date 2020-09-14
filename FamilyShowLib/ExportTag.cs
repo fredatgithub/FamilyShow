@@ -130,7 +130,7 @@ namespace Microsoft.FamilyShowLib
 
     internal static List<SpouseRelationship> ListSpouseRelationShip(Person person, int startYear)
     {
-      List<SpouseRelationship> lst = new List<SpouseRelationship>();
+      List<SpouseRelationship> listOfSpouse = new List<SpouseRelationship>();
 
       // on cherche toutes les relations
       foreach (Relationship rel in person.Relationships)
@@ -140,38 +140,12 @@ namespace Microsoft.FamilyShowLib
           SpouseRelationship spouseRel = ((SpouseRelationship)rel);
           if (spouseRel.MarriageDate != null && spouseRel.MarriageDate?.Year >= startYear)
           {
-            lst.Add(spouseRel);
+            listOfSpouse.Add(spouseRel);
           }
         }
       }
 
-      return lst;
+      return listOfSpouse;
     }
-
-    //internal Person GetMariage(Person root)
-    //{
-    //    foreach (SpouseRelationship spouseRel in root.ListSpousesRelationShip)
-    //    {
-    //        if (spouseRel.MarriageDate != null && spouseRel.MarriageDate?.Year >= annéeDepart)
-    //        {
-    //            Person spouse = spouseRel.RelationTo;
-    //            Mariage mar = new Mariage();
-    //            mar.Nom = person.LastName;
-    //            mar.Prenom = person.FirstName;
-    //            mar.NomRapportée = spouse.LastName;
-    //            mar.PrenomRapportée = spouse.FirstName;
-    //            mar.NumeroGenealogique = currentArbreLevelStr;
-    //            mar.DateMariage = (DateTime)spouseRel.MarriageDate;
-    //            mar.LieuMariage = spouseRel.MarriagePlace;
-
-    //            if (spouse.Gender == Gender.Female)
-    //                mar.GenreRapportée = "Mlle";
-    //            else
-    //                mar.GenreRapportée = "Mr.";
-    //            lstMariage.Add(mar);
-    //            //mar.LieuMariage = spouseRel.
-    //        }
-    //    }
-    //}
   }
 }
