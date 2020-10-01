@@ -26,16 +26,16 @@ namespace Microsoft.FamilyShowLib
         private string data;
 
         // Expression pattern used to parse the GEDCOM line.
-        private readonly Regex regSplit = new Regex(
+        private readonly Regex regexToSplit = new Regex(
             @"(?<level>\d+)\s+(?<tag>[\S]+)(\s+(?<data>.+))?");
 
         // Expression pattern used to clean up the GEDCOM line.
         // Only allow viewable characters.
-        private readonly Regex regClean = new Regex(@"[^\x20-\x7e]");
+        private readonly Regex regexToClean = new Regex(@"[^\x20-\x7e]");
 
         // Expression pattern used to clean up the GEDCOM tag.
         // Tag can contain alphanumeric characters, _, ., or -.
-        private readonly Regex regTag = new Regex(@"[^\w.-]");
+        private readonly Regex regexForTag = new Regex(@"[^\w.-]");
 
         #endregion
 
@@ -93,10 +93,10 @@ namespace Microsoft.FamilyShowLib
                 }
 
                 // Clean up the line by only allowing viewable characters.
-                text = regClean.Replace(text, "");
+                text = regexToClean.Replace(text, "");
 
                 // Get the parts of the line.
-                Match match = regSplit.Match(text);
+                Match match = regexToSplit.Match(text);
                 level = Convert.ToInt32(match.Groups["level"].Value, CultureInfo.InvariantCulture);
                 tag = match.Groups["tag"].Value.Trim();
                 data = match.Groups["data"].Value.Trim();
@@ -120,7 +120,7 @@ namespace Microsoft.FamilyShowLib
                 }
 
                 // Make sure there are not any invalid characters in the tag.
-                tag = regTag.Replace(tag, "");
+                tag = regexForTag.Replace(tag, "");
 
                 return true;
             }
