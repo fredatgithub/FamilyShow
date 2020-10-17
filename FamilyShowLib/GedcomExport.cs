@@ -253,11 +253,16 @@ namespace Microsoft.FamilyShowLib
       WriteLine(1, "SEX", (person.Gender == Gender.Female) ? "F" : "M");
     }
 
-    // Write a GEDCOM line, this is more involved since the line cannot contain 
-    // carriage returns or exceed 255 characters. First, divide the value by carriage 
-    // return. Then divide each carriage-return line into chunks of 200 characters. 
-    // The first line contains the original tag name and level, carriage returns contain
-    // the CONT tag and continue lines contains CONC.
+    /// <summary>
+    /// Write a GEDCOM line, this is more involved since the line cannot contain 
+    /// carriage returns or exceed 255 characters. First, divide the value by carriage 
+    /// return. Then divide each carriage-return line into chunks of 200 characters. 
+    /// The first line contains the original tag name and level, carriage returns contain
+    /// the CONT tag and continue lines contains CONC.
+    /// </summary>
+    /// <param name="level">The level</param>
+    /// <param name="tag">The tag of the line to be written.</param>
+    /// <param name="value">The value of the line to be written.</param>
     private void WriteLine(int level, string tag, string value)
     {
       // The entire line length cannot exceed 255 characters using
@@ -268,7 +273,8 @@ namespace Microsoft.FamilyShowLib
       // does not contain carriage returns or exceed the line length.
       if (value.Length < ValueLimit && !value.Contains("\r") && !value.Contains("\n"))
       {
-        writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", level, tag, value));
+        // was CultureInfo.InvariantCulture and now CurrentCulture 
+        writer.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0} {1} {2}", level, tag, value));
         return;
       }
 
@@ -299,18 +305,21 @@ namespace Microsoft.FamilyShowLib
           // the concatenation tag (CONT) for all other lines.
           if (lineIndex == 0 && chunkIndex == 0)
           {
-            writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", level, tag, chunk));
+            // was CultureInfo.InvariantCulture and now CurrentCulture
+            writer.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0} {1} {2}", level, tag, chunk));
           }
           else
           {
-            writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", level + 1, "CONC", chunk));
+            // was CultureInfo.InvariantCulture and now CurrentCulture
+            writer.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0} {1} {2}", level + 1, "CONC", chunk));
           }
         }
 
         // All lines except the last line have the continue (CONT) tag.
         if (lineIndex < lines.Length - 1)
         {
-          writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1}", level + 1, "CONT"));
+          // was CultureInfo.InvariantCulture and now CurrentCulture
+          writer.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0} {1}", level + 1, "CONT"));
         }
       }
     }
