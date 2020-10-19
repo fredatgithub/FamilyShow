@@ -10,10 +10,10 @@ using System.Xml.Serialization;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for App.xaml.
-    /// </summary>
-    public partial class App : Application
+  /// <summary>
+  /// Interaction logic for App.xaml.
+  /// </summary>
+  public partial class App : Application
   {
     #region fields
 
@@ -291,7 +291,7 @@ namespace Microsoft.FamilyShow
         dateString = "1/1/" + dateString;
       }
 
-      DateTime.TryParse(dateString, out DateTime date);
+      _ = DateTime.TryParse(dateString, out DateTime date);
 
       return date;
     }
