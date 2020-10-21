@@ -68,8 +68,7 @@ namespace Microsoft.FamilyShowLib
       foreach (Person person in people)
       {
         // Start of a new individual record.
-        WriteLine(0, string.Format(CultureInfo.InvariantCulture,
-            "@{0}@", idMap.Get(person.Id)), "INDI");
+        WriteLine(0, string.Format(CultureInfo.InvariantCulture, "@{0}@", idMap.Get(person.Id)), "INDI");
 
         // Export details.
 
