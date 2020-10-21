@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,8 +51,7 @@ namespace Microsoft.FamilyShowLib
     {
       get
       {
-        string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            App.ApplicationFolderName);
+        string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), App.ApplicationFolderName);
         tempFolder = Path.Combine(tempFolder, App.AppDataFolderName);
 
         if (relativePath != null)
@@ -87,8 +87,7 @@ namespace Microsoft.FamilyShowLib
       // Data format for the story file.
       string dataFormat = DataFormats.Rtf;
 
-      string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-          App.ApplicationFolderName);
+      string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), App.ApplicationFolderName);
       tempFolder = Path.Combine(tempFolder, App.AppDataFolderName);
 
       // Absolute path to the stories folder
@@ -119,8 +118,7 @@ namespace Microsoft.FamilyShowLib
       }
       catch
       {
-        // Could not save the story. Handle all exceptions
-        // the same, ignore and continue.
+        // Could not save the story. Handle all exceptions the same, ignore and continue.
       }
     }
 
@@ -163,8 +161,7 @@ namespace Microsoft.FamilyShowLib
       // Data format for the story file.
       string dataFormat = DataFormats.Rtf;
 
-      string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-          App.ApplicationFolderName);
+      string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), App.ApplicationFolderName);
       tempFolder = Path.Combine(tempFolder, App.AppDataFolderName);
 
       // Absolute path to the stories folder
@@ -175,8 +172,11 @@ namespace Microsoft.FamilyShowLib
       string storyAbsolutePath = Path.Combine(storiesLocation, storyFileName);
 
       // Convert the text into a TextRange.  This will allow saving the story to disk as RTF.
-      TextBlock block = new TextBlock();
-      block.Text = storyText;
+      TextBlock block = new TextBlock
+      {
+        Text = storyText
+      };
+
       TextRange range = new TextRange(block.ContentStart, block.ContentEnd);
 
       try
@@ -207,7 +207,7 @@ namespace Microsoft.FamilyShowLib
       }
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     public void Delete()
     {
       // Delete the person's story if it exists
@@ -219,8 +219,7 @@ namespace Microsoft.FamilyShowLib
         }
         catch
         {
-          // Could not delete the file. Handle all exceptions
-          // the same, ignore and continue.
+          // Could not delete the file. Handle all exceptions the same, ignore and continue.
         }
       }
     }
