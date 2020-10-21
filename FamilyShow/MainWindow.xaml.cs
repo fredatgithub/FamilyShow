@@ -40,6 +40,7 @@ namespace Microsoft.FamilyShow
     public static readonly RoutedCommand ExportXpsCommand = new RoutedCommand("ExportXps", typeof(MainWindow));
     public static readonly RoutedCommand ChangeSkinCommand = new RoutedCommand("ChangeSkin", typeof(MainWindow));
     public static readonly RoutedCommand ExportBirthCommand = new RoutedCommand("ExportBirth", typeof(MainWindow));
+    public bool changesNeedToBeSave = false;
 
     #endregion
 
