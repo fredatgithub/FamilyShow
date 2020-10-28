@@ -42,6 +42,15 @@ namespace UnitTestFamilyShow
       Assert.AreEqual(result, expected);
     }
 
+    [TestMethod]
+    public void TestMethod_StringToDate_with_dash_1_1_1()
+    {
+      string source = "01-01-0001";
+      DateTime expected = new DateTime(1, 1, 1);
+      DateTime result = StringToDate(source);
+      Assert.AreEqual(result, expected);
+    }
+
     public static DateTime StringToDate(string dateString)
     {
       // Append first month and day if just the year was entered.
