@@ -16,6 +16,7 @@ using Microsoft.FamilyShowLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -27,7 +28,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
   /// <summary>
   /// Diagram that lays out and displays the nodes.
   /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
+  [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
   class Diagram : FrameworkElement
   {
     #region fields
@@ -391,7 +392,9 @@ namespace Microsoft.FamilyShow.Controls.Diagram
       foreach (DiagramConnectorNode connector in logic.PersonLookup.Values)
       {
         if (connector.Node.Person != logic.Family.Current)
+        {
           connector.Node.Visibility = Visibility.Hidden;
+        }
       }
 
       // Required to update (hide) the connector lines.            
@@ -474,7 +477,9 @@ namespace Microsoft.FamilyShow.Controls.Diagram
       {
         // Child Row.
         if (childRow != null)
+        {
           childRow = AddChildRow(childRow);
+        }
 
         // Parent row.
         if (parentRow != null)
@@ -502,7 +507,9 @@ namespace Microsoft.FamilyShow.Controls.Diagram
       // Get list of children for the current row.
       List<Person> children = DiagramLogic.GetChildren(row);
       if (children.Count == 0)
+      {
         return null;
+      }
 
       // Add bottom space to existing row.
       row.Margin = new Thickness(0, 0, 0, Const.RowSpace);
@@ -522,7 +529,9 @@ namespace Microsoft.FamilyShow.Controls.Diagram
       // Get list of parents for the current row.
       Collection<Person> parents = DiagramLogic.GetParents(row);
       if (parents.Count == 0)
+      {
         return null;
+      }
 
       // Add another row.
       DiagramRow parentRow = logic.CreateParentRow(parents, nodeScale, nodeScale * Const.RelatedMultiplier);
