@@ -5,314 +5,314 @@
     xmlns:familyData="clr-namespace:Microsoft.FamilyShow.Controls.FamilyData"
     xmlns:local="clr-namespace:Microsoft.FamilyShow">
 
-    <UserControl.Resources>
+  <UserControl.Resources>
 
-        <!--  used when editing a date cell  -->
-        <local:DateFormattingConverter x:Key="DateFormattingConverter" />
+    <!--  used when editing a date cell  -->
+    <local:DateFormattingConverter x:Key="DateFormattingConverter" />
 
-        <!--  styles that are used when the cells are in edit mode  -->
+    <!--  styles that are used when the cells are in edit mode  -->
 
-        <!--  style for all cells when in edit mode  -->
-        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="#00ffffff" />
-            <Setter Property="BorderBrush" Value="#00ffffff" />
-            <Setter Property="AcceptsReturn" Value="False" />
-            <Setter Property="AcceptsTab" Value="False" />
-            <Setter Property="Foreground" Value="{DynamicResource FamilyDataFontColor}" />
-            <Style.Triggers>
-                <Trigger Property="IsFocused" Value="True">
-                    <Setter Property="Foreground" Value="#ff000000" />
-                    <Setter Property="BorderBrush" Value="#ff000000" />
-                    <Setter Property="Background" Value="#a0ffffff" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+    <!--  style for all cells when in edit mode  -->
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+      <Setter Property="Background" Value="#00ffffff" />
+      <Setter Property="BorderBrush" Value="#00ffffff" />
+      <Setter Property="AcceptsReturn" Value="False" />
+      <Setter Property="AcceptsTab" Value="False" />
+      <Setter Property="Foreground" Value="{DynamicResource FamilyDataFontColor}" />
+      <Style.Triggers>
+        <Trigger Property="IsFocused" Value="True">
+          <Setter Property="Foreground" Value="#ff000000" />
+          <Setter Property="BorderBrush" Value="#ff000000" />
+          <Setter Property="Background" Value="#a0ffffff" />
+        </Trigger>
+      </Style.Triggers>
+    </Style>
 
-        <!--  style for read-only cells (age)  -->
-        <Style x:Key="AgeTextBlockStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Background" Value="#00ffffff" />
-            <Setter Property="Foreground" Value="{DynamicResource FamilyDataFontColor}" />
-        </Style>
+    <!--  style for read-only cells (age)  -->
+    <Style x:Key="AgeTextBlockStyle" TargetType="{x:Type TextBlock}">
+      <Setter Property="Background" Value="#00ffffff" />
+      <Setter Property="Foreground" Value="{DynamicResource FamilyDataFontColor}" />
+    </Style>
 
-        <!--  column header grip style  -->
-        <Style x:Key="ColumnGrip" TargetType="{x:Type Thumb}">
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Width" Value="3" />
-            <Setter Property="Opacity" Value="0.25" />
-            <Setter Property="DockPanel.Dock" Value="Right" />
-        </Style>
+    <!--  column header grip style  -->
+    <Style x:Key="ColumnGrip" TargetType="{x:Type Thumb}">
+      <Setter Property="HorizontalAlignment" Value="Right" />
+      <Setter Property="Width" Value="3" />
+      <Setter Property="Opacity" Value="0.25" />
+      <Setter Property="DockPanel.Dock" Value="Right" />
+    </Style>
 
-        <!--  templates that are used to display the cells in the columns  -->
+    <!--  templates that are used to display the cells in the columns  -->
 
-        <!--  first, empty column  -->
-        <DataTemplate x:Key="EmptyColumnTemplate" />
+    <!--  first, empty column  -->
+    <DataTemplate x:Key="EmptyColumnTemplate" />
 
-        <!--  first name column  -->
-        <DataTemplate x:Key="FirstNameColumnTemplate">
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=FirstName}" />
-        </DataTemplate>
+    <!--  first name column  -->
+    <DataTemplate x:Key="FirstNameColumnTemplate">
+      <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=FirstName}" />
+    </DataTemplate>
 
-        <!--  last name column  -->
-        <DataTemplate x:Key="LastNameColumnTemplate">
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=LastName}" />
-        </DataTemplate>
+    <!--  last name column  -->
+    <DataTemplate x:Key="LastNameColumnTemplate">
+      <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=LastName}" />
+    </DataTemplate>
 
-        <!--  age column  -->
-        <DataTemplate x:Key="AgeColumnTemplate">
-            <TextBlock Style="{StaticResource AgeTextBlockStyle}" Text="{Binding Path=Age}" />
-        </DataTemplate>
+    <!--  age column  -->
+    <DataTemplate x:Key="AgeColumnTemplate">
+      <TextBlock Style="{StaticResource AgeTextBlockStyle}" Text="{Binding Path=Age}" />
+    </DataTemplate>
 
-        <!--  birth date column  -->
-        <DataTemplate x:Key="BirthDateColumnTemplate">
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}}" />
-        </DataTemplate>
+    <!--  birth date column  -->
+    <DataTemplate x:Key="BirthDateColumnTemplate">
+      <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}}" />
+    </DataTemplate>
 
-        <!--  birth place column  -->
-        <DataTemplate x:Key="BirthPlaceColumnTemplate">
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=BirthPlace}" />
-        </DataTemplate>
+    <!--  birth place column  -->
+    <DataTemplate x:Key="BirthPlaceColumnTemplate">
+      <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=BirthPlace}" />
+    </DataTemplate>
 
-        <!--  death date column  -->
-        <DataTemplate x:Key="DeathDateColumnTemplate">
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=DeathDate, Converter={StaticResource DateFormattingConverter}}" />
-        </DataTemplate>
+    <!--  death date column  -->
+    <DataTemplate x:Key="DeathDateColumnTemplate">
+      <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=DeathDate, Converter={StaticResource DateFormattingConverter}}" />
+    </DataTemplate>
 
-        <!--  death place column  -->
-        <DataTemplate x:Key="DeathPlaceColumnTemplate">
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=DeathPlace}" />
-        </DataTemplate>
+    <!--  death place column  -->
+    <DataTemplate x:Key="DeathPlaceColumnTemplate">
+      <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Path=DeathPlace}" />
+    </DataTemplate>
 
 
-        <!--  list view details  -->
+    <!--  list view details  -->
 
-        <ControlTemplate x:Key="FamilyEditListViewItemTemplate" TargetType="{x:Type ListViewItem}">
-            <Grid Margin="0,3,0,0" SnapsToDevicePixels="True">
-                <Border
+    <ControlTemplate x:Key="FamilyEditListViewItemTemplate" TargetType="{x:Type ListViewItem}">
+      <Grid Margin="0,3,0,0" SnapsToDevicePixels="True">
+        <Border
                     x:Name="Border"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="5,5,5,5" />
-                <GridViewRowPresenter
+        <GridViewRowPresenter
                     Columns="{TemplateBinding GridView.ColumnCollection}"
                     Content="{TemplateBinding Content}"
                     TextBlock.FontSize="11"
                     TextBlock.Foreground="{TemplateBinding Foreground}" />
-            </Grid>
-            <ControlTemplate.Triggers>
-                <!--  Change IsSelected SelectedListBoxBrush to set the selection color for the items  -->
-                <Trigger Property="IsSelected" Value="true">
-                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource FamilyEditListViewSelectedBrush}" />
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
+      </Grid>
+      <ControlTemplate.Triggers>
+        <!--  Change IsSelected SelectedListBoxBrush to set the selection color for the items  -->
+        <Trigger Property="IsSelected" Value="true">
+          <Setter TargetName="Border" Property="Background" Value="{DynamicResource FamilyEditListViewSelectedBrush}" />
+        </Trigger>
+      </ControlTemplate.Triggers>
+    </ControlTemplate>
 
-        <Style x:Key="FamilyEditListViewStyle" TargetType="ListView">
-            <Setter Property="Margin" Value="0,2,0,0" />
-            <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListView">
-                        <Border Name="Border">
-                            <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
-                                <ItemsPresenter />
-                            </ScrollViewer>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+    <Style x:Key="FamilyEditListViewStyle" TargetType="ListView">
+      <Setter Property="Margin" Value="0,2,0,0" />
+      <Setter Property="SnapsToDevicePixels" Value="True" />
+      <Setter Property="OverridesDefaultStyle" Value="True" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ListView">
+            <Border Name="Border">
+              <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                <ItemsPresenter />
+              </ScrollViewer>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
-        <!--  style applied to column headers  -->
-        <Style x:Key="ColumnHeaderStyle" TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource HeaderBorderBrush}" />
-            <Setter Property="Background" Value="{DynamicResource HeaderBackgroundBrush}" />
-            <Setter Property="BorderThickness" Value="0,1,0,1" />
-        </Style>
+    <!--  style applied to column headers  -->
+    <Style x:Key="ColumnHeaderStyle" TargetType="{x:Type Border}">
+      <Setter Property="BorderBrush" Value="{DynamicResource HeaderBorderBrush}" />
+      <Setter Property="Background" Value="{DynamicResource HeaderBackgroundBrush}" />
+      <Setter Property="BorderThickness" Value="0,1,0,1" />
+    </Style>
 
-        <!--  style applied to selected column headers  -->
-        <Style
+    <!--  style applied to selected column headers  -->
+    <Style
             x:Key="ColumnSelectedHeaderStyle"
             BasedOn="{StaticResource ColumnHeaderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="Background" Value="{DynamicResource SelectedHeaderBackgroundBrush}" />
-        </Style>
+      <Setter Property="Background" Value="{DynamicResource SelectedHeaderBackgroundBrush}" />
+    </Style>
 
-        <!--  style applied to column headers  -->
-        <Style
+    <!--  style applied to column headers  -->
+    <Style
             x:Key="FirstColumnHeaderStyle"
             BasedOn="{StaticResource ColumnHeaderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderThickness" Value="1,1,0,1" />
-            <Setter Property="Padding" Value="15,5,5,5" />
-            <Setter Property="CornerRadius" Value="5,0,0,5" />
-        </Style>
+      <Setter Property="BorderThickness" Value="1,1,0,1" />
+      <Setter Property="Padding" Value="15,5,5,5" />
+      <Setter Property="CornerRadius" Value="5,0,0,5" />
+    </Style>
 
-        <!--  style applied to column headers  -->
-        <Style
+    <!--  style applied to column headers  -->
+    <Style
             x:Key="LastColumnHeaderStyle"
             BasedOn="{StaticResource ColumnHeaderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderThickness" Value="0,1,1,1" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="CornerRadius" Value="0,5,5,0" />
-        </Style>
+      <Setter Property="BorderThickness" Value="0,1,1,1" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="CornerRadius" Value="0,5,5,0" />
+    </Style>
 
-        <!--  header used when no sorting  -->
-        <Style x:Key="FamilyDataGridViewColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="GridViewColumnHeader.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Border x:Name="Bd" Style="{DynamicResource ColumnHeaderStyle}">
-                            <DockPanel>
-                                <TextBlock
+    <!--  header used when no sorting  -->
+    <Style x:Key="FamilyDataGridViewColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
+      <Setter Property="GridViewColumnHeader.Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Border x:Name="Bd" Style="{DynamicResource ColumnHeaderStyle}">
+              <DockPanel>
+                <TextBlock
                                     Margin="5,0,0,0"
                                     VerticalAlignment="Center"
                                     FontWeight="Bold"
                                     Foreground="{DynamicResource FamilyDataGridHeaderFontColor}"
                                     Text="{TemplateBinding GridViewColumnHeader.Content}"
                                     TextAlignment="Left" />
-                                <Thumb x:Name="PART_HeaderGripper" Style="{StaticResource ColumnGrip}" />
-                            </DockPanel>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                <Thumb x:Name="PART_HeaderGripper" Style="{StaticResource ColumnGrip}" />
+              </DockPanel>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
-        <!--  header used to sort ascending  -->
-        <Style x:Key="FamilyDataGridViewColumnHeaderAscending" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="GridViewColumnHeader.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Border x:Name="Bd" Style="{DynamicResource ColumnSelectedHeaderStyle}">
-                            <DockPanel>
-                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <TextBlock
+    <!--  header used to sort ascending  -->
+    <Style x:Key="FamilyDataGridViewColumnHeaderAscending" TargetType="{x:Type GridViewColumnHeader}">
+      <Setter Property="GridViewColumnHeader.Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Border x:Name="Bd" Style="{DynamicResource ColumnSelectedHeaderStyle}">
+              <DockPanel>
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                  <TextBlock
                                         Margin="5,0,0,0"
                                         VerticalAlignment="Center"
                                         FontWeight="Bold"
                                         Foreground="{DynamicResource FamilyDataGridSelectedHeaderFontColor}"
                                         Text="{TemplateBinding GridViewColumnHeader.Content}"
                                         TextAlignment="Left" />
-                                    <Path
+                  <Path
                                         Data="M 5,10 L 15,10 L 10,5 L 5,10"
                                         Fill="{DynamicResource FamilyDataGridSelectedHeaderFontColor}"
                                         StrokeThickness="1" />
-                                </StackPanel>
-                                <Thumb x:Name="PART_HeaderGripper" Style="{StaticResource ColumnGrip}" />
-                            </DockPanel>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                </StackPanel>
+                <Thumb x:Name="PART_HeaderGripper" Style="{StaticResource ColumnGrip}" />
+              </DockPanel>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
-        <!--  header used to sort descending  -->
-        <Style x:Key="FamilyDataGridViewColumnHeaderDescending" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="GridViewColumnHeader.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Border x:Name="Bd" Style="{DynamicResource ColumnSelectedHeaderStyle}">
-                            <DockPanel>
-                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <TextBlock
+    <!--  header used to sort descending  -->
+    <Style x:Key="FamilyDataGridViewColumnHeaderDescending" TargetType="{x:Type GridViewColumnHeader}">
+      <Setter Property="GridViewColumnHeader.Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Border x:Name="Bd" Style="{DynamicResource ColumnSelectedHeaderStyle}">
+              <DockPanel>
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                  <TextBlock
                                         Margin="5,0,0,0"
                                         VerticalAlignment="Center"
                                         FontWeight="Bold"
                                         Foreground="{DynamicResource FamilyDataGridSelectedHeaderFontColor}"
                                         Text="{TemplateBinding GridViewColumnHeader.Content}"
                                         TextAlignment="Left" />
-                                    <Path
+                  <Path
                                         Data="M 5,5 L 10,10 L 15,5 L 5,5"
                                         Fill="{DynamicResource FamilyDataGridSelectedHeaderFontColor}"
                                         StrokeThickness="1" />
-                                </StackPanel>
-                                <Thumb x:Name="PART_HeaderGripper" Style="{StaticResource ColumnGrip}" />
-                            </DockPanel>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                </StackPanel>
+                <Thumb x:Name="PART_HeaderGripper" Style="{StaticResource ColumnGrip}" />
+              </DockPanel>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
-        <Style
+    <Style
             x:Key="FirstColumnGridViewColumnHeader"
             BasedOn="{StaticResource FamilyDataGridViewColumnHeader}"
             TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="GridViewColumnHeader.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Border x:Name="Bd" Style="{DynamicResource FirstColumnHeaderStyle}">
-                            <TextBlock
+      <Setter Property="GridViewColumnHeader.Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Border x:Name="Bd" Style="{DynamicResource FirstColumnHeaderStyle}">
+              <TextBlock
                                 VerticalAlignment="Center"
                                 FontWeight="Bold"
                                 Foreground="{DynamicResource FamilyDataGridHeaderFontColor}"
                                 Text="{TemplateBinding GridViewColumnHeader.Content}"
                                 TextAlignment="Left" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
-        <Style
+    <Style
             x:Key="LastColumnGridViewColumnHeader"
             BasedOn="{StaticResource FamilyDataGridViewColumnHeader}"
             TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="GridViewColumnHeader.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Border x:Name="Bd" Style="{DynamicResource LastColumnHeaderStyle}" />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+      <Setter Property="GridViewColumnHeader.Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Border x:Name="Bd" Style="{DynamicResource LastColumnHeaderStyle}" />
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
-        <Style x:Key="FamilyEditListViewItemStyle" TargetType="{x:Type ListViewItem}">
-            <Setter Property="Template" Value="{DynamicResource FamilyEditListViewItemTemplate}" />
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        </Style>
+    <Style x:Key="FamilyEditListViewItemStyle" TargetType="{x:Type ListViewItem}">
+      <Setter Property="Template" Value="{DynamicResource FamilyEditListViewItemTemplate}" />
+      <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
 
-        <Style x:Key="StatisticsHeaderStyle" TargetType="{x:Type Border}">
-            <Setter Property="Margin" Value="5,15,0,10" />
-            <Setter Property="Padding" Value="10,5,10,5" />
-            <Setter Property="Background" Value="{DynamicResource StatisticsHeaderBackgroundBrush}" />
-            <Setter Property="BorderThickness" Value="0,1,0,0" />
-            <Setter Property="BorderBrush" Value="{DynamicResource StatisticsHeaderBorderBrush}" />
-        </Style>
+    <Style x:Key="StatisticsHeaderStyle" TargetType="{x:Type Border}">
+      <Setter Property="Margin" Value="5,15,0,10" />
+      <Setter Property="Padding" Value="10,5,10,5" />
+      <Setter Property="Background" Value="{DynamicResource StatisticsHeaderBackgroundBrush}" />
+      <Setter Property="BorderThickness" Value="0,1,0,0" />
+      <Setter Property="BorderBrush" Value="{DynamicResource StatisticsHeaderBorderBrush}" />
+    </Style>
 
-        <Style x:Key="StatisticsControlStyle" TargetType="{x:Type Border}">
-            <Setter Property="Margin" Value="10,0,10,0" />
-            <Setter Property="Background" Value="{DynamicResource StatisticsControlBackgroundBrush}" />
-            <Setter Property="CornerRadius" Value="3,3,3,3" />
-        </Style>
+    <Style x:Key="StatisticsControlStyle" TargetType="{x:Type Border}">
+      <Setter Property="Margin" Value="10,0,10,0" />
+      <Setter Property="Background" Value="{DynamicResource StatisticsControlBackgroundBrush}" />
+      <Setter Property="CornerRadius" Value="3,3,3,3" />
+    </Style>
 
-    </UserControl.Resources>
+  </UserControl.Resources>
 
 
-    <!--  family data control  -->
-    <Border
+  <!--  family data control  -->
+  <Border
         Margin="10,0,10,10"
         Background="{DynamicResource BackgroundBrush}"
         Style="{DynamicResource BorderStyle}">
-        <DockPanel x:Name="MainPanel">
+    <DockPanel x:Name="MainPanel">
 
-            <!--  header area  -->
-            <DockPanel
+      <!--  header area  -->
+      <DockPanel
                 x:Name="HeaderPanel"
                 Height="30"
                 Margin="10,0,10,0"
                 DockPanel.Dock="Top">
-                <TextBlock
+        <TextBlock
                     Margin="5,0,0,0"
                     VerticalAlignment="Center"
                     FontWeight="Bold"
                     Foreground="{DynamicResource HeaderFontColor}"
                     Style="{DynamicResource HeaderStyle}"
                     Text="Family Data" />
-                <Button
+        <Button
                     x:Name="CloseButton"
                     Grid.Column="1"
                     Width="30"
@@ -323,60 +323,60 @@
                     Content="_Back"
                     DockPanel.Dock="Right"
                     FontSize="10" />
-            </DockPanel>
+      </DockPanel>
 
-            <!--  filter, list and chart area  -->
-            <Border
+      <!--  filter, list and chart area  -->
+      <Border
                 x:Name="BodyBorder"
                 Background="{DynamicResource PanelGradientBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="0,1,0,0"
                 CornerRadius="0,0,10,10">
-                <Grid DockPanel.Dock="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+        <Grid DockPanel.Dock="Top">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
 
-                    <!--  filter area  -->
-                    <Border
+          <!--  filter area  -->
+          <Border
                         Grid.Row="0"
                         Grid.Column="0"
                         Margin="5,5,0,20"
                         Padding="6"
                         Background="#90ffffff"
                         CornerRadius="4">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                            <Label
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+              <Label
                                 Margin="0,0,10,0"
                                 Content="Filter"
                                 Foreground="#FF1F3066" />
-                            <local:FilterText
+              <local:FilterText
                                 x:Name="FilterTextBox"
                                 Width="200"
                                 VerticalAlignment="Center"
                                 ResetFilter="FilterTextBox_ResetFilter"
                                 TextBox.TextChanged="FilterTextBox_TextChanged" />
-                            <Label
+              <Label
                                 Margin="10,-4,0,0"
                                 VerticalAlignment="Center"
                                 Content="{Binding Path=Items.Count, ElementName=FamilyEditor}"
                                 FontSize="16"
                                 Foreground="#FFCCCCCC" />
-                        </StackPanel>
-                    </Border>
+            </StackPanel>
+          </Border>
 
-                    <!--  list area  -->
-                    <Border
+          <!--  list area  -->
+          <Border
                         Grid.Row="2"
                         Grid.Column="0"
                         Margin="5,0,0,5">
-                        <familyData:FamilyEditListView
+            <familyData:FamilyEditListView
                             x:Name="FamilyEditor"
                             Margin="0,5,0,0"
                             Background="{x:Null}"
@@ -389,15 +389,15 @@
                             SelectionMode="Single"
                             Style="{DynamicResource FamilyEditListViewStyle}"
                             VirtualizingStackPanel.IsVirtualizing="True">
-                            <ListView.View>
-                                <GridView AllowsColumnReorder="False">
+              <ListView.View>
+                <GridView AllowsColumnReorder="False">
 
-                                    <GridViewColumn
+                  <GridViewColumn
                                         Width="10"
                                         CellTemplate="{StaticResource EmptyColumnTemplate}"
                                         HeaderContainerStyle="{DynamicResource FirstColumnGridViewColumnHeader}" />
 
-                                    <familyData:SortListViewColumn
+                  <familyData:SortListViewColumn
                                         Width="100"
                                         CellTemplate="{StaticResource FirstNameColumnTemplate}"
                                         Header="First Name"
@@ -405,7 +405,7 @@
                                         SortProperty="FirstName"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
 
-                                    <familyData:SortListViewColumn
+                  <familyData:SortListViewColumn
                                         Width="100"
                                         CellTemplate="{StaticResource LastNameColumnTemplate}"
                                         Header="Last Name"
@@ -413,7 +413,7 @@
                                         SortProperty="LastName"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
 
-                                    <familyData:SortListViewColumn
+                  <familyData:SortListViewColumn
                                         Width="50"
                                         CellTemplate="{StaticResource AgeColumnTemplate}"
                                         Header="Age"
@@ -421,7 +421,7 @@
                                         SortProperty="Age"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
 
-                                    <familyData:SortListViewColumn
+                  <familyData:SortListViewColumn
                                         Width="80"
                                         CellTemplate="{StaticResource BirthDateColumnTemplate}"
                                         Header="Birth Date"
@@ -429,7 +429,7 @@
                                         SortProperty="BirthDate"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
 
-                                    <familyData:SortListViewColumn
+                  <familyData:SortListViewColumn
                                         Width="100"
                                         CellTemplate="{StaticResource BirthPlaceColumnTemplate}"
                                         Header="Birth Place"
@@ -437,7 +437,7 @@
                                         SortProperty="BirthPlace"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
 
-                                    <familyData:SortListViewColumn
+                  <familyData:SortListViewColumn
                                         Width="80"
                                         CellTemplate="{StaticResource DeathDateColumnTemplate}"
                                         Header="Death Date"
@@ -445,7 +445,7 @@
                                         SortProperty="DeathDate"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
 
-                                    <familyData:SortListViewColumn
+                  <familyData:SortListViewColumn
                                         Width="100"
                                         CellTemplate="{StaticResource DeathPlaceColumnTemplate}"
                                         Header="Death Place"
@@ -453,18 +453,18 @@
                                         SortProperty="DeathPlace"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
 
-                                    <GridViewColumn
+                  <GridViewColumn
                                         Width="10"
                                         CellTemplate="{StaticResource EmptyColumnTemplate}"
                                         HeaderContainerStyle="{DynamicResource LastColumnGridViewColumnHeader}" />
 
-                                </GridView>
-                            </ListView.View>
-                        </familyData:FamilyEditListView>
-                    </Border>
+                </GridView>
+              </ListView.View>
+            </familyData:FamilyEditListView>
+          </Border>
 
-                    <!--  chart area  -->
-                    <Border
+          <!--  chart area  -->
+          <Border
                         Grid.Row="0"
                         Grid.RowSpan="3"
                         Grid.Column="1"
@@ -472,20 +472,20 @@
                         Margin="5"
                         Background="{DynamicResource PanelGradientBrush}"
                         Style="{DynamicResource BorderStyle}">
-                        <StackPanel>
-                            <Label
+            <StackPanel>
+              <Label
                                 Margin="5,0,0,0"
                                 Padding="8,8,5,2"
                                 Content="Family Statistics"
                                 FontSize="18"
                                 FontWeight="Bold" />
 
-                            <!--  tag cloud chart  -->
-                            <Border Style="{DynamicResource StatisticsHeaderStyle}">
-                                <TextBlock Foreground="{DynamicResource FontColor}" Text="Last Names" />
-                            </Border>
-                            <Border Style="{DynamicResource StatisticsControlStyle}">
-                                <local:TagCloud
+              <!--  tag cloud chart  -->
+              <Border Style="{DynamicResource StatisticsHeaderStyle}">
+                <TextBlock Foreground="{DynamicResource FontColor}" Text="Last Names" />
+              </Border>
+              <Border Style="{DynamicResource StatisticsControlStyle}">
+                <local:TagCloud
                                     x:Name="TagCloudControl"
                                     MaxHeight="130"
                                     Padding="5,0,5,0"
@@ -494,14 +494,14 @@
                                     ListBorderBrush="{DynamicResource SolidBorderBrush}"
                                     SelectedBrush="{DynamicResource FamilyEditListViewSelectedBrush}"
                                     TagSelectionChanged="TagCloudControl_TagSelectionChanged" />
-                            </Border>
+              </Border>
 
-                            <!--  age chart  -->
-                            <Border Style="{DynamicResource StatisticsHeaderStyle}">
-                                <TextBlock Foreground="{DynamicResource FontColor}" Text="Age Distributions" />
-                            </Border>
-                            <Border Style="{DynamicResource StatisticsControlStyle}">
-                                <local:Histogram
+              <!--  age chart  -->
+              <Border Style="{DynamicResource StatisticsHeaderStyle}">
+                <TextBlock Foreground="{DynamicResource FontColor}" Text="Age Distributions" />
+              </Border>
+              <Border Style="{DynamicResource StatisticsControlStyle}">
+                <local:Histogram
                                     x:Name="AgeDistributionControl"
                                     MaxHeight="130"
                                     AxisBrush="{DynamicResource AxisBrush}"
@@ -511,24 +511,24 @@
                                     DisabledForegroundBrush="{DynamicResource DisabledForegroundBrush}"
                                     Foreground="{DynamicResource FontColor}"
                                     SelectedBrush="{DynamicResource FamilyEditListViewSelectedBrush}" />
-                            </Border>
+              </Border>
 
-                            <!--  birthdays chart  -->
-                            <Border Style="{DynamicResource StatisticsHeaderStyle}">
-                                <TextBlock Foreground="{DynamicResource FontColor}" Text="Birthdays" />
-                            </Border>
-                            <Border MaxHeight="130" Style="{DynamicResource StatisticsControlStyle}">
-                                <local:SharedBirthdays x:Name="BirthdaysControl" SharedBirthdaysSelectionChanged="BirthdaysControl_SelectionChanged" />
-                            </Border>
+              <!--  birthdays chart  -->
+              <Border Style="{DynamicResource StatisticsHeaderStyle}">
+                <TextBlock Foreground="{DynamicResource FontColor}" Text="Birthdays" />
+              </Border>
+              <Border MaxHeight="130" Style="{DynamicResource StatisticsControlStyle}">
+                <local:SharedBirthdays x:Name="BirthdaysControl" SharedBirthdaysSelectionChanged="BirthdaysControl_SelectionChanged" />
+              </Border>
 
-                        </StackPanel>
-                    </Border>
+            </StackPanel>
+          </Border>
 
-                </Grid>
-            </Border>
+        </Grid>
+      </Border>
 
-        </DockPanel>
-    </Border>
+    </DockPanel>
+  </Border>
 
 </UserControl>
 
