@@ -274,14 +274,17 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     protected SolidColorBrush GetBrush(Color color)
     {
       // Create the brush.
-      SolidColorBrush brush = new SolidColorBrush(color);
-
-      // Set the opacity based on the filtered state.
-      brush.Opacity = (isFiltered) ? Const.OpacityFiltered : Const.OpacityNormal;
+      SolidColorBrush brush = new SolidColorBrush(color)
+      {
+        // Set the opacity based on the filtered state.
+        Opacity = (isFiltered) ? Const.OpacityFiltered : Const.OpacityNormal
+      };
 
       // Create animation if the filtered state has changed.
       if (animation != null)
+      {
         brush.BeginAnimation(Brush.OpacityProperty, animation);
+      }
 
       return brush;
     }
