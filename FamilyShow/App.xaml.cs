@@ -24,9 +24,7 @@ namespace Microsoft.FamilyShow
     // The main list of family members that is shared for the entire application.
     // The FamilyCollection and Family fields are accessed from the same thread,
     // so suppressing the CA2211 code analysis warning.
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2211:NonConstantFieldsShouldNotBeVisible")]
     public static People FamilyCollection = new People();
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2211:NonConstantFieldsShouldNotBeVisible")]
     public static PeopleCollection Family = FamilyCollection.PeopleCollection;
 
     // The number of recent files to keep track of.

@@ -189,8 +189,10 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     public Diagram()
     {
       // Init the diagram logic, which handles all of the layout logic.
-      logic = new DiagramLogic();
-      logic.NodeClickHandler = new RoutedEventHandler(OnNodeClick);
+      logic = new DiagramLogic
+      {
+        NodeClickHandler = new RoutedEventHandler(OnNodeClick)
+      };
 
       // Can have an empty People collection when in design tools such as Blend.
       if (logic.Family != null)
@@ -611,8 +613,7 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     private void OnNodeClick(object sender, RoutedEventArgs e)
     {
       // Get the node that was clicked.
-      DiagramNode node = sender as DiagramNode;
-      if (node != null)
+      if (sender is DiagramNode node)
       {
         // Make it the primary node. This raises the CurrentChanged
         // event, which repopulates the diagram.

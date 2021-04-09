@@ -202,8 +202,11 @@ namespace Microsoft.FamilyShow
       // Prompt to save if the file has not been saved before, otherwise just save to the existing file.
       if (string.IsNullOrEmpty(familyCollection.FullyQualifiedFilename) || family.IsOldVersion)
       {
-        CommonDialog dialog = new CommonDialog();
-        dialog.InitialDirectory = People.ApplicationFolderPath;
+        CommonDialog dialog = new CommonDialog
+        {
+          InitialDirectory = People.ApplicationFolderPath
+        };
+
         dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyV3Files, Properties.Resources.FamilyV3Extension));
         dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
         dialog.Title = Properties.Resources.SaveAs;
@@ -258,8 +261,11 @@ namespace Microsoft.FamilyShow
     {
       PromptToSave();
 
-      CommonDialog dialog = new CommonDialog();
-      dialog.InitialDirectory = People.ApplicationFolderPath;
+      CommonDialog dialog = new CommonDialog
+      {
+        InitialDirectory = People.ApplicationFolderPath
+      };
+
       dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyFiles, Properties.Resources.FamilyExtensions));
       dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyV3Files, Properties.Resources.FamilyV3Extension));
       dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyV2Files, Properties.Resources.FamilyV2Extension));
@@ -349,8 +355,11 @@ namespace Microsoft.FamilyShow
         // Prompt to save if the file has not been saved before, otherwise just save to the existing file.
         if (string.IsNullOrEmpty(familyCollection.FullyQualifiedFilename) || family.IsOldVersion)
         {
-          CommonDialog dialog = new CommonDialog();
-          dialog.InitialDirectory = People.ApplicationFolderPath;
+          CommonDialog dialog = new CommonDialog
+          {
+            InitialDirectory = People.ApplicationFolderPath
+          };
+
           dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyV3Files, Properties.Resources.FamilyV3Extension));
           dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
           dialog.Title = Properties.Resources.SaveAs;
@@ -393,8 +402,11 @@ namespace Microsoft.FamilyShow
       else
       {
 
-        CommonDialog dialog = new CommonDialog();
-        dialog.InitialDirectory = People.ApplicationFolderPath;
+        CommonDialog dialog = new CommonDialog
+        {
+          InitialDirectory = People.ApplicationFolderPath
+        };
+
         dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyFiles, Properties.Resources.FamilyV3Extension));
         dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
         dialog.Title = Properties.Resources.SaveAs;
@@ -444,8 +456,11 @@ namespace Microsoft.FamilyShow
     {
       PromptToSave();
 
-      CommonDialog dialog = new CommonDialog();
-      dialog.InitialDirectory = People.ApplicationFolderPath;
+      CommonDialog dialog = new CommonDialog
+      {
+        InitialDirectory = People.ApplicationFolderPath
+      };
+
       dialog.Filter.Add(new FilterEntry(Properties.Resources.GedcomFiles, Properties.Resources.GedcomExtension));
       dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
       dialog.Title = Properties.Resources.Import;
@@ -479,8 +494,11 @@ namespace Microsoft.FamilyShow
     /// </summary>
     private void ExportGedcom(object sender, EventArgs e)
     {
-      CommonDialog dialog = new CommonDialog();
-      dialog.InitialDirectory = People.ApplicationFolderPath;
+      CommonDialog dialog = new CommonDialog
+      {
+        InitialDirectory = People.ApplicationFolderPath
+      };
+
       dialog.Filter.Add(new FilterEntry(Properties.Resources.GedcomFiles, Properties.Resources.GedcomExtension));
       dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
       dialog.Title = Properties.Resources.Export;
@@ -508,8 +526,11 @@ namespace Microsoft.FamilyShow
     /// </summary>
     private void ExportXps(object sender, EventArgs e)
     {
-      CommonDialog dialog = new CommonDialog();
-      dialog.InitialDirectory = People.ApplicationFolderPath;
+      CommonDialog dialog = new CommonDialog
+      {
+        InitialDirectory = People.ApplicationFolderPath
+      };
+
       dialog.Filter.Add(new FilterEntry(Properties.Resources.XpsFiles, Properties.Resources.XpsExtension));
       dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
       dialog.Title = Properties.Resources.Export;
@@ -655,29 +676,33 @@ namespace Microsoft.FamilyShow
       }
     }
 
-    public static List<object> FilterBirth(Person p, int startYear)
+    public static List<object> FilterBirth(Person person, int startYear)
     {
       int yearOfBirth;
-      var res = new List<object>();
-      if (int.TryParse(p.YearOfBirth, out yearOfBirth))
+      var result = new List<object>();
+      if (int.TryParse(person.YearOfBirth, out yearOfBirth))
       {
         if (yearOfBirth >= startYear)
-          res.Add(p);
+        {
+          result.Add(person);
+        }
       }
-      return res;
+
+      return result;
     }
 
-    public static List<object> FilterMariage(Person p, int startYear)
+    public static List<object> FilterMariage(Person person, int startYear)
     {
-      var res = new List<object>();
-      foreach (var spouseRelationship in p.ListSpousesRelationShip)
+      var result = new List<object>();
+      foreach (var spouseRelationship in person.ListSpousesRelationShip)
       {
         if (spouseRelationship.MarriageDate != null && spouseRelationship.MarriageDate?.Year >= startYear)
         {
-          res.Add(spouseRelationship);
+          result.Add(spouseRelationship);
         }
       }
-      return res;
+
+      return result;
     }
 
     public static void WriteTag(XmlWriter xmlDoc, IExportTag tag, Person p, object filterObj, string parentArbreLevelStr, int levelChild)
@@ -705,7 +730,6 @@ namespace Microsoft.FamilyShow
         {
 
         }
-
       }
 
       // dans tous les cas, on ferme!
@@ -853,9 +877,12 @@ namespace Microsoft.FamilyShow
       OpenMenu.Items.Clear();
 
       // MenuItem for opening files
-      MenuItem openMenuItem = new MenuItem();
-      openMenuItem.Header = "Open";
-      openMenuItem.Command = ApplicationCommands.Open;
+      MenuItem openMenuItem = new MenuItem
+      {
+        Header = "Open",
+        Command = ApplicationCommands.Open
+      };
+
       OpenMenu.Items.Add(openMenuItem);
 
       // Add the recent files to the menu as menu items
@@ -866,11 +893,13 @@ namespace Microsoft.FamilyShow
 
         foreach (string file in App.RecentFiles)
         {
-          MenuItem item = new MenuItem();
-          item.Header = Path.GetFileName(file);
-          item.CommandParameter = file;
-          item.Click += new RoutedEventHandler(OpenRecentFile_Click);
+          MenuItem item = new MenuItem
+          {
+            Header = Path.GetFileName(file),
+            CommandParameter = file
+          };
 
+          item.Click += new RoutedEventHandler(OpenRecentFile_Click);
           OpenMenu.Items.Add(item);
         }
       }
@@ -884,10 +913,12 @@ namespace Microsoft.FamilyShow
       NameValueCollection skins = App.Skins;
       foreach (string skinName in skins.AllKeys)
       {
-        MenuItem skin = new MenuItem();
-        skin.Header = skinName;
-        skin.CommandParameter = skins[skinName];
-        skin.Command = ChangeSkinCommand;
+        MenuItem skin = new MenuItem
+        {
+          Header = skinName,
+          CommandParameter = skins[skinName],
+          Command = ChangeSkinCommand
+        };
 
         SkinsMenu.Items.Add(skin);
       }
@@ -914,8 +945,11 @@ namespace Microsoft.FamilyShow
 
       if (result == MessageBoxResult.Yes)
       {
-        CommonDialog dialog = new CommonDialog();
-        dialog.InitialDirectory = People.ApplicationFolderPath;
+        CommonDialog dialog = new CommonDialog
+        {
+          InitialDirectory = People.ApplicationFolderPath
+        };
+
         dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyFiles, Properties.Resources.FamilyV3Extension));
         dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
         dialog.Title = Properties.Resources.SaveAs;
