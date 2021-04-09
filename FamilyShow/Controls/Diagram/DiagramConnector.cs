@@ -274,14 +274,17 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     protected SolidColorBrush GetBrush(Color color)
     {
       // Create the brush.
-      SolidColorBrush brush = new SolidColorBrush(color);
-
-      // Set the opacity based on the filtered state.
-      brush.Opacity = (isFiltered) ? Const.OpacityFiltered : Const.OpacityNormal;
+      SolidColorBrush brush = new SolidColorBrush(color)
+      {
+        // Set the opacity based on the filtered state.
+        Opacity = (isFiltered) ? Const.OpacityFiltered : Const.OpacityNormal
+      };
 
       // Create animation if the filtered state has changed.
       if (animation != null)
+      {
         brush.BeginAnimation(Brush.OpacityProperty, animation);
+      }
 
       return brush;
     }
@@ -298,10 +301,12 @@ namespace Microsoft.FamilyShow.Controls.Diagram
       {
         // Filtered state did change, create the animation.
         IsFiltered = newFiltered;
-        animation = new DoubleAnimation();
-        animation.From = isFiltered ? Const.OpacityNormal : Const.OpacityFiltered;
-        animation.To = isFiltered ? Const.OpacityFiltered : Const.OpacityNormal;
-        animation.Duration = App.GetAnimationDuration(Const.AnimationDuration);
+        animation = new DoubleAnimation
+        {
+          From = isFiltered ? Const.OpacityNormal : Const.OpacityFiltered,
+          To = isFiltered ? Const.OpacityFiltered : Const.OpacityNormal,
+          Duration = App.GetAnimationDuration(Const.AnimationDuration)
+        };
       }
       else
       {
@@ -527,13 +532,15 @@ namespace Microsoft.FamilyShow.Controls.Diagram
         Point startPoint, Point middlePoint, Point endPoint)
     {
       PathGeometry geometry = new PathGeometry();
-      PathFigure figure = new PathFigure();
-      figure.StartPoint = startPoint;
+      PathFigure figure = new PathFigure
+      {
+        StartPoint = startPoint
+      };
+
       figure.Segments.Add(new QuadraticBezierSegment(middlePoint, endPoint, true));
       geometry.Figures.Add(figure);
       drawingContext.DrawGeometry(null, pen, geometry);
       return geometry.Bounds;
     }
   }
-
 }
