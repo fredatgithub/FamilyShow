@@ -8,7 +8,7 @@ Here is an example:
 ![family.jpg example](
 https://github.com/fredatgithub/FamilyShow/blob/master/family.jpg)
 
-Usage:
+**How to use this application:**
 
 Go to the Release page:
 
