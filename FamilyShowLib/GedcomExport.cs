@@ -272,8 +272,7 @@ namespace Microsoft.FamilyShowLib
       // does not contain carriage returns or exceed the line length.
       if (value.Length < ValueLimit && !value.Contains("\r") && !value.Contains("\n"))
       {
-        // was CultureInfo.InvariantCulture and now CurrentCulture 
-        writer.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0} {1} {2}", level, tag, value));
+        writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", level, tag, value));
         return;
       }
 
@@ -304,21 +303,18 @@ namespace Microsoft.FamilyShowLib
           // the concatenation tag (CONT) for all other lines.
           if (lineIndex == 0 && chunkIndex == 0)
           {
-            // was CultureInfo.InvariantCulture and now CurrentCulture
-            writer.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0} {1} {2}", level, tag, chunk));
+            writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", level, tag, chunk));
           }
           else
           {
-            // was CultureInfo.InvariantCulture and now CurrentCulture
-            writer.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0} {1} {2}", level + 1, "CONC", chunk));
+            writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", level + 1, "CONC", chunk));
           }
         }
 
         // All lines except the last line have the continue (CONT) tag.
         if (lineIndex < lines.Length - 1)
         {
-          // was CultureInfo.InvariantCulture and now CurrentCulture
-          writer.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0} {1}", level + 1, "CONT"));
+          writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1}", level + 1, "CONT"));
         }
       }
     }
