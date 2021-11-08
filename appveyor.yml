@@ -24,7 +24,7 @@ platform:
 # to add several configurations to build matrix:
 # build debug in case you have #IfDebug clause
 configuration:
-  - Debug
+#  - Debug
   - Release
 
 install:
@@ -44,7 +44,7 @@ before_build:
 build:
   # MSBuild verbosity level
   #verbosity: quiet|minimal|normal|detailed
-  verbosity: minimal
+  verbosity: detailed
   parallel: true  
 
 # scripts to run after build
@@ -66,4 +66,6 @@ build:
 #    - asm2.dll
 
 # to disable automatic tests 
+# on
+# off
 test: off
