@@ -12,7 +12,7 @@ using System.Windows.Data;
 
 namespace Microsoft.FamilyShow.Controls.FamilyData
 {
-    public partial class FamilyData : UserControl
+  public partial class FamilyData : UserControl
   {
     // Event that is raised when the Back button is clicked.
     public static readonly RoutedEvent CloseButtonClickEvent = EventManager.RegisterRoutedEvent("CloseButtonClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(FamilyData));
@@ -47,7 +47,6 @@ namespace Microsoft.FamilyShow.Controls.FamilyData
       AgeDistributionControl.CategoryLabels.Add(AgeGroup.Adult, Properties.Resources.AgeGroupAdult);
       AgeDistributionControl.CategoryLabels.Add(AgeGroup.MiddleAge, Properties.Resources.AgeGroupMiddleAge);
       AgeDistributionControl.CategoryLabels.Add(AgeGroup.Senior, Properties.Resources.AgeGroupSenior);
-
       BirthdaysControl.PeopleCollection = App.Family;
     }
 
