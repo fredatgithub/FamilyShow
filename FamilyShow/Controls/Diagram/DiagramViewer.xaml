@@ -7,146 +7,144 @@
     xmlns:local="clr-namespace:Microsoft.FamilyShow"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <UserControl.Resources>
-
-        <!--  animation when zoom area fades in  -->
-        <Storyboard x:Key="FadeInAnimation">
-            <DoubleAnimation
+  <UserControl.Resources>
+    <!--  animation when zoom area fades in  -->
+    <Storyboard x:Key="FadeInAnimation">
+      <DoubleAnimation
                 Storyboard.TargetProperty="Opacity"
                 To="0.9"
                 Duration="0:0:0.5" />
-        </Storyboard>
+    </Storyboard>
 
-        <!--  animation when zoom area fades out  -->
-        <Storyboard x:Key="FadeOutAnimation">
-            <DoubleAnimation
+    <!--  animation when zoom area fades out  -->
+    <Storyboard x:Key="FadeOutAnimation">
+      <DoubleAnimation
                 Storyboard.TargetProperty="Opacity"
                 To="0.3"
                 Duration="0:0:0.5" />
-        </Storyboard>
+    </Storyboard>
 
-        <!--  scroll viewer  -->
-        <Style x:Key="ScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
-            <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" />
-            <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
-        </Style>
+    <!--  scroll viewer  -->
+    <Style x:Key="ScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
+      <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" />
+      <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+    </Style>
 
-        <!--  zoom area  -->
-        <Style x:Key="ZoomAreaStyle" TargetType="{x:Type StackPanel}">
-            <Setter Property="Opacity" Value=".3" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Bottom" />
-            <Setter Property="Margin" Value="15" />
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard Storyboard="{StaticResource FadeInAnimation}" />
-                    </EventTrigger.Actions>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard Storyboard="{StaticResource FadeOutAnimation}" />
-                    </EventTrigger.Actions>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>
+    <!--  zoom area  -->
+    <Style x:Key="ZoomAreaStyle" TargetType="{x:Type StackPanel}">
+      <Setter Property="Opacity" Value=".3" />
+      <Setter Property="HorizontalAlignment" Value="Right" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+      <Setter Property="Margin" Value="15" />
+      <Style.Triggers>
+        <EventTrigger RoutedEvent="MouseEnter">
+          <EventTrigger.Actions>
+            <BeginStoryboard Storyboard="{StaticResource FadeInAnimation}" />
+          </EventTrigger.Actions>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="MouseLeave">
+          <EventTrigger.Actions>
+            <BeginStoryboard Storyboard="{StaticResource FadeOutAnimation}" />
+          </EventTrigger.Actions>
+        </EventTrigger>
+      </Style.Triggers>
+    </Style>
 
-        <!--  zoom slider  -->
-        <Style x:Key="ZoomSliderStyle" TargetType="{x:Type Slider}">
-            <Setter Property="Width" Value="20" />
-            <Setter Property="Height" Value="70" />
-            <Setter Property="Cursor" Value="Arrow" />
-            <Setter Property="Orientation" Value="Vertical" />
-            <Setter Property="TickPlacement" Value="None" />
-            <Setter Property="SmallChange" Value="0.1" />
-            <Setter Property="LargeChange" Value=".25" />
-            <Setter Property="Maximum" Value="10" />
-            <Setter Property="Minimum" Value=".5" />
-            <Setter Property="IsSnapToTickEnabled" Value="False" />
-        </Style>
+    <!--  zoom slider  -->
+    <Style x:Key="ZoomSliderStyle" TargetType="{x:Type Slider}">
+      <Setter Property="Width" Value="20" />
+      <Setter Property="Height" Value="70" />
+      <Setter Property="Cursor" Value="Arrow" />
+      <Setter Property="Orientation" Value="Vertical" />
+      <Setter Property="TickPlacement" Value="None" />
+      <Setter Property="SmallChange" Value="0.1" />
+      <Setter Property="LargeChange" Value=".25" />
+      <Setter Property="Maximum" Value="10" />
+      <Setter Property="Minimum" Value=".5" />
+      <Setter Property="IsSnapToTickEnabled" Value="False" />
+    </Style>
 
-        <!--  zoom label  -->
-        <Style x:Key="ZoomLabelStyle" TargetType="{x:Type Label}">
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="White" />
-        </Style>
+    <!--  zoom label  -->
+    <Style x:Key="ZoomLabelStyle" TargetType="{x:Type Label}">
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="Foreground" Value="White" />
+    </Style>
 
-        <!--  time area  -->
-        <Style x:Key="TimeAreaStyle" TargetType="{x:Type StackPanel}">
-            <Setter Property="Opacity" Value=".3" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Bottom" />
-            <Setter Property="Margin" Value="15" />
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard Storyboard="{StaticResource FadeInAnimation}" />
-                    </EventTrigger.Actions>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard Storyboard="{StaticResource FadeOutAnimation}" />
-                    </EventTrigger.Actions>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>
+    <!--  time area  -->
+    <Style x:Key="TimeAreaStyle" TargetType="{x:Type StackPanel}">
+      <Setter Property="Opacity" Value=".3" />
+      <Setter Property="HorizontalAlignment" Value="Left" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+      <Setter Property="Margin" Value="15" />
+      <Style.Triggers>
+        <EventTrigger RoutedEvent="MouseEnter">
+          <EventTrigger.Actions>
+            <BeginStoryboard Storyboard="{StaticResource FadeInAnimation}" />
+          </EventTrigger.Actions>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="MouseLeave">
+          <EventTrigger.Actions>
+            <BeginStoryboard Storyboard="{StaticResource FadeOutAnimation}" />
+          </EventTrigger.Actions>
+        </EventTrigger>
+      </Style.Triggers>
+    </Style>
 
-        <!--  time slider  -->
-        <Style x:Key="TimeSliderStyle" TargetType="{x:Type Slider}">
-            <Setter Property="Width" Value="20" />
-            <Setter Property="Height" Value="70" />
-            <Setter Property="Cursor" Value="Arrow" />
-            <Setter Property="Orientation" Value="Vertical" />
-            <Setter Property="TickPlacement" Value="None" />
-            <Setter Property="SmallChange" Value="1" />
-            <Setter Property="IsSnapToTickEnabled" Value="True" />
-        </Style>
+    <!--  time slider  -->
+    <Style x:Key="TimeSliderStyle" TargetType="{x:Type Slider}">
+      <Setter Property="Width" Value="20" />
+      <Setter Property="Height" Value="70" />
+      <Setter Property="Cursor" Value="Arrow" />
+      <Setter Property="Orientation" Value="Vertical" />
+      <Setter Property="TickPlacement" Value="None" />
+      <Setter Property="SmallChange" Value="1" />
+      <Setter Property="IsSnapToTickEnabled" Value="True" />
+    </Style>
 
-        <!--  time label  -->
-        <Style x:Key="TimeLabelStyle" TargetType="{x:Type Label}">
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="White" />
-        </Style>
+    <!--  time label  -->
+    <Style x:Key="TimeLabelStyle" TargetType="{x:Type Label}">
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="Foreground" Value="White" />
+    </Style>
 
-        <!--  slider border  -->
-        <Style x:Key="SliderBorderStyle" TargetType="{x:Type Border}">
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="CornerRadius" Value="10" />
-            <Setter Property="Background" Value="#80000000" />
-            <Setter Property="BorderBrush" Value="#80ffffff" />
-            <Setter Property="Padding" Value="7" />
-        </Style>
+    <!--  slider border  -->
+    <Style x:Key="SliderBorderStyle" TargetType="{x:Type Border}">
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Background" Value="#80000000" />
+      <Setter Property="BorderBrush" Value="#80ffffff" />
+      <Setter Property="Padding" Value="7" />
+    </Style>
 
-    </UserControl.Resources>
+  </UserControl.Resources>
 
-    <Grid>
-        <ScrollViewer x:Name="ScrollViewer" Style="{StaticResource ScrollViewerStyle}">
-            <Grid x:Name="Grid">
-                <diagram:Diagram x:Name="Diagram" />
-            </Grid>
-        </ScrollViewer>
+  <Grid>
+    <ScrollViewer x:Name="ScrollViewer" Style="{StaticResource ScrollViewerStyle}">
+      <Grid x:Name="Grid">
+        <diagram:Diagram x:Name="Diagram" />
+      </Grid>
+    </ScrollViewer>
 
-        <!--  zoom  -->
-        <StackPanel x:Name="ZoomSliderPanel" Style="{StaticResource ZoomAreaStyle}">
-            <Border Style="{StaticResource SliderBorderStyle}">
-                <StackPanel>
-                    <Slider x:Name="ZoomSlider" Style="{StaticResource ZoomSliderStyle}" />
-                    <Label Style="{StaticResource ZoomLabelStyle}">Zoom</Label>
-                </StackPanel>
-            </Border>
+    <!--  zoom  -->
+    <StackPanel x:Name="ZoomSliderPanel" Style="{StaticResource ZoomAreaStyle}">
+      <Border Style="{StaticResource SliderBorderStyle}">
+        <StackPanel>
+          <Slider x:Name="ZoomSlider" Style="{StaticResource ZoomSliderStyle}" />
+          <Label Style="{StaticResource ZoomLabelStyle}">Zoom</Label>
         </StackPanel>
+      </Border>
+    </StackPanel>
 
-        <!--  time  -->
-        <StackPanel d:IsHidden="True" Style="{StaticResource TimeAreaStyle}">
-            <Border Style="{StaticResource SliderBorderStyle}">
-                <StackPanel>
-                    <Label Content="{Binding ElementName=TimeSlider, Path=Value}" Style="{StaticResource TimeLabelStyle}" />
-                    <Slider x:Name="TimeSlider" Style="{StaticResource TimeSliderStyle}" />
-                    <Label Style="{StaticResource TimeLabelStyle}">Time</Label>
-                </StackPanel>
-            </Border>
+    <!--  time  -->
+    <StackPanel d:IsHidden="True" Style="{StaticResource TimeAreaStyle}">
+      <Border Style="{StaticResource SliderBorderStyle}">
+        <StackPanel>
+          <Label Content="{Binding ElementName=TimeSlider, Path=Value}" Style="{StaticResource TimeLabelStyle}" />
+          <Slider x:Name="TimeSlider" Style="{StaticResource TimeSliderStyle}" />
+          <Label Style="{StaticResource TimeLabelStyle}">Time</Label>
         </StackPanel>
+      </Border>
+    </StackPanel>
 
-    </Grid>
+  </Grid>
 </UserControl>
