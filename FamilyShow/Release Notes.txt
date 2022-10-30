@@ -99,4 +99,3 @@ an existing file, import a GEDCOM file, and when the application terminates.
 Version 1.0.0.0 (2007-04-27)
 --
 Initial release.
-
