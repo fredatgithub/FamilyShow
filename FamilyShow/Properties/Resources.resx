@@ -244,7 +244,7 @@ To remove this template text, click on the Edit button, select all of the text (
     <value>Skins</value>
   </data>
   <data name="Story_Camilla_Shand" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Sample Files\Stories\Camilla Shand {cb2c1f69-5311-403a-948f-eaf74dd8e72d}.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\Sample Files\Stories\Camilla Shand.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="Story_Charles_Philip_Arthur_Windsor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Sample Files\Stories\Charles Philip Arthur Windsor {I11}.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
