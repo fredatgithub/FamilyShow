@@ -8,11 +8,11 @@ using System.Windows.Media.Imaging;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for Details.xaml
-    /// </summary>
+  /// <summary>
+  /// Interaction logic for Details.xaml
+  /// </summary>
 
-    public partial class Details : UserControl
+  public partial class Details : UserControl
   {
     #region fields
 

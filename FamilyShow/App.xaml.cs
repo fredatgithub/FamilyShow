@@ -43,14 +43,11 @@ namespace Microsoft.FamilyShow
     /// <summary>
     /// Occurs when the application starts.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     protected override void OnStartup(StartupEventArgs e)
     {
       InstallSampleFiles();
-
       // Load the collection of recent files.
       LoadRecentFiles();
-
       Properties.Settings appSettings = FamilyShow.Properties.Settings.Default;
 
       if (!string.IsNullOrEmpty(appSettings.Skin))
