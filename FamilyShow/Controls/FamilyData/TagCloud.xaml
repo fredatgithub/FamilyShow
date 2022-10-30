@@ -4,87 +4,87 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Microsoft.FamilyShow"
     Name="MainElement">
-    <UserControl.Resources>
-        <!--  Converter for the fontsize of the tags  -->
-        <local:CountToFontSizeConverter x:Key="CountToFontSizeConverter" />
+  <UserControl.Resources>
+    <!--  Converter for the fontsize of the tags  -->
+    <local:CountToFontSizeConverter x:Key="CountToFontSizeConverter" />
 
-        <Style x:Key="TagsListBox" TargetType="{x:Type ListBox}">
-            <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="Background" Value="{Binding ElementName=MainElement, Path=ListBackgroundBrush}" />
-            <Setter Property="BorderBrush" Value="{Binding ElementName=MainElement, Path=ListBorderBrush}" />
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListBox}">
-                        <Grid>
-                            <Border
+    <Style x:Key="TagsListBox" TargetType="{x:Type ListBox}">
+      <Setter Property="SnapsToDevicePixels" Value="true" />
+      <Setter Property="Background" Value="{Binding ElementName=MainElement, Path=ListBackgroundBrush}" />
+      <Setter Property="BorderBrush" Value="{Binding ElementName=MainElement, Path=ListBorderBrush}" />
+      <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+      <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+      <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ListBox}">
+            <Grid>
+              <Border
                                 x:Name="Border"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}" />
-                            <ScrollViewer
+              <ScrollViewer
                                 Margin="1"
                                 Background="{TemplateBinding Background}"
                                 Focusable="false">
 
-                                <!--  Replaced the default StackPanel ItemsHost with a WrapPanel to get the TagCloud layout  -->
-                                <WrapPanel Margin="2" IsItemsHost="true" />
+                <!--  Replaced the default StackPanel ItemsHost with a WrapPanel to get the TagCloud layout  -->
+                <WrapPanel Margin="2" IsItemsHost="true" />
 
-                            </ScrollViewer>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+              </ScrollViewer>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
-        <DataTemplate x:Key="TagCloudTemplate">
-            <TextBlock
+    <DataTemplate x:Key="TagCloudTemplate">
+      <TextBlock
                 Padding="0,0,10,0"
                 VerticalAlignment="Bottom"
                 Foreground="{Binding ElementName=MainElement, Path=Foreground}"
                 Text="{Binding Path=Name, Mode=Default}">
-                <TextBlock.FontSize>
-                    <MultiBinding Converter="{StaticResource CountToFontSizeConverter}">
-                        <Binding Mode="OneWay" Path="ItemCount" />
-                        <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:TagCloud}}" />
-                    </MultiBinding>
-                </TextBlock.FontSize>
-            </TextBlock>
-        </DataTemplate>
+        <TextBlock.FontSize>
+          <MultiBinding Converter="{StaticResource CountToFontSizeConverter}">
+            <Binding Mode="OneWay" Path="ItemCount" />
+            <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:TagCloud}}" />
+          </MultiBinding>
+        </TextBlock.FontSize>
+      </TextBlock>
+    </DataTemplate>
 
-        <Style x:Key="TagCloudListBoxItem" TargetType="{x:Type ListBoxItem}">
-            <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="OverridesDefaultStyle" Value="true" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                        <Grid SnapsToDevicePixels="true">
-                            <Border
+    <Style x:Key="TagCloudListBoxItem" TargetType="{x:Type ListBoxItem}">
+      <Setter Property="SnapsToDevicePixels" Value="true" />
+      <Setter Property="OverridesDefaultStyle" Value="true" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ListBoxItem}">
+            <Grid SnapsToDevicePixels="true">
+              <Border
                                 x:Name="Border"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}" />
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
+              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Grid>
+            <ControlTemplate.Triggers>
 
-                            <!--  Change IsSelected SelectedBackgroundBrush to set the selection color for the items  -->
-                            <Trigger Property="IsSelected" Value="true">
-                                <Setter TargetName="Border" Property="Background" Value="{Binding ElementName=MainElement, Path=SelectedBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Foreground" Value="{Binding ElementName=MainElement, Path=DisabledForegroundBrush}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+              <!--  Change IsSelected SelectedBackgroundBrush to set the selection color for the items  -->
+              <Trigger Property="IsSelected" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{Binding ElementName=MainElement, Path=SelectedBrush}" />
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{Binding ElementName=MainElement, Path=DisabledForegroundBrush}" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
 
-        </Style>
-    </UserControl.Resources>
+    </Style>
+  </UserControl.Resources>
 
-    <ListBox
+  <ListBox
         x:Name="TagCloudListBox"
         HorizontalAlignment="Stretch"
         BorderThickness="0,0,0,0"

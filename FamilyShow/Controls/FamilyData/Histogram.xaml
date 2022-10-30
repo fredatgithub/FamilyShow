@@ -4,96 +4,96 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Microsoft.FamilyShow"
     Name="MainElement">
-    <UserControl.Resources>
+  <UserControl.Resources>
 
-        <local:HistogramValueToPercentageConverter x:Key="HistogramValueToPercentageConverter" />
-        <local:HistogramColumnLabelConverter x:Key="HistogramColumnLabelConverter" />
+    <local:HistogramValueToPercentageConverter x:Key="HistogramValueToPercentageConverter" />
+    <local:HistogramColumnLabelConverter x:Key="HistogramColumnLabelConverter" />
 
-        <ControlTemplate x:Key="HistogramListBoxControlTemplate" TargetType="{x:Type ListBox}">
-            <WrapPanel IsItemsHost="True" />
-        </ControlTemplate>
+    <ControlTemplate x:Key="HistogramListBoxControlTemplate" TargetType="{x:Type ListBox}">
+      <WrapPanel IsItemsHost="True" />
+    </ControlTemplate>
 
-        <DataTemplate x:Key="CategoryTemplate">
-            <StackPanel>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="100" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
-                        <Rectangle
+    <DataTemplate x:Key="CategoryTemplate">
+      <StackPanel>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+          <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+            <Rectangle
                             Grid.Row="0"
                             VerticalAlignment="Bottom"
                             Fill="{Binding ElementName=MainElement, Path=CategoryFill}"
                             Stroke="{Binding ElementName=MainElement, Path=CategoryStroke}"
                             StrokeThickness="1">
-                            <Rectangle.Height>
-                                <MultiBinding Converter="{StaticResource HistogramValueToPercentageConverter}">
-                                    <Binding Mode="OneWay" Path="ItemCount" />
-                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:Histogram}}" />
-                                </MultiBinding>
-                            </Rectangle.Height>
-                        </Rectangle>
-                    </StackPanel>
-                    <Label
+              <Rectangle.Height>
+                <MultiBinding Converter="{StaticResource HistogramValueToPercentageConverter}">
+                  <Binding Mode="OneWay" Path="ItemCount" />
+                  <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:Histogram}}" />
+                </MultiBinding>
+              </Rectangle.Height>
+            </Rectangle>
+          </StackPanel>
+          <Label
                         x:Name="CategoryTitle"
                         Grid.Row="1"
                         HorizontalContentAlignment="Center"
                         Foreground="{Binding ElementName=MainElement, Path=Foreground}">
-                        <Label.Content>
-                            <MultiBinding Converter="{StaticResource HistogramColumnLabelConverter}">
-                                <Binding Mode="OneWay" Path="Name" />
-                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:Histogram}}" />
-                            </MultiBinding>
-                        </Label.Content>
-                    </Label>
-                </Grid>
-            </StackPanel>
-        </DataTemplate>
+            <Label.Content>
+              <MultiBinding Converter="{StaticResource HistogramColumnLabelConverter}">
+                <Binding Mode="OneWay" Path="Name" />
+                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:Histogram}}" />
+              </MultiBinding>
+            </Label.Content>
+          </Label>
+        </Grid>
+      </StackPanel>
+    </DataTemplate>
 
-        <Style x:Key="HistogramListBoxItem" TargetType="{x:Type ListBoxItem}">
-            <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="OverridesDefaultStyle" Value="true" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                        <Grid Margin="2,0,2,0" SnapsToDevicePixels="true">
-                            <Border
+    <Style x:Key="HistogramListBoxItem" TargetType="{x:Type ListBoxItem}">
+      <Setter Property="SnapsToDevicePixels" Value="true" />
+      <Setter Property="OverridesDefaultStyle" Value="true" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ListBoxItem}">
+            <Grid Margin="2,0,2,0" SnapsToDevicePixels="true">
+              <Border
                                 x:Name="Border"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}" />
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
+              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Grid>
+            <ControlTemplate.Triggers>
 
-                            <!--  Change IsSelected SelectedBackgroundBrush to set the selection color for the items  -->
-                            <Trigger Property="IsSelected" Value="true">
-                                <Setter TargetName="Border" Property="Background" Value="{Binding ElementName=MainElement, Path=SelectedBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Foreground" Value="{Binding ElementName=MainElement, Path=DisabledForegroundBrush}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+              <!--  Change IsSelected SelectedBackgroundBrush to set the selection color for the items  -->
+              <Trigger Property="IsSelected" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{Binding ElementName=MainElement, Path=SelectedBrush}" />
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{Binding ElementName=MainElement, Path=DisabledForegroundBrush}" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
-    </UserControl.Resources>
+  </UserControl.Resources>
 
-    <Viewbox Margin="0">
-        <Grid x:Name="LayoutRoot" Margin="4,4,4,4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+  <Viewbox Margin="0">
+    <Grid x:Name="LayoutRoot" Margin="4,4,4,4">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
 
-            <!--  Category Bars and X Axis Labels  -->
-            <ListBox
+      <!--  Category Bars and X Axis Labels  -->
+      <ListBox
                 x:Name="HistogramListBox"
                 Grid.Column="1"
                 Margin="8,2,8,0"
@@ -104,15 +104,15 @@
                 SelectionChanged="HistogramListBox_SelectionChanged"
                 Template="{StaticResource HistogramListBoxControlTemplate}" />
 
-            <!--  X Axis  -->
-            <Rectangle
+      <!--  X Axis  -->
+      <Rectangle
                 Grid.Column="1"
                 Height="1"
                 Margin="0,82,0,0"
                 Stroke="{Binding ElementName=MainElement, Path=AxisBrush}" />
 
-            <!--  Y Axis  -->
-            <Rectangle
+      <!--  Y Axis  -->
+      <Rectangle
                 Grid.Column="1"
                 Width="1"
                 Height="104"
@@ -121,16 +121,16 @@
                 VerticalAlignment="Top"
                 Stroke="{Binding ElementName=MainElement, Path=AxisBrush}" />
 
-            <!--  Y Axis Labels  -->
-            <StackPanel Grid.Column="0" Orientation="Vertical">
-                <Label
+      <!--  Y Axis Labels  -->
+      <StackPanel Grid.Column="0" Orientation="Vertical">
+        <Label
                     x:Name="TotalCountLabel"
                     Margin="0,0,0,54"
                     Foreground="{Binding ElementName=MainElement, Path=Foreground}" />
-                <Label Content="0" Foreground="{Binding ElementName=MainElement, Path=Foreground}" />
-            </StackPanel>
+        <Label Content="0" Foreground="{Binding ElementName=MainElement, Path=Foreground}" />
+      </StackPanel>
 
-        </Grid>
-    </Viewbox>
+    </Grid>
+  </Viewbox>
 
 </UserControl>

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,10 +8,10 @@ using System.Windows.Media;
 
 namespace Microsoft.FamilyShow
 {
-    /// <summary>
-    /// Interaction logic for TagCloud.xaml
-    /// </summary>
-    public partial class TagCloud : UserControl
+  /// <summary>
+  /// Interaction logic for TagCloud.xaml
+  /// </summary>
+  public partial class TagCloud : UserControl
   {
     private ListCollectionView view;
 
@@ -128,7 +129,7 @@ namespace Microsoft.FamilyShow
     }
   }
 
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
+  [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
   class CountToFontSizeConverter : IMultiValueConverter
   {
     #region IMultiValueConverter Members

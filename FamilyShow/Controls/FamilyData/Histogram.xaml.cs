@@ -122,7 +122,10 @@ namespace Microsoft.FamilyShow
     public string GetCategoryLabel(object columnValue)
     {
       if (CategoryLabels.ContainsKey(columnValue))
+      {
         return CategoryLabels[columnValue];
+      }
+
       return columnValue.ToString();
     }
 
@@ -170,7 +173,6 @@ namespace Microsoft.FamilyShow
   /// <summary>
   /// Converts a category count to a value between 1 and 100.
   /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
   class HistogramValueToPercentageConverter : IMultiValueConverter
   {
     #region IMultiValueConverter Members
@@ -210,10 +212,9 @@ namespace Microsoft.FamilyShow
   }
 
   /// <summary>
-  /// Converts a person's age group to a text label that can be used on the histogram. Text is 
-  /// retrieved from the resource file for the project.
+  /// Converts a person's age group to a text label that can be used on the histogram.
+  /// Text is retrieved from the resource file for the project.
   /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
   class HistogramColumnLabelConverter : IMultiValueConverter
   {
     #region IMultiValueConverter Members
@@ -227,8 +228,8 @@ namespace Microsoft.FamilyShow
         return histogram.GetCategoryLabel(columnValue);
       }
       catch { }
-      return null;
 
+      return null;
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

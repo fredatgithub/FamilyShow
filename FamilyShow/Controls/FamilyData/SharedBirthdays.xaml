@@ -4,68 +4,68 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Microsoft.FamilyShow">
 
-    <UserControl.Resources>
-        <Style x:Key="GroupedListBox" TargetType="{x:Type ListBox}">
-            <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource SolidBorderBrush}" />
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
-        </Style>
+  <UserControl.Resources>
+    <Style x:Key="GroupedListBox" TargetType="{x:Type ListBox}">
+      <Setter Property="SnapsToDevicePixels" Value="true" />
+      <Setter Property="Background" Value="{DynamicResource MainBackgroundBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource SolidBorderBrush}" />
+      <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+      <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+      <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+    </Style>
 
-        <Style x:Key="GroupedListBoxItem" TargetType="{x:Type ListBoxItem}">
-            <Setter Property="SnapsToDevicePixels" Value="true" />
-            <Setter Property="OverridesDefaultStyle" Value="true" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                        <Grid SnapsToDevicePixels="true">
-                            <Border
+    <Style x:Key="GroupedListBoxItem" TargetType="{x:Type ListBoxItem}">
+      <Setter Property="SnapsToDevicePixels" Value="true" />
+      <Setter Property="OverridesDefaultStyle" Value="true" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ListBoxItem}">
+            <Grid SnapsToDevicePixels="true">
+              <Border
                                 x:Name="Border"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}" />
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
+              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Grid>
+            <ControlTemplate.Triggers>
 
-                            <!--  Change IsSelected SelectedBackgroundBrush to set the selection color for the items  -->
-                            <Trigger Property="IsSelected" Value="true">
-                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource FamilyEditListViewSelectedBrush}" />
-                            </Trigger>
+              <!--  Change IsSelected SelectedBackgroundBrush to set the selection color for the items  -->
+              <Trigger Property="IsSelected" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource FamilyEditListViewSelectedBrush}" />
+              </Trigger>
 
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+              <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
-        <ControlTemplate x:Key="GroupedListControlTemplate" TargetType="{x:Type ListBox}">
-            <WrapPanel IsItemsHost="True" />
-        </ControlTemplate>
+    <ControlTemplate x:Key="GroupedListControlTemplate" TargetType="{x:Type ListBox}">
+      <WrapPanel IsItemsHost="True" />
+    </ControlTemplate>
 
-        <DataTemplate x:Key="HeaderTemplate">
-            <TextBlock
+    <DataTemplate x:Key="HeaderTemplate">
+      <TextBlock
                 Margin="0,10,0,0"
                 Foreground="{DynamicResource SharedBirthdaysGroupHeaderColor}"
                 Text="{Binding Path=Name}" />
-        </DataTemplate>
+    </DataTemplate>
 
-        <DataTemplate x:Key="ItemDataTemplate">
-            <TextBlock
+    <DataTemplate x:Key="ItemDataTemplate">
+      <TextBlock
                 Margin="20,0,0,0"
                 FontWeight="Medium"
                 Foreground="{DynamicResource FontColor}"
                 Text="{Binding Path=Name}" />
-        </DataTemplate>
-    </UserControl.Resources>
+    </DataTemplate>
+  </UserControl.Resources>
 
-    <DockPanel>
-        <ListBox
+  <DockPanel>
+    <ListBox
             x:Name="GroupedItemsControl"
             VerticalAlignment="Top"
             Background="{x:Null}"
@@ -76,9 +76,9 @@
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             SelectionChanged="GroupedListBox_SelectionChanged">
-            <ListBox.GroupStyle>
-                <GroupStyle HeaderTemplate="{StaticResource HeaderTemplate}" />
-            </ListBox.GroupStyle>
-        </ListBox>
-    </DockPanel>
+      <ListBox.GroupStyle>
+        <GroupStyle HeaderTemplate="{StaticResource HeaderTemplate}" />
+      </ListBox.GroupStyle>
+    </ListBox>
+  </DockPanel>
 </UserControl>
