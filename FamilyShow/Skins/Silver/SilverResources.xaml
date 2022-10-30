@@ -4,9 +4,7 @@
     xmlns:Microsoft.FamilyShowLib="clr-namespace:Microsoft.FamilyShowLib;assembly=FamilyShowLib"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:Microsoft.FamilyShow;assembly=FamilyShow">
-
   <local:ImageConverter x:Key="ImageConverter" />
-
   <!--  NormalBrush is used as the Background for SimpleButton, SimpleRepeatButton  -->
   <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
     <GradientStop Offset="0.0" Color="#EEE" />

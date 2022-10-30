@@ -9,772 +9,770 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     DataContextChanged="UserControl_DataContextChanged">
-    <UserControl.Resources>
-        <ResourceDictionary>
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <!--  Converter for formatting dates to short date format  -->
+      <local:DateFormattingConverter x:Key="DateFormattingConverter" />
+      <!--  Converter for displaying the the first name with an apostrophe.  -->
+      <local:FirstNamePossessiveFormConverter x:Key="FirstNamePossessiveFormConverter" />
 
-            <!--  Converter for formatting dates to short date format  -->
-            <local:DateFormattingConverter x:Key="DateFormattingConverter" />
+      <!--  Converter for showing/hiding features based on boolean property  -->
+      <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
-            <!--  Converter for displaying the the first name with an apostrophe.  -->
-            <local:FirstNamePossessiveFormConverter x:Key="FirstNamePossessiveFormConverter" />
+      <!--  Converter for disabling the death related textboxes  -->
+      <local:NotConverter x:Key="NotConverter" />
 
-            <!--  Converter for showing/hiding features based on boolean property  -->
-            <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+      <!--  Converter for showing/hiding the parents, spouses, and avatar section  -->
+      <local:ComposingConverter x:Key="ComposingConverter">
+        <local:ComposingConverter.Converters>
+          <local:NotConverter />
+          <local:BoolToVisibilityConverter />
+        </local:ComposingConverter.Converters>
+      </local:ComposingConverter>
 
-            <!--  Converter for disabling the death related textboxes  -->
-            <local:NotConverter x:Key="NotConverter" />
+      <local:ImageConverter x:Key="ImageConverter" />
 
-            <!--  Converter for showing/hiding the parents, spouses, and avatar section  -->
-            <local:ComposingConverter x:Key="ComposingConverter">
-                <local:ComposingConverter.Converters>
-                    <local:NotConverter />
-                    <local:BoolToVisibilityConverter />
-                </local:ComposingConverter.Converters>
-            </local:ComposingConverter>
-
-            <local:ImageConverter x:Key="ImageConverter" />
-
-            <!--  Data provider for binding to the relationship types enum values  -->
-            <ObjectDataProvider
+      <!--  Data provider for binding to the relationship types enum values  -->
+      <ObjectDataProvider
                 x:Key="RelationshipValuesEnumDS"
                 MethodName="GetValues"
                 ObjectType="{x:Type sys:Enum}">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="local:FamilyMemberComboBoxValue" />
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
+        <ObjectDataProvider.MethodParameters>
+          <x:Type TypeName="local:FamilyMemberComboBoxValue" />
+        </ObjectDataProvider.MethodParameters>
+      </ObjectDataProvider>
 
-            <!--  Data provider for binding to the spouse modifier enum values  -->
-            <ObjectDataProvider
+      <!--  Data provider for binding to the spouse modifier enum values  -->
+      <ObjectDataProvider
                 x:Key="SpouseStatusEnumDS"
                 MethodName="GetValues"
                 ObjectType="{x:Type sys:Enum}">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="Microsoft.FamilyShowLib:SpouseModifier" />
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
+        <ObjectDataProvider.MethodParameters>
+          <x:Type TypeName="Microsoft.FamilyShowLib:SpouseModifier" />
+        </ObjectDataProvider.MethodParameters>
+      </ObjectDataProvider>
 
-            <!--  Data provider for binding to the gender types enum values  -->
-            <ObjectDataProvider
+      <!--  Data provider for binding to the gender types enum values  -->
+      <ObjectDataProvider
                 x:Key="GenderEnumDS"
                 MethodName="GetValues"
                 ObjectType="{x:Type sys:Enum}">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="Microsoft.FamilyShowLib:Gender" />
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
+        <ObjectDataProvider.MethodParameters>
+          <x:Type TypeName="Microsoft.FamilyShowLib:Gender" />
+        </ObjectDataProvider.MethodParameters>
+      </ObjectDataProvider>
 
-            <!--  Data Template for displaying the parent set  -->
-            <DataTemplate x:Key="ParentSetTemplate">
-                <TextBlock Text="{Binding Path=Name, Mode=Default}" />
-            </DataTemplate>
+      <!--  Data Template for displaying the parent set  -->
+      <DataTemplate x:Key="ParentSetTemplate">
+        <TextBlock Text="{Binding Path=Name, Mode=Default}" />
+      </DataTemplate>
 
-            <!--  Animation for expanding the Details Add section  -->
-            <Storyboard x:Key="ExpandDetailsAdd" Completed="ExpandDetailsAdd_StoryboardCompleted">
-                <DoubleAnimationUsingKeyFrames
+      <!--  Animation for expanding the Details Add section  -->
+      <Storyboard x:Key="ExpandDetailsAdd" Completed="ExpandDetailsAdd_StoryboardCompleted">
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(UIElement.Visibility)">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00.3000000" Value="{x:Static Visibility.Visible}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+          <DiscreteObjectKeyFrame KeyTime="00:00:00.3000000" Value="{x:Static Visibility.Visible}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="225" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="225" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEdit"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0.2" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0.2" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsList"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0.2" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0.2" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="FamilyMemberAddButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="AddButton"
                     Storyboard.TargetProperty="(Button.IsDefault)">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00.3000000" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00.3000000" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEditRelationship"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditRelationshipsButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="InfoButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-            </Storyboard>
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <!--  Animation for collapsing the Details Add section  -->
-            <Storyboard x:Key="CollapseDetailsAdd" Completed="CollapseDetailsAdd_StoryboardCompleted">
-                <DoubleAnimationUsingKeyFrames
+      <!--  Animation for collapsing the Details Add section  -->
+      <Storyboard x:Key="CollapseDetailsAdd" Completed="CollapseDetailsAdd_StoryboardCompleted">
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(UIElement.Visibility)">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00.3000000" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+          <DiscreteObjectKeyFrame KeyTime="00:00:00.3000000" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="225" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="225" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEdit"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsList"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="FamilyMemberAddButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEditRelationship"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="InfoButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditRelationshipsButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-            </Storyboard>
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <!--  Animation for expanding the Details Edit section  -->
-            <Storyboard x:Key="ExpandDetailsEdit" Completed="ExpandDetailsEdit_StoryboardCompleted">
-                <DoubleAnimationUsingKeyFrames
+      <!--  Animation for expanding the Details Edit section  -->
+      <Storyboard x:Key="ExpandDetailsEdit" Completed="ExpandDetailsEdit_StoryboardCompleted">
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEdit"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="545" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="545" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEdit"
                     Storyboard.TargetProperty="(UIElement.Visibility)">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00.3000000" Value="{x:Static Visibility.Visible}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+          <DiscreteObjectKeyFrame KeyTime="00:00:00.3000000" Value="{x:Static Visibility.Visible}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsList"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0.2" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0.2" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DoneEditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00.3000000" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00.3000000" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEditRelationship"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAddIntermediate"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-            </Storyboard>
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <!--  Animation for collapsing the Details Edit section  -->
-            <Storyboard x:Key="CollapseDetailsEdit" Completed="CollapseDetailsEdit_StoryboardCompleted">
-                <DoubleAnimationUsingKeyFrames
+      <!--  Animation for collapsing the Details Edit section  -->
+      <Storyboard x:Key="CollapseDetailsEdit" Completed="CollapseDetailsEdit_StoryboardCompleted">
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEdit"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="545" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="545" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsList"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DoneEditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-            </Storyboard>
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <!--  Animation for expanding the Details Edit Relationship section  -->
-            <Storyboard x:Key="ExpandDetailsEditRelationship" Completed="ExpandDetailsEditRelationship_StoryboardCompleted">
-                <ObjectAnimationUsingKeyFrames
+      <!--  Animation for expanding the Details Edit Relationship section  -->
+      <Storyboard x:Key="ExpandDetailsEditRelationship" Completed="ExpandDetailsEditRelationship_StoryboardCompleted">
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEdit"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEditRelationship"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+        </ObjectAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAddIntermediate"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEditRelationship"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <!--  Animation for collapsing the Details Edit Relationship section  -->
-            <Storyboard x:Key="CollapseDetailsEditRelationship" Completed="CollapseDetailsEditRelationship_StoryboardCompleted">
-                <DoubleAnimationUsingKeyFrames
+      <!--  Animation for collapsing the Details Edit Relationship section  -->
+      <Storyboard x:Key="CollapseDetailsEditRelationship" Completed="CollapseDetailsEditRelationship_StoryboardCompleted">
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEditRelationship"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEdit"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAddIntermediate"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
-                </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <!--  Animation for expanding the Details Add Intermediate section  -->
-            <Storyboard x:Key="ExpandDetailsAddIntermediate" Completed="ExpandDetailsAddIntermediate_StoryboardCompleted">
-                <DoubleAnimationUsingKeyFrames
+      <!--  Animation for expanding the Details Add Intermediate section  -->
+      <Storyboard x:Key="ExpandDetailsAddIntermediate" Completed="ExpandDetailsAddIntermediate_StoryboardCompleted">
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)"
                     Duration="00:00:00.0010000">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="225" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="225" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEdit"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(UIElement.Opacity)"
                     Duration="00:00:00.0010000">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsList"
                     Storyboard.TargetProperty="(UIElement.Opacity)"
                     Duration="00:00:00.0010000">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="FamilyMemberAddButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="AddButton"
                     Storyboard.TargetProperty="(Button.IsDefault)">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00.3000000" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00.3000000" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEditRelationship"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAddIntermediate"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAddIntermediate"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="200" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="200" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditRelationshipsButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="InfoButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-            </Storyboard>
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <!--  Animation for collapsing the Details Add Intermediate section  -->
-            <Storyboard x:Key="CollapseDetailsAddIntermediate" Completed="CollapseDetailsAddIntermediate_StoryboardCompleted">
-                <DoubleAnimationUsingKeyFrames
+      <!--  Animation for collapsing the Details Add Intermediate section  -->
+      <Storyboard x:Key="CollapseDetailsAddIntermediate" Completed="CollapseDetailsAddIntermediate_StoryboardCompleted">
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="225" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="225" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEdit"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsList"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="FamilyMemberAddButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEditRelationship"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAddIntermediate"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="200" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="200" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditRelationshipsButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="InfoButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-            </Storyboard>
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <ControlTemplate x:Key="LabelControlTemplate" TargetType="{x:Type Label}">
-                <Border
+      <ControlTemplate x:Key="LabelControlTemplate" TargetType="{x:Type Label}">
+        <Border
                     Margin="0,0,0,3"
                     Padding="{TemplateBinding Padding}"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{DynamicResource BorderBrush}"
                     BorderThickness="0,0,0,1"
                     SnapsToDevicePixels="True">
-                    <ContentPresenter
+          <ContentPresenter
                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
                         RecognizesAccessKey="True"
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                </Border>
-                <ControlTemplate.Triggers>
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                    </Trigger>
-                </ControlTemplate.Triggers>
-            </ControlTemplate>
+        </Border>
+        <ControlTemplate.Triggers>
+          <Trigger Property="IsEnabled" Value="False">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+          </Trigger>
+        </ControlTemplate.Triggers>
+      </ControlTemplate>
 
-            <Storyboard x:Key="NoPhoto_MouseEnter">
-                <ObjectAnimationUsingKeyFrames
+      <Storyboard x:Key="NoPhoto_MouseEnter">
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DragPhotoTextBlock"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="NoPhotoRectangle"
                     Storyboard.TargetProperty="(UIElement.Opacity)"
                     Duration="00:00:00.0010000">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.5" />
-                </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
-            <Storyboard x:Key="NoPhoto_MouseLeave">
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.5" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="NoPhoto_MouseLeave">
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DragPhotoTextBlock"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Hidden}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Hidden}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="NoPhotoRectangle"
                     Storyboard.TargetProperty="(UIElement.Opacity)"
                     Duration="00:00:00.0010000">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-                </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <Storyboard x:Key="ExpandAddExisting" Completed="ExpandAddExisting_StoryboardCompleted">
-                <DoubleAnimationUsingKeyFrames
+      <Storyboard x:Key="ExpandAddExisting" Completed="ExpandAddExisting_StoryboardCompleted">
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="AddExisting"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="545" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="545" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="AddExisting"
                     Storyboard.TargetProperty="(UIElement.Visibility)">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00.3000000" Value="{x:Static Visibility.Visible}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+          <DiscreteObjectKeyFrame KeyTime="00:00:00.3000000" Value="{x:Static Visibility.Visible}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsList"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0.2" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0.2" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DoneEditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00.3000000" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00.3000000" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsEditRelationship"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAddIntermediate"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-            </Storyboard>
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <Storyboard x:Key="CollapseAddExisting" Completed="CollapseAddExisting_StoryboardCompleted">
-                <DoubleAnimationUsingKeyFrames
+      <Storyboard x:Key="CollapseAddExisting" Completed="CollapseAddExisting_StoryboardCompleted">
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="AddExisting"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="545" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="545" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsInfo"
                     Storyboard.TargetProperty="(FrameworkElement.Height)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
-                </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="300" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsAdd"
                     Storyboard.TargetProperty="(UIElement.Visibility)"
                     Duration="00:00:00.0010000">
-                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
-                </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames
+          <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+        </ObjectAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DetailsList"
                     Storyboard.TargetProperty="(UIElement.Opacity)">
-                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
-                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
-                </DoubleAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="EditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
-                </BooleanAnimationUsingKeyFrames>
-                <BooleanAnimationUsingKeyFrames
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True" />
+        </BooleanAnimationUsingKeyFrames>
+        <BooleanAnimationUsingKeyFrames
                     BeginTime="00:00:00"
                     Storyboard.TargetName="DoneEditButton"
                     Storyboard.TargetProperty="(UIElement.IsEnabled)"
                     Duration="00:00:00.0010000">
-                    <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
-                </BooleanAnimationUsingKeyFrames>
-            </Storyboard>
+          <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False" />
+        </BooleanAnimationUsingKeyFrames>
+      </Storyboard>
 
-            <Microsoft.FamilyShowLib:Person x:Key="person" />
+      <Microsoft.FamilyShowLib:Person x:Key="person" />
 
-            <ControlTemplate x:Key="TextBoxErrorTemplate">
-                <!--  Visibility binding is used in this instance to hide the error adorner when the adorned element is not visible  -->
-                <DockPanel Visibility="{Binding Path=AdornedElement.IsVisible, Converter={StaticResource BoolToVisibilityConverter}, ElementName=adornedElementPlaceholder}">
-                    <!--  Display the error text as tooltip  -->
-                    <Rectangle
+      <ControlTemplate x:Key="TextBoxErrorTemplate">
+        <!--  Visibility binding is used in this instance to hide the error adorner when the adorned element is not visible  -->
+        <DockPanel Visibility="{Binding Path=AdornedElement.IsVisible, Converter={StaticResource BoolToVisibilityConverter}, ElementName=adornedElementPlaceholder}">
+          <!--  Display the error text as tooltip  -->
+          <Rectangle
                         Width="12"
                         Height="12"
                         Margin="0,0,0,5"
@@ -782,309 +780,309 @@
                         DockPanel.Dock="Top"
                         Fill="{StaticResource ErrorIcon}"
                         ToolTip="{Binding Path=AdornedElement.(Validation.Errors)[0].ErrorContent, ElementName=adornedElementPlaceholder}" />
-                    <Border BorderBrush="Red" BorderThickness="1">
-                        <AdornedElementPlaceholder x:Name="adornedElementPlaceholder" />
-                    </Border>
-                </DockPanel>
-            </ControlTemplate>
+          <Border BorderBrush="Red" BorderThickness="1">
+            <AdornedElementPlaceholder x:Name="adornedElementPlaceholder" />
+          </Border>
+        </DockPanel>
+      </ControlTemplate>
 
-            <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFF" />
-            <SolidColorBrush x:Key="SolidBorderBrush" Color="#888" />
-            <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
-            <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
-            <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA" />
+      <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFF" />
+      <SolidColorBrush x:Key="SolidBorderBrush" Color="#888" />
+      <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+      <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
+      <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA" />
 
-            <!--  This is the default style for all textboxes in this user control  -->
-            <Style BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
-                <Setter Property="SnapsToDevicePixels" Value="True" />
-                <Setter Property="OverridesDefaultStyle" Value="True" />
-                <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
-                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                <Setter Property="MinWidth" Value="120" />
-                <Setter Property="MinHeight" Value="20" />
-                <Setter Property="AllowDrop" Value="true" />
-                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxErrorTemplate}" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                            <Border
+      <!--  This is the default style for all textboxes in this user control  -->
+      <Style BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="MinWidth" Value="120" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="AllowDrop" Value="true" />
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxErrorTemplate}" />
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type TextBoxBase}">
+              <Border
                                 x:Name="Border"
                                 Padding="2"
                                 Background="{StaticResource WindowBackgroundBrush}"
                                 BorderBrush="{StaticResource SolidBorderBrush}"
                                 BorderThickness="1"
                                 CornerRadius="2">
-                                <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource InputBackgroundBrush}" />
-                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBackgroundBrush}" />
-                                    <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+              </Border>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter TargetName="Border" Property="Background" Value="{DynamicResource InputBackgroundBrush}" />
+                  <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBackgroundBrush}" />
+                  <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
 
-            <Style x:Key="DetailsSeparatorStyle" TargetType="{x:Type Separator}">
-                <Setter Property="Background" Value="#FF6573A0" />
-                <Setter Property="Margin" Value="10,5,10,5" />
-                <Setter Property="Focusable" Value="false" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Separator}">
-                            <Border
+      <Style x:Key="DetailsSeparatorStyle" TargetType="{x:Type Separator}">
+        <Setter Property="Background" Value="#FF6573A0" />
+        <Setter Property="Margin" Value="10,5,10,5" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type Separator}">
+              <Border
                                 Height="2"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 SnapsToDevicePixels="true" />
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
 
-            <DataTemplate x:Key="ExistPersonTemplate">
-                <DataTemplate.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Foreground" Value="#FF1F3066" />
-                    </Style>
-                </DataTemplate.Resources>
-                <HeaderedItemsControl
+      <DataTemplate x:Key="ExistPersonTemplate">
+        <DataTemplate.Resources>
+          <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF1F3066" />
+          </Style>
+        </DataTemplate.Resources>
+        <HeaderedItemsControl
                     Margin="5,5,5,5"
                     Foreground="#FF1F3066"
                     Header="{Binding Path=FullName}"
                     Style="{DynamicResource HeaderedItemsControlStyle}">
-                    <TextBlock
+          <TextBlock
                         x:Name="BirthDatePanel"
                         Margin="0,0,0,5"
                         Text="{Binding Path=BirthDateAndPlace}"
                         TextWrapping="Wrap" />
-                    <TextBlock
+          <TextBlock
                         x:Name="ParentsDatePanel"
                         Margin="0,0,0,5"
                         TextWrapping="Wrap">
                         <Run local:BindableExtender.BindableText="{Binding Path=ParentRelationshipText}" /><Run Text=" of " /><Run local:BindableExtender.BindableText="{Binding Path=ParentsText}" />
-                    </TextBlock>
-                    <TextBlock
+          </TextBlock>
+          <TextBlock
                         x:Name="SiblingsDatePanel"
                         Margin="0,0,0,5"
                         TextWrapping="Wrap">
                         <Run local:BindableExtender.BindableText="{Binding Path=SiblingRelationshipText}" /><Run Text=" to " /><Run local:BindableExtender.BindableText="{Binding Path=SiblingsText}" />
-                    </TextBlock>
-                    <TextBlock
+          </TextBlock>
+          <TextBlock
                         x:Name="SpousesDatePanel"
                         Margin="0,0,0,5"
                         TextWrapping="Wrap">
                         <Run local:BindableExtender.BindableText="{Binding Path=SpouseRelationshipText}" /><Run Text=" to " /><Run local:BindableExtender.BindableText="{Binding Path=SpousesText}" />
-                    </TextBlock>
-                    <TextBlock
+          </TextBlock>
+          <TextBlock
                         x:Name="ChildrenDatePanel"
                         Margin="0,0,0,5"
                         TextWrapping="Wrap">
                         <Run local:BindableExtender.BindableText="{Binding Path=ChildRelationshipText}" /><Run Text=" to " /><Run local:BindableExtender.BindableText="{Binding Path=ChildrenText}" />
-                    </TextBlock>
-                </HeaderedItemsControl>
-                <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding Path=BirthDate}" Value="{x:Null}">
-                        <Setter TargetName="BirthDatePanel" Property="Visibility" Value="Collapsed" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Path=Parents.Count}" Value="0">
-                        <Setter TargetName="ParentsDatePanel" Property="Visibility" Value="Collapsed" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Path=Siblings.Count}" Value="0">
-                        <Setter TargetName="SiblingsDatePanel" Property="Visibility" Value="Collapsed" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Path=Spouses.Count}" Value="0">
-                        <Setter TargetName="SpousesDatePanel" Property="Visibility" Value="Collapsed" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Path=Children.Count}" Value="0">
-                        <Setter TargetName="ChildrenDatePanel" Property="Visibility" Value="Collapsed" />
-                    </DataTrigger>
-                </DataTemplate.Triggers>
-            </DataTemplate>
+          </TextBlock>
+        </HeaderedItemsControl>
+        <DataTemplate.Triggers>
+          <DataTrigger Binding="{Binding Path=BirthDate}" Value="{x:Null}">
+            <Setter TargetName="BirthDatePanel" Property="Visibility" Value="Collapsed" />
+          </DataTrigger>
+          <DataTrigger Binding="{Binding Path=Parents.Count}" Value="0">
+            <Setter TargetName="ParentsDatePanel" Property="Visibility" Value="Collapsed" />
+          </DataTrigger>
+          <DataTrigger Binding="{Binding Path=Siblings.Count}" Value="0">
+            <Setter TargetName="SiblingsDatePanel" Property="Visibility" Value="Collapsed" />
+          </DataTrigger>
+          <DataTrigger Binding="{Binding Path=Spouses.Count}" Value="0">
+            <Setter TargetName="SpousesDatePanel" Property="Visibility" Value="Collapsed" />
+          </DataTrigger>
+          <DataTrigger Binding="{Binding Path=Children.Count}" Value="0">
+            <Setter TargetName="ChildrenDatePanel" Property="Visibility" Value="Collapsed" />
+          </DataTrigger>
+        </DataTemplate.Triggers>
+      </DataTemplate>
 
-            <Style x:Key="HeaderedItemsControlStyle" TargetType="{x:Type HeaderedItemsControl}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type HeaderedItemsControl}">
-                            <StackPanel>
-                                <Grid>
-                                    <Rectangle Fill="{TemplateBinding Background}" />
-                                    <ContentPresenter ContentSource="Header" />
-                                </Grid>
-                                <Grid>
-                                    <Rectangle Stroke="{TemplateBinding BorderBrush}" />
-                                    <ItemsPresenter Margin="15,0,0,0" />
-                                </Grid>
-                            </StackPanel>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+      <Style x:Key="HeaderedItemsControlStyle" TargetType="{x:Type HeaderedItemsControl}">
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type HeaderedItemsControl}">
+              <StackPanel>
+                <Grid>
+                  <Rectangle Fill="{TemplateBinding Background}" />
+                  <ContentPresenter ContentSource="Header" />
+                </Grid>
+                <Grid>
+                  <Rectangle Stroke="{TemplateBinding BorderBrush}" />
+                  <ItemsPresenter Margin="15,0,0,0" />
+                </Grid>
+              </StackPanel>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
 
-            <DataTemplate x:Key="FamilyMemberDataTemplate">
-                <StackPanel x:Name="panel" RenderTransformOrigin="0.5,0.5">
-                    <StackPanel.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1" ScaleY="1" />
-                            <SkewTransform AngleX="0" AngleY="0" />
-                            <RotateTransform Angle="0" />
-                            <TranslateTransform X="15" Y="0" />
-                        </TransformGroup>
-                    </StackPanel.RenderTransform>
-                    <Separator x:Name="separator" Visibility="Collapsed" />
-                    <DockPanel>
-                        <TextBlock
+      <DataTemplate x:Key="FamilyMemberDataTemplate">
+        <StackPanel x:Name="panel" RenderTransformOrigin="0.5,0.5">
+          <StackPanel.RenderTransform>
+            <TransformGroup>
+              <ScaleTransform ScaleX="1" ScaleY="1" />
+              <SkewTransform AngleX="0" AngleY="0" />
+              <RotateTransform Angle="0" />
+              <TranslateTransform X="15" Y="0" />
+            </TransformGroup>
+          </StackPanel.RenderTransform>
+          <Separator x:Name="separator" Visibility="Collapsed" />
+          <DockPanel>
+            <TextBlock
                             x:Name="text"
                             Text="{Binding}"
                             TextWrapping="Wrap" />
-                        <TextBlock Text="..." TextWrapping="Wrap" />
-                    </DockPanel>
-                </StackPanel>
-                <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding}" Value="Existing">
-                        <Setter TargetName="separator" Property="Visibility" Value="Visible" />
-                        <Setter TargetName="text" Property="Text" Value="Connect Family Member" />
-                        <Setter TargetName="panel" Property="StackPanel.RenderTransform">
-                            <Setter.Value>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="1" ScaleY="1" />
-                                    <SkewTransform AngleX="0" AngleY="0" />
-                                    <RotateTransform Angle="0" />
-                                    <TranslateTransform X="0" Y="0" />
-                                </TransformGroup>
-                            </Setter.Value>
-                        </Setter>
-                    </DataTrigger>
-                </DataTemplate.Triggers>
-            </DataTemplate>
+            <TextBlock Text="..." TextWrapping="Wrap" />
+          </DockPanel>
+        </StackPanel>
+        <DataTemplate.Triggers>
+          <DataTrigger Binding="{Binding}" Value="Existing">
+            <Setter TargetName="separator" Property="Visibility" Value="Visible" />
+            <Setter TargetName="text" Property="Text" Value="Connect Family Member" />
+            <Setter TargetName="panel" Property="StackPanel.RenderTransform">
+              <Setter.Value>
+                <TransformGroup>
+                  <ScaleTransform ScaleX="1" ScaleY="1" />
+                  <SkewTransform AngleX="0" AngleY="0" />
+                  <RotateTransform Angle="0" />
+                  <TranslateTransform X="0" Y="0" />
+                </TransformGroup>
+              </Setter.Value>
+            </Setter>
+          </DataTrigger>
+        </DataTemplate.Triggers>
+      </DataTemplate>
 
-            <DataTemplate x:Key="ExistingFamilyMemberDataTemplate">
-                <StackPanel x:Name="panel" Margin="15,0,0,0">
-                    <TextBlock
+      <DataTemplate x:Key="ExistingFamilyMemberDataTemplate">
+        <StackPanel x:Name="panel" Margin="15,0,0,0">
+          <TextBlock
                         x:Name="text"
                         Text="{Binding}"
                         TextWrapping="Wrap" />
-                </StackPanel>
-                <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding}" Value="Existing">
-                        <Setter TargetName="panel" Property="Visibility" Value="Collapsed" />
-                    </DataTrigger>
-                </DataTemplate.Triggers>
-            </DataTemplate>
+        </StackPanel>
+        <DataTemplate.Triggers>
+          <DataTrigger Binding="{Binding}" Value="Existing">
+            <Setter TargetName="panel" Property="Visibility" Value="Collapsed" />
+          </DataTrigger>
+        </DataTemplate.Triggers>
+      </DataTemplate>
 
-            <Style x:Key="ExistingPeopleListBoxStyle" TargetType="ListBox">
-                <Setter Property="SnapsToDevicePixels" Value="true" />
-                <Setter Property="OverridesDefaultStyle" Value="true" />
-                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
-                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-                <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
-                <Setter Property="MinWidth" Value="120" />
-                <Setter Property="MinHeight" Value="95" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ListBox">
-                            <Border
+      <Style x:Key="ExistingPeopleListBoxStyle" TargetType="ListBox">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+        <Setter Property="MinWidth" Value="120" />
+        <Setter Property="MinHeight" Value="95" />
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="ListBox">
+              <Border
                                 Name="Border"
                                 Background="#90FFFFFF"
                                 BorderBrush="{StaticResource SolidBorderBrush}"
                                 BorderThickness="0,0,0,0"
                                 CornerRadius="5,5,5,5">
-                                <ScrollViewer Margin="0" Focusable="false">
-                                    <StackPanel Margin="2" IsItemsHost="True" />
-                                </ScrollViewer>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsEnabled" Value="false">
-                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
-                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
-                                </Trigger>
-                                <Trigger Property="IsGrouping" Value="true">
-                                    <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                <ScrollViewer Margin="0" Focusable="false">
+                  <StackPanel Margin="2" IsItemsHost="True" />
+                </ScrollViewer>
+              </Border>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                  <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                  <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                </Trigger>
+                <Trigger Property="IsGrouping" Value="true">
+                  <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
 
-            <Style x:Key="ExistingPeopleListBoxItemStyle" TargetType="ListBoxItem">
-                <Setter Property="SnapsToDevicePixels" Value="true" />
-                <Setter Property="OverridesDefaultStyle" Value="true" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ListBoxItem">
-                            <Border
+      <Style x:Key="ExistingPeopleListBoxItemStyle" TargetType="ListBoxItem">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="ListBoxItem">
+              <Border
                                 Name="Border"
                                 Padding="2"
                                 SnapsToDevicePixels="true">
-                                <ContentPresenter />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsSelected" Value="true">
-                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource FamilyEditListViewSelectedBrush}" />
-                                </Trigger>
-                                <Trigger Property="IsEnabled" Value="false">
-                                    <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                <ContentPresenter />
+              </Border>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsSelected" Value="true">
+                  <Setter TargetName="Border" Property="Background" Value="{DynamicResource FamilyEditListViewSelectedBrush}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                  <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
 
-        </ResourceDictionary>
-    </UserControl.Resources>
+    </ResourceDictionary>
+  </UserControl.Resources>
 
-    <UserControl.Triggers>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="FamilyMemberAddButton">
-            <BeginStoryboard Storyboard="{StaticResource ExpandDetailsAdd}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="CloseButton">
-            <BeginStoryboard Storyboard="{StaticResource CollapseDetailsAdd}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="CancelAddExistingButton">
-            <BeginStoryboard Storyboard="{StaticResource CollapseAddExisting}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="EditButton">
-            <BeginStoryboard Storyboard="{StaticResource ExpandDetailsEdit}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="DoneEditButton">
-            <BeginStoryboard x:Name="CollapseDetailsEdit_BeginStoryboard" Storyboard="{StaticResource CollapseDetailsEdit}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="EditRelationshipsButton">
-            <BeginStoryboard x:Name="ExpandDetailsEditRelationship_BeginStoryboard1" Storyboard="{StaticResource ExpandDetailsEditRelationship}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="DoneEditRelationshipButton">
-            <BeginStoryboard x:Name="CollapseDetailsEditRelationship_BeginStoryboard1" Storyboard="{StaticResource CollapseDetailsEditRelationship}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="IntermediateCloseButton">
-            <BeginStoryboard x:Name="CollapseDetailsAddIntermediate_BeginStoryboard" Storyboard="{StaticResource CollapseDetailsAddIntermediate}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="NoPhotoBorder">
-            <BeginStoryboard x:Name="NoPhoto_MouseEnter_BeginStoryboard" Storyboard="{StaticResource NoPhoto_MouseEnter}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="NoPhotoBorder">
-            <BeginStoryboard x:Name="NoPhoto_MouseLeave_BeginStoryboard" Storyboard="{StaticResource NoPhoto_MouseLeave}" />
-        </EventTrigger>
-    </UserControl.Triggers>
+  <UserControl.Triggers>
+    <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="FamilyMemberAddButton">
+      <BeginStoryboard Storyboard="{StaticResource ExpandDetailsAdd}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="CloseButton">
+      <BeginStoryboard Storyboard="{StaticResource CollapseDetailsAdd}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="CancelAddExistingButton">
+      <BeginStoryboard Storyboard="{StaticResource CollapseAddExisting}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="EditButton">
+      <BeginStoryboard Storyboard="{StaticResource ExpandDetailsEdit}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="DoneEditButton">
+      <BeginStoryboard x:Name="CollapseDetailsEdit_BeginStoryboard" Storyboard="{StaticResource CollapseDetailsEdit}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="EditRelationshipsButton">
+      <BeginStoryboard x:Name="ExpandDetailsEditRelationship_BeginStoryboard1" Storyboard="{StaticResource ExpandDetailsEditRelationship}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="DoneEditRelationshipButton">
+      <BeginStoryboard x:Name="CollapseDetailsEditRelationship_BeginStoryboard1" Storyboard="{StaticResource CollapseDetailsEditRelationship}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="IntermediateCloseButton">
+      <BeginStoryboard x:Name="CollapseDetailsAddIntermediate_BeginStoryboard" Storyboard="{StaticResource CollapseDetailsAddIntermediate}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="NoPhotoBorder">
+      <BeginStoryboard x:Name="NoPhoto_MouseEnter_BeginStoryboard" Storyboard="{StaticResource NoPhoto_MouseEnter}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="NoPhotoBorder">
+      <BeginStoryboard x:Name="NoPhoto_MouseLeave_BeginStoryboard" Storyboard="{StaticResource NoPhoto_MouseLeave}" />
+    </EventTrigger>
+  </UserControl.Triggers>
 
-    <DockPanel>
+  <DockPanel>
 
-        <!--  Details Header  -->
-        <Border
+    <!--  Details Header  -->
+    <Border
             x:Name="DetailsHeaderBorder"
             Background="{DynamicResource BackgroundBrush}"
             BorderBrush="{DynamicResource BorderBrush}"
             BorderThickness="1,1,1,0"
             CornerRadius="10,10,0,0"
             DockPanel.Dock="Top">
-            <DockPanel x:Name="DetailsHeader">
-                <!--  Star  -->
-                <Path
+      <DockPanel x:Name="DetailsHeader">
+        <!--  Star  -->
+        <Path
                     x:Name="Star"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
@@ -1094,7 +1092,7 @@
                     Stroke="#ffffffff"
                     StrokeMiterLimit="1.000000"
                     StrokeThickness="1.500000" />
-                <Button
+        <Button
                     x:Name="DeleteButton"
                     Width="40"
                     Height="15"
@@ -1106,7 +1104,7 @@
                     FontSize="10"
                     Style="{DynamicResource RedButtonStyle}"
                     Visibility="{Binding Path=IsDeletable, Converter={StaticResource BoolToVisibilityConverter}, Mode=Default}" />
-                <TextBlock
+        <TextBlock
                     x:Name="NameHeader"
                     Height="23.94"
                     Margin="5,10,10,10"
@@ -1116,19 +1114,19 @@
                     Style="{DynamicResource HeaderStyle}"
                     Text="{Binding Path=FullName, Mode=Default, FallbackValue=Current Person}"
                     TextTrimming="CharacterEllipsis" />
-            </DockPanel>
-        </Border>
+      </DockPanel>
+    </Border>
 
-        <Border
+    <Border
             x:Name="DetailsBodyBorder"
             Background="{DynamicResource PanelGradientBrush}"
             BorderThickness="1,0,1,1"
             CornerRadius="0,0,10,10"
             DockPanel.Dock="Top"
             Style="{DynamicResource BorderStyle}">
-            <DockPanel>
-                <!--  Details Info displays the information about the person such as the person's photo, name, and birth date.  -->
-                <Border
+      <DockPanel>
+        <!--  Details Info displays the information about the person such as the person's photo, name, and birth date.  -->
+        <Border
                     x:Name="DetailsInfo"
                     Height="300"
                     Margin="0,0,0,0"
@@ -1139,21 +1137,21 @@
                     DockPanel.Dock="Top"
                     Opacity="1"
                     Style="{DynamicResource DetailsBorderStyle}">
-                    <StackPanel Margin="0,0,0,0" Background="{x:Null}">
-                        <Border BorderBrush="{DynamicResource BorderBrush}">
-                            <Grid Margin="15,10,15,5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition
+          <StackPanel Margin="0,0,0,0" Background="{x:Null}">
+            <Border BorderBrush="{DynamicResource BorderBrush}">
+              <Grid Margin="15,10,15,5">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition
                                         Width="Auto"
                                         MinWidth="90"
                                         MaxWidth="100" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid
                                     AllowDrop="True"
                                     Background="{x:Null}"
                                     Drop="AvatarPhoto_Drop">
-                                    <Border
+                  <Border
                                         x:Name="AvatarPhotoBorder"
                                         Margin="0,5,0,0"
                                         HorizontalAlignment="Left"
@@ -1161,10 +1159,10 @@
                                         Background="#02000000"
                                         BorderBrush="#02747474"
                                         BorderThickness="1,1,1,1">
-                                        <Border.BitmapEffect>
-                                            <DropShadowBitmapEffect ShadowDepth="7" Softness="0.75" />
-                                        </Border.BitmapEffect>
-                                        <Image
+                    <Border.BitmapEffect>
+                      <DropShadowBitmapEffect ShadowDepth="7" Softness="0.75" />
+                    </Border.BitmapEffect>
+                    <Image
                                             x:Name="Avatar"
                                             MaxWidth="125"
                                             MaxHeight="100"
@@ -1173,23 +1171,23 @@
                                             Source="{Binding Path=Avatar, Converter={StaticResource ImageConverter}, Mode=OneWay}"
                                             Stretch="Uniform"
                                             StretchDirection="DownOnly" />
-                                    </Border>
-                                    <Border
+                  </Border>
+                  <Border
                                         x:Name="NoPhotoBorder"
                                         Margin="0,5,5,5"
                                         Background="#02FFFFFF"
                                         BorderBrush="#FFFFFFFF"
                                         Visibility="{Binding Path=HasAvatar, Converter={StaticResource ComposingConverter}, Mode=Default}">
-                                        <Grid>
-                                            <Rectangle
+                    <Grid>
+                      <Rectangle
                                                 x:Name="NoPhotoRectangle"
                                                 Fill="{DynamicResource NoPhotoBrush}"
                                                 Stroke="{x:Null}">
-                                                <Rectangle.BitmapEffect>
-                                                    <DropShadowBitmapEffect ShadowDepth="7" Softness="0.75" />
-                                                </Rectangle.BitmapEffect>
-                                            </Rectangle>
-                                            <TextBlock
+                        <Rectangle.BitmapEffect>
+                          <DropShadowBitmapEffect ShadowDepth="7" Softness="0.75" />
+                        </Rectangle.BitmapEffect>
+                      </Rectangle>
+                      <TextBlock
                                                 x:Name="DragPhotoTextBlock"
                                                 MaxWidth="80"
                                                 HorizontalAlignment="Center"
@@ -1202,21 +1200,21 @@
                                                 TextAlignment="Center"
                                                 TextWrapping="Wrap"
                                                 Visibility="Hidden" />
-                                        </Grid>
-                                    </Border>
-                                </Grid>
-                                <StackPanel
+                    </Grid>
+                  </Border>
+                </Grid>
+                <StackPanel
                                     Grid.Column="1"
                                     Margin="10,0,0,0"
                                     HorizontalAlignment="Left">
-                                    <Label
+                  <Label
                                         x:Name="FullNameLabel"
                                         Margin="0,0,0,4"
                                         Padding="5,5,5,0"
                                         Content="Full Name"
                                         DockPanel.Dock="Top"
                                         Target="{Binding ElementName=FirstNameTextBox, Mode=OneWay}" />
-                                    <TextBlock
+                  <TextBlock
                                         x:Name="FullNameTextBlock"
                                         Margin="5,0,0,4"
                                         HorizontalAlignment="Left"
@@ -1226,13 +1224,13 @@
                                         Foreground="{DynamicResource FontColor}"
                                         Text="{Binding Path=FullName, Mode=OneWay, FallbackValue=Full name}"
                                         TextTrimming="CharacterEllipsis" />
-                                    <Label
+                  <Label
                                         Margin="0,0,0,4"
                                         Padding="5,8,5,0"
                                         Content="Born"
                                         DockPanel.Dock="Top"
                                         Target="{Binding ElementName=BirthDateTextBox, Mode=OneWay}" />
-                                    <TextBlock
+                  <TextBlock
                                         x:Name="BirthDateTextBlock"
                                         Margin="5,0,0,4"
                                         HorizontalAlignment="Left"
@@ -1242,7 +1240,7 @@
                                         Foreground="{DynamicResource FontColor}"
                                         Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Mode=OneWay, FallbackValue=Date of Birth}"
                                         TextTrimming="CharacterEllipsis" />
-                                    <TextBlock
+                  <TextBlock
                                         x:Name="BirthPlaceTextBlock"
                                         Margin="5,0,0,4"
                                         HorizontalAlignment="Left"
@@ -1252,11 +1250,11 @@
                                         Foreground="{DynamicResource FontColor}"
                                         Text="{Binding Path=BirthPlace, Mode=OneWay, FallbackValue=Place of Birth}"
                                         TextTrimming="CharacterEllipsis" />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
+                </StackPanel>
+              </Grid>
+            </Border>
 
-                        <Label
+            <Label
                             Width="95"
                             Height="22.87"
                             Margin="15,0,0,0"
@@ -1266,7 +1264,7 @@
                             Content="Edit Person"
                             Template="{DynamicResource LabelControlTemplate}" />
 
-                        <Button
+            <Button
                             x:Name="EditButton"
                             Width="95"
                             Margin="15,0,10,0"
@@ -1274,7 +1272,7 @@
                             Content="_Details"
                             FontSize="10"
                             Style="{DynamicResource BlackButtonStyle}" />
-                        <Button
+            <Button
                             x:Name="EditRelationshipsButton"
                             Width="95"
                             Margin="15,2,10,2"
@@ -1282,7 +1280,7 @@
                             Content="_Relationships"
                             FontSize="10"
                             Style="{DynamicResource BlackButtonStyle}" />
-                        <Button
+            <Button
                             x:Name="InfoButton"
                             Width="95"
                             Margin="15,2,10,2"
@@ -1292,24 +1290,24 @@
                             FontSize="10"
                             Style="{DynamicResource BlackButtonStyle}" />
 
-                        <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,1,0,0">
-                            <Grid
+            <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,1,0,0">
+              <Grid
                                 x:Name="AddFamilyGrid"
                                 Margin="10,5,10,10"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <TextBlock
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
                                     Margin="5,5,0,8"
                                     Style="{DynamicResource SectionHeaderStyle}"
                                     Text="Create Relationship" />
-                                <ComboBox
+                <ComboBox
                                     x:Name="FamilyMemberComboBox"
                                     Grid.Row="1"
                                     Width="120"
@@ -1320,7 +1318,7 @@
                                     ItemsSource="{Binding Source={StaticResource RelationshipValuesEnumDS}}"
                                     SelectionChanged="FamilyMemberComboBox_SelectionChanged"
                                     Style="{DynamicResource FamilyMemberComboBox}" />
-                                <Button
+                <Button
                                     x:Name="FamilyMemberAddButton"
                                     Grid.Row="1"
                                     Width="105"
@@ -1331,20 +1329,20 @@
                                     Click="FamilyMemberAddButton_Click"
                                     Content="_Add Father"
                                     FontSize="10" />
-                            </Grid>
-                        </Border>
-                        <Path
+              </Grid>
+            </Border>
+            <Path
                             Width="1"
                             Height="1"
                             Data="M64.5,146.06"
                             Fill="#FFFFFFFF"
                             Stretch="Fill"
                             Stroke="#FF000000" />
-                    </StackPanel>
-                </Border>
+          </StackPanel>
+        </Border>
 
-                <!--  Details Edit is used for modifying the person info  -->
-                <Border
+        <!--  Details Edit is used for modifying the person info  -->
+        <Border
                     x:Name="DetailsEdit"
                     Height="545"
                     Margin="0,0,0,0"
@@ -1357,8 +1355,8 @@
                     Drop="AvatarPhoto_Drop"
                     Style="{DynamicResource DetailsBorderStyle}"
                     Visibility="Visible">
-                    <StackPanel Margin="10,5,10,0" HorizontalAlignment="Stretch">
-                        <TextBlock
+          <StackPanel Margin="10,5,10,0" HorizontalAlignment="Stretch">
+            <TextBlock
                             Width="198.067"
                             Height="15.96"
                             Margin="5,0,0,10"
@@ -1367,13 +1365,13 @@
                             Style="{DynamicResource SectionHeaderStyle}"
                             Text="Details"
                             TextWrapping="Wrap" />
-                        <StackPanel Orientation="Horizontal">
-                            <Border
+            <StackPanel Orientation="Horizontal">
+              <Border
                                 Margin="5,0,0,0"
                                 BorderBrush="{DynamicResource BorderBrush}"
                                 BorderThickness="1,1,1,1">
-                                <Grid>
-                                    <TextBlock
+                <Grid>
+                  <TextBlock
                                         Width="80"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
@@ -1382,21 +1380,21 @@
                                         Text="Drag a photo here"
                                         TextAlignment="Center"
                                         TextWrapping="WrapWithOverflow" />
-                                    <Image
+                  <Image
                                         x:Name="AvatarPhoto"
                                         Width="80"
                                         Height="75"
                                         AllowDrop="True"
                                         Source="{Binding Path=Avatar, Converter={StaticResource ImageConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                </Grid>
-                            </Border>
-                            <StackPanel Margin="15,0,0,0">
-                                <Label
+                </Grid>
+              </Border>
+              <StackPanel Margin="15,0,0,0">
+                <Label
                                     Padding="5,0,5,2"
                                     Content="Gender"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=GenderListBox, Mode=OneWay}" />
-                                <ListBox
+                <ListBox
                                     x:Name="GenderListBox"
                                     Margin="0,-5,0,0"
                                     HorizontalAlignment="Left"
@@ -1406,89 +1404,89 @@
                                     Foreground="{DynamicResource InputFontColor}"
                                     KeyboardNavigation.DirectionalNavigation="Cycle"
                                     SelectedItem="{Binding Path=Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    <ListBox.Resources>
-                                        <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
-                                            <Setter Property="Margin" Value="2,2,2,0" />
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate>
-                                                        <Border Background="Transparent">
-                                                            <RadioButton
+                  <ListBox.Resources>
+                    <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+                      <Setter Property="Margin" Value="2,2,2,0" />
+                      <Setter Property="Template">
+                        <Setter.Value>
+                          <ControlTemplate>
+                            <Border Background="Transparent">
+                              <RadioButton
                                                                 Content="{TemplateBinding ContentPresenter.Content}"
                                                                 Focusable="False"
                                                                 Foreground="{Binding Path=Foreground, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                                                 IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                                                 IsHitTestVisible="False" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </ListBox.Resources>
-                                    <ListBox.ItemsSource>
-                                        <Binding Mode="OneWay" Source="{StaticResource GenderEnumDS}" />
-                                    </ListBox.ItemsSource>
-                                </ListBox>
-                            </StackPanel>
-                        </StackPanel>
-                        <Label
+                            </Border>
+                          </ControlTemplate>
+                        </Setter.Value>
+                      </Setter>
+                    </Style>
+                  </ListBox.Resources>
+                  <ListBox.ItemsSource>
+                    <Binding Mode="OneWay" Source="{StaticResource GenderEnumDS}" />
+                  </ListBox.ItemsSource>
+                </ListBox>
+              </StackPanel>
+            </StackPanel>
+            <Label
                             Content="_First Name"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=FirstNameEditTextBox, Mode=OneWay}" />
-                        <TextBox
+            <TextBox
                             x:Name="FirstNameEditTextBox"
                             Width="135"
                             Margin="5,0,0,0"
                             HorizontalAlignment="Left"
                             Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
-                        <Label
+            <Label
                             Content="_Middle Name"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=MiddleNameEditTextBox, Mode=OneWay}" />
-                        <TextBox
+            <TextBox
                             x:Name="MiddleNameEditTextBox"
                             Width="135"
                             Margin="5,0,0,0"
                             HorizontalAlignment="Left"
                             Text="{Binding Path=MiddleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
-                        <Label
+            <Label
                             Content="_Last Name"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=LastNameEditTextBox, Mode=OneWay}" />
-                        <TextBox
+            <TextBox
                             x:Name="LastNameEditTextBox"
                             Width="135"
                             Margin="5,0,0,0"
                             HorizontalAlignment="Left"
                             Text="{Binding Path=LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
-                        <Label
+            <Label
                             Content="_Suffix"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=SuffixEditTextBox, Mode=OneWay}" />
-                        <TextBox
+            <TextBox
                             x:Name="SuffixEditTextBox"
                             Width="135"
                             Margin="5,0,0,0"
                             HorizontalAlignment="Left"
                             Text="{Binding Path=Suffix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Label
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Label
                                 Content="Date of _Birth"
                                 Foreground="{DynamicResource InputFontColor}"
                                 Target="{Binding ElementName=BirthDateEditTextBox, Mode=OneWay}" />
-                            <TextBox
+              <TextBox
                                 x:Name="BirthDateEditTextBox"
                                 Grid.Row="1"
                                 Width="135"
@@ -1496,8 +1494,8 @@
                                 VerticalAlignment="Top"
                                 Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay, ValidatesOnDataErrors=True}"
                                 TextWrapping="Wrap" />
-                            <!--<TextBox TextWrapping="Wrap" x:Name="BirthDateEditTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>-->
-                            <CheckBox
+              <!--<TextBox TextWrapping="Wrap" x:Name="BirthDateEditTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>-->
+              <CheckBox
                                 x:Name="IsLivingEditCheckBox"
                                 Grid.Row="1"
                                 Grid.Column="1"
@@ -1506,23 +1504,23 @@
                                 Content="Li_ving"
                                 Foreground="{DynamicResource InputFontColor}"
                                 IsChecked="{Binding Path=IsLiving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=True}" />
-                        </Grid>
-                        <Label
+            </Grid>
+            <Label
                             Content="_Place of Birth"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=BirthPlaceEditTextBox, Mode=OneWay}" />
-                        <TextBox
+            <TextBox
                             x:Name="BirthPlaceEditTextBox"
                             Width="135"
                             Margin="5,0,0,0"
                             HorizontalAlignment="Left"
                             Text="{Binding Path=BirthPlace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
-                        <Label
+            <Label
                             Content="Date of Dea_th"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=DeathDateEditTextBox, Mode=OneWay}" />
-                        <TextBox
+            <TextBox
                             x:Name="DeathDateEditTextBox"
                             Width="135"
                             Margin="5,0,0,0"
@@ -1530,12 +1528,12 @@
                             IsEnabled="{Binding Path=IsLiving, Converter={StaticResource NotConverter}, Mode=Default}"
                             Text="{Binding Path=DeathDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay, ValidatesOnDataErrors=True}"
                             TextWrapping="Wrap" />
-                        <!--<TextBox TextWrapping="Wrap" x:Name="DeathDateEditTextBox" Width="135" HorizontalAlignment="Left" Margin="5,0,0,0" IsEnabled="{Binding Path=IsLiving, Converter={StaticResource NotConverter}, Mode=Default}" Text="{Binding Path=DeathDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>-->
-                        <Label
+            <!--<TextBox TextWrapping="Wrap" x:Name="DeathDateEditTextBox" Width="135" HorizontalAlignment="Left" Margin="5,0,0,0" IsEnabled="{Binding Path=IsLiving, Converter={StaticResource NotConverter}, Mode=Default}" Text="{Binding Path=DeathDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>-->
+            <Label
                             Content="Place of Deat_h"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=DeathPlaceEditTextBox, Mode=OneWay}" />
-                        <TextBox
+            <TextBox
                             x:Name="DeathPlaceEditTextBox"
                             Width="135"
                             Margin="5,0,0,0"
@@ -1543,13 +1541,13 @@
                             IsEnabled="{Binding Path=IsLiving, Converter={StaticResource NotConverter}, Mode=Default}"
                             Text="{Binding Path=DeathPlace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
-                        <Border
+            <Border
                             Height="42"
                             Margin="0,10,0,0"
                             BorderBrush="#FF6573A0"
                             BorderThickness="0,2,0,0">
-                            <StackPanel Margin="5,10,0,10" Orientation="Horizontal">
-                                <Button
+              <StackPanel Margin="5,10,0,10" Orientation="Horizontal">
+                <Button
                                     x:Name="DoneEditButton"
                                     Width="60"
                                     Height="20"
@@ -1559,13 +1557,13 @@
                                     Content="_Done"
                                     IsCancel="True"
                                     IsDefault="True" />
-                            </StackPanel>
-                        </Border>
-                    </StackPanel>
-                </Border>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </Border>
 
-                <!--  Details Edit Relationsip is used for modifying the person's relationship with the parents and the spouse(s).  -->
-                <Border
+        <!--  Details Edit Relationsip is used for modifying the person's relationship with the parents and the spouse(s).  -->
+        <Border
                     x:Name="DetailsEditRelationship"
                     Height="300"
                     Margin="0,0,0,0"
@@ -1576,12 +1574,12 @@
                     DockPanel.Dock="Top"
                     Style="{DynamicResource DetailsBorderStyle}"
                     Visibility="Visible">
-                    <DockPanel Margin="10,5,10,0" HorizontalAlignment="Stretch">
-                        <StackPanel
+          <DockPanel Margin="10,5,10,0" HorizontalAlignment="Stretch">
+            <StackPanel
                             HorizontalAlignment="Left"
                             DockPanel.Dock="Top"
                             Orientation="Horizontal">
-                            <TextBlock
+              <TextBlock
                                 x:Name="EditRelationshipsTextBlock"
                                 Margin="5,0,0,10"
                                 HorizontalAlignment="Left"
@@ -1589,15 +1587,15 @@
                                 Style="{DynamicResource SectionHeaderStyle}"
                                 Text="Edit Relationships for"
                                 TextWrapping="NoWrap" />
-                            <TextBlock
+              <TextBlock
                                 Margin="5,0,0,10"
                                 HorizontalAlignment="Left"
                                 Foreground="{DynamicResource InputFontColor}"
                                 Style="{DynamicResource SectionHeaderStyle}"
                                 Text="{Binding Path=FirstName}"
                                 TextWrapping="NoWrap" />
-                        </StackPanel>
-                        <TextBlock
+            </StackPanel>
+            <TextBlock
                             Margin="5,0,0,0"
                             HorizontalAlignment="Left"
                             DockPanel.Dock="Top"
@@ -1605,11 +1603,11 @@
                             Style="{DynamicResource SectionHeaderStyle}"
                             Text="Parents"
                             TextWrapping="Wrap" />
-                        <Grid
+            <Grid
                             Margin="5,0,5,0"
                             HorizontalAlignment="Left"
                             DockPanel.Dock="Top">
-                            <ListBox
+              <ListBox
                                 x:Name="ParentsEditListBox"
                                 MinWidth="100"
                                 MinHeight="20"
@@ -1621,35 +1619,35 @@
                                 KeyboardNavigation.DirectionalNavigation="Cycle"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 SelectionChanged="ParentsEditListBox_SelectionChanged">
-                                <ListBox.Resources>
-                                    <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
-                                        <Setter Property="Margin" Value="2,2,2,0" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate>
-                                                    <Border Background="Transparent">
-                                                        <RadioButton
+                <ListBox.Resources>
+                  <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Margin" Value="2,2,2,0" />
+                    <Setter Property="Template">
+                      <Setter.Value>
+                        <ControlTemplate>
+                          <Border Background="Transparent">
+                            <RadioButton
                                                             Content="{Binding Path=Name}"
                                                             Focusable="False"
                                                             Foreground="{Binding Path=Foreground, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                                             IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                                             IsHitTestVisible="False" />
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ListBox.Resources>
-                                <ListBox.Visibility>
-                                    <Binding
+                          </Border>
+                        </ControlTemplate>
+                      </Setter.Value>
+                    </Setter>
+                  </Style>
+                </ListBox.Resources>
+                <ListBox.Visibility>
+                  <Binding
                                         Converter="{StaticResource BoolToVisibilityConverter}"
                                         Mode="Default"
                                         Path="HasParents" />
-                                </ListBox.Visibility>
-                            </ListBox>
-                        </Grid>
+                </ListBox.Visibility>
+              </ListBox>
+            </Grid>
 
-                        <TextBlock
+            <TextBlock
                             Width="198.067"
                             Height="15.96"
                             Margin="5,15,0,0"
@@ -1659,18 +1657,18 @@
                             Style="{DynamicResource SectionHeaderStyle}"
                             Text="Spouse/Partner"
                             TextWrapping="Wrap" />
-                        <TextBlock
+            <TextBlock
                             x:Name="NoSpousesTextBlock"
                             Margin="10,0,0,0"
                             DockPanel.Dock="Top"
                             Foreground="{DynamicResource InputFontColor}"
                             Text="None"
                             Visibility="{Binding Path=HasSpouse, Converter={StaticResource ComposingConverter}, Mode=Default}" />
-                        <StackPanel
+            <StackPanel
                             x:Name="SpousesInfo"
                             DockPanel.Dock="Top"
                             Visibility="{Binding Path=HasSpouse, Converter={StaticResource BoolToVisibilityConverter}, Mode=Default}">
-                            <ComboBox
+              <ComboBox
                                 x:Name="SpousesCombobox"
                                 Width="120"
                                 Margin="10,5,0,0"
@@ -1679,7 +1677,7 @@
                                 ItemTemplate="{DynamicResource ParentSetTemplate}"
                                 ItemsSource="{Binding Path=Spouses, Mode=OneWay}"
                                 SelectionChanged="SpousesCombobox_SelectionChanged" />
-                            <ListBox
+              <ListBox
                                 x:Name="SpouseStatusListbox"
                                 Margin="0,-10,0,0"
                                 Padding="10,10,0,0"
@@ -1688,47 +1686,47 @@
                                 Foreground="{DynamicResource InputFontColor}"
                                 KeyboardNavigation.DirectionalNavigation="Cycle"
                                 SelectionChanged="SpouseStatusListbox_SelectionChanged">
-                                <ListBox.Resources>
-                                    <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
-                                        <Setter Property="Margin" Value="2,2,2,0" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate>
-                                                    <Border Background="Transparent">
-                                                        <RadioButton
+                <ListBox.Resources>
+                  <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Margin" Value="2,2,2,0" />
+                    <Setter Property="Template">
+                      <Setter.Value>
+                        <ControlTemplate>
+                          <Border Background="Transparent">
+                            <RadioButton
                                                             Content="{TemplateBinding ContentPresenter.Content}"
                                                             Focusable="False"
                                                             Foreground="{Binding Path=Foreground, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                                             IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                                             IsHitTestVisible="False" />
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ListBox.Resources>
-                                <ListBox.ItemsSource>
-                                    <Binding Mode="OneWay" Source="{StaticResource SpouseStatusEnumDS}" />
-                                </ListBox.ItemsSource>
-                            </ListBox>
+                          </Border>
+                        </ControlTemplate>
+                      </Setter.Value>
+                    </Setter>
+                  </Style>
+                </ListBox.Resources>
+                <ListBox.ItemsSource>
+                  <Binding Mode="OneWay" Source="{StaticResource SpouseStatusEnumDS}" />
+                </ListBox.ItemsSource>
+              </ListBox>
 
-                            <Grid Margin="10,0,0,0" HorizontalAlignment="Left">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
+              <Grid Margin="10,0,0,0" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="40" />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition />
+                  <RowDefinition />
+                </Grid.RowDefinitions>
 
-                                <Label
+                <Label
                                     Height="25.96"
                                     HorizontalAlignment="Left"
                                     Content="_From"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=WeddingDateEditTextBox, Mode=OneWay}" />
-                                <TextBox
+                <TextBox
                                     x:Name="FromEditTextBox"
                                     Grid.Column="1"
                                     Width="135"
@@ -1736,14 +1734,14 @@
                                     LostFocus="FromEditTextBox_LostFocus"
                                     TextWrapping="Wrap" />
 
-                                <Label
+                <Label
                                     Grid.Row="1"
                                     Height="25.96"
                                     HorizontalAlignment="Left"
                                     Content="_To"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=DivorceDateEditTextBox, Mode=OneWay}" />
-                                <TextBox
+                <TextBox
                                     x:Name="ToEditTextBox"
                                     Grid.Row="1"
                                     Grid.Column="1"
@@ -1751,19 +1749,19 @@
                                     HorizontalAlignment="Left"
                                     LostFocus="ToEditTextBox_LostFocus"
                                     TextWrapping="Wrap" />
-                            </Grid>
+              </Grid>
 
-                        </StackPanel>
+            </StackPanel>
 
-                        <Border
+            <Border
                             Height="42"
                             Margin="0,10,0,0"
                             VerticalAlignment="Bottom"
                             BorderBrush="#FF6573A0"
                             BorderThickness="0,2,0,0"
                             DockPanel.Dock="Bottom">
-                            <StackPanel Margin="5,10,0,10" Orientation="Horizontal">
-                                <Button
+              <StackPanel Margin="5,10,0,10" Orientation="Horizontal">
+                <Button
                                     x:Name="DoneEditRelationshipButton"
                                     Width="60"
                                     Height="20"
@@ -1773,13 +1771,13 @@
                                     Content="_Done"
                                     IsCancel="True"
                                     IsDefault="True" />
-                            </StackPanel>
-                        </Border>
-                    </DockPanel>
-                </Border>
+              </StackPanel>
+            </Border>
+          </DockPanel>
+        </Border>
 
-                <!--  Details Add is used to add new people  -->
-                <Border
+        <!--  Details Add is used to add new people  -->
+        <Border
                     x:Name="DetailsAdd"
                     Height="300"
                     Margin="0,0,0,0"
@@ -1790,18 +1788,18 @@
                     DockPanel.Dock="Top"
                     Style="{DynamicResource DetailsBorderStyle}"
                     Visibility="Visible">
-                    <StackPanel>
-                        <TextBlock
+          <StackPanel>
+            <TextBlock
                             Margin="15,5,5,5"
                             Foreground="{DynamicResource InputFontColor}"
                             Style="{DynamicResource SectionHeaderStyle}"
                             Text="Add a Family Member"
                             TextWrapping="Wrap" />
-                        <StackPanel
+            <StackPanel
                             Margin="15,0,10,0"
                             HorizontalAlignment="Left"
                             Orientation="Horizontal">
-                            <TextBlock
+              <TextBlock
                                 Margin="0,0,0,0"
                                 HorizontalAlignment="Left"
                                 FontSize="18"
@@ -1810,7 +1808,7 @@
                                 Style="{DynamicResource HeaderStyle}"
                                 Text="{Binding Path=FirstName, Converter={StaticResource FirstNamePossessiveFormConverter}, Mode=Default, FallbackValue=Firstname}"
                                 TextWrapping="Wrap" />
-                            <TextBlock
+              <TextBlock
                                 Margin="0,0,0,0"
                                 HorizontalAlignment="Left"
                                 FontSize="18"
@@ -1819,43 +1817,43 @@
                                 Style="{DynamicResource HeaderStyle}"
                                 Text="{Binding Path=SelectedValue, ElementName=FamilyMemberComboBox, Mode=Default, FallbackValue=Relationship}"
                                 TextWrapping="Wrap" />
-                        </StackPanel>
-                        <Border Margin="10,5,10,0" BorderThickness="0,2,0,0">
-                            <StackPanel Margin="0,0,0,0">
-                                <Label
+            </StackPanel>
+            <Border Margin="10,5,10,0" BorderThickness="0,2,0,0">
+              <StackPanel Margin="0,0,0,0">
+                <Label
                                     Content="_First Name"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=FirstNameInputTextBox, Mode=OneWay}" />
-                                <TextBox
+                <TextBox
                                     x:Name="FirstNameInputTextBox"
                                     Width="135"
                                     Margin="5,0,0,0"
                                     HorizontalAlignment="Left"
                                     TextWrapping="Wrap" />
-                                <Label
+                <Label
                                     Content="_Last Name"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=LastNameInputTextBox, Mode=OneWay}" />
-                                <TextBox
+                <TextBox
                                     x:Name="LastNameInputTextBox"
                                     Width="135"
                                     Margin="5,0,0,0"
                                     HorizontalAlignment="Left"
                                     TextWrapping="Wrap" />
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Label
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                  </Grid.RowDefinitions>
+                  <Label
                                         Content="Date of _Birth"
                                         Foreground="{DynamicResource InputFontColor}"
                                         Target="{Binding ElementName=BirthDateInputTextBox, Mode=OneWay}" />
-                                    <TextBox
+                  <TextBox
                                         x:Name="BirthDateInputTextBox"
                                         Grid.Row="1"
                                         Width="135"
@@ -1863,8 +1861,8 @@
                                         VerticalAlignment="Top"
                                         Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Source={StaticResource person}, ValidatesOnDataErrors=True}"
                                         TextWrapping="Wrap" />
-                                    <!--<TextBox TextWrapping="Wrap" x:Name="BirthDateInputTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Source={StaticResource person}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>-->
-                                    <CheckBox
+                  <!--<TextBox TextWrapping="Wrap" x:Name="BirthDateInputTextBox" Width="135" VerticalAlignment="Top" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=BirthDate, Converter={StaticResource DateFormattingConverter}, Source={StaticResource person}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>-->
+                  <CheckBox
                                         x:Name="IsLivingInputCheckbox"
                                         Grid.Row="1"
                                         Grid.Column="1"
@@ -1873,24 +1871,24 @@
                                         Content="Li_ving"
                                         Foreground="{DynamicResource InputFontColor}"
                                         IsChecked="True" />
-                                </Grid>
-                                <Label
+                </Grid>
+                <Label
                                     Content="_Place of Birth"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=BirthPlaceInputTextBox, Mode=OneWay}" />
-                                <TextBox
+                <TextBox
                                     x:Name="BirthPlaceInputTextBox"
                                     Width="135"
                                     Margin="5,0,0,0"
                                     HorizontalAlignment="Left"
                                     TextWrapping="Wrap" />
-                                <Border
+                <Border
                                     Height="42"
                                     Margin="0,10,0,0"
                                     BorderBrush="#FF6573A0"
                                     BorderThickness="0,2,0,0">
-                                    <StackPanel Margin="5,10,0,10" Orientation="Horizontal">
-                                        <Button
+                  <StackPanel Margin="5,10,0,10" Orientation="Horizontal">
+                    <Button
                                             x:Name="AddButton"
                                             Width="60"
                                             Height="20"
@@ -1899,7 +1897,7 @@
                                             Click="AddButton_Click"
                                             Content="_Add"
                                             IsDefault="True" />
-                                        <Button
+                    <Button
                                             x:Name="CloseButton"
                                             Width="60"
                                             Height="20"
@@ -1907,15 +1905,15 @@
                                             Click="CloseButton_Click"
                                             Content="_Cancel"
                                             IsCancel="True" />
-                                    </StackPanel>
-                                </Border>
-                            </StackPanel>
-                        </Border>
-                    </StackPanel>
+                  </StackPanel>
                 </Border>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </Border>
 
-                <!--  AddExisting is used to a relationship to an existing person in the tree  -->
-                <Border
+        <!--  AddExisting is used to a relationship to an existing person in the tree  -->
+        <Border
                     x:Name="AddExisting"
                     Height="545"
                     Margin="0,0,0,0"
@@ -1927,21 +1925,21 @@
                     Style="{DynamicResource DetailsBorderStyle}"
                     Visibility="Visible">
 
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-                        <DockPanel x:Name="ConnectWithPanel" Grid.Row="2">
-                            <StackPanel
+            <DockPanel x:Name="ConnectWithPanel" Grid.Row="2">
+              <StackPanel
                                 Margin="15,5,15,0"
                                 DockPanel.Dock="Bottom"
                                 Orientation="Horizontal">
-                                <TextBlock
+                <TextBlock
                                     Margin="0,0,3,0"
                                     VerticalAlignment="Center"
                                     DockPanel.Dock="Top"
@@ -1951,19 +1949,19 @@
                                     Style="{DynamicResource SectionHeaderStyle}"
                                     Text="Connect"
                                     TextWrapping="Wrap" />
-                                <TextBlock
+                <TextBlock
                                     Margin="0,0,3,0"
                                     FontSize="13"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Text="{Binding Path=FirstName, Mode=Default, FallbackValue=Firstname}"
                                     TextWrapping="Wrap" />
-                                <TextBlock
+                <TextBlock
                                     Margin="0,0,3,0"
                                     FontSize="13"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Text="with"
                                     TextWrapping="Wrap" />
-                                <TextBlock
+                <TextBlock
                                     VerticalAlignment="Center"
                                     FontSize="13"
                                     Foreground="{DynamicResource InputFontColor}"
@@ -1971,30 +1969,30 @@
                                     TextTrimming="CharacterEllipsis"
                                     TextWrapping="Wrap"
                                     ToolTip="a" />
-                            </StackPanel>
-                            <DockPanel Margin="15,0,15,0" DockPanel.Dock="Top">
-                                <TextBlock
+              </StackPanel>
+              <DockPanel Margin="15,0,15,0" DockPanel.Dock="Top">
+                <TextBlock
                                     VerticalAlignment="Center"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Text="Filter:" />
-                                <TextBlock
+                <TextBlock
                                     VerticalAlignment="Center"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Text=" ("
                                     TextWrapping="Wrap" />
-                                <TextBlock
+                <TextBlock
                                     VerticalAlignment="Center"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Text="{Binding Path=Items.Count, ElementName=ExistingPeopleListBox, Mode=Default}"
                                     TextWrapping="Wrap" />
-                                <TextBlock
+                <TextBlock
                                     VerticalAlignment="Center"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Text=") "
                                     TextWrapping="Wrap" />
-                                <local:FilterText x:Name="FilterTextBox1" TextBoxBase.TextChanged="FilterTextBox1_TextChanged" />
-                            </DockPanel>
-                            <ListBox
+                <local:FilterText x:Name="FilterTextBox1" TextBoxBase.TextChanged="FilterTextBox1_TextChanged" />
+              </DockPanel>
+              <ListBox
                                 x:Name="ExistingPeopleListBox"
                                 Margin="15,5,15,0"
                                 DockPanel.Dock="Top"
@@ -2004,12 +2002,12 @@
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 SelectedValuePath="FullName"
                                 Style="{DynamicResource ExistingPeopleListBoxStyle}" />
-                        </DockPanel>
+            </DockPanel>
 
-                        <Separator Grid.Row="1" Style="{DynamicResource DetailsSeparatorStyle}" />
+            <Separator Grid.Row="1" Style="{DynamicResource DetailsSeparatorStyle}" />
 
-                        <DockPanel x:Name="ConnectAsPanel" Grid.Row="0">
-                            <TextBlock
+            <DockPanel x:Name="ConnectAsPanel" Grid.Row="0">
+              <TextBlock
                                 Margin="15,5,5,5"
                                 DockPanel.Dock="Top"
                                 FontWeight="Normal"
@@ -2017,12 +2015,12 @@
                                 Style="{DynamicResource SectionHeaderStyle}"
                                 Text="Connect a Family Member as"
                                 TextWrapping="Wrap" />
-                            <StackPanel
+              <StackPanel
                                 Margin="15,0,10,0"
                                 HorizontalAlignment="Left"
                                 DockPanel.Dock="Bottom"
                                 Orientation="Horizontal">
-                                <TextBlock
+                <TextBlock
                                     MaxWidth="145"
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Left"
@@ -2033,7 +2031,7 @@
                                     Text="{Binding Path=FirstName, Converter={StaticResource FirstNamePossessiveFormConverter}, Mode=Default, FallbackValue=Firstname}"
                                     TextTrimming="CharacterEllipsis"
                                     TextWrapping="NoWrap" />
-                                <ComboBox
+                <ComboBox
                                     x:Name="ExistingFamilyMemberComboBox"
                                     Grid.Row="1"
                                     Width="120"
@@ -2042,23 +2040,23 @@
                                     ItemTemplate="{DynamicResource ExistingFamilyMemberDataTemplate}"
                                     ItemsSource="{Binding Source={StaticResource RelationshipValuesEnumDS}}"
                                     Style="{DynamicResource FamilyMemberComboBox}" />
-                            </StackPanel>
-                        </DockPanel>
+              </StackPanel>
+            </DockPanel>
 
-                        <Separator Grid.Row="3" Style="{DynamicResource DetailsSeparatorStyle}" />
+            <Separator Grid.Row="3" Style="{DynamicResource DetailsSeparatorStyle}" />
 
-                        <StackPanel
+            <StackPanel
                             Grid.Row="4"
                             Margin="15,5,15,5"
                             Orientation="Horizontal">
-                            <Button
+              <Button
                                 x:Name="AddExistingButton"
                                 Width="60"
                                 Height="20"
                                 Click="AddExistingButton_Click"
                                 Content="_Add"
                                 IsDefault="True" />
-                            <Button
+              <Button
                                 x:Name="CancelAddExistingButton"
                                 Width="60"
                                 Height="20"
@@ -2066,13 +2064,13 @@
                                 Click="CloseButton_Click"
                                 Content="_Cancel"
                                 IsCancel="True" />
-                        </StackPanel>
+            </StackPanel>
 
-                    </Grid>
-                </Border>
+          </Grid>
+        </Border>
 
-                <!--  Details Add Intermediate is displayed when additional input is needed when adding a person.  Currently, the choice for parent sets are shown when needed.  -->
-                <Border
+        <!--  Details Add Intermediate is displayed when additional input is needed when adding a person.  Currently, the choice for parent sets are shown when needed.  -->
+        <Border
                     x:Name="DetailsAddIntermediate"
                     Height="200"
                     Margin="0,0,0,0"
@@ -2083,18 +2081,18 @@
                     DockPanel.Dock="Top"
                     Style="{DynamicResource DetailsBorderStyle}"
                     Visibility="Visible">
-                    <StackPanel>
-                        <TextBlock
+          <StackPanel>
+            <TextBlock
                             Margin="15,5,5,5"
                             Foreground="{DynamicResource InputFontColor}"
                             Style="{DynamicResource SectionHeaderStyle}"
                             Text="Add a Family Member"
                             TextWrapping="Wrap" />
-                        <StackPanel
+            <StackPanel
                             Margin="15,0,10,0"
                             HorizontalAlignment="Left"
                             Orientation="Horizontal">
-                            <TextBlock
+              <TextBlock
                                 Margin="0,0,0,0"
                                 HorizontalAlignment="Left"
                                 FontSize="18"
@@ -2103,7 +2101,7 @@
                                 Style="{DynamicResource HeaderStyle}"
                                 Text="{Binding Path=FirstName, Converter={StaticResource FirstNamePossessiveFormConverter}, Mode=Default, FallbackValue=Firstname}"
                                 TextWrapping="Wrap" />
-                            <TextBlock
+              <TextBlock
                                 Margin="0,0,0,0"
                                 HorizontalAlignment="Left"
                                 FontSize="18"
@@ -2111,18 +2109,18 @@
                                 Style="{DynamicResource HeaderStyle}"
                                 Text="{Binding Path=SelectedValue, ElementName=FamilyMemberComboBox, Mode=Default, FallbackValue=Relationship}"
                                 TextWrapping="Wrap" />
-                        </StackPanel>
-                        <Border
+            </StackPanel>
+            <Border
                             Margin="10,5,10,0"
                             BorderBrush="#FF6573A0"
                             BorderThickness="0,2,0,0">
-                            <StackPanel Margin="0,0,0,0">
-                                <StackPanel Margin="15,0,0,0">
-                                    <Label
+              <StackPanel Margin="0,0,0,0">
+                <StackPanel Margin="15,0,0,0">
+                  <Label
                                         Content="Who are the parents?"
                                         Foreground="{DynamicResource InputFontColor}"
                                         Target="{Binding ElementName=ParentsListBox, Mode=OneWay}" />
-                                    <ListBox
+                  <ListBox
                                         x:Name="ParentsListBox"
                                         Margin="0,-5,0,0"
                                         HorizontalAlignment="Left"
@@ -2132,34 +2130,34 @@
                                         Foreground="{DynamicResource InputFontColor}"
                                         KeyboardNavigation.DirectionalNavigation="Cycle"
                                         SelectionChanged="ParentsListBox_SelectionChanged">
-                                        <ListBox.Resources>
-                                            <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
-                                                <Setter Property="Margin" Value="2,2,2,0" />
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate>
-                                                            <Border Background="Transparent">
-                                                                <RadioButton
+                    <ListBox.Resources>
+                      <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Margin" Value="2,2,2,0" />
+                        <Setter Property="Template">
+                          <Setter.Value>
+                            <ControlTemplate>
+                              <Border Background="Transparent">
+                                <RadioButton
                                                                     Content="{Binding Path=Name}"
                                                                     Focusable="False"
                                                                     Foreground="{Binding Path=Foreground, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                                                     IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                                                     IsHitTestVisible="False" />
-                                                            </Border>
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </ListBox.Resources>
-                                    </ListBox>
-                                </StackPanel>
-                                <Border
+                              </Border>
+                            </ControlTemplate>
+                          </Setter.Value>
+                        </Setter>
+                      </Style>
+                    </ListBox.Resources>
+                  </ListBox>
+                </StackPanel>
+                <Border
                                     Height="42"
                                     Margin="0,10,0,0"
                                     BorderBrush="#FF6573A0"
                                     BorderThickness="0,2,0,0">
-                                    <StackPanel Margin="5,10,0,10" Orientation="Horizontal">
-                                        <Button
+                  <StackPanel Margin="5,10,0,10" Orientation="Horizontal">
+                    <Button
                                             x:Name="IntermediateAddButton"
                                             Width="60"
                                             Height="20"
@@ -2168,7 +2166,7 @@
                                             Click="IntermediateAddButton_Click"
                                             Content="_Add"
                                             IsDefault="True" />
-                                        <Button
+                    <Button
                                             x:Name="IntermediateCloseButton"
                                             Width="60"
                                             Height="20"
@@ -2176,15 +2174,15 @@
                                             Click="IntermediateCloseButton_Click"
                                             Content="_Cancel"
                                             IsCancel="True" />
-                                    </StackPanel>
-                                </Border>
-                            </StackPanel>
-                        </Border>
-                    </StackPanel>
+                  </StackPanel>
                 </Border>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </Border>
 
-                <!--  Details List shows the current list of all people in the family  -->
-                <Border
+        <!--  Details List shows the current list of all people in the family  -->
+        <Border
                     x:Name="DetailsList"
                     Margin="0,0,0,0"
                     Padding="15,10,5,10"
@@ -2194,42 +2192,42 @@
                     DockPanel.Dock="Top"
                     Opacity="1"
                     Style="{DynamicResource DetailsBorderStyle}">
-                    <DockPanel>
-                        <DockPanel Margin="0,0,0,8" DockPanel.Dock="Top">
-                            <TextBlock
+          <DockPanel>
+            <DockPanel Margin="0,0,0,8" DockPanel.Dock="Top">
+              <TextBlock
                                 Width="42.1366666666667"
                                 Height="20"
                                 Style="{DynamicResource SectionHeaderStyle}"
                                 Text="Family (" />
-                            <TextBlock
+              <TextBlock
                                 Height="20"
                                 FontWeight="Normal"
                                 Style="{DynamicResource SectionHeaderStyle}"
                                 Text="{Binding Path=Items.Count, ElementName=FamilyListView}" />
-                            <TextBlock
+              <TextBlock
                                 Width="4.05"
                                 Height="20"
                                 Style="{DynamicResource SectionHeaderStyle}"
                                 Text=")" />
-                            <Button
+              <Button
                                 x:Name="FamilyDataButton"
                                 HorizontalAlignment="Right"
                                 Click="FamiliyDataButton_Click"
                                 Content="Expand"
                                 FontSize="10"
                                 Style="{DynamicResource BlackButtonStyle}" />
-                        </DockPanel>
-                        <DockPanel HorizontalAlignment="Stretch" DockPanel.Dock="Top">
-                            <Label
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+              <Label
                                 Margin="0,0,5,0"
                                 VerticalAlignment="Center"
                                 Content="Filter" />
-                            <local:FilterText
+              <local:FilterText
                                 x:Name="FilterTextBox"
                                 VerticalAlignment="Center"
                                 TextBoxBase.TextChanged="FilterTextBox_TextChanged" />
-                        </DockPanel>
-                        <familyData:FamilyDisplayListView
+            </DockPanel>
+            <familyData:FamilyDisplayListView
                             x:Name="FamilyListView"
                             Margin="0,10,0,0"
                             Background="{x:Null}"
@@ -2241,67 +2239,67 @@
                             SelectionMode="Single"
                             Style="{DynamicResource FamilyListViewStyle}"
                             VirtualizingStackPanel.IsVirtualizing="True">
-                            <familyData:FamilyDisplayListView.ItemContainerStyle>
-                                <Style TargetType="{x:Type ListViewItem}">
-                                    <Setter Property="Template" Value="{DynamicResource FamilyListViewItemTemplate}" />
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                </Style>
-                            </familyData:FamilyDisplayListView.ItemContainerStyle>
-                            <familyData:FamilyDisplayListView.View>
-                                <GridView AllowsColumnReorder="False">
-                                    <familyData:SortListViewColumn
+              <familyData:FamilyDisplayListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                  <Setter Property="Template" Value="{DynamicResource FamilyListViewItemTemplate}" />
+                  <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+              </familyData:FamilyDisplayListView.ItemContainerStyle>
+              <familyData:FamilyDisplayListView.View>
+                <GridView AllowsColumnReorder="False">
+                  <familyData:SortListViewColumn
                                         Width="115"
                                         DisplayMemberBinding="{Binding Path=FullName}"
                                         Header="Name"
                                         HeaderContainerStyle="{DynamicResource NameGridViewColumnHeader}"
                                         SortProperty="Name" />
-                                    <familyData:SortListViewColumn
+                  <familyData:SortListViewColumn
                                         Width="50"
                                         Header="Born"
                                         SortProperty="YearOfBirth">
-                                        <familyData:SortListViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock
+                    <familyData:SortListViewColumn.CellTemplate>
+                      <DataTemplate>
+                        <TextBlock
                                                     HorizontalAlignment="Left"
                                                     Foreground="{DynamicResource FontColor}"
                                                     Text="{Binding Path=YearOfBirth}" />
-                                            </DataTemplate>
-                                        </familyData:SortListViewColumn.CellTemplate>
-                                    </familyData:SortListViewColumn>
-                                    <familyData:SortListViewColumn
+                      </DataTemplate>
+                    </familyData:SortListViewColumn.CellTemplate>
+                  </familyData:SortListViewColumn>
+                  <familyData:SortListViewColumn
                                         Width="50"
                                         Header="Died"
                                         SortProperty="YearOfDeath">
-                                        <familyData:SortListViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock
+                    <familyData:SortListViewColumn.CellTemplate>
+                      <DataTemplate>
+                        <TextBlock
                                                     HorizontalAlignment="Left"
                                                     Foreground="{DynamicResource FontColor}"
                                                     Text="{Binding Path=YearOfDeath}" />
-                                            </DataTemplate>
-                                        </familyData:SortListViewColumn.CellTemplate>
-                                    </familyData:SortListViewColumn>
-                                    <familyData:SortListViewColumn
+                      </DataTemplate>
+                    </familyData:SortListViewColumn.CellTemplate>
+                  </familyData:SortListViewColumn>
+                  <familyData:SortListViewColumn
                                         Width="40"
                                         Header="Age"
                                         SortProperty="Age">
-                                        <familyData:SortListViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock
+                    <familyData:SortListViewColumn.CellTemplate>
+                      <DataTemplate>
+                        <TextBlock
                                                     HorizontalAlignment="Left"
                                                     Foreground="{DynamicResource FontColor}"
                                                     Text="{Binding Path=Age}" />
-                                            </DataTemplate>
-                                        </familyData:SortListViewColumn.CellTemplate>
-                                    </familyData:SortListViewColumn>
-                                </GridView>
-                            </familyData:FamilyDisplayListView.View>
-                        </familyData:FamilyDisplayListView>
-                    </DockPanel>
-                </Border>
-            </DockPanel>
+                      </DataTemplate>
+                    </familyData:SortListViewColumn.CellTemplate>
+                  </familyData:SortListViewColumn>
+                </GridView>
+              </familyData:FamilyDisplayListView.View>
+            </familyData:FamilyDisplayListView>
+          </DockPanel>
         </Border>
-    </DockPanel>
+      </DockPanel>
+    </Border>
+  </DockPanel>
 </UserControl>
 
 

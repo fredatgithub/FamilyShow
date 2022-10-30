@@ -9,44 +9,43 @@
     MinHeight="600"
     IsVisibleChanged="UserControl_IsVisibleChanged"
     mc:Ignorable="d">
-    <UserControl.Resources>
+  <UserControl.Resources>
+    <!--  Converter for displaying the the first name with an apostrophe.  -->
+    <local:FirstNamePossessiveFormConverter x:Key="FirstNamePossessiveFormConverter" />
 
-        <!--  Converter for displaying the the first name with an apostrophe.  -->
-        <local:FirstNamePossessiveFormConverter x:Key="FirstNamePossessiveFormConverter" />
+    <local:ImageConverter x:Key="ImageConverter" />
 
-        <local:ImageConverter x:Key="ImageConverter" />
+    <!--  Converter for displaying the "primary" photo text  -->
+    <local:PrimaryAvatarConverter x:Key="PrimaryAvatarConverter" />
 
-        <!--  Converter for displaying the "primary" photo text  -->
-        <local:PrimaryAvatarConverter x:Key="PrimaryAvatarConverter" />
+    <Style x:Key="formatTextStyle" TargetType="{x:Type ButtonBase}">
+      <Setter Property="FontFamily" Value="Palatino Linotype" />
+      <Setter Property="Width" Value="30" />
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}" />
+    </Style>
 
-        <Style x:Key="formatTextStyle" TargetType="{x:Type ButtonBase}">
-            <Setter Property="FontFamily" Value="Palatino Linotype" />
-            <Setter Property="Width" Value="30" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}" />
-        </Style>
+    <Style x:Key="formatImageStyle" TargetType="{x:Type ButtonBase}">
+      <Setter Property="Width" Value="30" />
+      <Setter Property="CommandTarget" Value="{Binding ElementName=StoryRichTextBox}" />
+    </Style>
 
-        <Style x:Key="formatImageStyle" TargetType="{x:Type ButtonBase}">
-            <Setter Property="Width" Value="30" />
-            <Setter Property="CommandTarget" Value="{Binding ElementName=StoryRichTextBox}" />
-        </Style>
+  </UserControl.Resources>
 
-    </UserControl.Resources>
-
-    <Border
+  <Border
         Margin="10,0,10,10"
         Background="{DynamicResource BackgroundBrush}"
         Style="{DynamicResource BorderStyle}">
-        <DockPanel x:Name="MainPanel">
+    <DockPanel x:Name="MainPanel">
 
-            <!--  Header Panel  -->
-            <DockPanel
+      <!--  Header Panel  -->
+      <DockPanel
                 x:Name="HeaderPanel"
                 Height="30"
                 Margin="10,0,10,0"
                 DockPanel.Dock="Top">
-                <!--  Star  -->
-                <Path
+        <!--  Star  -->
+        <Path
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
@@ -55,7 +54,7 @@
                     Stroke="#ffffffff"
                     StrokeMiterLimit="1.000000"
                     StrokeThickness="1.500000" />
-                <TextBlock
+        <TextBlock
                     x:Name="NameHeader"
                     Margin="5,0,0,0"
                     VerticalAlignment="Center"
@@ -63,7 +62,7 @@
                     Foreground="{DynamicResource HeaderFontColor}"
                     Style="{DynamicResource HeaderStyle}"
                     Text="{Binding Path=Name, Mode=Default, FallbackValue=Name}" />
-                <Button
+        <Button
                     x:Name="CloseButton"
                     Grid.Column="1"
                     Width="30"
@@ -76,29 +75,29 @@
                     FontSize="10"
                     IsCancel="True"
                     IsDefault="True" />
-            </DockPanel>
+      </DockPanel>
 
-            <Border
+      <Border
                 x:Name="BodyBorder"
                 Background="{DynamicResource PersonInfoBackgroundBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="0,1,0,0"
                 CornerRadius="0,0,10,10">
-                <Grid x:Name="BodyGrid" DockPanel.Dock="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.48*" />
-                        <ColumnDefinition Width="0.52*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+        <Grid x:Name="BodyGrid" DockPanel.Dock="Top">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.48*" />
+            <ColumnDefinition Width="0.52*" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
 
-                    <!--  Photos Info  -->
-                    <Border x:Name="PhotoInfoBorder" Margin="10,10,5,5">
-                        <StackPanel>
-                            <DockPanel x:Name="PhotoButtonsDockPanel" Margin="10,0,10,0">
-                                <Button
+          <!--  Photos Info  -->
+          <Border x:Name="PhotoInfoBorder" Margin="10,10,5,5">
+            <StackPanel>
+              <DockPanel x:Name="PhotoButtonsDockPanel" Margin="10,0,10,0">
+                <Button
                                     x:Name="SetPrimaryButton"
                                     Width="100"
                                     Height="15"
@@ -107,7 +106,7 @@
                                     FontSize="10"
                                     IsCancel="False"
                                     IsEnabled="True" />
-                                <Button
+                <Button
                                     x:Name="RemovePhotoButton"
                                     Width="100"
                                     Height="15"
@@ -118,16 +117,16 @@
                                     FontSize="10"
                                     IsEnabled="True"
                                     Style="{DynamicResource RedButtonStyle}" />
-                            </DockPanel>
+              </DockPanel>
 
-                            <Image
+              <Image
                                 x:Name="DisplayPhoto"
                                 MinHeight="280"
                                 MaxHeight="280"
                                 Margin="10,10,10,10"
                                 Source="{Binding Path=Image.Path, Converter={StaticResource ImageConverter}, Mode=Default}"
                                 Stretch="Uniform" />
-                            <TextBlock
+              <TextBlock
                                 x:Name="CaptionTextBlock"
                                 MinWidth="100"
                                 Margin="10,0,10,0"
@@ -136,15 +135,15 @@
                                 FontStyle="Italic"
                                 Foreground="{DynamicResource FontColor}"
                                 TextTrimming="CharacterEllipsis" />
-                            <StackPanel x:Name="TagsStackPanel" Orientation="Horizontal">
-                                <Label
+              <StackPanel x:Name="TagsStackPanel" Orientation="Horizontal">
+                <Label
                                     Margin="5,0,0,0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
                                     Content="Tags:"
                                     FontSize="10"
                                     Foreground="{DynamicResource AlternateFontColor}" />
-                                <ListBox
+                <ListBox
                                     x:Name="TagsListBox"
                                     Margin="0,2,0,0"
                                     VerticalAlignment="Bottom"
@@ -153,12 +152,12 @@
                                     FontSize="11"
                                     ItemTemplate="{DynamicResource TagsItemTemplate}"
                                     Style="{DynamicResource TagsListStyle}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
+              </StackPanel>
+            </StackPanel>
+          </Border>
 
-                    <!--  Photos List Box  -->
-                    <Border
+          <!--  Photos List Box  -->
+          <Border
                         x:Name="PhotosBorder"
                         Grid.Row="1"
                         Margin="10,0,5,10"
@@ -166,13 +165,13 @@
                         Background="{DynamicResource PhotosBackgroundBrush}"
                         BorderBrush="{DynamicResource BorderBrush}"
                         BorderThickness="1,1,1,1">
-                        <Grid>
-                            <TextBlock
+            <Grid>
+              <TextBlock
                                 HorizontalAlignment="Right"
                                 FontSize="10"
                                 Foreground="{DynamicResource AlternateFontColor}"
                                 Text="Drop photos into this box" />
-                            <ListBox
+              <ListBox
                                 x:Name="PhotosListBox"
                                 Margin="0,15,0,0"
                                 AllowDrop="True"
@@ -183,37 +182,37 @@
                                 ItemsSource="{Binding Path=Photos, Mode=Default}"
                                 SelectionChanged="PhotosListBox_SelectionChanged"
                                 Style="{DynamicResource PhotosListStyle}" />
-                        </Grid>
-                    </Border>
+            </Grid>
+          </Border>
 
-                    <!--  Story View  -->
-                    <Border
+          <!--  Story View  -->
+          <Border
                         x:Name="StoryViewBorder"
                         Grid.RowSpan="2"
                         Grid.Column="1"
                         Margin="5,10,10,10"
                         Background="{DynamicResource PanelGradientBrush}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <DockPanel Margin="10,10,0,0">
-                                <TextBlock
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <DockPanel Margin="10,10,0,0">
+                <TextBlock
                                     Margin="5,0,0,0"
                                     FontSize="18"
                                     FontWeight="Bold"
                                     Style="{DynamicResource HeaderStyle}"
                                     Text="{Binding Path=FirstName, Converter={StaticResource FirstNamePossessiveFormConverter}, Mode=Default, FallbackValue=Firstname}"
                                     TextWrapping="Wrap" />
-                                <TextBlock
+                <TextBlock
                                     Margin="0,0,0,0"
                                     FontSize="18"
                                     FontWeight="Bold"
                                     Style="{DynamicResource HeaderStyle}"
                                     Text="Story"
                                     TextWrapping="Wrap" />
-                                <Button
+                <Button
                                     x:Name="EditStoryButton"
                                     Margin="0,0,10,0"
                                     HorizontalAlignment="Right"
@@ -221,9 +220,9 @@
                                     Click="EditStoryButton_Click"
                                     Content="_Edit"
                                     DockPanel.Dock="Right" />
-                            </DockPanel>
+              </DockPanel>
 
-                            <FlowDocumentReader
+              <FlowDocumentReader
                                 x:Name="StoryViewer"
                                 Grid.Row="1"
                                 Margin="5,0,10,10"
@@ -236,39 +235,39 @@
                                 IsTwoPageViewEnabled="False"
                                 MaxZoom="150"
                                 MinZoom="50">
-                                <FlowDocument Foreground="{DynamicResource FlowDocumentFontColor}" />
-                            </FlowDocumentReader>
-                        </Grid>
-                    </Border>
+                <FlowDocument Foreground="{DynamicResource FlowDocumentFontColor}" />
+              </FlowDocumentReader>
+            </Grid>
+          </Border>
 
-                    <!--  Story Edit  -->
-                    <Border
+          <!--  Story Edit  -->
+          <Border
                         x:Name="StoryEditBorder"
                         Grid.RowSpan="2"
                         Grid.Column="1"
                         Margin="5,10,0,10"
                         Background="{DynamicResource PanelGradientBrush}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <DockPanel Margin="10,10,0,0">
-                                <TextBlock
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <DockPanel Margin="10,10,0,0">
+                <TextBlock
                                     Margin="5,0,0,0"
                                     FontSize="18"
                                     FontWeight="Bold"
                                     Style="{DynamicResource HeaderStyle}"
                                     Text="{Binding Path=FirstName, Converter={StaticResource FirstNamePossessiveFormConverter}, Mode=Default, FallbackValue=Firstname}"
                                     TextWrapping="Wrap" />
-                                <TextBlock
+                <TextBlock
                                     Margin="0,0,0,0"
                                     FontSize="18"
                                     FontWeight="Bold"
                                     Style="{DynamicResource HeaderStyle}"
                                     Text="Story"
                                     TextWrapping="Wrap" />
-                                <Button
+                <Button
                                     x:Name="CancelStoryButton"
                                     Margin="0,0,15,0"
                                     HorizontalAlignment="Right"
@@ -277,7 +276,7 @@
                                     Content="_Cancel"
                                     DockPanel.Dock="Right"
                                     IsCancel="True" />
-                                <Button
+                <Button
                                     x:Name="SaveStoryButton"
                                     Margin="0,0,15,0"
                                     HorizontalAlignment="Right"
@@ -286,122 +285,122 @@
                                     Content="_Save"
                                     DockPanel.Dock="Right"
                                     IsDefault="True" />
-                            </DockPanel>
-                            <DockPanel
+              </DockPanel>
+              <DockPanel
                                 Grid.Row="1"
                                 Margin="10,0,10,10"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
 
-                                <!--  This tool bar contains all the editing buttons.  -->
-                                <ToolBar
+                <!--  This tool bar contains all the editing buttons.  -->
+                <ToolBar
                                     Name="EditToolBar"
                                     Height="30"
                                     DockPanel.Dock="Top">
 
-                                    <ToggleButton
+                  <ToggleButton
                                         Name="BoldButton"
                                         Command="EditingCommands.ToggleBold"
                                         Style="{StaticResource formatTextStyle}"
                                         ToolTip="Bold">
-                                        <TextBlock FontWeight="Bold">B</TextBlock>
-                                    </ToggleButton>
-                                    <ToggleButton
+                    <TextBlock FontWeight="Bold">B</TextBlock>
+                  </ToggleButton>
+                  <ToggleButton
                                         Name="ItalicButton"
                                         Command="EditingCommands.ToggleItalic"
                                         Style="{StaticResource formatTextStyle}"
                                         ToolTip="Italic">
-                                        <TextBlock FontStyle="Italic" FontWeight="Bold">I</TextBlock>
-                                    </ToggleButton>
-                                    <ToggleButton
+                    <TextBlock FontStyle="Italic" FontWeight="Bold">I</TextBlock>
+                  </ToggleButton>
+                  <ToggleButton
                                         Name="UnderlineButton"
                                         Command="EditingCommands.ToggleUnderline"
                                         Style="{StaticResource formatTextStyle}"
                                         ToolTip="Underline">
-                                        <TextBlock FontWeight="Bold" TextDecorations="Underline">U</TextBlock>
-                                    </ToggleButton>
+                    <TextBlock FontWeight="Bold" TextDecorations="Underline">U</TextBlock>
+                  </ToggleButton>
 
-                                    <ComboBox
+                  <ComboBox
                                         Name="FontsComboBox"
                                         Width="150"
                                         SelectionChanged="FontsComboBox_SelectionChanged" />
 
-                                    <Button
+                  <Button
                                         Command="EditingCommands.IncreaseFontSize"
                                         Style="{StaticResource formatImageStyle}"
                                         ToolTip="Grow Font">
-                                        <Image Source="..\Images\CharacterGrowFont.png" />
-                                    </Button>
-                                    <Button
+                    <Image Source="..\Images\CharacterGrowFont.png" />
+                  </Button>
+                  <Button
                                         Command="EditingCommands.DecreaseFontSize"
                                         Style="{StaticResource formatImageStyle}"
                                         ToolTip="Shrink Font">
-                                        <Image Source="..\Images\CharacterShrinkFont.png" />
-                                    </Button>
+                    <Image Source="..\Images\CharacterShrinkFont.png" />
+                  </Button>
 
-                                    <ToggleButton
+                  <ToggleButton
                                         Name="BulletsButton"
                                         Command="EditingCommands.ToggleBullets"
                                         Style="{StaticResource formatImageStyle}"
                                         ToolTip="Bullets">
-                                        <Image Source="..\Images\ListBullets.png" />
-                                    </ToggleButton>
-                                    <ToggleButton
+                    <Image Source="..\Images\ListBullets.png" />
+                  </ToggleButton>
+                  <ToggleButton
                                         Name="NumberingButton"
                                         Command="EditingCommands.ToggleNumbering"
                                         Style="{StaticResource formatImageStyle}"
                                         ToolTip="Numbering">
-                                        <Image Source="..\Images\ListNumbering.png" />
-                                    </ToggleButton>
+                    <Image Source="..\Images\ListNumbering.png" />
+                  </ToggleButton>
 
-                                    <ToggleButton
+                  <ToggleButton
                                         Name="AlignLeftButton"
                                         Command="EditingCommands.AlignLeft"
                                         Style="{StaticResource formatImageStyle}"
                                         ToolTip="Align Left">
-                                        <Image Source="..\Images\ParagraphLeftJustify.png" />
-                                    </ToggleButton>
-                                    <ToggleButton
+                    <Image Source="..\Images\ParagraphLeftJustify.png" />
+                  </ToggleButton>
+                  <ToggleButton
                                         Name="AlignCenterButton"
                                         Command="EditingCommands.AlignCenter"
                                         Style="{StaticResource formatImageStyle}"
                                         ToolTip="Align Center">
-                                        <Image Source="..\Images\ParagraphCenterJustify.png" />
-                                    </ToggleButton>
-                                    <ToggleButton
+                    <Image Source="..\Images\ParagraphCenterJustify.png" />
+                  </ToggleButton>
+                  <ToggleButton
                                         Name="AlignRightButton"
                                         Command="EditingCommands.AlignRight"
                                         Style="{StaticResource formatImageStyle}"
                                         ToolTip="Align Right">
-                                        <Image Source="..\Images\ParagraphRightJustify.png" />
-                                    </ToggleButton>
-                                    <ToggleButton
+                    <Image Source="..\Images\ParagraphRightJustify.png" />
+                  </ToggleButton>
+                  <ToggleButton
                                         Name="AlignFullButton"
                                         Command="EditingCommands.AlignJustify"
                                         Style="{StaticResource formatImageStyle}"
                                         ToolTip="Align Justify">
-                                        <Image Source="..\Images\ParagraphFullJustify.png" />
-                                    </ToggleButton>
-                                </ToolBar>
+                    <Image Source="..\Images\ParagraphFullJustify.png" />
+                  </ToggleButton>
+                </ToolBar>
 
-                                <Border
+                <Border
                                     Background="{DynamicResource LightBrush}"
                                     BorderBrush="{DynamicResource BorderBrush}"
                                     BorderThickness="1,1,1,1">
-                                    <RichTextBox
+                  <RichTextBox
                                         x:Name="StoryRichTextBox"
                                         Grid.RowSpan="1"
                                         AcceptsTab="True"
                                         SelectionChanged="StoryRichTextBox_SelectionChanged"
                                         TextChanged="StoryRichTextBox_TextChanged" />
-                                </Border>
-                            </DockPanel>
-                        </Grid>
-                    </Border>
+                </Border>
+              </DockPanel>
+            </Grid>
+          </Border>
 
-                </Grid>
-            </Border>
+        </Grid>
+      </Border>
 
-        </DockPanel>
-    </Border>
+    </DockPanel>
+  </Border>
 </UserControl>

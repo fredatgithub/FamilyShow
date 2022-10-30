@@ -8,20 +8,20 @@
     AllowDrop="True"
     Drop="AvatarPhoto_Drop">
 
-    <UserControl.Resources>
-        <local:ImageConverter x:Key="ImageConverter" />
-    </UserControl.Resources>
+  <UserControl.Resources>
+    <local:ImageConverter x:Key="ImageConverter" />
+  </UserControl.Resources>
 
-    <StackPanel>
+  <StackPanel>
 
-        <!--  Header  -->
-        <Border
+    <!--  Header  -->
+    <Border
             x:Name="Header"
             Background="{DynamicResource BackgroundBrush}"
             BorderBrush="{DynamicResource BorderBrush}"
             BorderThickness="1,1,1,0"
             CornerRadius="5,5,0,0">
-            <TextBlock
+      <TextBlock
                 x:Name="HeaderTextBlock"
                 Margin="15,5,10,5"
                 VerticalAlignment="Center"
@@ -30,31 +30,31 @@
                 Foreground="{DynamicResource HeaderFontColor}"
                 Text="Add a family member"
                 TextWrapping="Wrap" />
-        </Border>
+    </Border>
 
-        <!--  Content  -->
-        <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1,1,1,1">
-            <Grid
+    <!--  Content  -->
+    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1,1,1,1">
+      <Grid
                 x:Name="ContentGrid"
                 Margin="0,0,0,0"
                 Background="{DynamicResource InputBackgroundBrush}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="0.5*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.5*" />
+          <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-                <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
-                    <Border
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
+          <Border
                         Margin="15,15,15,15"
                         BorderBrush="{DynamicResource BorderBrush}"
                         BorderThickness="1,1,1,1">
-                        <Grid x:Name="AvatarGrid" MouseDown="AvatarGrid_MouseDown">
-                            <TextBlock
+            <Grid x:Name="AvatarGrid" MouseDown="AvatarGrid_MouseDown">
+              <TextBlock
                                 Width="80"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -63,92 +63,92 @@
                                 Text="Drag a photo here"
                                 TextAlignment="Center"
                                 TextWrapping="WrapWithOverflow" />
-                            <Image
+              <Image
                                 x:Name="AvatarPhoto"
                                 Width="80"
                                 Height="75"
                                 Source="{Binding Path=Avatar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        </Grid>
-                    </Border>
-                    <StackPanel Grid.Row="0" Margin="15,15,0,15">
-                        <Label
+            </Grid>
+          </Border>
+          <StackPanel Grid.Row="0" Margin="15,15,0,15">
+            <Label
                             Content="_Gender"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=MaleRadioButton, Mode=OneWay}" />
-                        <RadioButton
+            <RadioButton
                             x:Name="MaleRadioButton"
                             Margin="5,0,0,0"
                             Content="Male"
                             Foreground="{DynamicResource InputFontColor}"
                             IsChecked="True"
                             TabIndex="90" />
-                        <RadioButton
+            <RadioButton
                             x:Name="FemaleRadioButton"
                             Margin="5,0,0,0"
                             Content="Female"
                             Foreground="{DynamicResource InputFontColor}"
                             TabIndex="95" />
-                    </StackPanel>
-                </StackPanel>
+          </StackPanel>
+        </StackPanel>
 
-                <StackPanel Grid.Row="1" Margin="10,0,0,0">
-                    <Label
+        <StackPanel Grid.Row="1" Margin="10,0,0,0">
+          <Label
                         Content="_First Name"
                         Foreground="{DynamicResource InputFontColor}"
                         Target="{Binding ElementName=FirstNameInputTextBox, Mode=OneWay}" />
-                    <TextBox
+          <TextBox
                         x:Name="FirstNameInputTextBox"
                         Width="130"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         TabIndex="100"
                         TextWrapping="Wrap" />
-                    <Label
+          <Label
                         Content="Date of _Birth"
                         Foreground="{DynamicResource InputFontColor}"
                         Target="{Binding ElementName=BirthDateInputTextBox, Mode=OneWay}" />
-                    <TextBox
+          <TextBox
                         x:Name="BirthDateInputTextBox"
                         Width="130"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         TabIndex="120"
                         TextWrapping="Wrap" />
-                </StackPanel>
+        </StackPanel>
 
-                <StackPanel Grid.Row="1" Grid.Column="1">
-                    <Label
+        <StackPanel Grid.Row="1" Grid.Column="1">
+          <Label
                         Content="_Last Name"
                         Foreground="{DynamicResource InputFontColor}"
                         Target="{Binding ElementName=LastNameInputTextBox, Mode=OneWay}" />
-                    <TextBox
+          <TextBox
                         x:Name="LastNameInputTextBox"
                         Width="130"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         TabIndex="110"
                         TextWrapping="Wrap" />
-                    <Label
+          <Label
                         Content="_Place of Birth"
                         Foreground="{DynamicResource InputFontColor}"
                         Target="{Binding ElementName=BirthPlaceInputTextBox, Mode=OneWay}" />
-                    <TextBox
+          <TextBox
                         x:Name="BirthPlaceInputTextBox"
                         Width="130"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         TabIndex="130"
                         TextWrapping="Wrap" />
-                </StackPanel>
+        </StackPanel>
 
-                <StackPanel
+        <StackPanel
                     Grid.Row="2"
                     Grid.ColumnSpan="2"
                     Margin="15,15,15,15"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Stretch"
                     Orientation="Horizontal">
-                    <Button
+          <Button
                         x:Name="AddButton"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Bottom"
@@ -156,7 +156,7 @@
                         Content="_Add"
                         IsDefault="True"
                         TabIndex="140" />
-                    <Button
+          <Button
                         x:Name="CloseButton"
                         Margin="10,0,0,0"
                         HorizontalAlignment="Left"
@@ -165,12 +165,12 @@
                         Content="_Close"
                         IsCancel="True"
                         TabIndex="150" />
-                </StackPanel>
-            </Grid>
-        </Border>
+        </StackPanel>
+      </Grid>
+    </Border>
 
-        <!--  Footer  -->
-        <Border
+    <!--  Footer  -->
+    <Border
             x:Name="Footer"
             Height="35"
             Background="{DynamicResource BackgroundBrush}"
@@ -178,5 +178,5 @@
             BorderThickness="1,0,1,1"
             CornerRadius="0,0,5,5" />
 
-    </StackPanel>
+  </StackPanel>
 </UserControl>
