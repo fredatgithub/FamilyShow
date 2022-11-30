@@ -45,15 +45,12 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// The fully qualified path to the photo.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value")]
     public string FullyQualifiedPath
     {
       get
       {
-        string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            App.ApplicationFolderName);
+        string tempFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), App.ApplicationFolderName);
         tempFolder = Path.Combine(tempFolder, App.AppDataFolderName);
-
         return Path.Combine(tempFolder, relativePath);
       }
       set
@@ -112,15 +109,13 @@ namespace Microsoft.FamilyShowLib
     /// Copies the photo file to the application photos folder. 
     /// Returns the relative path to the copied photo.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     private static string Copy(string fileName)
     {
       // The photo file being copied
       FileInfo fileInfo = new FileInfo(fileName);
 
       // Absolute path to the application folder
-      string appLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-          App.ApplicationFolderName);
+      string appLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), App.ApplicationFolderName);
       appLocation = Path.Combine(appLocation, App.AppDataFolderName);
 
       // Absolute path to the photos folder
@@ -158,7 +153,6 @@ namespace Microsoft.FamilyShowLib
       return photoRelLocation;
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     public void Delete()
     {
       try

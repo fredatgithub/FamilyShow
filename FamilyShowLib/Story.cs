@@ -81,7 +81,7 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Save the story to the file system.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Microsoft.FamilyShowLib.Story.Save(System.String,System.String):System.Void")]
+    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Microsoft.FamilyShowLib.Story.Save(System.String,System.String):System.Void")]
     public void Save(TextRange storyText, string storyFileName)
     {
       // Data format for the story file.
@@ -125,7 +125,7 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Load the Story from file to the textrange.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     public void Load(TextRange storyText)
     {
       // Data format for the person's story file.
@@ -155,7 +155,7 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Save the person's story on the file system.  Accepts plain text for Gedcom support
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Microsoft.FamilyShowLib.Story.Save(System.String,System.String):System.Void")]
+    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Microsoft.FamilyShowLib.Story.Save(System.String,System.String):System.Void")]
     public void Save(string storyText, string storyFileName)
     {
       // Data format for the story file.

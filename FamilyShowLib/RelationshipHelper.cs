@@ -386,7 +386,6 @@ namespace Microsoft.FamilyShowLib
       // Delete the person's photos and story
       personToDelete.DeletePhotos();
       personToDelete.DeleteStory();
-
       family.Remove(personToDelete);
     }
   }

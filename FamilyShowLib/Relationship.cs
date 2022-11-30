@@ -125,7 +125,7 @@ namespace Microsoft.FamilyShowLib
     private SpouseModifier spouseModifier;
     private DateTime? marriageDate;
     private DateTime? divorceDate;
-    private String marriagePlace;
+    private string marriagePlace;
 
     public SpouseModifier SpouseModifier
     {

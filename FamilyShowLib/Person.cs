@@ -124,7 +124,7 @@ namespace Microsoft.FamilyShowLib
     {
       get
       {
-        string name = "";
+        string name = string.Empty;
         if (!string.IsNullOrEmpty(firstName))
         {
           name += firstName;
@@ -510,7 +510,6 @@ namespace Microsoft.FamilyShowLib
       }
     }
 
-
     /// <summary>
     /// Gets or sets the person's story file.
     /// </summary>
@@ -530,12 +529,12 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Gets or sets the person's graphical identity
     /// </summary>
-    [XmlIgnore, System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value")]
+    [XmlIgnore]
     public string Avatar
     {
       get
       {
-        string avatar = "";
+        string avatar = string.Empty;
 
         if (photos != null && photos.Count > 0)
         {
@@ -884,7 +883,6 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Calculated property that returns whether the person has 2 or more parents.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value")]
     public bool HasParents
     {
       get
@@ -902,7 +900,6 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Calculated property that returns whether the person has 1 or more spouse(s).
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value")]
     public bool HasSpouse
     {
       get
@@ -1142,7 +1139,6 @@ namespace Microsoft.FamilyShowLib
       get
       {
         Collection<Person> children = Children;
-
         string childrenText = string.Empty;
         if (children.Count > 0)
         {

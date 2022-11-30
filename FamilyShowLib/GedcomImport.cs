@@ -194,7 +194,6 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Import photo information from the GEDCOM XML file.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     private static void ImportResidence(Person person, XmlNode node)
     {
       try
@@ -275,7 +274,6 @@ namespace Microsoft.FamilyShowLib
       }
       catch (Exception)
       {
-
         throw;
       }
     }
@@ -284,7 +282,6 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Import photo information from the GEDCOM XML file.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     private static void ImportPhotos(Person person, XmlNode node)
     {
       try
@@ -315,7 +312,6 @@ namespace Microsoft.FamilyShowLib
     /// <summary>
     /// Import the note info from the GEDCOM XMl file.
     /// </summary>
-    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     private static void ImportNote(Person person, XmlNode node)
     {
       try
@@ -462,7 +458,6 @@ namespace Microsoft.FamilyShowLib
       return string.Empty;
     }
 
-    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     private static DateTime? GetValueDate(XmlNode node, string xpath)
     {
       DateTime? result = null;
@@ -483,7 +478,6 @@ namespace Microsoft.FamilyShowLib
       return result;
     }
 
-    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     private static string GetId(XmlNode node)
     {
       try
@@ -497,7 +491,6 @@ namespace Microsoft.FamilyShowLib
       }
     }
 
-    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     private static string GetValueId(XmlNode node, string xpath)
     {
       string result = string.Empty;
@@ -516,7 +509,6 @@ namespace Microsoft.FamilyShowLib
       return result;
     }
 
-    [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
     private static string GetValue(XmlNode node, string xpath)
     {
       string result = string.Empty;
