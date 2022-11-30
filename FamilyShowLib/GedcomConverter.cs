@@ -21,8 +21,7 @@ namespace Microsoft.FamilyShowLib
     /// the GEDCOM file. GEDCOM lines are limited to 255 characters, 
     /// combineSplitValues indicates if the split lines should be combined 
     /// into a single XML element.
-    static public void ConvertToXml(string gedcomFilePath,
-        string xmlFilePath, bool combineSplitValues)
+    static public void ConvertToXml(string gedcomFilePath, string xmlFilePath, bool combineSplitValues)
     {
       // Store the previous level so can determine when need
       // to close xml element tags.
@@ -66,7 +65,6 @@ namespace Microsoft.FamilyShowLib
               // Create new xml element.
               writer.WriteStartElement(line.Tag);
               writer.WriteAttributeString("Value", line.Data);
-
               prevLevel = line.Level;
             }
           }
