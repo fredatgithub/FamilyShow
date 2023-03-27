@@ -1,7 +1,6 @@
 # FamilyShow
-I have forked the Family show project from CodePlex, WPF in C#
 
-This is a genealogy application
+This is a genealogy application written with C# as a WPF application for Windows
 
 Here is an example:
 
