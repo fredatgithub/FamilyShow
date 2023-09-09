@@ -10,8 +10,7 @@ namespace FamilyShowLib
 {
   /// <summary>
   /// Representation for a single serializable Person.
-  /// INotifyPropertyChanged allows properties of the Person class to
-  /// participate as source in data bindings.
+  /// INotifyPropertyChanged allows properties of the Person class to participate as source in data bindings.
   /// </summary>
   [Serializable]
   public class Person : INotifyPropertyChanged, IEquatable<Person>, IDataErrorInfo
