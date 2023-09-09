@@ -1,4 +1,4 @@
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -13,7 +13,7 @@ using System.Windows.Xps;
 using System.Windows.Xps.Packaging;
 using System.Xml;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// Interaction logic for MainWindow.xaml

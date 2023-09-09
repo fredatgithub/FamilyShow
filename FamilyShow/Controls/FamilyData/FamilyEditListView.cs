@@ -2,9 +2,9 @@
  * Derived class that filters data in the family data view.
 */
 
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 
-namespace Microsoft.FamilyShow.Controls.FamilyData
+namespace FamilyShow.Controls.FamilyData
 {
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses")]
   class FamilyEditListView : FilterSortListView

@@ -1,4 +1,4 @@
-﻿namespace Microsoft.FamilyShowLib
+﻿namespace FamilyShowLib
 {
   /// <summary>
   /// Enumeration of the person's age group

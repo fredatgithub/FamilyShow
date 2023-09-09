@@ -3,13 +3,13 @@
  * groups and nodes based on the node relationships. 
 */
 
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 
-namespace Microsoft.FamilyShow.Controls.Diagram
+namespace FamilyShow.Controls.Diagram
 {
   class DiagramLogic
   {
@@ -39,7 +39,6 @@ namespace Microsoft.FamilyShow.Controls.Diagram
     /// <summary>
     /// Sets the callback that is called when a node is clicked.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
     public RoutedEventHandler NodeClickHandler
     {
       set { nodeClickHandler = value; }

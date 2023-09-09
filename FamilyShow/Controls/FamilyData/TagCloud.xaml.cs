@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// Interaction logic for TagCloud.xaml

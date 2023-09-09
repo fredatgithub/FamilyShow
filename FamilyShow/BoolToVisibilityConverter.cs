@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   public class BoolToVisibilityConverter : IValueConverter
   {

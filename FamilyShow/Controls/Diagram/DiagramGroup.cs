@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.FamilyShow.Controls.Diagram
+namespace FamilyShow.Controls.Diagram
 {
   /// <summary>
   /// Group in a row that contains node objects.

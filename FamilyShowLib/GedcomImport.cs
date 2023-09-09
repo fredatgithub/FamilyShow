@@ -8,13 +8,12 @@
 */
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// Import data from a GEDCOM file to the Person collection.

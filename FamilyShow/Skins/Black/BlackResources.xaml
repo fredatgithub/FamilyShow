@@ -1,9 +1,9 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Microsoft.FamilyShowLib="clr-namespace:Microsoft.FamilyShowLib;assembly=FamilyShowLib"
+    xmlns:FamilyShowLib="clr-namespace:FamilyShowLib;assembly=FamilyShowLib"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
-    xmlns:local="clr-namespace:Microsoft.FamilyShow;assembly=FamilyShow">
+    xmlns:local="clr-namespace:FamilyShow;assembly=FamilyShow">
   <local:ImageConverter x:Key="ImageConverter" />
   <!--  NormalBrush is used as the Background for SimpleButton, SimpleRepeatButton  -->
   <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
@@ -987,7 +987,7 @@
 
   <!--  Data Tempaltes  -->
   <!--  This is the style for the photo in the list of photos on the PersonInfo control  -->
-  <DataTemplate DataType="{x:Type Microsoft.FamilyShowLib:Photo}">
+  <DataTemplate DataType="{x:Type FamilyShowLib:Photo}">
     <Grid>
       <Border
                 Margin="2"

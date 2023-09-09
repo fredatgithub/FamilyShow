@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// Adds zooming and scrolling to the diagram control.

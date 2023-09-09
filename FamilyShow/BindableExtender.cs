@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Documents;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// Allow Run Element to be Bindable.

@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// Maps FamilyShow Person.Id to a GEDCOM ID. GEDCOM IDs cannot 

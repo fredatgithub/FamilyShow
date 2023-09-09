@@ -18,7 +18,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// One item in the common dialog filter.

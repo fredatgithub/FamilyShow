@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   public class ComposingConverter : IValueConverter
   {

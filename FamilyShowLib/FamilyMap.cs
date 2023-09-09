@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// Orgainzes the People collection into a list of families. 

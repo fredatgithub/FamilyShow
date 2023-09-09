@@ -8,7 +8,7 @@
     <ProjectGuid>{2D6E56AB-7C1D-4129-858C-E319BF04E7C8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.FamilyShowLib</RootNamespace>
+    <RootNamespace>FamilyShowLib</RootNamespace>
     <AssemblyName>FamilyShowLib</AssemblyName>
     <SccProjectName>
     </SccProjectName>

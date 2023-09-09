@@ -8,7 +8,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Threading;
 
-namespace Microsoft.FamilyShow.Controls.FamilyData
+namespace FamilyShow.Controls.FamilyData
 {
   /// <summary>
   /// Class that parses the filter text.

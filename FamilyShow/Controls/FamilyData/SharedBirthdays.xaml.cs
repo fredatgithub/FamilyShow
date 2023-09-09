@@ -1,4 +1,4 @@
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.Collections;
 using System.Globalization;
@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// Interaction logic for SharedBirthdays.xaml

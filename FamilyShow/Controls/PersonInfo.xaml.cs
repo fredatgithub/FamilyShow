@@ -1,4 +1,4 @@
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.Globalization;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// Interaction logic for PersonInfo.xaml

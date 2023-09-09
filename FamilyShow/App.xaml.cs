@@ -1,4 +1,4 @@
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.Collections.Specialized;
 using System.Drawing;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Xml.Serialization;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// Interaction logic for App.xaml.

@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Microsoft.FamilyShow.Controls.FamilyData
+namespace FamilyShow.Controls.FamilyData
 {
   /// <summary>
   /// A column in the SortListView object that allows the SortProperty and 

@@ -13,7 +13,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.FamilyShow.Controls.Diagram
+namespace FamilyShow.Controls.Diagram
 {
   /// <summary>
   /// Row in the diagram that contains group objects.

@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Xml.Serialization;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   [Serializable]
   public class Story : INotifyPropertyChanged

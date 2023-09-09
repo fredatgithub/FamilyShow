@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// Representation for a Parent couple.  E.g. Bob and Sue

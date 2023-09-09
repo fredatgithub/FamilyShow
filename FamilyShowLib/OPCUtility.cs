@@ -3,7 +3,7 @@ using System.IO;
 using System.IO.Packaging;
 using System.Net.Mime;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// Utility class for packaging and reading Open Package Convention files.

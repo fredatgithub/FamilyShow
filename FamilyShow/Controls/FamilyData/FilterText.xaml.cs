@@ -7,7 +7,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   public partial class FilterText : UserControl
   {

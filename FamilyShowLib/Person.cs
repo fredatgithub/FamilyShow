@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// Representation for a single serializable Person.

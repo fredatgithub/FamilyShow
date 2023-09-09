@@ -3,14 +3,14 @@
  * and chart controls.
 */
 
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Microsoft.FamilyShow.Controls.FamilyData
+namespace FamilyShow.Controls.FamilyData
 {
   public partial class FamilyData : UserControl
   {

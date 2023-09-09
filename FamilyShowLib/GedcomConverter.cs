@@ -10,7 +10,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// Converts a GEDCOM file to an XML file.

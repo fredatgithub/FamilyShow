@@ -19,7 +19,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// One family group. 

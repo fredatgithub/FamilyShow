@@ -1,4 +1,4 @@
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// Interaction logic for Details.xaml

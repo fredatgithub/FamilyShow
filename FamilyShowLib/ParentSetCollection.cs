@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// Collection of ParentSet objects.

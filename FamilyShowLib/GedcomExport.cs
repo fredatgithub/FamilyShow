@@ -21,7 +21,7 @@ using System;
 using System.Globalization;
 using System.IO;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   /// <summary>
   /// Exports data from a People collection to a GEDCOM file.

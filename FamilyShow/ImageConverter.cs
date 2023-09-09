@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   public class ImageConverter : IValueConverter
   {

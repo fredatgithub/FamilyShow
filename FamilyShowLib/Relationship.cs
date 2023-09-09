@@ -2,7 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Xml.Serialization;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   #region Relationship classes
 

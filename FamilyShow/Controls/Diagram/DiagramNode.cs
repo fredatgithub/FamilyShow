@@ -16,7 +16,7 @@
  * 
 */
 
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.Globalization;
 using System.Windows;
@@ -24,7 +24,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// The type of node.

@@ -12,7 +12,7 @@
  *
 */
 
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +23,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
-namespace Microsoft.FamilyShow.Controls.Diagram
+namespace FamilyShow.Controls.Diagram
 {
   /// <summary>
   /// Diagram that lays out and displays the nodes.

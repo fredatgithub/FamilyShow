@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.FamilyShowLib
+namespace FamilyShowLib
 {
   [Serializable]
   public class Contact

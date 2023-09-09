@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace Microsoft.FamilyShow
+namespace FamilyShow
 {
   /// <summary>
   /// Interaction logic for Welcome.xaml

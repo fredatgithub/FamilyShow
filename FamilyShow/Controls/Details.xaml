@@ -1,11 +1,11 @@
 ﻿<UserControl
-    x:Class="Microsoft.FamilyShow.Details"
+    x:Class="FamilyShow.Details"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Microsoft.FamilyShowLib="clr-namespace:Microsoft.FamilyShowLib;assembly=FamilyShowLib"
+    xmlns:FamilyShowLib="clr-namespace:FamilyShowLib;assembly=FamilyShowLib"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2006"
-    xmlns:familyData="clr-namespace:Microsoft.FamilyShow.Controls.FamilyData"
-    xmlns:local="clr-namespace:Microsoft.FamilyShow"
+    xmlns:familyData="clr-namespace:FamilyShow.Controls.FamilyData"
+    xmlns:local="clr-namespace:FamilyShow"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     DataContextChanged="UserControl_DataContextChanged">
@@ -48,7 +48,7 @@
                 MethodName="GetValues"
                 ObjectType="{x:Type sys:Enum}">
         <ObjectDataProvider.MethodParameters>
-          <x:Type TypeName="Microsoft.FamilyShowLib:SpouseModifier" />
+          <x:Type TypeName="FamilyShowLib:SpouseModifier" />
         </ObjectDataProvider.MethodParameters>
       </ObjectDataProvider>
 
@@ -58,7 +58,7 @@
                 MethodName="GetValues"
                 ObjectType="{x:Type sys:Enum}">
         <ObjectDataProvider.MethodParameters>
-          <x:Type TypeName="Microsoft.FamilyShowLib:Gender" />
+          <x:Type TypeName="FamilyShowLib:Gender" />
         </ObjectDataProvider.MethodParameters>
       </ObjectDataProvider>
 
@@ -766,7 +766,7 @@
         </BooleanAnimationUsingKeyFrames>
       </Storyboard>
 
-      <Microsoft.FamilyShowLib:Person x:Key="person" />
+      <FamilyShowLib:Person x:Key="person" />
 
       <ControlTemplate x:Key="TextBoxErrorTemplate">
         <!--  Visibility binding is used in this instance to hide the error adorner when the adorned element is not visible  -->

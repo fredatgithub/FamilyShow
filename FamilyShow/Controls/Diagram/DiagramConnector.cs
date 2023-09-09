@@ -4,14 +4,14 @@
  * filtered. An animation is applied to the brush when the filtered state changes.
 */
 
-using Microsoft.FamilyShowLib;
+using FamilyShowLib;
 using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace Microsoft.FamilyShow.Controls.Diagram
+namespace FamilyShow.Controls.Diagram
 {
   /// <summary>
   /// One of the nodes in a connection.
