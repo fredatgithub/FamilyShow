@@ -132,15 +132,16 @@ namespace Microsoft.FamilyShowLib
     {
       List<SpouseRelationship> listOfSpouse = new List<SpouseRelationship>();
 
-      // on cherche toutes les relations
-      foreach (Relationship rel in person.Relationships)
+      // looking for all relationships
+      foreach (Relationship relationship in person.Relationships)
       {
-        if (rel.RelationshipType == RelationshipType.Spouse)
+        if (relationship.RelationshipType == RelationshipType.Spouse)
         {
-          SpouseRelationship spouseRel = ((SpouseRelationship)rel);
-          if (spouseRel.MarriageDate != null && spouseRel.MarriageDate?.Year >= startYear)
+          SpouseRelationship spouseRelationship = ((SpouseRelationship)relationship);
+
+          if (spouseRelationship.MarriageDate != null && spouseRelationship.MarriageDate?.Year >= startYear)
           {
-            listOfSpouse.Add(spouseRel);
+            listOfSpouse.Add(spouseRelationship);
           }
         }
       }
