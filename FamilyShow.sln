@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.181
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyShowLib", "FamilyShowLib\FamilyShowLib.csproj", "{2D6E56AB-7C1D-4129-858C-E319BF04E7C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyShowLib", "FamilyShowLib\FamilyShowLib.csproj", "{2D6E56AB-7C1D-4129-858C-E319BF04E7C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyShow", "FamilyShow\FamilyShow.csproj", "{6028571C-B855-42AE-8903-77F1D2B5A000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyShow", "FamilyShow\FamilyShow.csproj", "{6028571C-B855-42AE-8903-77F1D2B5A000}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestFamilyShow", "UnitTestFamilyShow\UnitTestFamilyShow.csproj", "{A5619A18-E92C-4D06-A847-33EC178E20F3}"
 EndProject
