@@ -5,6 +5,20 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>FamilyShow</AssemblyName>
+    <StartupObject>FamilyShow.App</StartupObject>
+    <PlatformTarget>x64</PlatformTarget>
+    <Copyright>MIT 2023</Copyright>
+    <PackageProjectUrl>https://github.com/fredatgithub/FamilyShow</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/fredatgithub/FamilyShow/releases</RepositoryUrl>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <FileVersion>4.0.0.0</FileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
