@@ -2,9 +2,9 @@
 
 ## Supported Versions
 
-All versions ppublished here are supported forever!
+All versions published here are supported forever!
 
 ## Reporting a Vulnerability
 
-Report security vulnerabilities on this web site github.com
+Report security vulnerabilities on this website github.com
 
