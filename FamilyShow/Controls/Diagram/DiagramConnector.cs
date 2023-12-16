@@ -4,12 +4,13 @@
  * filtered. An animation is applied to the brush when the filtered state changes.
 */
 
-using FamilyShowLib;
 using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+
+using FamilyShowLib;
 
 namespace FamilyShow.Controls.Diagram
 {
@@ -21,9 +22,8 @@ namespace FamilyShow.Controls.Diagram
     #region fields
 
     // Node location in the diagram.
-    private DiagramRow row;
-    private DiagramGroup group;
-    private DiagramNode node;
+    private readonly DiagramRow row;
+    private readonly DiagramGroup group;
 
     #endregion
 
@@ -32,17 +32,14 @@ namespace FamilyShow.Controls.Diagram
     /// <summary>
     /// Node for this connection point.
     /// </summary>
-    public DiagramNode Node
-    {
-      get { return node; }
-    }
+    public DiagramNode Node { get; }
 
     /// <summary>
     /// Center of the node relative to the diagram.
     /// </summary>
     public Point Center
     {
-      get { return GetPoint(node.Center); }
+      get { return GetPoint(Node.Center); }
     }
 
     /// <summary>
@@ -50,7 +47,7 @@ namespace FamilyShow.Controls.Diagram
     /// </summary>
     public Point LeftCenter
     {
-      get { return GetPoint(node.LeftCenter); }
+      get { return GetPoint(Node.LeftCenter); }
     }
 
     /// <summary>
@@ -58,7 +55,7 @@ namespace FamilyShow.Controls.Diagram
     /// </summary>
     public Point RightCenter
     {
-      get { return GetPoint(node.RightCenter); }
+      get { return GetPoint(Node.RightCenter); }
     }
 
     /// <summary>
@@ -66,7 +63,7 @@ namespace FamilyShow.Controls.Diagram
     /// </summary>
     public Point TopCenter
     {
-      get { return GetPoint(node.TopCenter); }
+      get { return GetPoint(Node.TopCenter); }
     }
 
     /// <summary>
@@ -74,7 +71,7 @@ namespace FamilyShow.Controls.Diagram
     /// </summary>
     public Point TopRight
     {
-      get { return GetPoint(node.TopRight); }
+      get { return GetPoint(Node.TopRight); }
     }
 
     /// <summary>
@@ -82,14 +79,14 @@ namespace FamilyShow.Controls.Diagram
     /// </summary>
     public Point TopLeft
     {
-      get { return GetPoint(node.TopLeft); }
+      get { return GetPoint(Node.TopLeft); }
     }
 
     #endregion
 
     public DiagramConnectorNode(DiagramNode node, DiagramGroup group, DiagramRow row)
     {
-      this.node = node;
+      this.Node = node;
       this.group = group;
       this.row = row;
     }
@@ -123,19 +120,8 @@ namespace FamilyShow.Controls.Diagram
 
     #region fields
 
-    // The two nodes that are connected.
-    private DiagramConnectorNode start;
-    private DiagramConnectorNode end;
-
-    // Flag, if the connection is currently filtered. The
-    // connection is drawn in a dim-state when filtered.
-    private bool isFiltered;
-
     // Animation if the filtered state has changed.
     private DoubleAnimation animation;
-
-    // Pen to draw connector line.
-    private Pen resourcePen;
 
     #endregion
 
@@ -166,27 +152,17 @@ namespace FamilyShow.Controls.Diagram
     /// <summary>
     /// Get the starting node.
     /// </summary>
-    protected DiagramConnectorNode StartNode
-    {
-      get { return start; }
-    }
+    protected DiagramConnectorNode StartNode { get; }
 
     /// <summary>
     /// Get the ending node.
     /// </summary>
-    protected DiagramConnectorNode EndNode
-    {
-      get { return end; }
-    }
+    protected DiagramConnectorNode EndNode { get; }
 
     /// <summary>
     /// Get or set the pen that specifies the connector line.
     /// </summary>
-    protected Pen ResourcePen
-    {
-      get { return resourcePen; }
-      set { resourcePen = value; }
-    }
+    protected Pen ResourcePen { get; set; }
 
     /// <summary>
     /// Create the connector line pen. The opacity is set based on
@@ -202,7 +178,7 @@ namespace FamilyShow.Controls.Diagram
         Pen connectorPen = ResourcePen.Clone();
 
         // Set opacity based on the filtered state.
-        connectorPen.Brush.Opacity = (isFiltered) ? Const.OpacityFiltered : Const.OpacityNormal;
+        connectorPen.Brush.Opacity = (IsFiltered) ? Const.OpacityFiltered : Const.OpacityNormal;
 
         // Create animation if the filtered state has changed.
         if (animation != null)
@@ -215,11 +191,7 @@ namespace FamilyShow.Controls.Diagram
     /// <summary>
     /// Return true if the connection is currently filtered.
     /// </summary>
-    private bool IsFiltered
-    {
-      set { isFiltered = value; }
-      get { return isFiltered; }
-    }
+    private bool IsFiltered { set; get; }
 
     /// <summary>
     /// Get the new filtered state of the connection. This depends
@@ -230,7 +202,7 @@ namespace FamilyShow.Controls.Diagram
       get
       {
         // Connection is filtered if any of the nodes are filtered.
-        if (start.Node.IsFiltered || end.Node.IsFiltered)
+        if (StartNode.Node.IsFiltered || EndNode.Node.IsFiltered)
           return true;
 
         // Connection is not filtered.
@@ -244,8 +216,8 @@ namespace FamilyShow.Controls.Diagram
     protected DiagramConnector(DiagramConnectorNode startConnector,
         DiagramConnectorNode endConnector)
     {
-      start = startConnector;
-      end = endConnector;
+      StartNode = startConnector;
+      EndNode = endConnector;
     }
 
     /// <summary>
@@ -254,8 +226,8 @@ namespace FamilyShow.Controls.Diagram
     virtual public bool Draw(DrawingContext drawingContext)
     {
       // Don't draw if either of the nodes are filtered.
-      if (start.Node.Visibility != Visibility.Visible ||
-          end.Node.Visibility != Visibility.Visible)
+      if (StartNode.Node.Visibility != Visibility.Visible ||
+          EndNode.Node.Visibility != Visibility.Visible)
         return false;
 
       // First check if the filtered state has changed, an animation
@@ -274,10 +246,10 @@ namespace FamilyShow.Controls.Diagram
     protected SolidColorBrush GetBrush(Color color)
     {
       // Create the brush.
-      SolidColorBrush brush = new SolidColorBrush(color)
+      SolidColorBrush brush = new(color)
       {
         // Set the opacity based on the filtered state.
-        Opacity = (isFiltered) ? Const.OpacityFiltered : Const.OpacityNormal
+        Opacity = (IsFiltered) ? Const.OpacityFiltered : Const.OpacityNormal
       };
 
       // Create animation if the filtered state has changed.
@@ -303,8 +275,8 @@ namespace FamilyShow.Controls.Diagram
         IsFiltered = newFiltered;
         animation = new DoubleAnimation
         {
-          From = isFiltered ? Const.OpacityNormal : Const.OpacityFiltered,
-          To = isFiltered ? Const.OpacityFiltered : Const.OpacityNormal,
+          From = IsFiltered ? Const.OpacityNormal : Const.OpacityFiltered,
+          To = IsFiltered ? Const.OpacityFiltered : Const.OpacityNormal,
           Duration = App.GetAnimationDuration(Const.AnimationDuration)
         };
       }
@@ -332,7 +304,6 @@ namespace FamilyShow.Controls.Diagram
     /// <summary>
     /// Draw the connection between the two nodes.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods")]
     override public bool Draw(DrawingContext drawingContext)
     {
       if (!base.Draw(drawingContext))
@@ -352,12 +323,15 @@ namespace FamilyShow.Controls.Diagram
     #region fields
 
     // Connector line text.
-    private double connectionTextSize;
+    private readonly double connectionTextSize;
     private Color connectionTextColor;
-    private FontFamily connectionTextFont;
+    private readonly FontFamily connectionTextFont;
 
     // Flag if currently married or former.
-    private bool married;
+    private readonly bool married;
+
+    // The Pixels Per Density Independent Pixel value.
+    private readonly double pixelsPerDip;
 
     #endregion
 
@@ -441,7 +415,8 @@ namespace FamilyShow.Controls.Diagram
     #endregion
 
     public MarriedDiagramConnector(bool isMarried,
-        DiagramConnectorNode startConnector, DiagramConnectorNode endConnector) :
+        DiagramConnectorNode startConnector, DiagramConnectorNode endConnector,
+        DpiScale dpiScale) :
         base(startConnector, endConnector)
     {
       // Store if curretnly married or former.
@@ -451,6 +426,9 @@ namespace FamilyShow.Controls.Diagram
       connectionTextSize = (double)Application.Current.TryFindResource("ConnectionTextSize");
       connectionTextColor = (Color)Application.Current.TryFindResource("ConnectionTextColor");
       connectionTextFont = (FontFamily)Application.Current.TryFindResource("ConnectionTextFont");
+
+      // Gets the DPI information at which this Visual is measured and rendered.
+      pixelsPerDip = dpiScale.PixelsPerDip;
 
       // Get resourced used to draw the connection line.
       ResourcePen = (Pen)Application.Current.TryFindResource(
@@ -482,7 +460,7 @@ namespace FamilyShow.Controls.Diagram
 
       // Use a higher arc when the nodes are further apart.
       double arcHeight = (endPoint.X - startPoint.X) / 4;
-      Point middlePoint = new Point(startPoint.X + ((endPoint.X - startPoint.X) / 2), startPoint.Y - arcHeight);
+      Point middlePoint = new(startPoint.X + ((endPoint.X - startPoint.X) / 2), startPoint.Y - arcHeight);
 
       // Draw the arc, get the bounds so can draw connection text.
       Rect bounds = DrawArc(drawingContext, Pen, startPoint, middlePoint, endPoint);
@@ -496,11 +474,12 @@ namespace FamilyShow.Controls.Diagram
         {
           string text = rel.MarriageDate.Value.Year.ToString(CultureInfo.CurrentCulture);
 
-          FormattedText format = new FormattedText(text,
+          FormattedText format = new(text,
               CultureInfo.CurrentUICulture,
               FlowDirection.LeftToRight, new Typeface(connectionTextFont,
               FontStyles.Normal, FontWeights.Normal, FontStretches.Normal,
-              connectionTextFont), connectionTextSize, GetBrush(connectionTextColor));
+              connectionTextFont), connectionTextSize, GetBrush(connectionTextColor),
+              pixelsPerDip);
 
           drawingContext.DrawText(format, new Point(
               bounds.Left + ((bounds.Width / 2) - (format.Width / 2)),
@@ -512,11 +491,12 @@ namespace FamilyShow.Controls.Diagram
         {
           string text = rel.DivorceDate.Value.Year.ToString(CultureInfo.CurrentCulture);
 
-          FormattedText format = new FormattedText(text,
+          FormattedText format = new(text,
               CultureInfo.CurrentUICulture,
               FlowDirection.LeftToRight, new Typeface(connectionTextFont,
               FontStyles.Normal, FontWeights.Normal, FontStretches.Normal,
-              connectionTextFont), connectionTextSize, GetBrush(connectionTextColor));
+              connectionTextFont), connectionTextSize, GetBrush(connectionTextColor),
+              pixelsPerDip);
 
           drawingContext.DrawText(format, new Point(
               bounds.Left + ((bounds.Width / 2) - (format.Width / 2)),
@@ -531,8 +511,8 @@ namespace FamilyShow.Controls.Diagram
     private static Rect DrawArc(DrawingContext drawingContext, Pen pen,
         Point startPoint, Point middlePoint, Point endPoint)
     {
-      PathGeometry geometry = new PathGeometry();
-      PathFigure figure = new PathFigure
+      PathGeometry geometry = new();
+      PathFigure figure = new()
       {
         StartPoint = startPoint
       };

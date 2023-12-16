@@ -3,11 +3,12 @@
  * groups and nodes based on the node relationships. 
 */
 
-using FamilyShowLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+
+using FamilyShowLib;
 
 namespace FamilyShow.Controls.Diagram
 {
@@ -15,16 +16,8 @@ namespace FamilyShow.Controls.Diagram
   {
     #region fields
 
-    // List of the connections, specify connections between two nodes.
-    private List<DiagramConnector> connections = new List<DiagramConnector>();
-
-    // Map that allows quick lookup of a Person object to connection information.
-    // Used when setting up the connections between nodes.
-    private Dictionary<Person, DiagramConnectorNode> personLookup =
-        new Dictionary<Person, DiagramConnectorNode>();
-
-    // List of people, global list that is shared by all objects in the application.
-    private PeopleCollection family;
+    // DPI information at which this Visual is measured and rendered.
+    private DpiScale dpiScale;
 
     // Callback when a node is clicked.
     private RoutedEventHandler nodeClickHandler;
@@ -47,27 +40,18 @@ namespace FamilyShow.Controls.Diagram
     /// <summary>
     /// Gets the list of people in the family.
     /// </summary>
-    public PeopleCollection Family
-    {
-      get { return family; }
-    }
+    public PeopleCollection Family { get; }
 
     /// <summary>
     /// Gets the list of connections between nodes.
     /// </summary>
-    public List<DiagramConnector> Connections
-    {
-      get { return connections; }
-    }
+    public List<DiagramConnector> Connections { get; } = [];
 
     /// <summary>
     /// Gets the person lookup list. This includes all of the 
     /// people and nodes that are displayed in the diagram.
     /// </summary>
-    public Dictionary<Person, DiagramConnectorNode> PersonLookup
-    {
-      get { return personLookup; }
-    }
+    public Dictionary<Person, DiagramConnectorNode> PersonLookup { get; } = [];
 
     /// <summary>
     /// Sets the year filter that filters nodes and connectors.
@@ -79,7 +63,7 @@ namespace FamilyShow.Controls.Diagram
         if (displayYear != value)
         {
           displayYear = value;
-          foreach (DiagramConnectorNode connectorNode in personLookup.Values)
+          foreach (DiagramConnectorNode connectorNode in PersonLookup.Values)
             connectorNode.Node.DisplayYear = displayYear;
         }
       }
@@ -96,7 +80,7 @@ namespace FamilyShow.Controls.Diagram
         double minimumYear = DateTime.Now.Year;
 
         // Check birth years.
-        foreach (DiagramConnectorNode connectorNode in personLookup.Values)
+        foreach (DiagramConnectorNode connectorNode in PersonLookup.Values)
         {
           DateTime? date = connectorNode.Node.Person.BirthDate;
           if (date != null)
@@ -104,7 +88,7 @@ namespace FamilyShow.Controls.Diagram
         }
 
         // Check marriage years.
-        foreach (DiagramConnector connector in connections)
+        foreach (DiagramConnector connector in Connections)
         {
           // Marriage date.
           DateTime? date = connector.MarriedDate;
@@ -123,10 +107,12 @@ namespace FamilyShow.Controls.Diagram
 
     #endregion
 
-    public DiagramLogic()
+    public DiagramLogic(DpiScale dpiScale)
     {
       // The list of people, this is a global list shared by the application.
-      family = App.Family;
+      Family = App.Family;
+
+      this.dpiScale = dpiScale;
 
       Clear();
     }
@@ -141,7 +127,7 @@ namespace FamilyShow.Controls.Diagram
     public static Collection<Person> GetParents(DiagramRow row)
     {
       // List that is returned.
-      Collection<Person> list = new Collection<Person>();
+      Collection<Person> list = [];
 
       // Get possible children in the row.
       List<Person> rowList = GetPrimaryAndRelatedPeople(row);
@@ -165,7 +151,7 @@ namespace FamilyShow.Controls.Diagram
     public static List<Person> GetChildren(DiagramRow row)
     {
       // List that is returned.
-      List<Person> list = new List<Person>();
+      List<Person> list = [];
 
       // Get possible parents in the row.
       List<Person> rowList = GetPrimaryAndRelatedPeople(row);
@@ -188,7 +174,7 @@ namespace FamilyShow.Controls.Diagram
     /// </summary>
     private static List<Person> GetPrimaryAndRelatedPeople(DiagramRow row)
     {
-      List<Person> list = new List<Person>();
+      List<Person> list = [];
       foreach (DiagramGroup group in row.Groups)
       {
         foreach (DiagramNode node in group.Nodes)
@@ -229,9 +215,11 @@ namespace FamilyShow.Controls.Diagram
     /// </summary>
     private DiagramNode CreateNode(Person person, NodeType type, bool clickEvent)
     {
-      DiagramNode node = new DiagramNode();
-      node.Person = person;
-      node.Type = type;
+      DiagramNode node = new()
+      {
+        Person = person,
+        Type = type
+      };
       if (clickEvent)
         node.Click += nodeClickHandler;
 
@@ -246,12 +234,12 @@ namespace FamilyShow.Controls.Diagram
     {
       foreach (Person sibling in siblings)
       {
-        if (!personLookup.ContainsKey(sibling))
+        if (!PersonLookup.ContainsKey(sibling))
         {
           // Siblings node.
           DiagramNode node = CreateNode(sibling, nodeType, true, scale);
           group.Add(node);
-          personLookup.Add(node.Person, new DiagramConnectorNode(node, group, row));
+          PersonLookup.Add(node.Person, new DiagramConnectorNode(node, group, row));
         }
       }
     }
@@ -265,16 +253,16 @@ namespace FamilyShow.Controls.Diagram
     {
       foreach (Person spouse in spouses)
       {
-        if (!personLookup.ContainsKey(spouse))
+        if (!PersonLookup.ContainsKey(spouse))
         {
           // Spouse node.
           DiagramNode node = CreateNode(spouse, nodeType, true, scale);
           group.Add(node);
 
           // Add connection.
-          DiagramConnectorNode connectorNode = new DiagramConnectorNode(node, group, row);
-          personLookup.Add(node.Person, connectorNode);
-          connections.Add(new MarriedDiagramConnector(married, personLookup[person], connectorNode));
+          DiagramConnectorNode connectorNode = new(node, group, row);
+          PersonLookup.Add(node.Person, connectorNode);
+          Connections.Add(new MarriedDiagramConnector(married, PersonLookup[person], connectorNode, dpiScale));
         }
       }
     }
@@ -291,16 +279,16 @@ namespace FamilyShow.Controls.Diagram
     public DiagramRow CreatePrimaryRow(Person person, double scale, double scaleRelated)
     {
       // The primary node contains two groups, 
-      DiagramGroup primaryGroup = new DiagramGroup();
-      DiagramGroup leftGroup = new DiagramGroup();
+      DiagramGroup primaryGroup = new();
+      DiagramGroup leftGroup = new();
 
       // Set up the row.
-      DiagramRow row = new DiagramRow();
+      DiagramRow row = new();
 
       // Add primary node.
       DiagramNode node = CreateNode(person, NodeType.Primary, false, scale);
       primaryGroup.Add(node);
-      personLookup.Add(node.Person, new DiagramConnectorNode(node, primaryGroup, row));
+      PersonLookup.Add(node.Person, new DiagramConnectorNode(node, primaryGroup, row));
 
       // Current spouses.
       Collection<Person> currentSpouses = person.CurrentSpouses;
@@ -338,21 +326,21 @@ namespace FamilyShow.Controls.Diagram
     public DiagramRow CreateChildrenRow(List<Person> children, double scale, double scaleRelated)
     {
       // Setup the row.
-      DiagramRow row = new DiagramRow();
+      DiagramRow row = new();
 
       foreach (Person child in children)
       {
         // Each child is in their group, the group contains the child 
         // and any spouses. The groups does not contain siblings.
-        DiagramGroup group = new DiagramGroup();
+        DiagramGroup group = new();
         row.Add(group);
 
         // Child.
-        if (!personLookup.ContainsKey(child))
+        if (!PersonLookup.ContainsKey(child))
         {
           DiagramNode node = CreateNode(child, NodeType.Related, true, scale);
           group.Add(node);
-          personLookup.Add(node.Person, new DiagramConnectorNode(node, group, row));
+          PersonLookup.Add(node.Person, new DiagramConnectorNode(node, group, row));
         }
 
         // Current spouses.
@@ -381,7 +369,7 @@ namespace FamilyShow.Controls.Diagram
     public DiagramRow CreateParentRow(Collection<Person> parents, double scale, double scaleRelated)
     {
       // Set up the row.
-      DiagramRow row = new DiagramRow();
+      DiagramRow row = new();
 
       int groupCount = 0;
 
@@ -389,18 +377,18 @@ namespace FamilyShow.Controls.Diagram
       {
         // Each parent is in their group, the group contains the parent,
         // spouses and siblings.
-        DiagramGroup group = new DiagramGroup();
+        DiagramGroup group = new();
         row.Add(group);
 
         // Determine if this is a left or right oriented group.
-        bool left = (groupCount++ % 2 == 0) ? true : false;
+        bool left = (groupCount++ % 2 == 0);
 
         // Parent.
-        if (!personLookup.ContainsKey(person))
+        if (!PersonLookup.ContainsKey(person))
         {
           DiagramNode node = CreateNode(person, NodeType.Related, true, scale);
           group.Add(node);
-          personLookup.Add(node.Person, new DiagramConnectorNode(node, group, row));
+          PersonLookup.Add(node.Person, new DiagramConnectorNode(node, group, row));
         }
 
         // Current spouses.
@@ -459,12 +447,7 @@ namespace FamilyShow.Controls.Diagram
     {
       foreach (Person parent in child.Parents)
       {
-        if (personLookup.ContainsKey(parent) &&
-            personLookup.ContainsKey(child))
-        {
-          connections.Add(new ChildDiagramConnector(
-              personLookup[parent], personLookup[child]));
-        }
+        AddConnection(parent, child);
       }
     }
 
@@ -475,12 +458,19 @@ namespace FamilyShow.Controls.Diagram
     {
       foreach (Person child in parent.Children)
       {
-        if (personLookup.ContainsKey(parent) &&
-            personLookup.ContainsKey(child))
-        {
-          connections.Add(new ChildDiagramConnector(
-              personLookup[parent], personLookup[child]));
-        }
+        AddConnection(parent, child);
+      }
+    }
+
+    /// <summary>
+    /// Add connection between the parent and child.
+    /// </summary>
+    private void AddConnection(Person parent, Person child)
+    {
+      if (PersonLookup.TryGetValue(parent, out DiagramConnectorNode parentConnector) &&
+          PersonLookup.TryGetValue(child, out DiagramConnectorNode childConnector))
+      {
+        Connections.Add(new ChildDiagramConnector(parentConnector, childConnector));
       }
     }
 
@@ -505,22 +495,20 @@ namespace FamilyShow.Controls.Diagram
           // Current marriage.
           if (rel != null && rel.SpouseModifier == SpouseModifier.Current)
           {
-            if (personLookup.ContainsKey(person) &&
-                personLookup.ContainsKey(spouse))
+            if (PersonLookup.TryGetValue(person, out DiagramConnectorNode personConnector) &&
+                PersonLookup.TryGetValue(spouse, out DiagramConnectorNode spouseConnector))
             {
-              connections.Add(new MarriedDiagramConnector(true,
-                  personLookup[person], personLookup[spouse]));
+              Connections.Add(new MarriedDiagramConnector(true, personConnector, spouseConnector, dpiScale));
             }
           }
 
           // Former marriage
           if (rel != null && rel.SpouseModifier == SpouseModifier.Former)
           {
-            if (personLookup.ContainsKey(person) &&
-                personLookup.ContainsKey(spouse))
+            if (PersonLookup.TryGetValue(person, out DiagramConnectorNode personConnector) &&
+                PersonLookup.TryGetValue(spouse, out DiagramConnectorNode spouseConnector))
             {
-              connections.Add(new MarriedDiagramConnector(false,
-                  personLookup[person], personLookup[spouse]));
+              Connections.Add(new MarriedDiagramConnector(false, personConnector, spouseConnector, dpiScale));
             }
           }
         }
@@ -537,12 +525,12 @@ namespace FamilyShow.Controls.Diagram
       // Remove any event handlers from the nodes. Otherwise 
       // the delegate maintains a reference to the object 
       // which can hinder garbage collection. 
-      foreach (DiagramConnectorNode node in personLookup.Values)
+      foreach (DiagramConnectorNode node in PersonLookup.Values)
         node.Node.Click -= nodeClickHandler;
 
       // Clear the connection info.
-      connections.Clear();
-      personLookup.Clear();
+      Connections.Clear();
+      PersonLookup.Clear();
 
       // Time filter.
       displayYear = DateTime.Now.Year;
@@ -556,10 +544,10 @@ namespace FamilyShow.Controls.Diagram
       if (person == null)
         return null;
 
-      if (!personLookup.ContainsKey(person))
+      if (!PersonLookup.TryGetValue(person, out DiagramConnectorNode personConnector))
         return null;
 
-      return personLookup[person].Node;
+      return personConnector.Node;
     }
 
     /// <summary>
@@ -568,9 +556,8 @@ namespace FamilyShow.Controls.Diagram
     public Rect GetNodeBounds(Person person)
     {
       Rect bounds = Rect.Empty;
-      if (person != null && personLookup.ContainsKey(person))
+      if (person != null && PersonLookup.TryGetValue(person, out DiagramConnectorNode connector))
       {
-        DiagramConnectorNode connector = personLookup[person];
         bounds = new Rect(connector.TopLeft.X, connector.TopLeft.Y,
             connector.Node.ActualWidth, connector.Node.ActualHeight);
       }

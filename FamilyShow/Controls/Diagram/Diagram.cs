@@ -12,7 +12,6 @@
  *
 */
 
-using FamilyShowLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +21,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+
+using FamilyShowLib;
 
 namespace FamilyShow.Controls.Diagram
 {
@@ -63,14 +64,14 @@ namespace FamilyShow.Controls.Diagram
     }
 
     // List of rows in the diagram. Each row contains groups, and each group contains nodes.
-    private List<DiagramRow> rows = new List<DiagramRow>();
+    private readonly List<DiagramRow> rows = [];
 
     // Populates the rows with nodes.
-    private DiagramLogic logic;
+    private readonly DiagramLogic logic;
 
     // Size of the diagram. Used to layout all of the nodes before the
     // control gets an actual size.
-    private Size totalSize = new Size(0, 0);
+    private Size totalSize = new(0, 0);
 
     // Zoom level of the diagram.
     private double scale = 1.0;
@@ -88,7 +89,7 @@ namespace FamilyShow.Controls.Diagram
     private Person newPerson;
 
     // Timer used with the repopulating animation.
-    private DispatcherTimer animationTimer = new DispatcherTimer();
+    private readonly DispatcherTimer animationTimer = new();
 
 #if DEBUG
     // Flag if the row and group borders should be drawn.
@@ -102,19 +103,13 @@ namespace FamilyShow.Controls.Diagram
     public event EventHandler DiagramUpdated;
     private void OnDiagramUpdated()
     {
-      if (DiagramUpdated != null)
-      {
-        DiagramUpdated(this, EventArgs.Empty);
-      }
+      DiagramUpdated?.Invoke(this, EventArgs.Empty);
     }
 
     public event EventHandler DiagramPopulated;
     private void OnDiagramPopulated()
     {
-      if (DiagramPopulated != null)
-      {
-        DiagramPopulated(this, EventArgs.Empty);
-      }
+      DiagramPopulated?.Invoke(this, EventArgs.Empty);
     }
 
     #endregion
@@ -189,7 +184,7 @@ namespace FamilyShow.Controls.Diagram
     public Diagram()
     {
       // Init the diagram logic, which handles all of the layout logic.
-      logic = new DiagramLogic
+      logic = new DiagramLogic(VisualTreeHelper.GetDpi(this))
       {
         NodeClickHandler = new RoutedEventHandler(OnNodeClick)
       };
@@ -209,7 +204,7 @@ namespace FamilyShow.Controls.Diagram
 #if DEBUG
       // Context menu so can display row and group borders.
       ContextMenu = new ContextMenu();
-      MenuItem item = new MenuItem();
+      MenuItem item = new();
       ContextMenu.Items.Add(item);
       item.Header = "Show Diagram Outline";
       item.Click += new RoutedEventHandler(OnToggleBorderClick);
@@ -236,7 +231,7 @@ namespace FamilyShow.Controls.Diagram
     protected override Size MeasureOverride(Size availableSize)
     {
       // Let each row determine how large they want to be.
-      Size size = new Size(double.PositiveInfinity, double.PositiveInfinity);
+      Size size = new(double.PositiveInfinity, double.PositiveInfinity);
       foreach (DiagramRow row in rows)
       {
         row.Measure(size);
@@ -261,10 +256,10 @@ namespace FamilyShow.Controls.Diagram
       double pos = 0;
 
       // Bounding area of the row.
-      Rect bounds = new Rect();
+      Rect bounds = new();
 
       // Total size of the diagram.
-      Size size = new Size(0, 0);
+      Size size = new(0, 0);
 
       foreach (DiagramRow row in rows)
       {
@@ -312,7 +307,7 @@ namespace FamilyShow.Controls.Diagram
         foreach (DiagramRow row in rows)
         {
           // Display row border.
-          Rect bounds = new Rect(row.Location, row.DesiredSize);
+          Rect bounds = new(row.Location, row.DesiredSize);
           drawingContext.DrawRectangle(null, new Pen(Brushes.DarkKhaki, 1), bounds);
 
           foreach (DiagramGroup group in row.Groups)
@@ -637,10 +632,10 @@ namespace FamilyShow.Controls.Diagram
       if (node != null)
       {
         // Create the new person animation.
-        DoubleAnimation anim = new DoubleAnimation(0, 1, App.GetAnimationDuration(Const.NewPersonAnimationDuration));
+        DoubleAnimation anim = new(0, 1, App.GetAnimationDuration(Const.NewPersonAnimationDuration));
 
         // Animate the node.
-        ScaleTransform transform = new ScaleTransform();
+        ScaleTransform transform = new();
         transform.BeginAnimation(ScaleTransform.ScaleXProperty, anim);
         transform.BeginAnimation(ScaleTransform.ScaleYProperty, anim);
         node.RenderTransform = transform;
