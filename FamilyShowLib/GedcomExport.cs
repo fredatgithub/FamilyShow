@@ -251,7 +251,7 @@ namespace FamilyShowLib
       }
     }
 
-    private static string ExportDate(DateTime? date)
+    internal static string ExportDate(DateTime? date)
     {
       if (date == null)
         return string.Empty;

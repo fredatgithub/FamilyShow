@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyShowLib", "FamilyShow
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyShow", "FamilyShow\FamilyShow.csproj", "{6028571C-B855-42AE-8903-77F1D2B5A000}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestFamilyShow", "UnitTestFamilyShow\UnitTestFamilyShow.csproj", "{A5619A18-E92C-4D06-A847-33EC178E20F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestFamilyShow", "UnitTestFamilyShow\UnitTestFamilyShow.csproj", "{A5619A18-E92C-4D06-A847-33EC178E20F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{38185247-15CD-4CB0-AF2E-4AE4DFF71B7B}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.targets = Directory.Build.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
