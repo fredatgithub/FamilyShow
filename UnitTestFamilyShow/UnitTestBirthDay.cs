@@ -1,5 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System.Globalization;
+
+using FamilyShowLib;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestFamilyShow
 {
@@ -49,6 +52,17 @@ namespace UnitTestFamilyShow
       DateTime expected = new DateTime(1, 1, 1);
       DateTime result = StringToDate(source);
       Assert.AreEqual(result, expected);
+    }
+
+    [TestMethod]
+    [DataRow(2019, 6, 21, "21 JUN 2019")]
+    [DataRow(1982, 1, 9, "9 JAN 1982")]
+    public void TestMethod_GEDCOM(int year, int month, int day, string expected)
+    {
+      DateTime date = new(year, month, day);
+      var result = GedcomExport.ExportDate(date);
+      Assert.AreEqual(expected, result);
+      Assert.AreEqual(date, DateTime.Parse(result, CultureInfo.InvariantCulture));
     }
 
     public static DateTime StringToDate(string dateString)

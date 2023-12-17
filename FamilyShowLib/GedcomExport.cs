@@ -31,10 +31,10 @@ namespace FamilyShowLib
     #region fields
 
     // Writes the text (GEDCOM) file.
-    private TextWriter writer;
+    private StreamWriter writer;
 
     // Maps GUID IDs (which are too long for GEDCOM) to smaller IDs.
-    private GedcomIdMap idMap = new GedcomIdMap();
+    private readonly GedcomIdMap idMap = new();
 
     // The people collection that is being exported.
     private PeopleCollection people;
@@ -114,7 +114,7 @@ namespace FamilyShowLib
       // family group. A family group consists of one or more parents,
       // marriage / divorce information and children. The FamilyMap class
       // creates a list of family groups from the People collection.
-      FamilyMap map = new FamilyMap();
+      FamilyMap map = [];
       map.Create(people);
 
       // Created the family groups, now export each family.
@@ -188,7 +188,7 @@ namespace FamilyShowLib
         // Date if it exist.
         if (relationship.MarriageDate != null)
         {
-          WriteLine(2, "DATE", relationship.MarriageDate.Value.ToShortDateString());
+          WriteLine(2, "DATE", ExportDate(relationship.MarriageDate));
         }
       }
 
@@ -200,7 +200,7 @@ namespace FamilyShowLib
         // Date if it exist.
         if (relationship.DivorceDate != null)
         {
-          WriteLine(2, "DATE", relationship.DivorceDate.Value.ToShortDateString());
+          WriteLine(2, "DATE", ExportDate(relationship.DivorceDate));
         }
       }
     }
@@ -237,7 +237,11 @@ namespace FamilyShowLib
       // Date.
       if (date != null)
       {
-        WriteLine(2, "DATE", date.Value.ToShortDateString());
+        string Date = ExportDate(date);
+        if (!string.IsNullOrEmpty(Date))
+        {
+          WriteLine(2, "DATE", Date);
+        }
       }
 
       // Place.
@@ -245,6 +249,42 @@ namespace FamilyShowLib
       {
         WriteLine(2, "PLAC", place);
       }
+    }
+
+    internal static string ExportDate(DateTime? date)
+    {
+      if (date == null)
+        return string.Empty;
+      else
+      {
+
+        string day = date.Value.Day.ToString();
+        string year = date.Value.Year.ToString();
+        int month = date.Value.Month;
+        string monthString = GetMMM(month);
+        return day + " " + monthString + " " + year;
+      }
+    }
+
+    //converts month number to 3 letter month abbreviation as used in GEDCOM
+    private static string GetMMM(int month)
+    {
+      return month switch
+      {
+        1 => "JAN",
+        2 => "FEB",
+        3 => "MAR",
+        4 => "APR",
+        5 => "MAY",
+        6 => "JUN",
+        7 => "JUL",
+        8 => "AUG",
+        9 => "SEP",
+        10 => "OCT",
+        11 => "NOV",
+        12 => "DEC",
+        _ => throw new NotImplementedException()
+      };
     }
 
     private void ExportGender(Person person)
@@ -270,7 +310,7 @@ namespace FamilyShowLib
 
       // Most lines do not need special processing, export the line if it
       // does not contain carriage returns or exceed the line length.
-      if (value.Length < ValueLimit && !value.Contains("\r") && !value.Contains("\n"))
+      if (value.Length < ValueLimit && !value.Contains('\r') && !value.Contains('\n'))
       {
         writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", level, tag, value));
         return;
