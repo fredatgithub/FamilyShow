@@ -25,12 +25,12 @@ namespace FamilyShow
     #region fields
 
     // The list of people, this is a global list shared by the application.
-    People familyCollection = App.FamilyCollection;
-    PeopleCollection family = App.Family;
+    private readonly People familyCollection = App.FamilyCollection;
+    private readonly PeopleCollection family = App.Family;
     //static string exportPath = @"D:\productions\G�n�alogie\FICHIER_ENQUETES\";
     // should be my documents by default
-    static string exportPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-    private Properties.Settings appSettings = Properties.Settings.Default;
+    private static readonly string exportPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    private readonly Properties.Settings appSettings = Properties.Settings.Default;
 
     #endregion
 
