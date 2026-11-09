@@ -5,10 +5,10 @@
 This project is based on software originally released under the Microsoft Public License (Ms-PL).
 
 Original copyright:
-Copyright (c) 2016 Microsoft Corporation under Microsoft Permissive License (Ms-PL)
+Copyright (c) 2009 Microsoft Corporation under Microsoft Permissive License (Ms-PL)
 
 Modifications:
-Copyright (c) 2017-2026 Freddy Juhel
+Copyright (c) 2016-2026 Freddy Juhel
 
 The project is distributed under the Microsoft Public License (Ms-PL).
 
