@@ -1,5 +1,19 @@
 # FamilyShow
 
+## License
+
+This project is based on software originally released under the Microsoft Public License (Ms-PL).
+
+Original copyright:
+Copyright (c) 2016 Microsoft Corporation under Microsoft Permissive License (Ms-PL)
+
+Modifications:
+Copyright (c) 2017-2026 Freddy Juhel
+
+The project is distributed under the Microsoft Public License (Ms-PL).
+
+## Application
+
 This is a genealogy application written with C# as a WPF application for Windows
 
 Here is an example:
