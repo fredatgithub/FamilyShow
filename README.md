@@ -27,7 +27,7 @@ Go to the Release page:
 
 https://github.com/fredatgithub/FamilyShow/releases
 
-Download FamilyShow-Release-V3.4.zip file
+Download FamilyShow-Release-V3.4.zip file or a later version.
 
 Unzip it in a folder in your documents or wherever you want.
 
