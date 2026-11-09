@@ -2,9 +2,11 @@ using FamilyShowLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Packaging;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -47,7 +49,8 @@ namespace FamilyShow
     public MainWindow()
     {
       InitializeComponent();
-
+      AddVersionToTitle();
+      
       FrenchLanguageMenu.IsChecked = LocalizationManager.Language == "fr";
       EnglishLanguageMenu.IsChecked = LocalizationManager.Language == "en";
       GermanLanguageMenu.IsChecked = LocalizationManager.Language == "de";
@@ -62,6 +65,13 @@ namespace FamilyShow
 
       // The welcome screen is the initial view
       ShowWelcomeScreen();
+    }
+
+    private void AddVersionToTitle()
+    {
+      Assembly assembly = Assembly.GetExecutingAssembly();
+      FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+     Title += " " + fvi.FileVersion;
     }
 
     #region event handlers
