@@ -27,8 +27,7 @@ namespace FamilyShow
     // The list of people, this is a global list shared by the application.
     private readonly People familyCollection = App.FamilyCollection;
     private readonly PeopleCollection family = App.Family;
-    //static string exportPath = @"D:\productions\G�n�alogie\FICHIER_ENQUETES\";
-    // should be my documents by default
+    // exportPath should be my documents by default
     private static readonly string exportPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
     private readonly Properties.Settings appSettings = Properties.Settings.Default;
 
