@@ -11,7 +11,7 @@ namespace UnitTestFamilyShow
       const string source = "26061965";
       DateTime expected = new(1, 1, 1);
       DateTime result = StringToDate(source);
-      Assert.AreEqual(result, expected);
+      Assert.AreEqual(expected, result);
     }
 
     [TestMethod]
@@ -20,7 +20,7 @@ namespace UnitTestFamilyShow
       const string source = "08/05/1950";
       DateTime expected = new(1950, 5, 8);
       DateTime result = StringToDate(source);
-      Assert.AreEqual(result, expected);
+      Assert.AreEqual(expected, result);
     }
 
     [TestMethod]
@@ -29,7 +29,7 @@ namespace UnitTestFamilyShow
       const string source = "";
       DateTime expected = new(1, 1, 1);
       DateTime result = StringToDate(source);
-      Assert.AreEqual(result, expected);
+      Assert.AreEqual(expected, result);
     }
 
     [TestMethod]
@@ -38,7 +38,7 @@ namespace UnitTestFamilyShow
       const string source = "08-05-1950";
       DateTime expected = new(1950, 5, 8);
       DateTime result = StringToDate(source);
-      Assert.AreEqual(result, expected);
+      Assert.AreEqual(expected, result);
     }
 
     [TestMethod]
@@ -47,7 +47,7 @@ namespace UnitTestFamilyShow
       const string source = "01-01-0001";
       DateTime expected = new(1, 1, 1);
       DateTime result = StringToDate(source);
-      Assert.AreEqual(result, expected);
+      Assert.AreEqual(expected, result);
     }
 
     public static DateTime StringToDate(string dateString)
