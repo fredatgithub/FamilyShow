@@ -199,7 +199,7 @@ namespace FamilyShow
     private void Vertigo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
       // Open the Vertigo website in the user's default browser
-      System.Diagnostics.Process.Start("http://www.vertigo.com/familyshow");
+      Process.Start("http://www.vertigo.com/familyshow");
     }
 
     private void WelcomeUserControl_NewButtonClick(object sender, RoutedEventArgs e)
@@ -247,7 +247,7 @@ namespace FamilyShow
       // Prompt to save if the file has not been saved before, otherwise just save to the existing file.
       if (string.IsNullOrEmpty(familyCollection.FullyQualifiedFilename) || family.IsOldVersion)
       {
-        CommonDialog dialog = new CommonDialog
+        CommonDialog dialog = new()
         {
           InitialDirectory = People.ApplicationFolderPath
         };
@@ -339,9 +339,9 @@ namespace FamilyShow
     }
 
     /// <summary>
-    /// Load the selected family file
+    /// Load the selected family file.
     /// </summary>
-    /// <param name="fileName"></param>
+    /// <param name="fileName">The file name to load.</param>
     private void LoadFamily(string fileName)
     {
       familyCollection.FullyQualifiedFilename = fileName;
@@ -400,7 +400,7 @@ namespace FamilyShow
         // Prompt to save if the file has not been saved before, otherwise just save to the existing file.
         if (string.IsNullOrEmpty(familyCollection.FullyQualifiedFilename) || family.IsOldVersion)
         {
-          CommonDialog dialog = new CommonDialog
+          CommonDialog dialog = new()
           {
             InitialDirectory = People.ApplicationFolderPath
           };
@@ -447,7 +447,7 @@ namespace FamilyShow
       else
       {
 
-        CommonDialog dialog = new CommonDialog
+        CommonDialog dialog = new()
         {
           InitialDirectory = People.ApplicationFolderPath
         };
@@ -478,7 +478,7 @@ namespace FamilyShow
     /// </summary>
     private void PrintFamily(object sender, RoutedEventArgs e)
     {
-      PrintDialog dlg = new PrintDialog();
+      PrintDialog dlg = new();
 
       if ((bool)dlg.ShowDialog().GetValueOrDefault())
       {
@@ -501,7 +501,7 @@ namespace FamilyShow
     {
       PromptToSave();
 
-      CommonDialog dialog = new CommonDialog
+      CommonDialog dialog = new()
       {
         InitialDirectory = People.ApplicationFolderPath
       };
@@ -515,7 +515,7 @@ namespace FamilyShow
       {
         try
         {
-          GedcomImport ged = new GedcomImport();
+          GedcomImport ged = new();
           ged.Import(family, dialog.FileName);
           familyCollection.FullyQualifiedFilename = string.Empty;
 
@@ -539,7 +539,7 @@ namespace FamilyShow
     /// </summary>
     private void ExportGedcom(object sender, EventArgs e)
     {
-      CommonDialog dialog = new CommonDialog
+      CommonDialog dialog = new()
       {
         InitialDirectory = People.ApplicationFolderPath
       };
@@ -563,7 +563,7 @@ namespace FamilyShow
     private void WhatIsGedcom(object sender, EventArgs e)
     {
       // Open the Wikipedia entry about GEDCOM in the user's default browser
-      System.Diagnostics.Process.Start("http://en.wikipedia.org/wiki/GEDCOM");
+      Process.Start("http://en.wikipedia.org/wiki/GEDCOM");
     }
 
     /// <summary>
@@ -571,7 +571,7 @@ namespace FamilyShow
     /// </summary>
     private void ExportXps(object sender, EventArgs e)
     {
-      CommonDialog dialog = new CommonDialog
+      CommonDialog dialog = new()
       {
         InitialDirectory = People.ApplicationFolderPath
       };
@@ -652,7 +652,7 @@ namespace FamilyShow
       naissanceTag.Childs.Add(new ExportTagPerson("nomMere", ExportTagPersonType.MotherLastName));
 
       XmlWriter xmlDoc = XmlWriter.Create(exportPath + "Naissance_2019b.xml");
-      // on �crit la racine du fichier
+      // on écrit la racine du fichier
       xmlDoc.WriteStartElement(rootTag.Name);
       WriteXmlNaissances(xmlDoc, naissanceTag, family.Current, "", 0, 2019, FilterBirth);
       xmlDoc.WriteEndElement();
@@ -673,7 +673,7 @@ namespace FamilyShow
       mariageTag.Childs.Add(new ExportTagPerson("lieu", ExportTagPersonType.MariagePlace));
 
       xmlDoc = XmlWriter.Create(exportPath + "Mariages_2014b.xml");
-      // on �crit la racine du fichier
+      // on écrit la racine du fichier
       xmlDoc.WriteStartElement(rootTag.Name);
       WriteXmlNaissances(xmlDoc, mariageTag, family.Current, "", 0, 2014, FilterMariage);
       xmlDoc.WriteEndElement();
@@ -704,15 +704,6 @@ namespace FamilyShow
         WriteTag(xmlDoc, rootTag, rootPers, item, currentArbreLevelStr, levelChild);
       }
 
-      //int yearOfBirth;
-      //if (int.TryParse(rootPers.YearOfBirth, out yearOfBirth))
-      //{
-      //    if (yearOfBirth >= dateDepart)
-      //    {
-      //        WriteTag(xmlDoc, rootTag, rootPers, currentArbreLevelStr, levelChild);
-      //    }
-      //}
-
       // on ajoute les enfants
       int numberOfChild = 1;
       foreach (Person child in rootPers.Children.OrderBy(X => X.BirthDate))
@@ -723,9 +714,8 @@ namespace FamilyShow
 
     public static List<object> FilterBirth(Person person, int startYear)
     {
-      int yearOfBirth;
       var result = new List<object>();
-      if (int.TryParse(person.YearOfBirth, out yearOfBirth))
+      if (int.TryParse(person.YearOfBirth, out int yearOfBirth))
       {
         if (yearOfBirth >= startYear)
         {
@@ -753,10 +743,10 @@ namespace FamilyShow
     public static void WriteTag(XmlWriter xmlDoc, IExportTag tag, Person p, object filterObj, string parentArbreLevelStr, int levelChild)
     {
       Console.WriteLine($"RACINE: {tag.Name}");
-      //on �crit la racine
+      //on écrit la racine
       xmlDoc.WriteStartElement(tag.Name);
 
-      //s'il y a des enfants, il faut les �crire
+      //s'il y a des enfants, il faut les écrire
       if (tag.Childs.Count > 0)
       {
         foreach (var subtag in tag.Childs)
@@ -764,7 +754,7 @@ namespace FamilyShow
           WriteTag(xmlDoc, subtag, p, filterObj, parentArbreLevelStr, levelChild);
         }
       }
-      // sinon, il faut �crire la valeur du tag courant !
+      // sinon, il faut écrire la valeur du tag courant !
       else
       {
         if (filterObj is Person)
@@ -901,7 +891,6 @@ namespace FamilyShow
       HideDetailsPane();
       HideNewUserControl();
       DiagramControl.Visibility = Visibility.Hidden;
-
       WelcomeUserControl.Visibility = Visibility.Visible;
     }
 
@@ -922,7 +911,7 @@ namespace FamilyShow
       OpenMenu.Items.Clear();
 
       // MenuItem for opening files
-      MenuItem openMenuItem = new MenuItem
+      MenuItem openMenuItem = new()
       {
         Header = LocalizationManager.GetString("Menu_OpenRecent"),
         Command = ApplicationCommands.Open
@@ -938,7 +927,7 @@ namespace FamilyShow
 
         foreach (string file in App.RecentFiles)
         {
-          MenuItem item = new MenuItem
+          MenuItem item = new()
           {
             Header = Path.GetFileName(file),
             CommandParameter = file
@@ -958,7 +947,7 @@ namespace FamilyShow
       NameValueCollection skins = App.Skins;
       foreach (string skinName in skins.AllKeys)
       {
-        MenuItem skin = new MenuItem
+        MenuItem skin = new()
         {
           Header = skinName,
           CommandParameter = skins[skinName],
@@ -990,7 +979,7 @@ namespace FamilyShow
 
       if (result == MessageBoxResult.Yes)
       {
-        CommonDialog dialog = new CommonDialog
+        CommonDialog dialog = new()
         {
           InitialDirectory = People.ApplicationFolderPath
         };
@@ -1032,8 +1021,7 @@ namespace FamilyShow
 
     public static DateTime StringToDate(string theDateInStringFormat)
     {
-      DateTime result;
-      if (DateTime.TryParse(theDateInStringFormat, out result))
+      if (DateTime.TryParse(theDateInStringFormat, out DateTime result))
       {
         return result;
       }
