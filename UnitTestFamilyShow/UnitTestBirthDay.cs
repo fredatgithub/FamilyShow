@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace UnitTestFamilyShow
+﻿namespace UnitTestFamilyShow
 {
   [TestClass]
   public class UnitTestBirthDay
