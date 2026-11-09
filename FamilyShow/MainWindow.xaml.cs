@@ -25,7 +25,7 @@ namespace FamilyShow
     // The list of people, this is a global list shared by the application.
     People familyCollection = App.FamilyCollection;
     PeopleCollection family = App.Family;
-    //static string exportPath = @"D:\productions\Généalogie\FICHIER_ENQUETES\";
+    //static string exportPath = @"D:\productions\Gï¿½nï¿½alogie\FICHIER_ENQUETES\";
     // should be my documents by default
     static string exportPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
     private Properties.Settings appSettings = Properties.Settings.Default;
@@ -48,6 +48,11 @@ namespace FamilyShow
     {
       InitializeComponent();
 
+      FrenchLanguageMenu.IsChecked = LocalizationManager.Language == "fr";
+      EnglishLanguageMenu.IsChecked = LocalizationManager.Language == "en";
+      GermanLanguageMenu.IsChecked = LocalizationManager.Language == "de";
+      SpanishLanguageMenu.IsChecked = LocalizationManager.Language == "es";
+
       family.CurrentChanged += new EventHandler(People_CurrentChanged);
 
       // Build the Open Menu, recent opened files are part of the open menu
@@ -60,6 +65,37 @@ namespace FamilyShow
     }
 
     #region event handlers
+
+    private void FrenchLanguageMenu_Click(object sender, RoutedEventArgs e)
+    {
+      ChangeLanguage("fr");
+    }
+
+    private void EnglishLanguageMenu_Click(object sender, RoutedEventArgs e)
+    {
+      ChangeLanguage("en");
+    }
+
+    private void GermanLanguageMenu_Click(object sender, RoutedEventArgs e)
+    {
+      ChangeLanguage("de");
+    }
+
+    private void SpanishLanguageMenu_Click(object sender, RoutedEventArgs e)
+    {
+      ChangeLanguage("es");
+    }
+
+    private void ChangeLanguage(string language)
+    {
+      LocalizationManager.SetLanguage(language);
+      FrenchLanguageMenu.IsChecked = language == "fr";
+      EnglishLanguageMenu.IsChecked = language == "en";
+      GermanLanguageMenu.IsChecked = language == "de";
+      SpanishLanguageMenu.IsChecked = language == "es";
+      DetailsControl.RefreshLocalizedComboBoxItems();
+      BuildOpenMenu();
+    }
 
     /// <summary>
     /// Event handler when the primary person has changed.
@@ -207,9 +243,9 @@ namespace FamilyShow
           InitialDirectory = People.ApplicationFolderPath
         };
 
-        dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyV3Files, Properties.Resources.FamilyV3Extension));
-        dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
-        dialog.Title = Properties.Resources.SaveAs;
+        dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_FamilyV3Files"), Properties.Resources.FamilyV3Extension));
+        dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_AllFiles"), Properties.Resources.AllExtension));
+        dialog.Title = LocalizationManager.GetString("Dialog_SaveAs");
         dialog.DefaultExtension = Properties.Resources.DefaultFamilyExtension;
         dialog.ShowSave();
 
@@ -266,11 +302,11 @@ namespace FamilyShow
         InitialDirectory = People.ApplicationFolderPath
       };
 
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyFiles, Properties.Resources.FamilyExtensions));
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyV3Files, Properties.Resources.FamilyV3Extension));
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyV2Files, Properties.Resources.FamilyV2Extension));
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
-      dialog.Title = Properties.Resources.Open;
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_FamilyFiles"), Properties.Resources.FamilyExtensions));
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_FamilyV3Files"), Properties.Resources.FamilyV3Extension));
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_FamilyV2Files"), Properties.Resources.FamilyV2Extension));
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_AllFiles"), Properties.Resources.AllExtension));
+      dialog.Title = LocalizationManager.GetString("Dialog_Open");
       dialog.ShowOpen();
 
       if (!string.IsNullOrEmpty(dialog.FileName))
@@ -360,9 +396,9 @@ namespace FamilyShow
             InitialDirectory = People.ApplicationFolderPath
           };
 
-          dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyV3Files, Properties.Resources.FamilyV3Extension));
-          dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
-          dialog.Title = Properties.Resources.SaveAs;
+          dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_FamilyV3Files"), Properties.Resources.FamilyV3Extension));
+          dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_AllFiles"), Properties.Resources.AllExtension));
+          dialog.Title = LocalizationManager.GetString("Dialog_SaveAs");
           dialog.DefaultExtension = Properties.Resources.DefaultFamilyExtension;
           dialog.ShowSave();
 
@@ -407,9 +443,9 @@ namespace FamilyShow
           InitialDirectory = People.ApplicationFolderPath
         };
 
-        dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyFiles, Properties.Resources.FamilyV3Extension));
-        dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
-        dialog.Title = Properties.Resources.SaveAs;
+        dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_FamilyFiles"), Properties.Resources.FamilyV3Extension));
+        dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_AllFiles"), Properties.Resources.AllExtension));
+        dialog.Title = LocalizationManager.GetString("Dialog_SaveAs");
         dialog.DefaultExtension = Properties.Resources.DefaultFamilyExtension;
         dialog.ShowSave();
 
@@ -461,9 +497,9 @@ namespace FamilyShow
         InitialDirectory = People.ApplicationFolderPath
       };
 
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.GedcomFiles, Properties.Resources.GedcomExtension));
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
-      dialog.Title = Properties.Resources.Import;
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_GedcomFiles"), Properties.Resources.GedcomExtension));
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_AllFiles"), Properties.Resources.AllExtension));
+      dialog.Title = LocalizationManager.GetString("Dialog_Import");
       dialog.ShowOpen();
 
       if (!string.IsNullOrEmpty(dialog.FileName))
@@ -482,8 +518,8 @@ namespace FamilyShow
           // Could not import the GEDCOM for some reason. Handle
           // all exceptions the same, display message and continue
           /// without importing the GEDCOM file.
-          MessageBox.Show(this, Properties.Resources.GedcomFailedMessage,
-              Properties.Resources.GedcomFailed, MessageBoxButton.OK,
+            MessageBox.Show(this, LocalizationManager.GetString("Dialog_GedcomFailedMessage"),
+              LocalizationManager.GetString("Dialog_GedcomFailed"), MessageBoxButton.OK,
               MessageBoxImage.Information);
         }
       }
@@ -499,9 +535,9 @@ namespace FamilyShow
         InitialDirectory = People.ApplicationFolderPath
       };
 
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.GedcomFiles, Properties.Resources.GedcomExtension));
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
-      dialog.Title = Properties.Resources.Export;
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_GedcomFiles"), Properties.Resources.GedcomExtension));
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_AllFiles"), Properties.Resources.AllExtension));
+      dialog.Title = LocalizationManager.GetString("Dialog_Export");
       dialog.DefaultExtension = Properties.Resources.DefaultGedcomExtension;
       dialog.ShowSave();
 
@@ -531,9 +567,9 @@ namespace FamilyShow
         InitialDirectory = People.ApplicationFolderPath
       };
 
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.XpsFiles, Properties.Resources.XpsExtension));
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
-      dialog.Title = Properties.Resources.Export;
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_XpsFiles"), Properties.Resources.XpsExtension));
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_AllFiles"), Properties.Resources.AllExtension));
+      dialog.Title = LocalizationManager.GetString("Dialog_Export");
       dialog.DefaultExtension = Properties.Resources.DefaultXpsExtension;
       dialog.ShowSave();
 
@@ -607,7 +643,7 @@ namespace FamilyShow
       naissanceTag.Childs.Add(new ExportTagPerson("nomMere", ExportTagPersonType.MotherLastName));
 
       XmlWriter xmlDoc = XmlWriter.Create(exportPath + "Naissance_2019b.xml");
-      // on écrit la racine du fichier
+      // on ï¿½crit la racine du fichier
       xmlDoc.WriteStartElement(rootTag.Name);
       WriteXmlNaissances(xmlDoc, naissanceTag, family.Current, "", 0, 2019, FilterBirth);
       xmlDoc.WriteEndElement();
@@ -628,7 +664,7 @@ namespace FamilyShow
       mariageTag.Childs.Add(new ExportTagPerson("lieu", ExportTagPersonType.MariagePlace));
 
       xmlDoc = XmlWriter.Create(exportPath + "Mariages_2014b.xml");
-      // on écrit la racine du fichier
+      // on ï¿½crit la racine du fichier
       xmlDoc.WriteStartElement(rootTag.Name);
       WriteXmlNaissances(xmlDoc, mariageTag, family.Current, "", 0, 2014, FilterMariage);
       xmlDoc.WriteEndElement();
@@ -708,10 +744,10 @@ namespace FamilyShow
     public static void WriteTag(XmlWriter xmlDoc, IExportTag tag, Person p, object filterObj, string parentArbreLevelStr, int levelChild)
     {
       Console.WriteLine($"RACINE: {tag.Name}");
-      //on écrit la racine
+      //on ï¿½crit la racine
       xmlDoc.WriteStartElement(tag.Name);
 
-      //s'il y a des enfants, il faut les écrire
+      //s'il y a des enfants, il faut les ï¿½crire
       if (tag.Childs.Count > 0)
       {
         foreach (var subtag in tag.Childs)
@@ -719,7 +755,7 @@ namespace FamilyShow
           WriteTag(xmlDoc, subtag, p, filterObj, parentArbreLevelStr, levelChild);
         }
       }
-      // sinon, il faut écrire la valeur du tag courant !
+      // sinon, il faut ï¿½crire la valeur du tag courant !
       else
       {
         if (filterObj is Person)
@@ -879,7 +915,7 @@ namespace FamilyShow
       // MenuItem for opening files
       MenuItem openMenuItem = new MenuItem
       {
-        Header = "Open",
+        Header = LocalizationManager.GetString("Menu_OpenRecent"),
         Command = ApplicationCommands.Open
       };
 
@@ -941,7 +977,7 @@ namespace FamilyShow
         return;
       }
 
-      MessageBoxResult result = MessageBox.Show(Properties.Resources.NotSavedMessage, Properties.Resources.NotSaved, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+      MessageBoxResult result = MessageBox.Show(LocalizationManager.GetString("Dialog_NotSavedMessage"), LocalizationManager.GetString("Dialog_NotSaved"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
       if (result == MessageBoxResult.Yes)
       {
@@ -950,9 +986,9 @@ namespace FamilyShow
           InitialDirectory = People.ApplicationFolderPath
         };
 
-        dialog.Filter.Add(new FilterEntry(Properties.Resources.FamilyFiles, Properties.Resources.FamilyV3Extension));
-        dialog.Filter.Add(new FilterEntry(Properties.Resources.AllFiles, Properties.Resources.AllExtension));
-        dialog.Title = Properties.Resources.SaveAs;
+        dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_FamilyFiles"), Properties.Resources.FamilyV3Extension));
+        dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_AllFiles"), Properties.Resources.AllExtension));
+        dialog.Title = LocalizationManager.GetString("Dialog_SaveAs");
         dialog.DefaultExtension = Properties.Resources.DefaultFamilyExtension;
         dialog.ShowSave();
 

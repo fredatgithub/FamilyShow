@@ -311,7 +311,7 @@
                     FontWeight="Bold"
                     Foreground="{DynamicResource HeaderFontColor}"
                     Style="{DynamicResource HeaderStyle}"
-                    Text="Family Data" />
+                    Text="{local:Loc FamilyData_Title}" />
         <Button
                     x:Name="CloseButton"
                     Grid.Column="1"
@@ -320,7 +320,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Click="CloseButton_Click"
-                    Content="_Back"
+                    Content="{local:Loc FamilyData_Back}"
                     DockPanel.Dock="Right"
                     FontSize="10" />
       </DockPanel>
@@ -354,7 +354,7 @@
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
               <Label
                                 Margin="0,0,10,0"
-                                Content="Filter"
+                                Content="{local:Loc Details_FilterButton}"
                                 Foreground="#FF1F3066" />
               <local:FilterText
                                 x:Name="FilterTextBox"
@@ -400,7 +400,7 @@
                   <familyData:SortListViewColumn
                                         Width="100"
                                         CellTemplate="{StaticResource FirstNameColumnTemplate}"
-                                        Header="First Name"
+                                        Header="{local:Loc FamilyData_FirstName}"
                                         HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                                         SortProperty="FirstName"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
@@ -408,7 +408,7 @@
                   <familyData:SortListViewColumn
                                         Width="100"
                                         CellTemplate="{StaticResource LastNameColumnTemplate}"
-                                        Header="Last Name"
+                                        Header="{local:Loc FamilyData_LastName}"
                                         HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                                         SortProperty="LastName"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
@@ -416,7 +416,7 @@
                   <familyData:SortListViewColumn
                                         Width="50"
                                         CellTemplate="{StaticResource AgeColumnTemplate}"
-                                        Header="Age"
+                                        Header="{local:Loc FamilyData_Age}"
                                         HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                                         SortProperty="Age"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
@@ -424,7 +424,7 @@
                   <familyData:SortListViewColumn
                                         Width="80"
                                         CellTemplate="{StaticResource BirthDateColumnTemplate}"
-                                        Header="Birth Date"
+                                        Header="{local:Loc FamilyData_BirthDate}"
                                         HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                                         SortProperty="BirthDate"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
@@ -432,7 +432,7 @@
                   <familyData:SortListViewColumn
                                         Width="100"
                                         CellTemplate="{StaticResource BirthPlaceColumnTemplate}"
-                                        Header="Birth Place"
+                                        Header="{local:Loc FamilyData_BirthPlace}"
                                         HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                                         SortProperty="BirthPlace"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
@@ -440,7 +440,7 @@
                   <familyData:SortListViewColumn
                                         Width="80"
                                         CellTemplate="{StaticResource DeathDateColumnTemplate}"
-                                        Header="Death Date"
+                                        Header="{local:Loc FamilyData_DeathDate}"
                                         HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                                         SortProperty="DeathDate"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
@@ -448,7 +448,7 @@
                   <familyData:SortListViewColumn
                                         Width="100"
                                         CellTemplate="{StaticResource DeathPlaceColumnTemplate}"
-                                        Header="Death Place"
+                                        Header="{local:Loc FamilyData_DeathPlace}"
                                         HeaderContainerStyle="{DynamicResource FamilyDataGridViewColumnHeader}"
                                         SortProperty="DeathPlace"
                                         SortStyle="FamilyDataGridViewColumnHeader" />
@@ -476,13 +476,13 @@
               <Label
                                 Margin="5,0,0,0"
                                 Padding="8,8,5,2"
-                                Content="Family Statistics"
+                                Content="{local:Loc FamilyData_Statistics}"
                                 FontSize="18"
                                 FontWeight="Bold" />
 
               <!--  tag cloud chart  -->
               <Border Style="{DynamicResource StatisticsHeaderStyle}">
-                <TextBlock Foreground="{DynamicResource FontColor}" Text="Last Names" />
+                <TextBlock Foreground="{DynamicResource FontColor}" Text="{local:Loc FamilyData_LastNames}" />
               </Border>
               <Border Style="{DynamicResource StatisticsControlStyle}">
                 <local:TagCloud
@@ -498,7 +498,7 @@
 
               <!--  age chart  -->
               <Border Style="{DynamicResource StatisticsHeaderStyle}">
-                <TextBlock Foreground="{DynamicResource FontColor}" Text="Age Distributions" />
+                <TextBlock Foreground="{DynamicResource FontColor}" Text="{local:Loc FamilyData_AgeDistribution}" />
               </Border>
               <Border Style="{DynamicResource StatisticsControlStyle}">
                 <local:Histogram
@@ -515,7 +515,7 @@
 
               <!--  birthdays chart  -->
               <Border Style="{DynamicResource StatisticsHeaderStyle}">
-                <TextBlock Foreground="{DynamicResource FontColor}" Text="Birthdays" />
+                <TextBlock Foreground="{DynamicResource FontColor}" Text="{local:Loc FamilyData_Birthdays}" />
               </Border>
               <Border MaxHeight="130" Style="{DynamicResource StatisticsControlStyle}">
                 <local:SharedBirthdays x:Name="BirthdaysControl" SharedBirthdaysSelectionChanged="BirthdaysControl_SelectionChanged" />

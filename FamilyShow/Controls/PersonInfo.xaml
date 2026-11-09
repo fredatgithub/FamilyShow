@@ -70,7 +70,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Click="CloseButton_Click"
-                    Content="_Back"
+                    Content="{local:Loc Person_Back}"
                     DockPanel.Dock="Right"
                     FontSize="10"
                     IsCancel="True"
@@ -102,7 +102,7 @@
                                     Width="100"
                                     Height="15"
                                     Click="SetPrimaryButton_Click"
-                                    Content="Set as _Primary"
+                                    Content="{local:Loc Person_SetPrimary}"
                                     FontSize="10"
                                     IsCancel="False"
                                     IsEnabled="True" />
@@ -112,7 +112,7 @@
                                     Height="15"
                                     HorizontalAlignment="Right"
                                     Click="RemovePhotoButton_Click"
-                                    Content="_Remove Photo"
+                                    Content="{local:Loc Person_RemovePhoto}"
                                     DockPanel.Dock="Right"
                                     FontSize="10"
                                     IsEnabled="True"
@@ -140,7 +140,7 @@
                                     Margin="5,0,0,0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
-                                    Content="Tags:"
+                                    Content="{local:Loc Person_Tags}"
                                     FontSize="10"
                                     Foreground="{DynamicResource AlternateFontColor}" />
                 <ListBox
@@ -170,7 +170,7 @@
                                 HorizontalAlignment="Right"
                                 FontSize="10"
                                 Foreground="{DynamicResource AlternateFontColor}"
-                                Text="Drop photos into this box" />
+                                Text="{local:Loc Person_DropPhotos}" />
               <ListBox
                                 x:Name="PhotosListBox"
                                 Margin="0,15,0,0"
@@ -210,7 +210,7 @@
                                     FontSize="18"
                                     FontWeight="Bold"
                                     Style="{DynamicResource HeaderStyle}"
-                                    Text="Story"
+                                    Text="{local:Loc Person_Story}"
                                     TextWrapping="Wrap" />
                 <Button
                                     x:Name="EditStoryButton"
@@ -218,7 +218,7 @@
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Top"
                                     Click="EditStoryButton_Click"
-                                    Content="_Edit"
+                                    Content="{local:Loc Person_Edit}"
                                     DockPanel.Dock="Right" />
               </DockPanel>
 
@@ -265,7 +265,7 @@
                                     FontSize="18"
                                     FontWeight="Bold"
                                     Style="{DynamicResource HeaderStyle}"
-                                    Text="Story"
+                                    Text="{local:Loc Person_Story}"
                                     TextWrapping="Wrap" />
                 <Button
                                     x:Name="CancelStoryButton"
@@ -273,7 +273,7 @@
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Top"
                                     Click="CancelStoryButton_Click"
-                                    Content="_Cancel"
+                                    Content="{local:Loc Person_Cancel}"
                                     DockPanel.Dock="Right"
                                     IsCancel="True" />
                 <Button
@@ -282,7 +282,7 @@
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Top"
                                     Click="SaveStoryButton_Click"
-                                    Content="_Save"
+                                    Content="{local:Loc Menu_Save}"
                                     DockPanel.Dock="Right"
                                     IsDefault="True" />
               </DockPanel>
@@ -302,21 +302,21 @@
                                         Name="BoldButton"
                                         Command="EditingCommands.ToggleBold"
                                         Style="{StaticResource formatTextStyle}"
-                                        ToolTip="Bold">
+                                        ToolTip="{local:Loc Person_Bold}">
                     <TextBlock FontWeight="Bold">B</TextBlock>
                   </ToggleButton>
                   <ToggleButton
                                         Name="ItalicButton"
                                         Command="EditingCommands.ToggleItalic"
                                         Style="{StaticResource formatTextStyle}"
-                                        ToolTip="Italic">
+                                        ToolTip="{local:Loc Person_Italic}">
                     <TextBlock FontStyle="Italic" FontWeight="Bold">I</TextBlock>
                   </ToggleButton>
                   <ToggleButton
                                         Name="UnderlineButton"
                                         Command="EditingCommands.ToggleUnderline"
                                         Style="{StaticResource formatTextStyle}"
-                                        ToolTip="Underline">
+                                        ToolTip="{local:Loc Person_Underline}">
                     <TextBlock FontWeight="Bold" TextDecorations="Underline">U</TextBlock>
                   </ToggleButton>
 
@@ -328,13 +328,13 @@
                   <Button
                                         Command="EditingCommands.IncreaseFontSize"
                                         Style="{StaticResource formatImageStyle}"
-                                        ToolTip="Grow Font">
+                                        ToolTip="{local:Loc Person_GrowFont}">
                     <Image Source="..\Images\CharacterGrowFont.png" />
                   </Button>
                   <Button
                                         Command="EditingCommands.DecreaseFontSize"
                                         Style="{StaticResource formatImageStyle}"
-                                        ToolTip="Shrink Font">
+                                        ToolTip="{local:Loc Person_ShrinkFont}">
                     <Image Source="..\Images\CharacterShrinkFont.png" />
                   </Button>
 
@@ -342,14 +342,14 @@
                                         Name="BulletsButton"
                                         Command="EditingCommands.ToggleBullets"
                                         Style="{StaticResource formatImageStyle}"
-                                        ToolTip="Bullets">
+                                        ToolTip="{local:Loc Person_Bullets}">
                     <Image Source="..\Images\ListBullets.png" />
                   </ToggleButton>
                   <ToggleButton
                                         Name="NumberingButton"
                                         Command="EditingCommands.ToggleNumbering"
                                         Style="{StaticResource formatImageStyle}"
-                                        ToolTip="Numbering">
+                                        ToolTip="{local:Loc Person_Numbering}">
                     <Image Source="..\Images\ListNumbering.png" />
                   </ToggleButton>
 
@@ -357,28 +357,28 @@
                                         Name="AlignLeftButton"
                                         Command="EditingCommands.AlignLeft"
                                         Style="{StaticResource formatImageStyle}"
-                                        ToolTip="Align Left">
+                                        ToolTip="{local:Loc Person_AlignLeft}">
                     <Image Source="..\Images\ParagraphLeftJustify.png" />
                   </ToggleButton>
                   <ToggleButton
                                         Name="AlignCenterButton"
                                         Command="EditingCommands.AlignCenter"
                                         Style="{StaticResource formatImageStyle}"
-                                        ToolTip="Align Center">
+                                        ToolTip="{local:Loc Person_AlignCenter}">
                     <Image Source="..\Images\ParagraphCenterJustify.png" />
                   </ToggleButton>
                   <ToggleButton
                                         Name="AlignRightButton"
                                         Command="EditingCommands.AlignRight"
                                         Style="{StaticResource formatImageStyle}"
-                                        ToolTip="Align Right">
+                                        ToolTip="{local:Loc Person_AlignRight}">
                     <Image Source="..\Images\ParagraphRightJustify.png" />
                   </ToggleButton>
                   <ToggleButton
                                         Name="AlignFullButton"
                                         Command="EditingCommands.AlignJustify"
                                         Style="{StaticResource formatImageStyle}"
-                                        ToolTip="Align Justify">
+                                        ToolTip="{local:Loc Person_AlignJustify}">
                     <Image Source="..\Images\ParagraphFullJustify.png" />
                   </ToggleButton>
                 </ToolBar>

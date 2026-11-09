@@ -1,7 +1,8 @@
 <UserControl
     x:Class="FamilyShow.FilterText"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:FamilyShow">
   <UserControl.Resources>
     <!--  border style  -->
     <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
@@ -41,7 +42,7 @@
                 Content="X"
                 DockPanel.Dock="Right"
                 Style="{StaticResource ButtonStyle}"
-                ToolTip="Clear Filter Text" />
+                ToolTip="{local:Loc Filter_Clear}" />
       <TextBox
                 x:Name="FilterTextBox"
                 DockPanel.Dock="Left"

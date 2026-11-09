@@ -2016,7 +2016,7 @@
                                     BorderThickness="1" />
                 <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
                   <StackPanel>
-                    <TextBlock Text="Add new person as" />
+                    <TextBlock Text="{local:Loc Diagram_AddPersonAs}" />
                     <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
                   </StackPanel>
                 </ScrollViewer>

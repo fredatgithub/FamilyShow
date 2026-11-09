@@ -45,10 +45,11 @@ namespace FamilyShow
     /// </summary>
     protected override void OnStartup(StartupEventArgs e)
     {
+      LocalizationManager.SetLanguage(global::FamilyShow.Properties.Settings.Default.Language, false);
       InstallSampleFiles();
       // Load the collection of recent files.
       LoadRecentFiles();
-      Properties.Settings appSettings = FamilyShow.Properties.Settings.Default;
+      global::FamilyShow.Properties.Settings appSettings = global::FamilyShow.Properties.Settings.Default;
 
       if (!string.IsNullOrEmpty(appSettings.Skin))
       {
@@ -72,6 +73,7 @@ namespace FamilyShow
     protected override void OnExit(ExitEventArgs e)
     {
       SaveRecentFiles();
+      global::FamilyShow.Properties.Settings.Default.Save();
       base.OnExit(e);
     }
     #endregion

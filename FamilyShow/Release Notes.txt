@@ -1,6 +1,9 @@
 Version 4.0.0.0 (2026-11-09)
 --
 .NET 8.0, C# 12, WPF 8.0
+Internalized all strings for localization and globalization.
+
+French, English, German and Spanishtranslations included.
 
 Version 3.4.0.0 (2020-09-01)
 --

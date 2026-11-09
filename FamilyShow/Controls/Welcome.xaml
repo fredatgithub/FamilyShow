@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2006"
+    xmlns:local="clr-namespace:FamilyShow"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
   <UserControl.Resources>
@@ -98,7 +99,7 @@
                     FontSize="18"
                     FontWeight="Bold"
                     Foreground="{DynamicResource WelcomeHeaderFontColor}"
-                    Text="Welcome"
+                    Text="{local:Loc Welcome_Title}"
                     TextWrapping="Wrap"
                     d:LayoutOverrides="Height" />
       </Grid>
@@ -121,7 +122,7 @@
                         Width="Auto"
                         HorizontalAlignment="Stretch"
                         Click="NewButton_Click"
-                        Content="New"
+                        Content="{local:Loc Welcome_New}"
                         IsDefault="True"
                         Style="{DynamicResource WelcomeButtonStyle}" />
           <Button
@@ -129,14 +130,14 @@
                         Width="Auto"
                         HorizontalAlignment="Stretch"
                         Click="OpenButton_Click"
-                        Content="Open..."
+                        Content="{local:Loc Welcome_Open}"
                         Style="{DynamicResource WelcomeButtonStyle}" />
           <Button
                         x:Name="ImportButton"
                         Width="Auto"
                         HorizontalAlignment="Stretch"
                         Click="ImportButton_Click"
-                        Content="Import..."
+                        Content="{local:Loc Welcome_Import}"
                         Style="{DynamicResource WelcomeButtonStyle}" />
         </StackPanel>
 
@@ -153,7 +154,7 @@
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Content="Open Recent"
+                    Content="{local:Loc Welcome_Recent}"
                     Foreground="#FFB5C8D8" />
 
         <StackPanel
@@ -178,7 +179,7 @@
       <Label
                 x:Name="VersionLabel"
                 Margin="10,0,0,0"
-                Content="Version "
+                Content="{local:Loc Welcome_Version}"
                 Foreground="#FFB5C8D8" />
     </Border>
 

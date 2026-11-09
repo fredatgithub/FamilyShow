@@ -11,6 +11,7 @@
     DataContextChanged="UserControl_DataContextChanged">
   <UserControl.Resources>
     <ResourceDictionary>
+      <local:FamilyMemberComboBoxValueConverter x:Key="FamilyMemberComboBoxValueConverter" />
       <!--  Converter for formatting dates to short date format  -->
       <local:DateFormattingConverter x:Key="DateFormattingConverter" />
       <!--  Converter for displaying the the first name with an apostrophe.  -->
@@ -937,7 +938,7 @@
           <DockPanel>
             <TextBlock
                             x:Name="text"
-                            Text="{Binding}"
+                            Text="{Binding Converter={StaticResource FamilyMemberComboBoxValueConverter}}"
                             TextWrapping="Wrap" />
             <TextBlock Text="..." TextWrapping="Wrap" />
           </DockPanel>
@@ -945,7 +946,6 @@
         <DataTemplate.Triggers>
           <DataTrigger Binding="{Binding}" Value="Existing">
             <Setter TargetName="separator" Property="Visibility" Value="Visible" />
-            <Setter TargetName="text" Property="Text" Value="Connect Family Member" />
             <Setter TargetName="panel" Property="StackPanel.RenderTransform">
               <Setter.Value>
                 <TransformGroup>
@@ -964,7 +964,7 @@
         <StackPanel x:Name="panel" Margin="15,0,0,0">
           <TextBlock
                         x:Name="text"
-                        Text="{Binding}"
+                        Text="{Binding Converter={StaticResource FamilyMemberComboBoxValueConverter}}"
                         TextWrapping="Wrap" />
         </StackPanel>
         <DataTemplate.Triggers>
@@ -1099,7 +1099,7 @@
                     Margin="0,0,10,0"
                     HorizontalAlignment="Right"
                     Click="DeleteButton_Click"
-                    Content="Dele_te"
+                    Content="{local:Loc Details_Delete}"
                     DockPanel.Dock="Right"
                     FontSize="10"
                     Style="{DynamicResource RedButtonStyle}"
@@ -1196,7 +1196,7 @@
                                                 FontSize="14"
                                                 FontWeight="Bold"
                                                 Foreground="{DynamicResource InputFontColor}"
-                                                Text="Drag a photo here"
+                                                Text="{local:Loc Person_DragPhoto}"
                                                 TextAlignment="Center"
                                                 TextWrapping="Wrap"
                                                 Visibility="Hidden" />
@@ -1211,7 +1211,7 @@
                                         x:Name="FullNameLabel"
                                         Margin="0,0,0,4"
                                         Padding="5,5,5,0"
-                                        Content="Full Name"
+                                        Content="{local:Loc Details_FullName}"
                                         DockPanel.Dock="Top"
                                         Target="{Binding ElementName=FirstNameTextBox, Mode=OneWay}" />
                   <TextBlock
@@ -1227,7 +1227,7 @@
                   <Label
                                         Margin="0,0,0,4"
                                         Padding="5,8,5,0"
-                                        Content="Born"
+                                        Content="{local:Loc Details_Born}"
                                         DockPanel.Dock="Top"
                                         Target="{Binding ElementName=BirthDateTextBox, Mode=OneWay}" />
                   <TextBlock
@@ -1261,7 +1261,7 @@
                             Padding="3,2,5,0"
                             HorizontalAlignment="Left"
                             BorderThickness="0,0,0,2"
-                            Content="Edit Person"
+                            Content="{local:Loc Details_EditPerson}"
                             Template="{DynamicResource LabelControlTemplate}" />
 
             <Button
@@ -1269,7 +1269,7 @@
                             Width="95"
                             Margin="15,0,10,0"
                             HorizontalAlignment="Left"
-                            Content="_Details"
+                            Content="{local:Loc Details_Details}"
                             FontSize="10"
                             Style="{DynamicResource BlackButtonStyle}" />
             <Button
@@ -1277,7 +1277,7 @@
                             Width="95"
                             Margin="15,2,10,2"
                             HorizontalAlignment="Left"
-                            Content="_Relationships"
+                            Content="{local:Loc Details_Relationships}"
                             FontSize="10"
                             Style="{DynamicResource BlackButtonStyle}" />
             <Button
@@ -1286,7 +1286,7 @@
                             Margin="15,2,10,2"
                             HorizontalAlignment="Left"
                             Click="InfoButton_Click"
-                            Content="_Photos &amp; Stories"
+                            Content="{local:Loc Details_PhotosStories}"
                             FontSize="10"
                             Style="{DynamicResource BlackButtonStyle}" />
 
@@ -1306,7 +1306,7 @@
                 <TextBlock
                                     Margin="5,5,0,8"
                                     Style="{DynamicResource SectionHeaderStyle}"
-                                    Text="Create Relationship" />
+                                    Text="{local:Loc Details_CreateRelationship}" />
                 <ComboBox
                                     x:Name="FamilyMemberComboBox"
                                     Grid.Row="1"
@@ -1327,7 +1327,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Stretch"
                                     Click="FamilyMemberAddButton_Click"
-                                    Content="_Add Father"
+                                    Content="{local:Loc Details_AddFather}"
                                     FontSize="10" />
               </Grid>
             </Border>
@@ -1363,7 +1363,7 @@
                             HorizontalAlignment="Left"
                             Foreground="{DynamicResource InputFontColor}"
                             Style="{DynamicResource SectionHeaderStyle}"
-                            Text="Details"
+                            Text="{local:Loc Details_Details}"
                             TextWrapping="Wrap" />
             <StackPanel Orientation="Horizontal">
               <Border
@@ -1377,7 +1377,7 @@
                                         VerticalAlignment="Center"
                                         Foreground="{DynamicResource InputFontColor}"
                                         Style="{DynamicResource AvatarTextBlockStyle}"
-                                        Text="Drag a photo here"
+                                        Text="{local:Loc Person_DragPhoto}"
                                         TextAlignment="Center"
                                         TextWrapping="WrapWithOverflow" />
                   <Image
@@ -1391,7 +1391,7 @@
               <StackPanel Margin="15,0,0,0">
                 <Label
                                     Padding="5,0,5,2"
-                                    Content="Gender"
+                                    Content="{local:Loc Details_Gender}"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=GenderListBox, Mode=OneWay}" />
                 <ListBox
@@ -1430,7 +1430,7 @@
               </StackPanel>
             </StackPanel>
             <Label
-                            Content="_First Name"
+                            Content="{local:Loc Person_FirstName}"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=FirstNameEditTextBox, Mode=OneWay}" />
             <TextBox
@@ -1441,7 +1441,7 @@
                             Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
             <Label
-                            Content="_Middle Name"
+                            Content="{local:Loc Person_MiddleName}"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=MiddleNameEditTextBox, Mode=OneWay}" />
             <TextBox
@@ -1452,7 +1452,7 @@
                             Text="{Binding Path=MiddleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
             <Label
-                            Content="_Last Name"
+                            Content="{local:Loc Person_LastName}"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=LastNameEditTextBox, Mode=OneWay}" />
             <TextBox
@@ -1463,7 +1463,7 @@
                             Text="{Binding Path=LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
             <Label
-                            Content="_Suffix"
+                            Content="{local:Loc Person_Suffix}"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=SuffixEditTextBox, Mode=OneWay}" />
             <TextBox
@@ -1483,7 +1483,7 @@
                 <RowDefinition Height="Auto" />
               </Grid.RowDefinitions>
               <Label
-                                Content="Date of _Birth"
+                                Content="{local:Loc Person_BirthDate}"
                                 Foreground="{DynamicResource InputFontColor}"
                                 Target="{Binding ElementName=BirthDateEditTextBox, Mode=OneWay}" />
               <TextBox
@@ -1501,12 +1501,12 @@
                                 Grid.Column="1"
                                 Margin="10,0,0,0"
                                 VerticalAlignment="Center"
-                                Content="Li_ving"
+                                Content="{local:Loc Person_Living}"
                                 Foreground="{DynamicResource InputFontColor}"
                                 IsChecked="{Binding Path=IsLiving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=True}" />
             </Grid>
             <Label
-                            Content="_Place of Birth"
+                            Content="{local:Loc Person_BirthPlace}"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=BirthPlaceEditTextBox, Mode=OneWay}" />
             <TextBox
@@ -1517,7 +1517,7 @@
                             Text="{Binding Path=BirthPlace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             TextWrapping="Wrap" />
             <Label
-                            Content="Date of Dea_th"
+                            Content="{local:Loc Person_DeathDate}"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=DeathDateEditTextBox, Mode=OneWay}" />
             <TextBox
@@ -1530,7 +1530,7 @@
                             TextWrapping="Wrap" />
             <!--<TextBox TextWrapping="Wrap" x:Name="DeathDateEditTextBox" Width="135" HorizontalAlignment="Left" Margin="5,0,0,0" IsEnabled="{Binding Path=IsLiving, Converter={StaticResource NotConverter}, Mode=Default}" Text="{Binding Path=DeathDate, Converter={StaticResource DateFormattingConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>-->
             <Label
-                            Content="Place of Deat_h"
+                            Content="{local:Loc Person_DeathPlace}"
                             Foreground="{DynamicResource InputFontColor}"
                             Target="{Binding ElementName=DeathPlaceEditTextBox, Mode=OneWay}" />
             <TextBox
@@ -1554,7 +1554,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Bottom"
                                     Click="DoneEditButton_Click"
-                                    Content="_Done"
+                                    Content="{local:Loc Details_Done}"
                                     IsCancel="True"
                                     IsDefault="True" />
               </StackPanel>
@@ -1585,7 +1585,7 @@
                                 HorizontalAlignment="Left"
                                 Foreground="{DynamicResource InputFontColor}"
                                 Style="{DynamicResource SectionHeaderStyle}"
-                                Text="Edit Relationships for"
+                                Text="{local:Loc Details_EditRelationships}"
                                 TextWrapping="NoWrap" />
               <TextBlock
                                 Margin="5,0,0,10"
@@ -1601,7 +1601,7 @@
                             DockPanel.Dock="Top"
                             Foreground="{DynamicResource InputFontColor}"
                             Style="{DynamicResource SectionHeaderStyle}"
-                            Text="Parents"
+                            Text="{local:Loc Details_Parents}"
                             TextWrapping="Wrap" />
             <Grid
                             Margin="5,0,5,0"
@@ -1655,14 +1655,14 @@
                             DockPanel.Dock="Top"
                             Foreground="{DynamicResource InputFontColor}"
                             Style="{DynamicResource SectionHeaderStyle}"
-                            Text="Spouse/Partner"
+                            Text="{local:Loc Details_SpousePartner}"
                             TextWrapping="Wrap" />
             <TextBlock
                             x:Name="NoSpousesTextBlock"
                             Margin="10,0,0,0"
                             DockPanel.Dock="Top"
                             Foreground="{DynamicResource InputFontColor}"
-                            Text="None"
+                            Text="{local:Loc Details_None}"
                             Visibility="{Binding Path=HasSpouse, Converter={StaticResource ComposingConverter}, Mode=Default}" />
             <StackPanel
                             x:Name="SpousesInfo"
@@ -1723,7 +1723,7 @@
                 <Label
                                     Height="25.96"
                                     HorizontalAlignment="Left"
-                                    Content="_From"
+                                    Content="{local:Loc Details_From}"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=WeddingDateEditTextBox, Mode=OneWay}" />
                 <TextBox
@@ -1738,7 +1738,7 @@
                                     Grid.Row="1"
                                     Height="25.96"
                                     HorizontalAlignment="Left"
-                                    Content="_To"
+                                    Content="{local:Loc Details_To}"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=DivorceDateEditTextBox, Mode=OneWay}" />
                 <TextBox
@@ -1768,7 +1768,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Bottom"
                                     Click="DoneEditRelationshipButton_Click"
-                                    Content="_Done"
+                                    Content="{local:Loc Details_Done}"
                                     IsCancel="True"
                                     IsDefault="True" />
               </StackPanel>
@@ -1793,7 +1793,7 @@
                             Margin="15,5,5,5"
                             Foreground="{DynamicResource InputFontColor}"
                             Style="{DynamicResource SectionHeaderStyle}"
-                            Text="Add a Family Member"
+                            Text="{local:Loc Details_AddFamilyMember}"
                             TextWrapping="Wrap" />
             <StackPanel
                             Margin="15,0,10,0"
@@ -1821,7 +1821,7 @@
             <Border Margin="10,5,10,0" BorderThickness="0,2,0,0">
               <StackPanel Margin="0,0,0,0">
                 <Label
-                                    Content="_First Name"
+                                    Content="{local:Loc Person_FirstName}"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=FirstNameInputTextBox, Mode=OneWay}" />
                 <TextBox
@@ -1831,7 +1831,7 @@
                                     HorizontalAlignment="Left"
                                     TextWrapping="Wrap" />
                 <Label
-                                    Content="_Last Name"
+                                    Content="{local:Loc Person_LastName}"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=LastNameInputTextBox, Mode=OneWay}" />
                 <TextBox
@@ -1850,7 +1850,7 @@
                     <RowDefinition Height="Auto" />
                   </Grid.RowDefinitions>
                   <Label
-                                        Content="Date of _Birth"
+                                        Content="{local:Loc Person_BirthDate}"
                                         Foreground="{DynamicResource InputFontColor}"
                                         Target="{Binding ElementName=BirthDateInputTextBox, Mode=OneWay}" />
                   <TextBox
@@ -1868,12 +1868,12 @@
                                         Grid.Column="1"
                                         Margin="10,0,0,0"
                                         VerticalAlignment="Center"
-                                        Content="Li_ving"
+                                        Content="{local:Loc Person_Living}"
                                         Foreground="{DynamicResource InputFontColor}"
                                         IsChecked="True" />
                 </Grid>
                 <Label
-                                    Content="_Place of Birth"
+                                    Content="{local:Loc Person_BirthPlace}"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Target="{Binding ElementName=BirthPlaceInputTextBox, Mode=OneWay}" />
                 <TextBox
@@ -1895,7 +1895,7 @@
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Bottom"
                                             Click="AddButton_Click"
-                                            Content="_Add"
+                                            Content="{local:Loc Person_Add}"
                                             IsDefault="True" />
                     <Button
                                             x:Name="CloseButton"
@@ -1903,7 +1903,7 @@
                                             Height="20"
                                             Margin="15,0,0,0"
                                             Click="CloseButton_Click"
-                                            Content="_Cancel"
+                                            Content="{local:Loc Person_Cancel}"
                                             IsCancel="True" />
                   </StackPanel>
                 </Border>
@@ -1947,7 +1947,7 @@
                                     FontWeight="Normal"
                                     Foreground="{DynamicResource InputFontColor}"
                                     Style="{DynamicResource SectionHeaderStyle}"
-                                    Text="Connect"
+                                    Text="{local:Loc Details_Connect}"
                                     TextWrapping="Wrap" />
                 <TextBlock
                                     Margin="0,0,3,0"
@@ -1959,7 +1959,7 @@
                                     Margin="0,0,3,0"
                                     FontSize="13"
                                     Foreground="{DynamicResource InputFontColor}"
-                                    Text="with"
+                                    Text="{local:Loc Details_With}"
                                     TextWrapping="Wrap" />
                 <TextBlock
                                     VerticalAlignment="Center"
@@ -1968,13 +1968,13 @@
                                     Text="{Binding Path=SelectedValue, ElementName=ExistingPeopleListBox, Mode=Default}"
                                     TextTrimming="CharacterEllipsis"
                                     TextWrapping="Wrap"
-                                    ToolTip="a" />
+                                    ToolTip="{local:Loc Details_Article}" />
               </StackPanel>
               <DockPanel Margin="15,0,15,0" DockPanel.Dock="Top">
                 <TextBlock
                                     VerticalAlignment="Center"
                                     Foreground="{DynamicResource InputFontColor}"
-                                    Text="Filter:" />
+                                    Text="{local:Loc Details_Filter}" />
                 <TextBlock
                                     VerticalAlignment="Center"
                                     Foreground="{DynamicResource InputFontColor}"
@@ -2013,7 +2013,7 @@
                                 FontWeight="Normal"
                                 Foreground="{DynamicResource InputFontColor}"
                                 Style="{DynamicResource SectionHeaderStyle}"
-                                Text="Connect a Family Member as"
+                                Text="{local:Loc Details_ConnectAs}"
                                 TextWrapping="Wrap" />
               <StackPanel
                                 Margin="15,0,10,0"
@@ -2054,7 +2054,7 @@
                                 Width="60"
                                 Height="20"
                                 Click="AddExistingButton_Click"
-                                Content="_Add"
+                                Content="{local:Loc Person_Add}"
                                 IsDefault="True" />
               <Button
                                 x:Name="CancelAddExistingButton"
@@ -2062,7 +2062,7 @@
                                 Height="20"
                                 Margin="15,0,0,0"
                                 Click="CloseButton_Click"
-                                Content="_Cancel"
+                                Content="{local:Loc Person_Cancel}"
                                 IsCancel="True" />
             </StackPanel>
 
@@ -2086,7 +2086,7 @@
                             Margin="15,5,5,5"
                             Foreground="{DynamicResource InputFontColor}"
                             Style="{DynamicResource SectionHeaderStyle}"
-                            Text="Add a Family Member"
+                            Text="{local:Loc Details_AddFamilyMember}"
                             TextWrapping="Wrap" />
             <StackPanel
                             Margin="15,0,10,0"
@@ -2117,7 +2117,7 @@
               <StackPanel Margin="0,0,0,0">
                 <StackPanel Margin="15,0,0,0">
                   <Label
-                                        Content="Who are the parents?"
+                                        Content="{local:Loc Details_WhoParents}"
                                         Foreground="{DynamicResource InputFontColor}"
                                         Target="{Binding ElementName=ParentsListBox, Mode=OneWay}" />
                   <ListBox
@@ -2164,7 +2164,7 @@
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Bottom"
                                             Click="IntermediateAddButton_Click"
-                                            Content="_Add"
+                                            Content="{local:Loc Person_Add}"
                                             IsDefault="True" />
                     <Button
                                             x:Name="IntermediateCloseButton"
@@ -2172,7 +2172,7 @@
                                             Height="20"
                                             Margin="15,0,0,0"
                                             Click="IntermediateCloseButton_Click"
-                                            Content="_Cancel"
+                                            Content="{local:Loc Person_Cancel}"
                                             IsCancel="True" />
                   </StackPanel>
                 </Border>
@@ -2198,7 +2198,7 @@
                                 Width="42.1366666666667"
                                 Height="20"
                                 Style="{DynamicResource SectionHeaderStyle}"
-                                Text="Family (" />
+                                Text="{local:Loc Details_Family}" />
               <TextBlock
                                 Height="20"
                                 FontWeight="Normal"
@@ -2213,7 +2213,7 @@
                                 x:Name="FamilyDataButton"
                                 HorizontalAlignment="Right"
                                 Click="FamiliyDataButton_Click"
-                                Content="Expand"
+                                Content="{local:Loc Details_Expand}"
                                 FontSize="10"
                                 Style="{DynamicResource BlackButtonStyle}" />
             </DockPanel>
@@ -2221,7 +2221,7 @@
               <Label
                                 Margin="0,0,5,0"
                                 VerticalAlignment="Center"
-                                Content="Filter" />
+                                Content="{local:Loc Details_FilterButton}" />
               <local:FilterText
                                 x:Name="FilterTextBox"
                                 VerticalAlignment="Center"
@@ -2250,12 +2250,12 @@
                   <familyData:SortListViewColumn
                                         Width="115"
                                         DisplayMemberBinding="{Binding Path=FullName}"
-                                        Header="Name"
+                                        Header="{local:Loc Details_Name}"
                                         HeaderContainerStyle="{DynamicResource NameGridViewColumnHeader}"
                                         SortProperty="Name" />
                   <familyData:SortListViewColumn
                                         Width="50"
-                                        Header="Born"
+                                        Header="{local:Loc Details_Born}"
                                         SortProperty="YearOfBirth">
                     <familyData:SortListViewColumn.CellTemplate>
                       <DataTemplate>
@@ -2268,7 +2268,7 @@
                   </familyData:SortListViewColumn>
                   <familyData:SortListViewColumn
                                         Width="50"
-                                        Header="Died"
+                                        Header="{local:Loc Details_Died}"
                                         SortProperty="YearOfDeath">
                     <familyData:SortListViewColumn.CellTemplate>
                       <DataTemplate>
@@ -2281,7 +2281,7 @@
                   </familyData:SortListViewColumn>
                   <familyData:SortListViewColumn
                                         Width="40"
-                                        Header="Age"
+                                        Header="{local:Loc FamilyData_Age}"
                                         SortProperty="Age">
                     <familyData:SortListViewColumn.CellTemplate>
                       <DataTemplate>

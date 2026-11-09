@@ -211,7 +211,7 @@ namespace FamilyShow.Controls.Diagram
       ContextMenu = new ContextMenu();
       MenuItem item = new MenuItem();
       ContextMenu.Items.Add(item);
-      item.Header = "Show Diagram Outline";
+      item.Header = LocalizationManager.GetString("Diagram_ShowOutline");
       item.Click += new RoutedEventHandler(OnToggleBorderClick);
       item.Foreground = SystemColors.MenuTextBrush;
       item.Background = SystemColors.MenuBrush;

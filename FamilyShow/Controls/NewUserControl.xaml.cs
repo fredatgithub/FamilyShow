@@ -127,9 +127,9 @@ namespace FamilyShow
     {
       CommonDialog dialog = new CommonDialog();
       dialog.InitialDirectory = Environment.SpecialFolder.MyPictures.ToString();
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.JpegFiles, Properties.Resources.JpegExtension));
-      dialog.Filter.Add(new FilterEntry(Properties.Resources.PngFiles, Properties.Resources.PngExtension));
-      dialog.Title = Properties.Resources.Open;
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_JpegFiles"), Properties.Resources.JpegExtension));
+      dialog.Filter.Add(new FilterEntry(LocalizationManager.GetString("Dialog_PngFiles"), Properties.Resources.PngExtension));
+      dialog.Title = LocalizationManager.GetString("Dialog_Open");
       dialog.ShowOpen();
 
       if (!string.IsNullOrEmpty(dialog.FileName))

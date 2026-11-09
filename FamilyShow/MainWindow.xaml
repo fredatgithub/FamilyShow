@@ -6,7 +6,7 @@
     xmlns:familyData="clr-namespace:FamilyShow.Controls.FamilyData"
     xmlns:local="clr-namespace:FamilyShow"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Family.Show"
+    Title="{local:Loc ApplicationTitle}"
     Width="960"
     Height="728"
     Background="{DynamicResource MainBackgroundBrush}"
@@ -152,37 +152,28 @@
         <MenuItem
                     x:Name="NewMenu"
                     Command="New"
-                    Header="_New"
+                    Header="{local:Loc Menu_New}"
                     Style="{DynamicResource MenuItemStyle}" />
-        <MenuItem
-                    x:Name="OpenMenu"
-                    Header="_Open"
-                    Style="{DynamicResource MenuItemStyle}" />
-        <MenuItem
-                    x:Name="SaveMenu"
-                    Header="_Save"
-                    Style="{DynamicResource MenuItemStyle}">
-          <MenuItem Command="Save" Header="Save" />
-          <MenuItem Command="SaveAs" Header="Save As..." />
-          <MenuItem Command="local:MainWindow.ExportXpsCommand" Header="Save to XPS..." />
+        <MenuItem x:Name="OpenMenu" Header="{local:Loc Menu_Open}" Style="{DynamicResource MenuItemStyle}" />
+        <MenuItem x:Name="SaveMenu" Header="{local:Loc Menu_Save}" Style="{DynamicResource MenuItemStyle}">
+          <MenuItem Command="Save" Header="{local:Loc Menu_Save}" />
+          <MenuItem Command="SaveAs" Header="{local:Loc Menu_SaveAs}" />
+          <MenuItem Command="local:MainWindow.ExportXpsCommand" Header="{local:Loc Menu_SaveXps}" />
         </MenuItem>
-        <MenuItem
-                    x:Name="GedcomMenu"
-                    Header="_GEDCOM"
-                    Style="{DynamicResource MenuItemStyle}">
-          <MenuItem Command="local:MainWindow.ImportGedcomCommand" Header="Import..." />
-          <MenuItem Command="local:MainWindow.ExportGedcomCommand" Header="Export..." />
-          <MenuItem Command="local:MainWindow.WhatIsGedcomCommand" Header="What is GEDCOM?" />
+        <MenuItem x:Name="GedcomMenu" Header="{local:Loc Menu_Gedcom}" Style="{DynamicResource MenuItemStyle}">
+          <MenuItem Command="local:MainWindow.ImportGedcomCommand" Header="{local:Loc Menu_Import}" />
+          <MenuItem Command="local:MainWindow.ExportGedcomCommand" Header="{local:Loc Menu_Export}" />
+          <MenuItem Command="local:MainWindow.WhatIsGedcomCommand" Header="{local:Loc Menu_WhatIsGedcom}" />
         </MenuItem>
-        <MenuItem
-                    x:Name="SkinsMenu"
-                    Header="S_kins"
-                    Style="{DynamicResource MenuItemStyle}" />
-        <MenuItem
-                    x:Name="ExportsMenu"
-                    Header="Exports"
-                    Style="{DynamicResource MenuItemStyle}">
-          <MenuItem Command="local:MainWindow.ExportBirthCommand" Header="Exporter Naissance..." />
+        <MenuItem x:Name="SkinsMenu" Header="{local:Loc Menu_Skins}" Style="{DynamicResource MenuItemStyle}" />
+        <MenuItem x:Name="ExportsMenu" Header="{local:Loc Menu_Exports}" Style="{DynamicResource MenuItemStyle}">
+          <MenuItem Command="local:MainWindow.ExportBirthCommand" Header="{local:Loc Menu_ExportBirthdays}" />
+        </MenuItem>
+        <MenuItem Header="{local:Loc Menu_Language}" Style="{DynamicResource MenuItemStyle}">
+          <MenuItem x:Name="FrenchLanguageMenu" Header="Français" IsCheckable="True" Click="FrenchLanguageMenu_Click" />
+          <MenuItem x:Name="EnglishLanguageMenu" Header="English" IsCheckable="True" Click="EnglishLanguageMenu_Click" />
+          <MenuItem x:Name="GermanLanguageMenu" Header="Deutsch" IsCheckable="True" Click="GermanLanguageMenu_Click" />
+          <MenuItem x:Name="SpanishLanguageMenu" Header="Español" IsCheckable="True" Click="SpanishLanguageMenu_Click" />
         </MenuItem>
       </Menu>
     </Border>

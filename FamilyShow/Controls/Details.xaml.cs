@@ -1,8 +1,10 @@
 using FamilyShowLib;
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
@@ -51,6 +53,17 @@ namespace FamilyShow
       family.CurrentChanged += new EventHandler(Family_CurrentChanged);
 
       ExistingPeopleListBox.ItemsSource = family;
+    }
+
+    public void RefreshLocalizedComboBoxItems()
+    {
+      FamilyMemberComboBox.Items.Refresh();
+      ExistingFamilyMemberComboBox.Items.Refresh();
+
+      if (FamilyMemberAddButton.CommandParameter is FamilyMemberComboBoxValue nextAction)
+      {
+        SetNextFamilyMemberAction(nextAction);
+      }
     }
 
     #region routed events
@@ -846,7 +859,20 @@ namespace FamilyShow
     private void SetNextFamilyMemberAction(FamilyMemberComboBoxValue value)
     {
       FamilyMemberAddButton.CommandParameter = value;
-      FamilyMemberAddButton.Content = "_Add " + value.ToString();
+      string key = value switch
+      {
+        FamilyMemberComboBoxValue.Father => "Details_AddFather",
+        FamilyMemberComboBoxValue.Mother => "Details_AddMother",
+        FamilyMemberComboBoxValue.Brother => "Details_AddBrother",
+        FamilyMemberComboBoxValue.Sister => "Details_AddSister",
+        FamilyMemberComboBoxValue.Spouse => "Details_AddSpouse",
+        FamilyMemberComboBoxValue.Son => "Details_AddSon",
+        FamilyMemberComboBoxValue.Daughter => "Details_AddDaughter",
+        FamilyMemberComboBoxValue.Existing => "Details_ConnectFamilyMember",
+        _ => value.ToString()
+      };
+
+      FamilyMemberAddButton.Content = LocalizationManager.GetString(key);
     }
 
     /// <summary>
@@ -895,5 +921,36 @@ namespace FamilyShow
     Son,
     Daughter,
     Existing
+  }
+
+  public sealed class FamilyMemberComboBoxValueConverter : IValueConverter
+  {
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+      if (!(value is FamilyMemberComboBoxValue familyMember))
+      {
+        return value?.ToString() ?? string.Empty;
+      }
+
+      string key = familyMember switch
+      {
+        FamilyMemberComboBoxValue.Father => "Relationship_Father",
+        FamilyMemberComboBoxValue.Mother => "Relationship_Mother",
+        FamilyMemberComboBoxValue.Brother => "Relationship_Brother",
+        FamilyMemberComboBoxValue.Sister => "Relationship_Sister",
+        FamilyMemberComboBoxValue.Spouse => "Relationship_Spouse",
+        FamilyMemberComboBoxValue.Son => "Relationship_Son",
+        FamilyMemberComboBoxValue.Daughter => "Relationship_Daughter",
+        FamilyMemberComboBoxValue.Existing => "Details_ConnectFamilyMember",
+        _ => familyMember.ToString()
+      };
+
+      return LocalizationManager.GetString(key);
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+      return Binding.DoNothing;
+    }
   }
 }

@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="ApplicationTitle" xml:space="preserve"><value>FamilyShow</value></data>
+	<data name="Menu_New" xml:space="preserve"><value>_Neu</value></data>
+	<data name="Menu_Open" xml:space="preserve"><value>_Öffnen</value></data>
+	<data name="Menu_Save" xml:space="preserve"><value>_Speichern</value></data>
+	<data name="Menu_SaveAs" xml:space="preserve"><value>Speichern unter...</value></data>
+	<data name="Menu_SaveXps" xml:space="preserve"><value>Als XPS speichern...</value></data>
+	<data name="Menu_Gedcom" xml:space="preserve"><value>_GEDCOM</value></data>
+	<data name="Menu_Import" xml:space="preserve"><value>Importieren...</value></data>
+	<data name="Menu_Export" xml:space="preserve"><value>Exportieren...</value></data>
+	<data name="Menu_WhatIsGedcom" xml:space="preserve"><value>Was ist GEDCOM?</value></data>
+	<data name="Menu_Skins" xml:space="preserve"><value>_Designs</value></data>
+	<data name="Menu_Exports" xml:space="preserve"><value>Exporte</value></data>
+	<data name="Menu_ExportBirthdays" xml:space="preserve"><value>Geburtstage exportieren...</value></data>
+	<data name="Menu_Language" xml:space="preserve"><value>Sprache</value></data>
+	<data name="Menu_OpenRecent" xml:space="preserve"><value>Öffnen</value></data>
+	<data name="Menu_OpenRecentFiles" xml:space="preserve"><value>Zuletzt geöffnete Dateien</value></data>
+	<data name="Menu_ExportXps" xml:space="preserve"><value>Als XPS exportieren...</value></data>
+	<data name="Welcome_Title" xml:space="preserve"><value>Willkommen</value></data>
+	<data name="Welcome_New" xml:space="preserve"><value>Neu</value></data>
+	<data name="Welcome_Open" xml:space="preserve"><value>Öffnen...</value></data>
+	<data name="Welcome_Import" xml:space="preserve"><value>Importieren...</value></data>
+	<data name="Welcome_Recent" xml:space="preserve"><value>Zuletzt geöffnete Dateien</value></data>
+	<data name="Welcome_Version" xml:space="preserve"><value>Version </value></data>
+	<data name="Person_AddFamilyMember" xml:space="preserve"><value>Familienmitglied hinzufügen</value></data>
+	<data name="Person_DragPhoto" xml:space="preserve"><value>Foto hierher ziehen</value></data>
+	<data name="Person_Gender" xml:space="preserve"><value>_Geschlecht</value></data>
+	<data name="Person_Male" xml:space="preserve"><value>Männlich</value></data>
+	<data name="Person_Female" xml:space="preserve"><value>Weiblich</value></data>
+	<data name="Person_FirstName" xml:space="preserve"><value>_Vorname</value></data>
+	<data name="Person_LastName" xml:space="preserve"><value>_Nachname</value></data>
+	<data name="Person_MiddleName" xml:space="preserve"><value>_Zweiter Vorname</value></data>
+	<data name="Person_Suffix" xml:space="preserve"><value>_Namenszusatz</value></data>
+	<data name="Person_BirthDate" xml:space="preserve"><value>Geburts_datum</value></data>
+	<data name="Person_DeathDate" xml:space="preserve"><value>Sterbe_datum</value></data>
+	<data name="Person_Living" xml:space="preserve"><value>_Lebend</value></data>
+	<data name="Person_BirthPlace" xml:space="preserve"><value>_Geburtsort</value></data>
+	<data name="Person_DeathPlace" xml:space="preserve"><value>Sterbe_ort</value></data>
+	<data name="Person_Add" xml:space="preserve"><value>_Hinzufügen</value></data>
+	<data name="Person_Close" xml:space="preserve"><value>_Schließen</value></data>
+	<data name="Person_Cancel" xml:space="preserve"><value>_Abbrechen</value></data>
+	<data name="Person_Continue" xml:space="preserve"><value>Weiter</value></data>
+	<data name="Person_OldFileMessage" xml:space="preserve"><value>Diese Datei wurde mit einer älteren Version von Family.Show erstellt. Sie wird in einem neuen Format gespeichert, das mit dieser Version kompatibel ist. Der Name der neuen Datei endet auf .familyx und enthält alle Familienfotos, Geschichten und den Stammbaum in einer einzigen Datei.</value></data>
+	<data name="Person_DontShowAgain" xml:space="preserve"><value>Diese Meldung nicht mehr _anzeigen</value></data>
+	<data name="Person_Back" xml:space="preserve"><value>_Zurück</value></data>
+	<data name="Person_SetPrimary" xml:space="preserve"><value>Als _Hauptfoto festlegen</value></data>
+	<data name="Person_RemovePhoto" xml:space="preserve"><value>Foto _entfernen</value></data>
+	<data name="Person_Tags" xml:space="preserve"><value>Stichwörter:</value></data>
+	<data name="Person_DropPhotos" xml:space="preserve"><value>Fotos in diesen Bereich ziehen</value></data>
+	<data name="Person_Story" xml:space="preserve"><value>Geschichte</value></data>
+	<data name="Person_Edit" xml:space="preserve"><value>_Bearbeiten</value></data>
+	<data name="Person_Bold" xml:space="preserve"><value>Fett</value></data>
+	<data name="Person_Italic" xml:space="preserve"><value>Kursiv</value></data>
+	<data name="Person_Underline" xml:space="preserve"><value>Unterstrichen</value></data>
+	<data name="Person_GrowFont" xml:space="preserve"><value>Schrift vergrößern</value></data>
+	<data name="Person_ShrinkFont" xml:space="preserve"><value>Schrift verkleinern</value></data>
+	<data name="Person_Bullets" xml:space="preserve"><value>Aufzählungszeichen</value></data>
+	<data name="Person_Numbering" xml:space="preserve"><value>Nummerierung</value></data>
+	<data name="Person_AlignLeft" xml:space="preserve"><value>Linksbündig</value></data>
+	<data name="Person_AlignCenter" xml:space="preserve"><value>Zentriert</value></data>
+	<data name="Person_AlignRight" xml:space="preserve"><value>Rechtsbündig</value></data>
+	<data name="Person_AlignJustify" xml:space="preserve"><value>Blocksatz</value></data>
+	<data name="Details_Delete" xml:space="preserve"><value>_Löschen</value></data>
+	<data name="Details_FullName" xml:space="preserve"><value>Vollständiger Name</value></data>
+	<data name="Details_Born" xml:space="preserve"><value>Geboren</value></data>
+	<data name="Details_EditPerson" xml:space="preserve"><value>Person bearbeiten</value></data>
+	<data name="Details_Details" xml:space="preserve"><value>Details</value></data>
+	<data name="Details_Relationships" xml:space="preserve"><value>_Beziehungen</value></data>
+	<data name="Details_PhotosStories" xml:space="preserve"><value>_Fotos und Geschichten</value></data>
+	<data name="Details_CreateRelationship" xml:space="preserve"><value>Beziehung erstellen</value></data>
+	<data name="Details_AddFather" xml:space="preserve"><value>_Vater hinzufügen</value></data>
+	<data name="Details_AddMother" xml:space="preserve"><value>_Mutter hinzufügen</value></data>
+	<data name="Details_AddBrother" xml:space="preserve"><value>_Bruder hinzufügen</value></data>
+	<data name="Details_AddSister" xml:space="preserve"><value>_Schwester hinzufügen</value></data>
+	<data name="Details_AddSpouse" xml:space="preserve"><value>_Ehepartner hinzufügen</value></data>
+	<data name="Details_AddSon" xml:space="preserve"><value>_Sohn hinzufügen</value></data>
+	<data name="Details_AddDaughter" xml:space="preserve"><value>_Tochter hinzufügen</value></data>
+	<data name="Details_Gender" xml:space="preserve"><value>Geschlecht</value></data>
+	<data name="Details_Done" xml:space="preserve"><value>_Fertig</value></data>
+	<data name="Details_EditRelationships" xml:space="preserve"><value>Beziehungen bearbeiten für</value></data>
+	<data name="Details_Parents" xml:space="preserve"><value>Eltern</value></data>
+	<data name="Details_SpousePartner" xml:space="preserve"><value>Ehepartner/in</value></data>
+	<data name="Details_None" xml:space="preserve"><value>Keine</value></data>
+	<data name="Details_From" xml:space="preserve"><value>_Von</value></data>
+	<data name="Details_To" xml:space="preserve"><value>_Bis</value></data>
+	<data name="Details_AddFamilyMember" xml:space="preserve"><value>Familienmitglied hinzufügen</value></data>
+	<data name="Details_Connect" xml:space="preserve"><value>Verbinden</value></data>
+	<data name="Details_With" xml:space="preserve"><value>mit</value></data>
+	<data name="Details_Filter" xml:space="preserve"><value>Filtern:</value></data>
+	<data name="Details_ConnectAs" xml:space="preserve"><value>Familienmitglied verbinden als</value></data>
+	<data name="Details_WhoParents" xml:space="preserve"><value>Wer sind die Eltern?</value></data>
+	<data name="Details_Family" xml:space="preserve"><value>Familie (</value></data>
+	<data name="Details_Expand" xml:space="preserve"><value>Erweitern</value></data>
+	<data name="Details_Name" xml:space="preserve"><value>Name</value></data>
+	<data name="Details_Died" xml:space="preserve"><value>Verstorben</value></data>
+	<data name="FamilyData_Title" xml:space="preserve"><value>Familiendaten</value></data>
+	<data name="FamilyData_Back" xml:space="preserve"><value>_Zurück</value></data>
+	<data name="FamilyData_FirstName" xml:space="preserve"><value>Vorname</value></data>
+	<data name="FamilyData_LastName" xml:space="preserve"><value>Nachname</value></data>
+	<data name="FamilyData_Age" xml:space="preserve"><value>Alter</value></data>
+	<data name="FamilyData_BirthDate" xml:space="preserve"><value>Geburtsdatum</value></data>
+	<data name="FamilyData_BirthPlace" xml:space="preserve"><value>Geburtsort</value></data>
+	<data name="FamilyData_DeathDate" xml:space="preserve"><value>Sterbedatum</value></data>
+	<data name="FamilyData_DeathPlace" xml:space="preserve"><value>Sterbeort</value></data>
+	<data name="FamilyData_Statistics" xml:space="preserve"><value>Familienstatistik</value></data>
+	<data name="FamilyData_LastNames" xml:space="preserve"><value>Nachnamen</value></data>
+	<data name="FamilyData_AgeDistribution" xml:space="preserve"><value>Altersverteilung</value></data>
+	<data name="FamilyData_Birthdays" xml:space="preserve"><value>Geburtstage</value></data>
+	<data name="Filter_Clear" xml:space="preserve"><value>Filtertext löschen</value></data>
+	<data name="Diagram_ShowOutline" xml:space="preserve"><value>Stammbaumübersicht anzeigen</value></data>
+	<data name="Diagram_AddPersonAs" xml:space="preserve"><value>Neue Person hinzufügen als</value></data>
+	<data name="Dialog_AllFiles" xml:space="preserve"><value>Alle Dateien (*.*)</value></data>
+	<data name="Dialog_FamilyFiles" xml:space="preserve"><value>Family.Show-Dateien (.familyx oder .family)</value></data>
+	<data name="Dialog_GedcomFiles" xml:space="preserve"><value>GEDCOM-Dateien (.ged)</value></data>
+	<data name="Dialog_JpegFiles" xml:space="preserve"><value>JPEG-Dateien (.jpg)</value></data>
+	<data name="Dialog_PngFiles" xml:space="preserve"><value>PNG-Dateien (.png)</value></data>
+	<data name="Dialog_XpsFiles" xml:space="preserve"><value>XPS-Dateien (.xps)</value></data>
+	<data name="Dialog_Open" xml:space="preserve"><value>Öffnen</value></data>
+	<data name="Dialog_SaveAs" xml:space="preserve"><value>Speichern unter</value></data>
+	<data name="Dialog_Import" xml:space="preserve"><value>Importieren</value></data>
+	<data name="Dialog_Export" xml:space="preserve"><value>Exportieren</value></data>
+	<data name="Dialog_NotSaved" xml:space="preserve"><value>Speichern</value></data>
+	<data name="Dialog_NotSavedMessage" xml:space="preserve"><value>Die aktuelle Familie wurde noch nicht gespeichert. Möchten Sie sie speichern?</value></data>
+	<data name="Dialog_GedcomFailed" xml:space="preserve"><value>Import fehlgeschlagen</value></data>
+	<data name="Dialog_GedcomFailedMessage" xml:space="preserve"><value>Die GEDCOM-Datei konnte nicht importiert werden.</value></data>
+	<data name="Dialog_DefaultStory" xml:space="preserve"><value>In diesem Abschnitt können Sie weitere Informationen zu dieser Person hinzufügen. Erzählen Sie ihre Geschichte und beschreiben Sie ihre Leistungen, Vorlieben und Abneigungen.
+Verwenden Sie die Symbolleiste, um den Text zu formatieren oder Listen zu erstellen.
+Um Fotos hinzuzufügen, ziehen Sie sie in den Fotobereich unten links.
+Um diesen Text zu entfernen, klicken Sie auf „Bearbeiten“, markieren Sie den gesamten Text (Strg+A) und drücken Sie dann die Entf-Taste.</value></data>
+	<data name="Details_FilterButton" xml:space="preserve"><value>Filtern</value></data>
+	<data name="Details_Article" xml:space="preserve"><value>ein Familienmitglied</value></data>
+	<data name="OldVersion_Title" xml:space="preserve"><value>Nachricht</value></data>
+	<data name="Dialog_FamilyV2Files" xml:space="preserve"><value>Family.Show-Dateien V2 (.family)</value></data>
+	<data name="Dialog_FamilyV3Files" xml:space="preserve"><value>Family.Show-Dateien V3 (.familyx)</value></data>
+	<data name="Relationship_Father" xml:space="preserve"><value>Vater</value></data>
+	<data name="Relationship_Mother" xml:space="preserve"><value>Mutter</value></data>
+	<data name="Relationship_Brother" xml:space="preserve"><value>Bruder</value></data>
+	<data name="Relationship_Sister" xml:space="preserve"><value>Schwester</value></data>
+	<data name="Relationship_Spouse" xml:space="preserve"><value>Ehepartner/in</value></data>
+	<data name="Relationship_Son" xml:space="preserve"><value>Sohn</value></data>
+	<data name="Relationship_Daughter" xml:space="preserve"><value>Tochter</value></data>
+	<data name="Details_ConnectFamilyMember" xml:space="preserve"><value>Familienmitglied verbinden</value></data>
+</root>

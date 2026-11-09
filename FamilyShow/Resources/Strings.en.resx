@@ -120,4 +120,144 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Familyshow</value>
   </data>
+  <data name="Menu_New" xml:space="preserve"><value>_New</value></data>
+  <data name="Menu_Open" xml:space="preserve"><value>_Open</value></data>
+  <data name="Menu_Save" xml:space="preserve"><value>_Save</value></data>
+  <data name="Menu_SaveAs" xml:space="preserve"><value>Save As...</value></data>
+  <data name="Menu_SaveXps" xml:space="preserve"><value>Save to XPS...</value></data>
+  <data name="Menu_Gedcom" xml:space="preserve"><value>_GEDCOM</value></data>
+  <data name="Menu_Import" xml:space="preserve"><value>Import...</value></data>
+  <data name="Menu_Export" xml:space="preserve"><value>Export...</value></data>
+  <data name="Menu_WhatIsGedcom" xml:space="preserve"><value>What is GEDCOM?</value></data>
+  <data name="Menu_Skins" xml:space="preserve"><value>S_kins</value></data>
+  <data name="Menu_Exports" xml:space="preserve"><value>Exports</value></data>
+  <data name="Menu_ExportBirthdays" xml:space="preserve"><value>Export Birthdays...</value></data>
+  <data name="Menu_Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Menu_OpenRecent" xml:space="preserve"><value>Open</value></data>
+  <data name="Menu_OpenRecentFiles" xml:space="preserve"><value>Open Recent</value></data>
+  <data name="Menu_ExportXps" xml:space="preserve"><value>Export to XPS...</value></data>
+  <data name="Welcome_Title" xml:space="preserve"><value>Welcome</value></data>
+  <data name="Welcome_New" xml:space="preserve"><value>New</value></data>
+  <data name="Welcome_Open" xml:space="preserve"><value>Open...</value></data>
+  <data name="Welcome_Import" xml:space="preserve"><value>Import...</value></data>
+  <data name="Welcome_Recent" xml:space="preserve"><value>Open Recent</value></data>
+  <data name="Welcome_Version" xml:space="preserve"><value>Version </value></data>
+  <data name="Person_AddFamilyMember" xml:space="preserve"><value>Add a family member</value></data>
+  <data name="Person_DragPhoto" xml:space="preserve"><value>Drag a photo here</value></data>
+  <data name="Person_Gender" xml:space="preserve"><value>_Gender</value></data>
+  <data name="Person_Male" xml:space="preserve"><value>Male</value></data>
+  <data name="Person_Female" xml:space="preserve"><value>Female</value></data>
+  <data name="Person_FirstName" xml:space="preserve"><value>_First Name</value></data>
+  <data name="Person_LastName" xml:space="preserve"><value>_Last Name</value></data>
+  <data name="Person_MiddleName" xml:space="preserve"><value>_Middle Name</value></data>
+  <data name="Person_Suffix" xml:space="preserve"><value>_Suffix</value></data>
+  <data name="Person_BirthDate" xml:space="preserve"><value>Date of _Birth</value></data>
+  <data name="Person_DeathDate" xml:space="preserve"><value>Date of Dea_th</value></data>
+  <data name="Person_Living" xml:space="preserve"><value>Li_ving</value></data>
+  <data name="Person_BirthPlace" xml:space="preserve"><value>_Place of Birth</value></data>
+  <data name="Person_DeathPlace" xml:space="preserve"><value>Place of Deat_h</value></data>
+  <data name="Person_Add" xml:space="preserve"><value>_Add</value></data>
+  <data name="Person_Close" xml:space="preserve"><value>_Close</value></data>
+  <data name="Person_Cancel" xml:space="preserve"><value>_Cancel</value></data>
+  <data name="Person_Continue" xml:space="preserve"><value>Continue</value></data>
+  <data name="Person_OldFileMessage" xml:space="preserve"><value>This file was created with an earlier version of Family.Show. It will be saved in a new format for use with this version. The new file's name will end with .familyx and will bundle all your family photos, stories and tree into this single file!</value></data>
+  <data name="Person_DontShowAgain" xml:space="preserve"><value>_Don't show me this message again</value></data>
+  <data name="Person_Back" xml:space="preserve"><value>_Back</value></data>
+  <data name="Person_SetPrimary" xml:space="preserve"><value>Set as _Primary</value></data>
+  <data name="Person_RemovePhoto" xml:space="preserve"><value>_Remove Photo</value></data>
+  <data name="Person_Tags" xml:space="preserve"><value>Tags:</value></data>
+  <data name="Person_DropPhotos" xml:space="preserve"><value>Drop photos into this box</value></data>
+  <data name="Person_Story" xml:space="preserve"><value>Story</value></data>
+  <data name="Person_Edit" xml:space="preserve"><value>_Edit</value></data>
+  <data name="Person_Bold" xml:space="preserve"><value>Bold</value></data>
+  <data name="Person_Italic" xml:space="preserve"><value>Italic</value></data>
+  <data name="Person_Underline" xml:space="preserve"><value>Underline</value></data>
+  <data name="Person_GrowFont" xml:space="preserve"><value>Grow Font</value></data>
+  <data name="Person_ShrinkFont" xml:space="preserve"><value>Shrink Font</value></data>
+  <data name="Person_Bullets" xml:space="preserve"><value>Bullets</value></data>
+  <data name="Person_Numbering" xml:space="preserve"><value>Numbering</value></data>
+  <data name="Person_AlignLeft" xml:space="preserve"><value>Align Left</value></data>
+  <data name="Person_AlignCenter" xml:space="preserve"><value>Align Center</value></data>
+  <data name="Person_AlignRight" xml:space="preserve"><value>Align Right</value></data>
+  <data name="Person_AlignJustify" xml:space="preserve"><value>Align Justify</value></data>
+  <data name="Details_Delete" xml:space="preserve"><value>Dele_te</value></data>
+  <data name="Details_FullName" xml:space="preserve"><value>Full Name</value></data>
+  <data name="Details_Born" xml:space="preserve"><value>Born</value></data>
+  <data name="Details_EditPerson" xml:space="preserve"><value>Edit Person</value></data>
+  <data name="Details_Details" xml:space="preserve"><value>Details</value></data>
+  <data name="Details_Relationships" xml:space="preserve"><value>_Relationships</value></data>
+  <data name="Details_PhotosStories" xml:space="preserve"><value>_Photos &amp; Stories</value></data>
+  <data name="Details_CreateRelationship" xml:space="preserve"><value>Create Relationship</value></data>
+  <data name="Details_AddFather" xml:space="preserve"><value>_Add Father</value></data>
+  <data name="Details_AddMother" xml:space="preserve"><value>_Add Mother</value></data>
+  <data name="Details_AddBrother" xml:space="preserve"><value>_Add Brother</value></data>
+  <data name="Details_AddSister" xml:space="preserve"><value>_Add Sister</value></data>
+  <data name="Details_AddSpouse" xml:space="preserve"><value>_Add Spouse</value></data>
+  <data name="Details_AddSon" xml:space="preserve"><value>_Add Son</value></data>
+  <data name="Details_AddDaughter" xml:space="preserve"><value>_Add Daughter</value></data>
+  <data name="Details_Gender" xml:space="preserve"><value>Gender</value></data>
+  <data name="Details_Done" xml:space="preserve"><value>_Done</value></data>
+  <data name="Details_EditRelationships" xml:space="preserve"><value>Edit Relationships for</value></data>
+  <data name="Details_Parents" xml:space="preserve"><value>Parents</value></data>
+  <data name="Details_SpousePartner" xml:space="preserve"><value>Spouse/Partner</value></data>
+  <data name="Details_None" xml:space="preserve"><value>None</value></data>
+  <data name="Details_From" xml:space="preserve"><value>_From</value></data>
+  <data name="Details_To" xml:space="preserve"><value>_To</value></data>
+  <data name="Details_AddFamilyMember" xml:space="preserve"><value>Add a Family Member</value></data>
+  <data name="Details_Connect" xml:space="preserve"><value>Connect</value></data>
+  <data name="Details_With" xml:space="preserve"><value>with</value></data>
+  <data name="Details_Filter" xml:space="preserve"><value>Filter:</value></data>
+  <data name="Details_ConnectAs" xml:space="preserve"><value>Connect a Family Member as</value></data>
+  <data name="Details_WhoParents" xml:space="preserve"><value>Who are the parents?</value></data>
+  <data name="Details_Family" xml:space="preserve"><value>Family (</value></data>
+  <data name="Details_Expand" xml:space="preserve"><value>Expand</value></data>
+  <data name="Details_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Details_Died" xml:space="preserve"><value>Died</value></data>
+  <data name="FamilyData_Title" xml:space="preserve"><value>Family Data</value></data>
+  <data name="FamilyData_Back" xml:space="preserve"><value>_Back</value></data>
+  <data name="FamilyData_FirstName" xml:space="preserve"><value>First Name</value></data>
+  <data name="FamilyData_LastName" xml:space="preserve"><value>Last Name</value></data>
+  <data name="FamilyData_Age" xml:space="preserve"><value>Age</value></data>
+  <data name="FamilyData_BirthDate" xml:space="preserve"><value>Birth Date</value></data>
+  <data name="FamilyData_BirthPlace" xml:space="preserve"><value>Birth Place</value></data>
+  <data name="FamilyData_DeathDate" xml:space="preserve"><value>Death Date</value></data>
+  <data name="FamilyData_DeathPlace" xml:space="preserve"><value>Death Place</value></data>
+  <data name="FamilyData_Statistics" xml:space="preserve"><value>Family Statistics</value></data>
+  <data name="FamilyData_LastNames" xml:space="preserve"><value>Last Names</value></data>
+  <data name="FamilyData_AgeDistribution" xml:space="preserve"><value>Age Distributions</value></data>
+  <data name="FamilyData_Birthdays" xml:space="preserve"><value>Birthdays</value></data>
+  <data name="Filter_Clear" xml:space="preserve"><value>Clear Filter Text</value></data>
+  <data name="Diagram_ShowOutline" xml:space="preserve"><value>Show Diagram Outline</value></data>
+  <data name="Diagram_AddPersonAs" xml:space="preserve"><value>Add new person as</value></data>
+  <data name="Dialog_AllFiles" xml:space="preserve"><value>All Files (*.*)</value></data>
+  <data name="Dialog_FamilyFiles" xml:space="preserve"><value>Family.Show Files (.familyx or .family)</value></data>
+  <data name="Dialog_GedcomFiles" xml:space="preserve"><value>GEDCOM Files (.ged)</value></data>
+  <data name="Dialog_JpegFiles" xml:space="preserve"><value>JPEG Files (.jpg)</value></data>
+  <data name="Dialog_PngFiles" xml:space="preserve"><value>PNG Files (.png)</value></data>
+  <data name="Dialog_XpsFiles" xml:space="preserve"><value>XPS Files (.xps)</value></data>
+  <data name="Dialog_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Dialog_SaveAs" xml:space="preserve"><value>Save As</value></data>
+  <data name="Dialog_Import" xml:space="preserve"><value>Import</value></data>
+  <data name="Dialog_Export" xml:space="preserve"><value>Export</value></data>
+  <data name="Dialog_NotSaved" xml:space="preserve"><value>Save</value></data>
+  <data name="Dialog_NotSavedMessage" xml:space="preserve"><value>The current family has not been saved. Do you want to save?</value></data>
+  <data name="Dialog_GedcomFailed" xml:space="preserve"><value>Import Failed</value></data>
+  <data name="Dialog_GedcomFailedMessage" xml:space="preserve"><value>The GEDCOM file could not be imported.</value></data>
+  <data name="Dialog_DefaultStory" xml:space="preserve"><value>This section can be used to provide more information about this person. Write a story and describe this person's accomplishments, likes, and dislikes.
+Use the toolbar to format text or create lists.
+To add photos, drag them into the photo box at the bottom left.
+To remove this text, click Edit, select all the text (Ctrl+A), then press Delete.</value></data>
+  <data name="Details_FilterButton" xml:space="preserve"><value>Filter</value></data>
+  <data name="Details_Article" xml:space="preserve"><value>a family member</value></data>
+  <data name="OldVersion_Title" xml:space="preserve"><value>Message</value></data>
+  <data name="Dialog_FamilyV2Files" xml:space="preserve"><value>Family.Show V2 Files (.family)</value></data>
+  <data name="Dialog_FamilyV3Files" xml:space="preserve"><value>Family.Show V3 Files (.familyx)</value></data>
+  <data name="Relationship_Father" xml:space="preserve"><value>Father</value></data>
+  <data name="Relationship_Mother" xml:space="preserve"><value>Mother</value></data>
+  <data name="Relationship_Brother" xml:space="preserve"><value>Brother</value></data>
+  <data name="Relationship_Sister" xml:space="preserve"><value>Sister</value></data>
+  <data name="Relationship_Spouse" xml:space="preserve"><value>Spouse</value></data>
+  <data name="Relationship_Son" xml:space="preserve"><value>Son</value></data>
+  <data name="Relationship_Daughter" xml:space="preserve"><value>Daughter</value></data>
+  <data name="Details_ConnectFamilyMember" xml:space="preserve"><value>Connect Family Member</value></data>
 </root>
