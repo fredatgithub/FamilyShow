@@ -1247,7 +1247,25 @@ namespace FamilyShow.Resources {
                 return ResourceManager.GetString("Relationship_Spouse", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Noir.
+        /// </summary>
+        internal static string Skin_Black {
+            get {
+                return ResourceManager.GetString("Skin_Black", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Argent.
+        /// </summary>
+        internal static string Skin_Silver {
+            get {
+                return ResourceManager.GetString("Skin_Silver", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Importer....
         /// </summary>

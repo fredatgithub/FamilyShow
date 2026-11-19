@@ -109,6 +109,8 @@
 	<data name="Menu_Export" xml:space="preserve"><value>Exportar...</value></data>
 	<data name="Menu_WhatIsGedcom" xml:space="preserve"><value>¿Qué es GEDCOM?</value></data>
 	<data name="Menu_Skins" xml:space="preserve"><value>_Temas</value></data>
+	<data name="Skin_Black" xml:space="preserve"><value>Negro</value></data>
+	<data name="Skin_Silver" xml:space="preserve"><value>Plateado</value></data>
 	<data name="Menu_Exports" xml:space="preserve"><value>Exportaciones</value></data>
 	<data name="Menu_ExportBirthdays" xml:space="preserve"><value>Exportar cumpleaños...</value></data>
 	<data name="Menu_Language" xml:space="preserve"><value>Idioma</value></data>

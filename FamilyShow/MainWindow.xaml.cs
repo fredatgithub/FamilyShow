@@ -104,6 +104,7 @@ namespace FamilyShow
       SpanishLanguageMenu.IsChecked = language == "es";
       DetailsControl.RefreshLocalizedComboBoxItems();
       BuildOpenMenu();
+      BuildSkinsMenu();
     }
 
     /// <summary>
@@ -944,12 +945,15 @@ namespace FamilyShow
     /// </summary>
     private void BuildSkinsMenu()
     {
+      SkinsMenu.Items.Clear();
       NameValueCollection skins = App.Skins;
       foreach (string skinName in skins.AllKeys)
       {
+        string resourceKey = $"Skin_{skinName}";
+        string localizedSkinName = LocalizationManager.GetString(resourceKey);
         MenuItem skin = new()
         {
-          Header = skinName,
+          Header = localizedSkinName == resourceKey ? skinName : localizedSkinName,
           CommandParameter = skins[skinName],
           Command = ChangeSkinCommand
         };
