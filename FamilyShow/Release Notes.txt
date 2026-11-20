@@ -1,3 +1,7 @@
+Version 4.1.2.0 (2026-11-20)
+--
+Add application icon
+
 Version 4.1.1.0 (2026-11-19)
 --
 Translate skin menu items
